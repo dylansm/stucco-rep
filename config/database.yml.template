@@ -1,0 +1,27 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  reconnect: false
+  pool: 5
+  username: <%= ENV["USER"] %>
+  password:
+ 
+development:
+  <<: *defaults
+  database: adoberep_dev
+ 
+test:
+  <<: *defaults
+  database: adoberep_test
+
+staging:
+  <<: *defaults
+  database: adoberep_staging;
+  username: adoberep_staging_user
+  password: wibbly69
+
+production:
+  <<: *defaults
+  database: adoberep_prod;
+  username: adoberep_prod_user
+  password: Wibbly69!
