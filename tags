@@ -1,0 +1,17 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AddNameAndAdminToUsers	db/migrate/20130515005443_add_name_and_admin_to_users.rb	/^class AddNameAndAdminToUsers < ActiveRecord::Migration$/;"	c
+Adoberep	config/application.rb	/^module Adoberep$/;"	m
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Adoberep
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+DeviseCreateUsers	db/migrate/20130515003217_devise_create_users.rb	/^class DeviseCreateUsers < ActiveRecord::Migration$/;"	c
+User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+change	db/migrate/20130515005443_add_name_and_admin_to_users.rb	/^  def change$/;"	f	class:AddNameAndAdminToUsers
+configure_devise_permitted_params	app/controllers/application_controller.rb	/^  def configure_devise_permitted_params$/;"	f	class:ApplicationController
+down	db/migrate/20130515003217_devise_create_users.rb	/^  def self.down$/;"	F	class:DeviseCreateUsers
+up	db/migrate/20130515003217_devise_create_users.rb	/^  def self.up$/;"	F	class:DeviseCreateUsers

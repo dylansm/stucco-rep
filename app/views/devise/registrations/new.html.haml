@@ -4,7 +4,7 @@
   %div
     = f.label :email
     %br/
-    = f.email_field :email
+    = f.email_field :email, :autofocus => true
   %div
     = f.label :password
     %br/
@@ -14,4 +14,4 @@
     %br/
     = f.password_field :password_confirmation
   %div= f.submit "Sign up"
-= render :partial => "devise/shared/links"
+= render "devise/shared/links"

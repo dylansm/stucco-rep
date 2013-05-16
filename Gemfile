@@ -15,13 +15,13 @@ gem 'capistrano_colors'
 gem 'nokogiri', "~> 1.5.9"
 gem 'fb_graph'
 gem 'aws-sdk'
-gem 'devise'
+gem 'devise', "~> 3.0.0rc"
 gem 'formtastic'
+gem 'haml-rails'
 
 group :assets do
   gem 'coffee-rails', '~> 4.0.0'
   gem 'sass-rails', '~> 4.0.0.rc1'
-  gem 'haml-rails'
   gem 'uglifier', '>= 1.3.0'
 end
 
