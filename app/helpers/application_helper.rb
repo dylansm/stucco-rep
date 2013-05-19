@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def full_title(page_title)
-    base_title = "#{APP_CONFIG['site_name']}"
+    base_title = "#{APP_CONFIG['name']}"
     if page_title.empty?
       base_title
     else

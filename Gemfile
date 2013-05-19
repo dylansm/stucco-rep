@@ -30,6 +30,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem 'guard-ctags-bundler'
+end
+
 group :test, :development do
   gem 'wirb'
   gem 'debugger'
@@ -40,8 +44,10 @@ group :test, :development do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'selenium-webdriver', '2.0'
   gem 'capybara', "~> 2.1.0"
   gem 'rb-fsevent'
+  gem 'factory_girl', "~> 4.2.0"
   #gem 'growl'
 end

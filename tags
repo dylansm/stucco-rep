@@ -4,14 +4,16 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-AddNameAndAdminToUsers	db/migrate/20130515005443_add_name_and_admin_to_users.rb	/^class AddNameAndAdminToUsers < ActiveRecord::Migration$/;"	c
-Adoberep	config/application.rb	/^module Adoberep$/;"	m
-Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Adoberep
 ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
 ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
-DeviseCreateUsers	db/migrate/20130515003217_devise_create_users.rb	/^class DeviseCreateUsers < ActiveRecord::Migration$/;"	c
+PagesController	app/controllers/pages_controller.rb	/^class PagesController < ApplicationController$/;"	c
+PagesHelper	app/helpers/pages_helper.rb	/^module PagesHelper$/;"	m
 User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
-change	db/migrate/20130515005443_add_name_and_admin_to_users.rb	/^  def change$/;"	f	class:AddNameAndAdminToUsers
+UsersController	app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	c
+UsersHelper	app/helpers/users_helper.rb	/^module UsersHelper$/;"	m
 configure_devise_permitted_params	app/controllers/application_controller.rb	/^  def configure_devise_permitted_params$/;"	f	class:ApplicationController
-down	db/migrate/20130515003217_devise_create_users.rb	/^  def self.down$/;"	F	class:DeviseCreateUsers
-up	db/migrate/20130515003217_devise_create_users.rb	/^  def self.up$/;"	F	class:DeviseCreateUsers
+full_title	app/helpers/application_helper.rb	/^  def full_title(page_title)$/;"	f	class:ApplicationHelper
+home	app/controllers/pages_controller.rb	/^  def home$/;"	f	class:PagesController
+show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController
+title	app/helpers/application_helper.rb	/^  def title(page_title)$/;"	f	class:ApplicationHelper
+user	app/controllers/pages_controller.rb	/^  def user$/;"	f	class:PagesController

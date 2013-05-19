@@ -1,11 +1,15 @@
 Adoberep::Application.routes.draw do
-  get "pages/home"
+  get "users/show"
+  get "profile" => 'pages#user', as: :user
+  #get "profile/:id" => 'pages#user_profile', as: :user_profile
+
   devise_for :users
+  resources :users, :only => [:show]
+
+  root 'pages#home'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'pages#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
