@@ -34,12 +34,6 @@ describe "Pages Features" do
   end
 
   context "when authenticated user visits home page" do
-
-    # this doesn't work
-    #let(:user) {
-      #user = FactoryGirl.create(:user)
-      #login_as user, scope: :user
-    #}
     
     before do
       @user = FactoryGirl.create(:user)
@@ -47,14 +41,35 @@ describe "Pages Features" do
       visit root_path
     end
 
-    it "has log out link" do
-      expect(page).to have_link("Log out")
-    end
+    describe "user visits home page" do
 
-    it "has profile link" do
-      expect(page).to have_link("Profile")
+      it "has log out link" do
+        expect(page).to have_link("Log out")
+      end
+
+      it "has profile link" do
+        expect(page).to have_link("Profile")
+      end
+
+      describe "user visits their profile page" do
+        before { visit user_path }
+        
+        it "has page separator in title" do
+          expect(page.title).to have_content("My Profile |")
+        end
+      end
+
+      describe "user visits their profile page" do
+        before { visit edit_user_registration_path }
+        
+        it "has page separator in title" do
+          expect(page.title).to have_content("Edit My Profile |")
+        end
+      end
+
     end
 
   end
-  
+
+    
 end

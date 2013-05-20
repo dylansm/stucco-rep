@@ -169,7 +169,10 @@ CREATE TABLE users (
     updated_at timestamp without time zone,
     first_name character varying(255),
     last_name character varying(255),
-    admin boolean DEFAULT false
+    admin boolean DEFAULT false,
+    authentication_token character varying(255),
+    provider character varying(255),
+    uid character varying(255)
 );
 
 
@@ -211,6 +214,8 @@ COPY schema_migrations (version) FROM stdin;
 20130515063233
 20130515063505
 20130516210715
+20130519060535
+20130519154612
 \.
 
 
@@ -218,8 +223,8 @@ COPY schema_migrations (version) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: dylan
 --
 
-COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, first_name, last_name, admin) FROM stdin;
-1	foliomedia@gmail.com	$2a$10$Nv3zdkXmg5CxxKYuxzUevuuT4WfGYxyfsRJ1AF27fgPiL237h923m	\N	\N	\N	8	2013-05-19 00:38:19.25457	2013-05-19 00:06:09.665597	127.0.0.1	127.0.0.1	2013-05-17 21:39:05.933234	2013-05-19 00:38:19.257597	Dylan	Smith	f
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, first_name, last_name, admin, authentication_token, provider, uid) FROM stdin;
+1	foliomedia@gmail.com	$2a$10$Nv3zdkXmg5CxxKYuxzUevuuT4WfGYxyfsRJ1AF27fgPiL237h923m	\N	\N	\N	11	2013-05-19 21:53:37.596043	2013-05-19 21:36:51.542461	127.0.0.1	127.0.0.1	2013-05-17 21:39:05.933234	2013-05-19 21:53:37.597663	Dylan	Smith	f	\N	\N	\N
 \.
 
 
@@ -227,7 +232,7 @@ COPY users (id, email, encrypted_password, reset_password_token, reset_password_
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dylan
 --
 
-SELECT pg_catalog.setval('users_id_seq', 1, true);
+SELECT pg_catalog.setval('users_id_seq', 3, true);
 
 
 --

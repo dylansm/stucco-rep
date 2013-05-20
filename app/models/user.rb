@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
                          #email:auth.info.email,
                          #password:Devise.friendly_token[0,20]
                         #)
+      puts "\nUSER: #{auth.extra.raw_info}"
       user = User.create(first_name:auth.extra.raw_info.name,
                          last_name:auth.extra.raw_info.name,
                          provider:auth.provider,
