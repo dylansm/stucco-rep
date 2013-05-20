@@ -16,6 +16,8 @@ gem 'nokogiri', "~> 1.5.9"
 gem 'fb_graph'
 gem 'aws-sdk'
 gem 'devise', "~> 3.0.0rc"
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'formtastic'
 gem 'haml-rails'
 

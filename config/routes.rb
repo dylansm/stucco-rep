@@ -1,9 +1,9 @@
 Adoberep::Application.routes.draw do
-  get "users/show"
+  #get "users/show"
   get "profile" => 'pages#user', as: :user
   #get "profile/:id" => 'pages#user_profile', as: :user_profile
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users, :only => [:show]
 
   root 'pages#home'
