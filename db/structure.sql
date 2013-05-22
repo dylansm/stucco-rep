@@ -147,7 +147,10 @@ CREATE TABLE users (
     updated_at timestamp without time zone,
     first_name character varying(255),
     last_name character varying(255),
-    admin boolean DEFAULT false
+    admin boolean DEFAULT false,
+    authentication_token character varying(255),
+    provider character varying(255),
+    uid character varying(255)
 );
 
 
@@ -217,3 +220,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130515063233');
 INSERT INTO schema_migrations (version) VALUES ('20130515063505');
 
 INSERT INTO schema_migrations (version) VALUES ('20130516210715');
+
+INSERT INTO schema_migrations (version) VALUES ('20130519060535');
+
+INSERT INTO schema_migrations (version) VALUES ('20130519154612');
