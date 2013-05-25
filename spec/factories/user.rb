@@ -5,6 +5,9 @@ FactoryGirl.define do
     email "user@email.com"
     password "foobar123"
     password_confirmation "foobar123"
+    provider nil
+    authentication_token nil
+    uid nil
   
     trait :admin do
       last_name "Admin"

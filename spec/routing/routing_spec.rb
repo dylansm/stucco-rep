@@ -8,4 +8,14 @@ describe "routing to profiles" do
       :action => "user"
     ) 
   end
+
+end
+
+describe "routing to user management screen" do
+  it "routes to pages#manage_users" do
+    expect(get: "/manage-users").to route_to(
+      controller: "pages",
+      action: "manage_users"
+    )
+  end
 end

@@ -73,4 +73,22 @@ namespace "db" do
 
   end
 
+  
+  desc "Export model's table passed as parameter in seeds format."
+  task :export_seeds, [:model] => :environment do |t, args|
+    #unless defined? args[:model].constantize
+    
+    begin
+      args[:model].constantize
+    rescue Exception, SyntaxError, NameError => e
+      raise("The model '#{args[:model]}' does not exist.")
+      exit
+    end
+
+    model = args[:model].constantize
+    model.order(:id).all.each do |attr|
+      puts "#{args[:model]}.create(#{attr.serializable_hash.delete_if {|key, value| ['created_at','updated_at','id'].include?(key)}.to_s.gsub(/[{}]/,'')})"
+    end
+  end
+
 end

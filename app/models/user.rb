@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
+  # :token_authenticatable, :confirmable, :registerable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -11,16 +11,33 @@ class User < ActiveRecord::Base
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
+
+    # if user not found by oauth provider uid find by email
+    # and update oauth attributes
     unless user
-      #debugger
-      user = User.create(first_name: auth.extra.raw_info.first_name,
-                         last_name: auth.extra.raw_info.last_name,
-                         provider: auth.provider,
-                         uid: auth.uid,
-                         authentication_token: auth.credentials.token,
-                         email: auth.info.email,
-                         password: Devise.friendly_token[0,20]
-                        )
+      user = self.update_oauth_by_email(auth)
+    end
+
+    #unless user
+      #user = User.create(first_name: auth.extra.raw_info.first_name,
+                         #last_name: auth.extra.raw_info.last_name,
+                         #provider: auth.provider,
+                         #uid: auth.uid,
+                         #authentication_token: auth.credentials.token,
+                         #email: auth.info.email,
+                         #password: Devise.friendly_token[0,20])
+    #end
+    user
+  end
+
+  private
+
+  def self.update_oauth_by_email(auth)
+    user = User.where(:email => auth.info.email).first
+    if user
+      user.update_attributes(provider: auth.provider,
+                             uid: auth.uid,
+                             authentication_token: auth.credentials.token)
     end
     user
   end

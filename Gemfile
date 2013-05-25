@@ -20,6 +20,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'formtastic'
 gem 'haml-rails'
+gem 'db_populate', github: 'ffmike/db-populate'
+gem "aws-ses", "~> 0.5.0", :require => 'aws/ses'
 
 group :assets do
   gem 'coffee-rails', '~> 4.0.0'

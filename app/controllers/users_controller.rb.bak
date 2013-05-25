@@ -1,0 +1,25 @@
+class UsersController < ApplicationController
+  before_filter :authenticate_user!, only: [ :show ]
+
+  def show
+    @user = User.find(params[:id])
+  end
+  
+  def edit
+    @user = current_user
+  end
+
+  # POST
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to root_path
+    else
+      puts "<<<<<<<PROBLEM"
+    end
+  end
+
+  # PUT
+  def update
+  end
+end

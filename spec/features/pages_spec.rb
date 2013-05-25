@@ -10,7 +10,7 @@ describe "Pages Features" do
     before { visit root_path }
 
     it "has home content" do
-      expect(page).to have_content('home')
+      expect(page).to have_content('Welcome to the Adobe Rep Portal')
     end
 
     it "has the correct page title" do
@@ -27,7 +27,7 @@ describe "Pages Features" do
 
     before { visit root_path }
 
-    it "has log out link" do
+    it "has login link" do
       expect(page).to have_link("Log in")
     end
     
@@ -42,6 +42,14 @@ describe "Pages Features" do
     end
 
     describe "user visits home page" do
+
+      it "has dashboard content" do
+        expect(page).to have_content('Dashboard')
+      end
+
+      it "has username in title" do
+        expect(page.title).to have_content("#{@user.first_name} #{@user.last_name} |")
+      end
 
       it "has log out link" do
         expect(page).to have_link("Log out")
@@ -69,6 +77,41 @@ describe "Pages Features" do
 
     end
 
+
+    describe "admin visits home page" do
+
+      before do
+        @admin = FactoryGirl.create(:user, :admin)
+        login_as @admin, :scope => :user
+        visit root_path
+      end
+
+      it "has admin dashboard content" do
+        expect(page).to have_content('Dashboard')
+      end
+
+      it "has admin page title" do
+        expect(page.title).to have_content("Admin Dashboard |")
+      end
+
+    end
+
+  end
+
+
+  context "when authenticated user visits home page" do
+    
+    before do
+      @user = FactoryGirl.create(:user)
+      login_as @user, :scope => :user
+      visit "/users/#{@user.id}"
+    end
+
+    describe "user profile page" do
+      it "has the user's name in the title" do
+        expect(page.title).to have_content("#{@user.first_name} #{@user.last_name}")
+      end
+    end
   end
 
     
