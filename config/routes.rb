@@ -8,13 +8,11 @@ Adoberep::Application.routes.draw do
     :omniauth_callbacks => 'users/omniauth_callbacks',
     :registrations => 'registrations'
   }
-  #resources :users, :only => [:new, :edit]
-  #get '/users/new' => 'devise/registrations#new'
+  #resources :users
   devise_scope :user do
-    get 'users/:id/edit' => 'users#edit'
-    get 'users/:id' => 'users#show'
-    put 'users/:id' => 'registrations#update'
+    resources :users
   end
+    
 
   root 'pages#home'
 

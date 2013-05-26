@@ -2,6 +2,10 @@
 
 en:
   devise:
+    users:
+      user:
+        updated: "User account successfully updated."
+        created: "User account successfully created. An email has been sent to the email provided."
     confirmations:
       confirmed: "Your account was successfully confirmed. You are now signed in."
       send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
@@ -58,3 +62,4 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+

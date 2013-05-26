@@ -4,7 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
+  config.mailer_sender = "dylan@whoisowenjones.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -223,7 +223,6 @@ Devise.setup do |config|
   require "omniauth-facebook"
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 
-  API_KEYS = YAML::load_file("#{Rails.root}/config/api_keys.yml")[Rails.env]
   config.omniauth :facebook , API_KEYS['facebook']['api_key'], API_KEYS['facebook']['api_secret'], scope: API_KEYS['facebook']['scope']
   #config.omniauth :twitter , API_KEYS['twitter']['api_key'], API_KEYS['twitter']['api_secret']
 
