@@ -142,6 +142,9 @@ GEM
     json_pure (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (1.1.1)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -305,6 +308,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.0.1)
   jquery-rails
+  kaminari
   nokogiri (~> 1.5.9)
   omniauth
   omniauth-facebook

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :authenticate_user!, only: [:user, :user_profile]
+  before_filter :authenticate_user!, except: [:home]
 
   def home
     @user = current_user
@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   end
 
   def manage_users
-    @users = User.all
+    @users = User.all.page(params[:page])
   end
 
 end

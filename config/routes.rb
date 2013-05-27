@@ -1,7 +1,7 @@
 Adoberep::Application.routes.draw do
   # pages
   get 'profile' => 'pages#user', as: :user
-  #get 'manage-users' => 'pages#manage_users'
+  get 'manage-users' => 'pages#manage_users'
 
   # users
   devise_for :users, :controllers => { 

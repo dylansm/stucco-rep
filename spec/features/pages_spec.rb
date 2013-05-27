@@ -47,6 +47,10 @@ describe "Pages Features" do
         expect(page).to have_content('Dashboard')
       end
 
+      it "does not have admin tools" do
+        expect(page).to_not have_content('Admin Tools')
+      end
+
       it "has username in title" do
         expect(page.title).to have_content("#{@user.first_name} #{@user.last_name} |")
       end
@@ -88,6 +92,10 @@ describe "Pages Features" do
 
       it "has admin dashboard content" do
         expect(page).to have_content('Dashboard')
+      end
+
+      it "has admin tools" do
+        expect(page).to have_content('Admin Tools')
       end
 
       it "has admin page title" do
