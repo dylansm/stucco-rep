@@ -1,0 +1,5 @@
+%p
+  Hello #{@resource.first_name} #{@resource.last_name},
+%p You have been invited to join the #{APP_CONFIG['name']} website. You can activate your new account through the link below.
+%p= link_to 'Set my password', edit_password_url(@resource, :reset_password_token => @resource.reset_password_token)
+%p Please contact your #{APP_CONFIG['name']} administrator if you have any questions.

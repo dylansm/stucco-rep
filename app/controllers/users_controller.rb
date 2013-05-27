@@ -1,5 +1,7 @@
-class UsersController < DeviseController
-  before_filter :authenticate_user!, only: [ :show ]
+#class UsersController < Devise::DeviseController
+class UsersController < ApplicationController
+  before_filter :authenticate_user!
+  respond_to :html, :json
 
   def show
     @user = User.find(params[:id])
@@ -11,11 +13,11 @@ class UsersController < DeviseController
 
   # POST
   def create
-    @user = User.new(params[:user])
+    @user = User.new(permitted_user_params)
     if @user.save
       redirect_to root_path
     else
-      puts "<<<<<<<PROBLEM"
+      respond_with @user
     end
   end
 
@@ -28,9 +30,12 @@ class UsersController < DeviseController
     end
     
     @user = User.find(params[:id])
-    params.permit!
-    if @user.update_attributes(params[:user])
-      set_flash_message :notice, :updated
+    #params.permit!
+    if @user.update_attributes(permitted_user_params)
+
+      #TODO enable this
+      #set_flash_message :notice, :updated
+
       # Sign in the user bypassing validation in case his password changed
       #sign_in @user, :bypass => true
       redirect_to after_update_path_for(@user)
@@ -39,9 +44,27 @@ class UsersController < DeviseController
     end
   end
 
+  # DELETE
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    #TODO enable this
+    #set_flash_message :notice, :updated
+    
+    respond_with @user.to_json
+  end
+
+  def suspend
+  end
+
   private
 
   def after_update_path_for(resource)
     signed_in_root_path(resource)
+  end
+
+  def permitted_user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :admin)
   end
 end

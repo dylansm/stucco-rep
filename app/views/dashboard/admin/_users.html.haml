@@ -17,4 +17,5 @@
         %td= u.last_sign_in_at
         %td= link_to "View", "users/#{u.id}"
         %td= link_to "Edit", "/users/#{u.id}/edit"
-        %td= link_to "Delete", "users/#{u.id}"
+        %td= link_to "Suspend", "#", { class: "suspend-user", :"data-id" => "#{u.id}", remote: true }
+        %td= link_to "Delete", "#", { class: "delete-user", :"data-id" => "#{u.id}", remote: true }

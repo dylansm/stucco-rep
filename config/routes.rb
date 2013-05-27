@@ -1,18 +1,15 @@
 Adoberep::Application.routes.draw do
   # pages
   get 'profile' => 'pages#user', as: :user
-  get 'manage-users' => 'pages#manage_users'
+  #get 'manage-users' => 'pages#manage_users'
 
   # users
   devise_for :users, :controllers => { 
-    :omniauth_callbacks => 'users/omniauth_callbacks',
-    :registrations => 'registrations'
+    :omniauth_callbacks => 'users/omniauth_callbacks'
   }
-  #resources :users
   devise_scope :user do
     resources :users
   end
-    
 
   root 'pages#home'
 

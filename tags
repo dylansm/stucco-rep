@@ -9,20 +9,33 @@ ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/
 PagesController	app/controllers/pages_controller.rb	/^class PagesController < ApplicationController$/;"	c
 PagesHelper	app/helpers/pages_helper.rb	/^module PagesHelper$/;"	m
 User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
+UserMailer	app/mailers/user_mailer.rb	/^class UserMailer < Devise::Mailer$/;"	c
 Users	app/controllers/users/omniauth_callbacks_controller.rb	/^class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController$/;"	c
-UsersController	app/controllers/users_controller.rb	/^class UsersController < DeviseController$/;"	c
+UsersController	app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	c
 UsersHelper	app/helpers/users_helper.rb	/^module UsersHelper$/;"	m
+activate_instructions	app/mailers/user_mailer.rb	/^  def activate_instructions(record, opts={})$/;"	f	class:UserMailer
 after_update_path_for	app/controllers/users_controller.rb	/^  def after_update_path_for(resource)$/;"	f	class:UsersController
 configure_devise_permitted_params	app/controllers/application_controller.rb	/^  def configure_devise_permitted_params$/;"	f	class:ApplicationController
+confirmation_instructions	app/mailers/user_mailer.rb	/^  def confirmation_instructions(record, opts={})$/;"	f	class:UserMailer
 create	app/controllers/users_controller.rb	/^  def create$/;"	f	class:UsersController
+destroy	app/controllers/users_controller.rb	/^  def destroy$/;"	f	class:UsersController
+devise_mapping	app/helpers/users_helper.rb	/^  def devise_mapping$/;"	f	class:UsersHelper
 edit	app/controllers/users_controller.rb	/^  def edit$/;"	f	class:UsersController
 facebook	app/controllers/users/omniauth_callbacks_controller.rb	/^  def facebook$/;"	f	class:Users
 find_for_facebook_oauth	app/models/user.rb	/^  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)$/;"	F	class:User
 full_title	app/helpers/application_helper.rb	/^  def full_title(page_title)$/;"	f	class:ApplicationHelper
 home	app/controllers/pages_controller.rb	/^  def home$/;"	f	class:PagesController
 manage_users	app/controllers/pages_controller.rb	/^  def manage_users$/;"	f	class:PagesController
+password_required?	app/models/user.rb	/^  def password_required?$/;"	f	class:User
+permitted_user_params	app/controllers/users_controller.rb	/^  def permitted_user_params$/;"	f	class:UsersController
+reset_password_instructions	app/mailers/user_mailer.rb	/^  def reset_password_instructions(record, opts={})$/;"	f	class:UserMailer
+resource	app/helpers/users_helper.rb	/^  def resource$/;"	f	class:UsersHelper
+resource_name	app/helpers/users_helper.rb	/^  def resource_name$/;"	f	class:UsersHelper
+send_activate_instructions	app/models/user.rb	/^  def send_activate_instructions(attributes={})$/;"	f	class:User
 show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController
+suspend	app/controllers/users_controller.rb	/^  def suspend$/;"	f	class:UsersController
 title	app/helpers/application_helper.rb	/^  def title(page_title)$/;"	f	class:ApplicationHelper
+unlock_instructions	app/mailers/user_mailer.rb	/^  def unlock_instructions(record, opts={})$/;"	f	class:UserMailer
 update	app/controllers/users_controller.rb	/^  def update$/;"	f	class:UsersController
 update_oauth_by_email	app/models/user.rb	/^  def self.update_oauth_by_email(auth)$/;"	F	class:User
 user	app/controllers/pages_controller.rb	/^  def user$/;"	f	class:PagesController

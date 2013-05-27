@@ -33,7 +33,7 @@ describe "Pages Features" do
     
   end
 
-  context "when authenticated user visits home page" do
+  context "when authenticated" do
     
     before do
       @user = FactoryGirl.create(:user)
@@ -68,10 +68,10 @@ describe "Pages Features" do
       end
 
       describe "user visits their profile page" do
-        before { visit edit_user_registration_path }
+        before { visit edit_user_path(@user) }
         
         it "has page separator in title" do
-          expect(page.title).to have_content("Edit My Profile |")
+          expect(page.title).to have_content("Edit Example User’s Account |")
         end
       end
 

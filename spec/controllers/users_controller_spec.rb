@@ -2,15 +2,18 @@ require 'spec_helper'
 
 describe UsersController do
 
-  context "when logged in" do
+  context "when authenticated" do
 
     let(:user) { FactoryGirl.create :user }
 
-    before { sign_in user }
+    before do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      sign_in user
+    end
 
     describe "GET 'show'" do
       it "returns http success" do
-        get :show, id: user
+        get :show, id: user.id
         expect(response).to be_success
       end
     end
@@ -34,9 +37,11 @@ describe UsersController do
 
     let(:user) { FactoryGirl.create :user }
     let(:admin) { FactoryGirl.create :user, :admin }
+
+    before { @request.env["devise.mapping"] = Devise.mappings[:user] }
     
-    describe "GET 'show'" do
-      it "returns http success" do
+    describe "GET users#show" do
+      it "redirects when unauthenticated" do
         get :show, id: user
         expect(response).to be_redirect
       end
