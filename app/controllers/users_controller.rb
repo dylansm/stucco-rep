@@ -5,6 +5,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user.authentication_token
+      @facebook_posts = fetch_facebook_stream(@user)
+    end
   end
   
   def edit
@@ -67,4 +70,13 @@ class UsersController < ApplicationController
   def permitted_user_params
     params.require(:user).permit(:first_name, :last_name, :email, :admin)
   end
+
+  def fetch_facebook_stream(user)
+    posts = FbGraph::Query.new(
+      "SELECT message,comment_info,share_count,likes,created_time FROM stream WHERE strpos(message, '#adobehashtag') >= 0 AND source_id = #{user.uid} AND updated_time > 1350000000"
+    )
+    posts.access_token = user.authentication_token
+    posts.fetch
+  end
+
 end

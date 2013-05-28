@@ -22,6 +22,7 @@ destroy	app/controllers/users_controller.rb	/^  def destroy$/;"	f	class:UsersCon
 devise_mapping	app/helpers/users_helper.rb	/^  def devise_mapping$/;"	f	class:UsersHelper
 edit	app/controllers/users_controller.rb	/^  def edit$/;"	f	class:UsersController
 facebook	app/controllers/users/omniauth_callbacks_controller.rb	/^  def facebook$/;"	f	class:Users
+fetch_facebook_stream	app/controllers/users_controller.rb	/^  def fetch_facebook_stream(user)$/;"	f	class:UsersController
 find_for_facebook_oauth	app/models/user.rb	/^  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)$/;"	F	class:User
 full_title	app/helpers/application_helper.rb	/^  def full_title(page_title)$/;"	f	class:ApplicationHelper
 home	app/controllers/pages_controller.rb	/^  def home$/;"	f	class:PagesController
