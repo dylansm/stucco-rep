@@ -49,14 +49,14 @@ describe UsersController do
     before { @request.env["devise.mapping"] = Devise.mappings[:user] }
     
     describe "GET users#show" do
-      it "redirects when unauthenticated" do
+      it "redirects user when unauthenticated" do
         get :show, id: user
         expect(response).to be_redirect
       end
     end
 
     describe "GET 'show' admins" do
-      it "returns http success" do
+      it "redirects admin when unauthenticated" do
         get :show, id: admin
         expect(response).to be_redirect
       end

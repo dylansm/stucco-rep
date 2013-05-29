@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  #has_and_belongs_to_many :programs
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :registerable,
   # :lockable, :timeoutable and :omniauthable
