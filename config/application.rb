@@ -1,12 +1,18 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'yaml'
+unless File.exists? 'config/api_keys.yml'
+  FileUtils.cp 'config/api_keys.yml.template', 'config/api_keys.yml'
+end
+
+unless File.exists? 'config/database.yml'
+  FileUtils.cp 'config/database.yml.template', 'config/database.yml'
+end
+  
 require 'rails/all'
+require 'yaml'
 
 APP_CONFIG = YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
 API_KEYS = YAML.load(File.read(File.expand_path('../api_keys.yml', __FILE__)))[Rails.env]
-#API_KEYS = YAML::load_file("#{Rails.root}/config/api_keys.yml")[Rails.env]
-
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

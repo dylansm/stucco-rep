@@ -295,6 +295,7 @@ DEPENDENCIES
   capistrano_colors
   capybara (~> 2.1.0)
   coffee-rails (~> 4.0.0)
+  coffee-script
   database_cleaner
   db_populate!
   debugger

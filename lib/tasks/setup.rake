@@ -30,8 +30,17 @@ namespace "setup" do
   task :db_file => ['config/database.yml'] do
   end
 
+  task :api_keys_file => ['config/api_keys.yml'] do
+  end
+
   #desc "Set up Rails app for new user"
-  task :project => ['setup:db_file', 'db:restore'] do
+  task :project => ['setup:api_keys_file', 'setup:db_file', 'db:restore'] do
+  end
+
+  namespace :api_keys_file do
+    file "config/api_keys.yml" => ['config/database.yml.template'] do
+      cp "config/api_keys.yml.template", "config/api_keys.yml"
+    end
   end
 
   namespace :db_file do

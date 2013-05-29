@@ -19,6 +19,7 @@ gem 'devise', "~> 3.0.0rc"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'formtastic'
+gem 'coffee-script', :require => 'coffee_script'
 gem 'haml-rails'
 gem 'db_populate', github: 'ffmike/db-populate'
 gem 'aws-ses', "~> 0.5.0", :require => 'aws/ses'
