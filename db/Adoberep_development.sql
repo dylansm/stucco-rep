@@ -9,15 +9,6 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: binary_upgrade; Type: SCHEMA; Schema: -; Owner: dylan
---
-
-CREATE SCHEMA binary_upgrade;
-
-
-ALTER SCHEMA binary_upgrade OWNER TO dylan;
-
---
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
@@ -30,107 +21,6 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
-
-SET search_path = binary_upgrade, pg_catalog;
-
---
--- Name: create_empty_extension(text, text, boolean, text, oid[], text[], text[]); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION create_empty_extension(text, text, boolean, text, oid[], text[], text[]) RETURNS void
-    LANGUAGE c
-    AS '$libdir/pg_upgrade_support', 'create_empty_extension';
-
-
-ALTER FUNCTION binary_upgrade.create_empty_extension(text, text, boolean, text, oid[], text[], text[]) OWNER TO dylan;
-
---
--- Name: set_next_array_pg_type_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION set_next_array_pg_type_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_array_pg_type_oid';
-
-
-ALTER FUNCTION binary_upgrade.set_next_array_pg_type_oid(oid) OWNER TO dylan;
-
---
--- Name: set_next_heap_pg_class_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION set_next_heap_pg_class_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_heap_pg_class_oid';
-
-
-ALTER FUNCTION binary_upgrade.set_next_heap_pg_class_oid(oid) OWNER TO dylan;
-
---
--- Name: set_next_index_pg_class_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION set_next_index_pg_class_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_index_pg_class_oid';
-
-
-ALTER FUNCTION binary_upgrade.set_next_index_pg_class_oid(oid) OWNER TO dylan;
-
---
--- Name: set_next_pg_authid_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION set_next_pg_authid_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_pg_authid_oid';
-
-
-ALTER FUNCTION binary_upgrade.set_next_pg_authid_oid(oid) OWNER TO dylan;
-
---
--- Name: set_next_pg_enum_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION set_next_pg_enum_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_pg_enum_oid';
-
-
-ALTER FUNCTION binary_upgrade.set_next_pg_enum_oid(oid) OWNER TO dylan;
-
---
--- Name: set_next_pg_type_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION set_next_pg_type_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_pg_type_oid';
-
-
-ALTER FUNCTION binary_upgrade.set_next_pg_type_oid(oid) OWNER TO dylan;
-
---
--- Name: set_next_toast_pg_class_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION set_next_toast_pg_class_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_toast_pg_class_oid';
-
-
-ALTER FUNCTION binary_upgrade.set_next_toast_pg_class_oid(oid) OWNER TO dylan;
-
---
--- Name: set_next_toast_pg_type_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: dylan
---
-
-CREATE FUNCTION set_next_toast_pg_type_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_toast_pg_type_oid';
-
-
-ALTER FUNCTION binary_upgrade.set_next_toast_pg_type_oid(oid) OWNER TO dylan;
 
 SET search_path = public, pg_catalog;
 
@@ -224,7 +114,12 @@ COPY schema_migrations (version) FROM stdin;
 --
 
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, first_name, last_name, admin, authentication_token, provider, uid) FROM stdin;
-1	foliomedia@gmail.com	$2a$10$Nv3zdkXmg5CxxKYuxzUevuuT4WfGYxyfsRJ1AF27fgPiL237h923m	\N	\N	\N	11	2013-05-19 21:53:37.596043	2013-05-19 21:36:51.542461	127.0.0.1	127.0.0.1	2013-05-17 21:39:05.933234	2013-05-19 21:53:37.597663	Dylan	Smith	f	\N	\N	\N
+82	hello@nightlang.org	$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa	uy4CsCqSsxw5EkMBbt1L	2013-05-27 06:56:14.548125	\N	1	2013-05-27 16:18:39.4988	2013-05-27 16:18:39.4988	127.0.0.1	127.0.0.1	2013-05-27 06:56:14.546528	2013-05-27 16:18:39.500011	John	Tongue	f	\N	\N	\N
+81	foliomedia2@yahoo.com	$2a$10$TwVWBd5ilT7kmwhXI3gMmuB1CfLOku/hGgQIne1avyKpA0Byzj496	zpppGcWy2xZ2szz2DfnG	2013-05-27 06:56:13.851243	\N	3	2013-05-28 15:53:06.544754	2013-05-28 05:10:34.083651	127.0.0.1	127.0.0.1	2013-05-27 06:56:13.843989	2013-05-28 15:53:06.547917	Michael	Hfuhruhurr	f	CAADmzjuhoH8BAM0ktBGS23UcSw5nu6v7YTLEbAJKazOpg1TbENPv6IAoNIb8eDobhw43nhi2eQreC2UTNKSHt9BVZCeDu9SBFPnGfyfFHwKYFjlZASpaeLlGt8yxIaoYRXlbjQZAWlLovXuak4X	facebook	100000689107298
+45	dylan@whoisowenjones.com	$2a$10$P7RHrSrfkKo/LXXSLFOa3e55McrcHH9Ket1/P3bCzv4sJtP9G2g7y	yb4buEN7UVXQruyeZVQ4	2013-05-27 02:13:06.556941	\N	16	2013-05-28 15:54:05.20388	2013-05-28 05:11:21.028808	127.0.0.1	127.0.0.1	2013-05-27 02:13:06.549201	2013-05-28 15:54:05.204896	Dylan	Smith	t	CAADmzjuhoH8BAFCfTa6aiKghkRplZCA8pLVXe9m9uiC1dfDqi7CzIZCGM7IgX5QZAN8BZCZCFuuGpytUI3Djg3gjeX4T87s6F5MQRbgJz0vx6MH9uMXAsGIvK2kiyXAUCXQu0bWtYgQxZB8IflZCc7c	facebook	100005976664425
+112	vready@gmail.com	$2a$10$btEN1wy3rfw7IjslcyiBzuLaKqCXCJ4uIM/5eswe48U33KKuiJciG	\N	\N	\N	1	2013-05-28 16:03:21.720971	2013-05-28 16:03:21.720971	192.168.0.114	192.168.0.114	2013-05-28 15:55:24.531348	2013-05-28 16:03:21.721826	Vince	Ready	f	\N	\N	\N
+113	vince@whoisowenjones.com	$2a$10$3NJlsyoiGbjoqLe2HE8MzOz/q6gknBsNbClndSTPyufBH2h5smFIO	\N	\N	\N	1	2013-05-28 16:19:44.280982	2013-05-28 16:19:44.280982	192.168.0.114	192.168.0.114	2013-05-28 16:18:03.853527	2013-05-28 16:19:44.281884	Vince	Ready	f	\N	\N	\N
+114	test@user.com	$2a$10$btEN1wy3rfw7IjslcyiBzuLaKqCXCJ4uIM/5eswe48U33KKuiJciG	sFysUM7MsmzwxteRFU9m	2013-05-28 16:49:36.620852	\N	0	\N	\N	\N	\N	2013-05-28 16:49:36.616244	2013-05-28 16:49:36.616244	Test	User	f	\N	\N	\N
 \.
 
 
@@ -232,7 +127,7 @@ COPY users (id, email, encrypted_password, reset_password_token, reset_password_
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dylan
 --
 
-SELECT pg_catalog.setval('users_id_seq', 3, true);
+SELECT pg_catalog.setval('users_id_seq', 114, true);
 
 
 --

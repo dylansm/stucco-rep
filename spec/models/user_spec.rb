@@ -21,6 +21,10 @@ describe User do
     it "is not an admin" do
       expect(user.admin?).to eq(false)
     end
+
+    it "is active (not suspended)" do
+      expect(user.suspended).to eq(false)
+    end
   end
 
   context "when an admin is created" do

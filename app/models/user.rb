@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   validates(:first_name, presence: true)
   validates(:last_name, presence: true)
 
-  after_create { |user| user.send_activate_instructions }
+  after_create do |user|
+    user.send_activate_instructions
+  end
 
   def send_activate_instructions(attributes={})
     generate_reset_password_token! if should_generate_reset_token?
@@ -35,6 +37,14 @@ class User < ActiveRecord::Base
                          #password: Devise.friendly_token[0,20])
     #end
     user
+  end
+
+  def fetch_facebook_stream
+    posts = FbGraph::Query.new(
+      "SELECT message,comment_info,share_count,likes,created_time FROM stream WHERE strpos(message, '#adobehashtag') >= 0 AND source_id = #{uid} AND updated_time > 1350000000"
+    )
+    posts.access_token = authentication_token
+    posts.fetch
   end
 
   private

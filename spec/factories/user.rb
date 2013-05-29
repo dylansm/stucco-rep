@@ -14,5 +14,12 @@ FactoryGirl.define do
       email "admin@email.com"
       admin true
     end
+
+    trait :facebook do
+      provider "facebook"
+      authentication_token "foo"
+      uid "123"
+    end
   end
+
 end

@@ -1,17 +1,21 @@
-#class UsersController < Devise::DeviseController
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
 
   def show
     @user = User.find(params[:id])
-    if @user.authentication_token
+    unless @user.authentication_token.nil?
       @facebook_posts = fetch_facebook_stream(@user)
     end
   end
   
   def edit
     @user = User.find(params[:id])
+    render "dashboard/admin/users/edit"
+  end
+
+  def new
+    render "dashboard/admin/users/new"
   end
 
   # POST
@@ -72,11 +76,15 @@ class UsersController < ApplicationController
   end
 
   def fetch_facebook_stream(user)
-    posts = FbGraph::Query.new(
-      "SELECT message,comment_info,share_count,likes,created_time FROM stream WHERE strpos(message, '#adobehashtag') >= 0 AND source_id = #{user.uid} AND updated_time > 1350000000"
-    )
-    posts.access_token = user.authentication_token
-    posts.fetch
+    user.fetch_facebook_stream
   end
+
+  #def fetch_facebook_stream(user)
+    #posts = FbGraph::Query.new(
+      #"SELECT message,comment_info,share_count,likes,created_time FROM stream WHERE strpos(message, '#adobehashtag') >= 0 AND source_id = #{user.uid} AND updated_time > 1350000000"
+    #)
+    #posts.access_token = user.authentication_token
+    #posts.fetch
+  #end
 
 end

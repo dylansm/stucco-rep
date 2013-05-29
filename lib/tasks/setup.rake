@@ -48,6 +48,9 @@ namespace "setup" do
     features = "#{Rails.root}/spec/features"
     directory "#{features}"
 
+    fixtures = "#{Rails.root}/spec/fixtures"
+    directory "#{fixtures}"
+
     helpers = "#{Rails.root}/spec/helpers"
     directory "#{helpers}"
 
@@ -63,9 +66,10 @@ namespace "setup" do
     views = "#{Rails.root}/spec/views"
     directory "#{views}"
 
-    task :dirs => [controllers, features, helpers, requests, routing, support, views] do
+    task :dirs => [controllers, features, fixtures, helpers, requests, routing, support, views] do
       `touch #{controllers}/.gitkeep`
       `touch #{features}/.gitkeep`
+      `touch #{fixtures}/.gitkeep`
       `touch #{helpers}/.gitkeep`
       `touch #{requests}/.gitkeep`
       `touch #{routing}/.gitkeep`

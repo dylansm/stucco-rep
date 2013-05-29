@@ -1,6 +1,6 @@
 - title "#{@user.first_name} #{@user.last_name}"
 %h2= "#{@user.first_name} #{@user.last_name}"
-- if current_user.admin?
+- if @user.admin?
   %p= link_to "Edit", edit_user_path(@user)
 
 %h3 Facebook activity:
