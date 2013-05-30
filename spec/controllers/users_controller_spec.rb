@@ -24,7 +24,7 @@ describe UsersController do
     end
 
 
-    context "when logged in as admin" do
+    context "as admin" do
       
       let(:admin) { FactoryGirl.create(:user, :admin) }
 
@@ -35,11 +35,23 @@ describe UsersController do
         end
       end
 
+      describe "POST #create" do
+        it "should create a user" do
+          expect { post :create, user: {first_name:"Test2", last_name:"Test2", email: "test2@user.com"} }.to change(User, :count).by 1
+        end
+      end
+
+      describe "DELETE #destroy" do
+        it "should delete a user" do
+          #expect { post :delete, user: {first_name:"Test2", last_name:"Test2", email: "test2@user.com" }.to change(User, :count).by 1
+          expect { delete :destroy, user: user }.to change(User, :count).by 1
+          #expect { delete "/users/#{user.id}" }.to change(User, :count).by 1
+        end
+      end
+
     end
     
   end
-
-
 
   context "when not logged in" do
 
