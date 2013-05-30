@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
+  has_many :members, :class_name => "User",
+    :foreign_key => "program_admin_id"
+  belongs_to :program_admin, :class_name => "User"
+  belongs_to :program
   #has_and_belongs_to_many :programs
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :registerable,
   # :lockable, :timeoutable and :omniauthable
