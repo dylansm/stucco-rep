@@ -4,11 +4,21 @@ describe "routing to profiles" do
 
   it "routes profile through pages#user to user_path" do
     expect(:get => "/profile").to route_to(
-      :controller => "pages",
-      :action => "user"
+      :controller => "users",
+      :action => "show"
     ) 
   end
 
+end
+
+describe "routing to delete user" do
+  it "routes to users#destroy" do
+    expect(delete: destroy_user_path('23')).to route_to(
+      controller: 'users',
+      action: 'destroy',
+      id: '23'
+    )
+  end
 end
 
 describe "routing to user management screen" do

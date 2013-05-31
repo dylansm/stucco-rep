@@ -1,4 +1,4 @@
-- title "Edit #{@user.first_name} #{@user.last_name}’s Account"
+- @user == current_user ? title("Edit Your Account") : title("Edit #{@user.first_name} #{@user.last_name}’s Account")
 = form_for(:user, :url => "/users/#{@user.id}", :html => { :method => :put }) do |f|
   = devise_error_messages!
   %div

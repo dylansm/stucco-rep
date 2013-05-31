@@ -1,6 +1,6 @@
-- title "#{@user.first_name} #{@user.last_name}"
+- @user == current_user ? title("My Profile") : title("#{@user.first_name} #{@user.last_name}")
 %h2= "#{@user.first_name} #{@user.last_name}"
-- if @user.admin?
+- if @user == current_user || @user.admin?
   %p= link_to "Edit", edit_user_path(@user)
 
 %h3 Facebook activity:

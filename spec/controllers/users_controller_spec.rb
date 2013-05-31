@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe UsersController do
 
+  let(:user) { FactoryGirl.create :user }
+  let(:admin) { FactoryGirl.create(:user, :admin) }
+
   before { @request.env["devise.mapping"] = Devise.mappings[:user] }
 
   context "when authenticated" do
-
-    let(:user) { FactoryGirl.create :user }
 
     before { sign_in user }
 
@@ -21,44 +22,49 @@ describe UsersController do
         expect(assigns(:facebook_posts)).to be_nil
       end
 
-    end
-
-
-    context "as admin" do
-      
-      let(:admin) { FactoryGirl.create(:user, :admin) }
-
-      describe "GET 'show'" do
-        it "returns http success" do
-          get :show, id: admin
-          expect(response).to be_success
-        end
-      end
-
-      describe "POST #create" do
-        it "should create a user" do
-          expect { post :create, user: {first_name:"Test2", last_name:"Test2", email: "test2@user.com"} }.to change(User, :count).by 1
-        end
-      end
-
-      describe "DELETE #destroy" do
-        it "should delete a user" do
-          #expect { post :delete, user: {first_name:"Test2", last_name:"Test2", email: "test2@user.com" }.to change(User, :count).by 1
-          expect { delete :destroy, user: user }.to change(User, :count).by 1
-          #expect { delete "/users/#{user.id}" }.to change(User, :count).by 1
+      describe "GET /profile" do
+        it "works when logged in" do
+          expect(response.status).to eq(200)
         end
       end
 
     end
-    
   end
 
+
+  context "as admin" do
+
+    before { sign_in admin }
+
+    describe "GET 'show'" do
+      it "returns http success" do
+        get :show, id: admin
+        expect(response).to be_success
+      end
+    end
+
+    describe "POST #create" do
+      it "should create a user" do
+        expect { post :create, user: {first_name:"Test2", last_name:"Test2", email: "test2@user.com"} }.to change(User, :count).by 1
+      end
+    end
+
+    describe "DELETE #destroy" do
+
+      it "should recognize my routes" do
+        expect(destroy_user_path(user)).to eq("/users/#{user.id}")
+      end
+
+      it "deletes user" do
+        expect { delete :destroy, user: user }.to change(User, :count).by -1
+      end
+      #it { expect { delete destroy_user_path(user) }.to change(User, :count).by(-1) }
+    end
+
+  end
+
+
   context "when not logged in" do
-
-    let(:user) { FactoryGirl.create :user }
-    let(:admin) { FactoryGirl.create :user, :admin }
-
-    before { @request.env["devise.mapping"] = Devise.mappings[:user] }
     
     describe "GET users#show" do
       it "redirects user when unauthenticated" do
@@ -92,6 +98,37 @@ describe UsersController do
       end
     end
 
+  end
+
+  context "when logged in" do
+
+    before { sign_in user }
+
+    describe "GET /profile" do
+      it "works when logged in" do
+        get "show"
+        expect(response.status).to eq(200)
+      end
+    end
+
+    describe "GET /profile" do
+      it "works when logged in" do
+        get "show"
+        expect(assigns[:user]).to eq(user)
+      end
+    end
+
+  end
+
+  context "when not logged in" do
+
+    describe "GET /profile" do
+      it "redirects to home" do
+        get "show", user: user
+        expect(response.status).to eq(302)
+      end
+    end
+    
   end
 
 end

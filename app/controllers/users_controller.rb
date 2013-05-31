@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   def show
-    @user = User.find(params[:id])
+    @user = params[:id] ? User.find(params[:id]) : current_user
+
     unless @user.authentication_token.nil?
       @facebook_posts = fetch_facebook_stream(@user)
     end

@@ -1,15 +1,18 @@
 Adoberep::Application.routes.draw do
   # pages
-  get 'profile' => 'pages#user', as: :user
   get 'manage-users' => 'pages#manage_users'
 
   # users
   devise_for :users, :controllers => { 
     :omniauth_callbacks => 'users/omniauth_callbacks'
   }
-  devise_scope :user do
-    resources :users
-  end
+  resources :users
+  delete 'users/:id' => 'users#destroy', as: :destroy_user
+  get 'profile' => 'users#show'
+  #devise_scope :user do
+    #resource :user
+    ##delete 'users/:id' => 'users#destroy'
+  #end
 
   root 'pages#home'
 

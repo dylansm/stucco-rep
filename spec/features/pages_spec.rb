@@ -41,7 +41,7 @@ describe "Pages Features" do
       visit root_path
     end
 
-    describe "user visits home page" do
+    describe "home page" do
 
       it "has dashboard content" do
         expect(page).to have_content('Dashboard')
@@ -63,22 +63,14 @@ describe "Pages Features" do
         expect(page).to have_link("Profile")
       end
 
-      describe "user visits their profile page" do
-        before { visit user_path }
+    end
+    
+    describe "profile page" do
+      before { visit user_path(@user) }
         
-        it "has page separator in title" do
-          expect(page.title).to have_content("My Profile |")
-        end
+      it "has page separator in title" do
+        expect(page.title).to have_content("My Profile |")
       end
-
-      describe "user visits their profile page" do
-        before { visit edit_user_path(@user) }
-        
-        it "has page separator in title" do
-          expect(page.title).to have_content("Edit Example User’s Account |")
-        end
-      end
-
     end
 
 
@@ -106,18 +98,50 @@ describe "Pages Features" do
 
   end
 
+  context "when editing profile" do
+    before do
+      @user = FactoryGirl.create(:user)
+      @admin = FactoryGirl.create(:user, :admin)
+      login_as @admin, :scope => :user
+      visit edit_user_path(@user)
+    end
 
-  context "when authenticated user visits home page" do
+    describe "other user's profile" do
+      it "has page title" do
+        expect(page.title).to have_content("Edit #{@user.first_name} #{@user.last_name}’s Account |")
+      end
+    end
+
+    describe "user's own profile" do
+      before { visit edit_user_path(@admin) }
+      
+      it "has page title" do
+        expect(page.title).to have_content("Edit Your Account |")
+      end
+    end
+  end
+
+
+  context "when users visit profile" do
     
     before do
       @user = FactoryGirl.create(:user)
+      @admin = FactoryGirl.create(:user, :admin)
       login_as @user, :scope => :user
-      visit "/users/#{@user.id}"
     end
 
-    describe "user profile page" do
-      it "has the user's name in the title" do
-        expect(page.title).to have_content("#{@user.first_name} #{@user.last_name}")
+    describe "their own page" do
+      before { visit user_path(@user) }
+      it "has the title" do
+        expect(page.title).to have_content("My Profile")
+      end
+    end
+
+    describe "another user's page" do
+      before { visit user_path(@admin) }
+      #before { visit "/users/#{@admin.id}" }
+      it "has the title" do
+        expect(page.title).to have_content("#{@admin.first_name} #{@admin.last_name}")
       end
     end
   end
