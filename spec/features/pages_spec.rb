@@ -7,9 +7,15 @@ describe "Pages Features" do
 
   describe "home page" do
 
-    before { visit root_path }
+    let(:user) { FactoryGirl.create(:user) }
+
+    before do
+      logout(user)
+      visit root_path
+    end
 
     it "has home content" do
+      logout(@user)
       expect(page).to have_content('Welcome to the Adobe Rep Portal')
     end
 
@@ -139,7 +145,6 @@ describe "Pages Features" do
 
     describe "another user's page" do
       before { visit user_path(@admin) }
-      #before { visit "/users/#{@admin.id}" }
       it "has the title" do
         expect(page.title).to have_content("#{@admin.first_name} #{@admin.last_name}")
       end

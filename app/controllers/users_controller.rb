@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     #TODO enable this
     #set_flash_message :notice, :updated
     
-    respond_with @user.to_json
+    respond_with @user
   end
 
   def suspend

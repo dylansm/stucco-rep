@@ -50,21 +50,20 @@ describe UsersController do
     end
 
     describe "DELETE #destroy" do
-
-      it "should recognize my routes" do
-        expect(destroy_user_path(user)).to eq("/users/#{user.id}")
-      end
-
       it "deletes user" do
-        expect { delete :destroy, user: user }.to change(User, :count).by -1
+        expect { delete :destroy, id: user }.to change(User, :count).by(-1)
       end
-      #it { expect { delete destroy_user_path(user) }.to change(User, :count).by(-1) }
     end
 
   end
 
 
   context "when not logged in" do
+
+    before do
+      sign_out :user
+      sign_out :admin
+    end
     
     describe "GET users#show" do
       it "redirects user when unauthenticated" do
@@ -121,12 +120,17 @@ describe UsersController do
   end
 
   context "when not logged in" do
+    before { sign_out user }
 
     describe "GET /profile" do
       it "redirects to home" do
         get "show", user: user
         expect(response.status).to eq(302)
       end
+    end
+
+    it "does not allow deletion of user" do
+      expect { delete :destroy, id: user.id }.to_not change(User, :count)
     end
     
   end

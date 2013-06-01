@@ -7,7 +7,7 @@ Adoberep::Application.routes.draw do
     :omniauth_callbacks => 'users/omniauth_callbacks'
   }
   resources :users
-  delete 'users/:id' => 'users#destroy', as: :destroy_user
+  #delete 'users/:id' => 'users#destroy', as: :destroy_user
   get 'profile' => 'users#show'
   #devise_scope :user do
     #resource :user
