@@ -310,6 +310,7 @@ DEPENDENCIES
   db_populate!
   debugger
   devise (~> 3.0.0rc)
+  execjs
   factory_girl (~> 4.2.0)
   fb_graph
   formtastic

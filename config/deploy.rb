@@ -1,11 +1,13 @@
 require 'rvm/capistrano'                  # Load RVM's capistrano plugin.
 require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
+require 'puma/capistrano'
 
 set :stages, %w(production staging)
 set :default_stage, "staging"
 
 set :user, "deploy"
+set :ssh_options, { :forward_agent => true }
 set :rvm_type, :user
 set :application, "adoberep.com"
 set :scm, :git
@@ -26,7 +28,9 @@ namespace :deploy do
   
   task :start, :roles => :app do
     #run "touch #{current_release}/tmp/restart.txt"
-    run "bundle exec pumactl -S /var/run/#{my_app}.state start"
+    #run "bundle exec pumactl -S /var/run/#{my_app}.state start"
+    #
+    run "bundle exec cap puma:start"
   end
 
   task :stop, :roles => :app do
@@ -36,7 +40,7 @@ namespace :deploy do
   desc "Restart Application"
   task :restart, :roles => :app do
     #run "touch #{current_release}/tmp/restart.txt"
-    run "bundle exec pumactl -S /var/run/#{my_app}.state restart"
+    #run "bundle exec pumactl -S /var/run/#{my_app}.state restart"
   end
 
   desc "Symlinks the database.yml"
