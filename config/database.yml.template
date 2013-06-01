@@ -16,12 +16,12 @@ test:
 
 staging:
   <<: *defaults
-  database: adoberep_staging;
+  database: adoberep_staging
   username: deploy
   password: C;6DXu[o(m}d?E6h)]
 
 production:
   <<: *defaults
-  database: adoberep_production;
+  database: adoberep_production
   username: deploy
   password: C;6DXu[o(m}d?E6h)]
