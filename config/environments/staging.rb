@@ -79,5 +79,5 @@ Adoberep::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.delivery_method = :ses
-  config.action_mailer.default_url_options = { :host => APP_CONFIG['url'] }
+  config.action_mailer.default_url_options = { :host => APP_CONFIG['staging_url'] }
 end
