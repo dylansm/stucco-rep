@@ -17,17 +17,28 @@ development: &defaults
 test:
   <<: *defaults
 
+staging:
+  <<: *defaults
+  amazon:
+    api_key: AKIAIYQGC3U7RATV77WA
+    api_secret: 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
+  facebook:
+    api_key: 375461819226898
+    api_secret: 8184d40b917e91891d6b051afb5d1fc3
+    scope: read_stream,read_insights
+  twitter:
+    api_key: 
+    api_secret: 
+
 production:
   <<: *defaults
   amazon:
     api_key: AKIAIYQGC3U7RATV77WA
     api_secret: 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
-
   facebook:
     api_key: 436126023145557
     api_secret: 8184d40b917e91891d6b051afb5d1fc3
     scope: read_stream,read_insights
-    
   twitter:
     api_key: 
     api_secret: 

@@ -45,12 +45,12 @@ namespace :deploy do
 
   desc "Symlinks the database.yml"
   task :symlink_db, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/database.yml.template #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/database.yml.template #{release_path}/config/database.yml"
   end
 
-  desc "Symlinks the database.yml"
+  desc "Symlinks the api_keys.yml"
   task :symlink_api_keys, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/api_keys.yml.template #{release_path}/config/api_keys.yml"
+    run "ln -nfs #{shared_path}/config/api_keys.yml.template #{release_path}/config/api_keys.yml"
   end
 
   #desc "Symlinks the .rvmrc"
