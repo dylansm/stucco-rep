@@ -25,6 +25,11 @@ namespace :deploy do
     top.upload("config/database.yml.template", "#{shared_path}/config", :via => :scp)
     top.upload("config/api_keys.yml.template", "#{shared_path}/config", :via => :scp)
   end
+
+  desc "Create shared/sockets directory"
+  task :create_sockets_directory, :roles => :app do
+    run "mkdir -p #{shared_path}/sockets"
+  end
   
   task :start, :roles => :app do
     #run "touch #{current_release}/tmp/restart.txt"
@@ -67,7 +72,7 @@ end
   #end
 #end
 
-after 'deploy:setup', 'deploy:upload_settings'
+after 'deploy:setup', 'deploy:upload_settings', 'deploy:create_sockets_directory'
 before 'deploy:assets:precompile', 'deploy:symlink_db', 'deploy:symlink_api_keys'
 #after 'deploy:update_code', 'deploy:symlink_rvmrc'
 #after "deploy:update_code", "rvm:trust_rvmrc"
