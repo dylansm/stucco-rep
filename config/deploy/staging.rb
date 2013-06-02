@@ -8,17 +8,16 @@ set :rails_env, 'staging'
 namespace :deploy do
   desc "Start application"
   task :start, :roles => :app do
-    run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec pumactl -S #{current_path}/../tmp/puma/state/staging-students.adoberep.com.state start -C config/puma.rb -e production"
+    run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -d -e production -S #{current_path}/tmp/puma/state/staging.state -b unix://#{current_path}/tmp/puma/socket/staging-puma.sock"
   end
 
   desc "Restart application"
   task :restart, :roles => :app do
-    run "bundle exec pumactl -S #{shared_path}/../tmp/puma/state/#{domain}.state restart"
+    run "cd #{current_path}; bundle exec pumactl -S #{current_path}/tmp/puma/state/staging.state restart"
   end
 
   desc "Stop application"
   task :stop, :roles => :app do
-    run "bundle exec pumactl -S #{shared_path}/../tmp/puma/state/#{domain}.state stop"
-    run "cd #{current_path}; bundle exec pumactl -S #{current_path}/../tmp/puma/state/staging-students.adoberep.com.state stop"
+    run "cd #{current_path}; bundle exec pumactl -S #{current_path}/tmp/puma/state/staging.state stop"
   end
 end

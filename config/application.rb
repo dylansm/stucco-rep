@@ -12,7 +12,7 @@ require 'rails/all'
 require 'yaml'
 
 APP_CONFIG = YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
-API_KEYS = YAML.load(File.read(File.expand_path('../api_keys.yml', __FILE__)))[Rails.env]
+API_KEYS = YAML.load(File.read(File.expand_path('../api_keys.yml', __FILE__)))[ENV['RAILS_ENV']]
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
