@@ -1,15 +1,13 @@
-rails_env = ENV['RAILS_ENV'] || 'production'
+env_apps_map = {
+  staging: 'staging-students.adoberep.com',
+  production: 'adoberep.com'
+}
+app_name = env_apps_map[Rails.env.to_sym]
 
 threads 4,4
 
-if rails_env == "staging"
-  bind  "unix:///home/deploy/apps/staging-students.adoberep.com/tmp/puma/staging-students.adoberep.com-puma.sock"
-  pidfile "/home/deploy/apps/staging-students.adoberep.com/current/tmp/puma/pid"
-  state_path "/home/deploy/apps/staging-students.adoberep.com/current/tmp/puma/state"
-else
-  bind  "unix:///home/deploy/apps/adoberep.com/tmp/puma/adoberep.com-puma.sock"
-  pidfile "/home/deploy/apps/adoberep.com/current/tmp/puma/pid"
-  state_path "/home/deploy/apps/adoberep.com/current/tmp/puma/state"
-end
+bind  "unix:///home/deploy/apps/#{app_name}/tmp/puma/#{app_name}-puma.sock"
+pidfile "/home/deploy/apps/#{app_name}/current/tmp/puma/pid"
+state_path "/home/deploy/apps/#{app_name}/current/tmp/puma/state"
 
 activate_control_app

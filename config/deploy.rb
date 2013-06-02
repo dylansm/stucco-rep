@@ -25,11 +25,6 @@ namespace :deploy do
     top.upload("config/database.yml.template", "#{shared_path}/config", :via => :scp)
     top.upload("config/api_keys.yml.template", "#{shared_path}/config", :via => :scp)
   end
-
-  desc "Create shared/sockets directory"
-  task :create_sockets_directory, :roles => :app do
-    run "mkdir -p #{shared_path}/sockets"
-  end
   
   task :start, :roles => :app do
     #run "touch #{current_release}/tmp/restart.txt"
