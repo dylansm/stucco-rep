@@ -7,6 +7,8 @@ app_name = env_apps_map[env.to_sym]
 
 threads 4,4
 
+daemonize true
+
 bind  "unix:///home/deploy/apps/#{app_name}/current/tmp/puma/socket/#{env}-puma.sock"
 pidfile "/home/deploy/apps/#{app_name}/current/tmp/puma/pid/#{env}.pid"
 state_path "/home/deploy/apps/#{app_name}/current/tmp/puma/state/#{env}.state"

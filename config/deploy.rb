@@ -1,7 +1,6 @@
 require 'rvm/capistrano'                  # Load RVM's capistrano plugin.
 require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
-require 'puma/capistrano'
 
 set :stages, %w(production staging)
 set :default_stage, "staging"
@@ -26,16 +25,6 @@ namespace :deploy do
     top.upload("config/api_keys.yml.template", "#{shared_path}/config", :via => :scp)
   end
   
-  task :start, :roles => :app do
-    #run "touch #{current_release}/tmp/restart.txt"
-    #run "bundle exec pumactl -S /var/run/#{my_app}.state start"
-    run "bundle exec cap puma:start"
-  end
-
-  task :stop, :roles => :app do
-    run 'bundle exec cap puma:stop'
-  end
-
   desc "Symlinks the database.yml"
   task :symlink_db, :roles => :app do
     run "ln -nfs #{shared_path}/config/database.yml.template #{release_path}/config/database.yml"
@@ -47,7 +36,6 @@ namespace :deploy do
   end
 
 end
-
 
 namespace :puma do
   desc "create a shared tmp dir for puma state files"

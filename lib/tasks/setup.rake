@@ -122,8 +122,12 @@ namespace "setup" do
     state = "#{Rails.root}/tmp/puma/state"
     directory "#{state}"
 
-    task :create => [pid, state] do
+    socket = "#{Rails.root}/tmp/puma/socket"
+    directory "#{socket}"
+
+    task :create => [pid, socket, state] do
       `touch #{pid}/.gitkeep`
+      `touch #{socket}/.gitkeep`
       `touch #{state}/.gitkeep`
     end
   end
