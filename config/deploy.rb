@@ -36,12 +36,6 @@ namespace :deploy do
     run 'bundle exec cap puma:stop'
   end
 
-  desc "Restart Application"
-  task :restart, :roles => :app do
-    #run "touch #{current_release}/tmp/restart.txt"
-    #run "bundle exec pumactl -S /var/run/#{my_app}.state restart"
-  end
-
   desc "Symlinks the database.yml"
   task :symlink_db, :roles => :app do
     run "ln -nfs #{shared_path}/config/database.yml.template #{release_path}/config/database.yml"
