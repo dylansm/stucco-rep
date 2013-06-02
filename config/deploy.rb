@@ -29,12 +29,11 @@ namespace :deploy do
   task :start, :roles => :app do
     #run "touch #{current_release}/tmp/restart.txt"
     #run "bundle exec pumactl -S /var/run/#{my_app}.state start"
-    #
     run "bundle exec cap puma:start"
   end
 
   task :stop, :roles => :app do
-    # Do nothing.
+    run 'bundle exec cap puma:stop'
   end
 
   desc "Restart Application"
@@ -53,30 +52,17 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/api_keys.yml.template #{release_path}/config/api_keys.yml"
   end
 
-  #desc "Symlinks the .rvmrc"
-  #task :symlink_rvmrc, :roles => :app do
-    #run "ln -nfs #{deploy_to}/shared/rvmrc #{release_path}/.rvmrc"
-  #end
-
 end
 
-#namespace :rvm do
-  #desc 'Trust rvmrc file'
-  #task :trust_rvmrc do
-    #run "rvm rvmrc trust #{current_release}"
-  #end
-#end
 
 namespace :puma do
   desc "create a shared tmp dir for puma state files"
   task :after_symlink, roles: :app do
     run "sudo rm -rf #{release_path}/tmp"
-    run "ln -s #{shared_path}/tmp #{release_path}/tmp"
+    run "ln -s #{shared_path}/../tmp #{release_path}/tmp"
   end
   after "deploy:create_symlink", "puma:after_symlink"
 end
 
 after 'deploy:setup', 'deploy:upload_settings', 'deploy:create_sockets_directory'
 before 'deploy:assets:precompile', 'deploy:symlink_db', 'deploy:symlink_api_keys'
-#after 'deploy:update_code', 'deploy:symlink_rvmrc'
-#after "deploy:update_code", "rvm:trust_rvmrc"
