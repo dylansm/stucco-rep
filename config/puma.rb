@@ -2,7 +2,7 @@ env_apps_map = {
   staging: 'staging-students.adoberep.com',
   production: 'adoberep.com'
 }
-app_name = env_apps_map[Rails.env.to_sym]
+app_name = env_apps_map[ENV['RAILS_ENV'].to_sym]
 
 threads 4,4
 

@@ -67,6 +67,15 @@ end
   #end
 #end
 
+namespace :puma do
+  desc "create a shared tmp dir for puma state files"
+  task :after_symlink, roles: :app do
+    run "sudo rm -rf #{release_path}/tmp"
+    run "ln -s #{shared_path}/tmp #{release_path}/tmp"
+  end
+  after "deploy:create_symlink", "puma:after_symlink"
+end
+
 after 'deploy:setup', 'deploy:upload_settings', 'deploy:create_sockets_directory'
 before 'deploy:assets:precompile', 'deploy:symlink_db', 'deploy:symlink_api_keys'
 #after 'deploy:update_code', 'deploy:symlink_rvmrc'
