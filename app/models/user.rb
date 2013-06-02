@@ -3,11 +3,8 @@ class User < ActiveRecord::Base
     :foreign_key => "program_admin_id"
   belongs_to :program_admin, :class_name => "User"
   belongs_to :program
-  #has_and_belongs_to_many :programs
   
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :registerable,
-  # :lockable, :timeoutable and :omniauthable
+  # Include default devise modules. Others available are: :token_authenticatable, :confirmable, :registerable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable,
          :token_authenticatable, :omniauthable, :omniauth_providers => [:facebook]
@@ -15,15 +12,18 @@ class User < ActiveRecord::Base
   validates(:first_name, presence: true)
   validates(:last_name, presence: true)
 
+  attr_writer :skip_email_notification
+
   after_create do |user|
-    user.send_activate_instructions
+    unless @skip_email_notification
+      send_activate_instructions
+    end
   end
 
-  def send_activate_instructions(attributes={})
-    generate_reset_password_token! if should_generate_reset_token?
-    send_devise_notification(:activate_instructions)
+  def skip_email_notification!
+    @skip_email_notification = true
   end
-  
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
 
@@ -68,4 +68,10 @@ class User < ActiveRecord::Base
   def password_required?
     new_record? ? false : super
   end
+
+  def send_activate_instructions(attributes={})
+    generate_reset_password_token! if should_generate_reset_token?
+    send_devise_notification(:activate_instructions)
+  end
+
 end
