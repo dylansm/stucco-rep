@@ -37,7 +37,7 @@ namespace :deploy do
 
   desc "Start application"
   task :start, :roles => :app do
-    run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -d -e production -S #{current_path}/tmp/puma/state/staging.state -b unix://#{current_path}/tmp/puma/socket/staging-puma.sock"
+    run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -d -e production -S #{current_path}/tmp/puma/state/#{deploy_env}.state -b unix://#{current_path}/tmp/puma/socket/#{deploy_env}-puma.sock"
   end
 
   desc "Restart application"
@@ -52,7 +52,15 @@ namespace :deploy do
 end
 
 namespace :puma do
-  desc "create a shared tmp dir for puma state files"
+
+  desc "Create puma state directories"
+  task :setup do
+    run "mkdir -p #{shared_path}/../tmp/puma/pid"
+    run "mkdir -p #{shared_path}/../tmp/puma/socket"
+    run "mkdir -p #{shared_path}/../tmp/puma/state"
+  end
+
+  desc "Create a shared tmp dir for puma state files"
   task :after_symlink, roles: :app do
     run "sudo rm -rf #{release_path}/tmp"
     run "ln -s #{shared_path}/../tmp #{release_path}/tmp"
@@ -60,5 +68,5 @@ namespace :puma do
   after "deploy:create_symlink", "puma:after_symlink"
 end
 
-after 'deploy:setup', 'deploy:upload_settings'
+after 'deploy:setup', 'deploy:upload_settings', 'puma:setup'
 before 'deploy:assets:precompile', 'deploy:symlink_db', 'deploy:symlink_api_keys'
