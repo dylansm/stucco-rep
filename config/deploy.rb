@@ -62,7 +62,7 @@ namespace :puma do
 
   desc "Create a shared tmp dir for puma state files"
   task :after_symlink, roles: :app do
-    run "sudo rm -rf #{release_path}/tmp"
+    run "rm -rf #{release_path}/tmp"
     run "ln -s #{shared_path}/../tmp #{release_path}/tmp"
   end
   after "deploy:create_symlink", "puma:after_symlink"
