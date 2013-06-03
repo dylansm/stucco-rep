@@ -35,6 +35,20 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/api_keys.yml.template #{release_path}/config/api_keys.yml"
   end
 
+  desc "Start application"
+  task :start, :roles => :app do
+    run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -d -e production -S #{current_path}/tmp/puma/state/staging.state -b unix://#{current_path}/tmp/puma/socket/staging-puma.sock"
+  end
+
+  desc "Restart application"
+  task :restart, :roles => :app do
+    run "cd #{current_path}; bundle exec pumactl -S #{current_path}/tmp/puma/state/#{deploy_env}.state restart"
+  end
+
+  desc "Stop application"
+  task :stop, :roles => :app do
+    run "cd #{current_path}; bundle exec pumactl -S #{current_path}/tmp/puma/state/#{deploy_env}.state stop"
+  end
 end
 
 namespace :puma do
@@ -46,5 +60,5 @@ namespace :puma do
   after "deploy:create_symlink", "puma:after_symlink"
 end
 
-after 'deploy:setup', 'deploy:upload_settings', 'deploy:create_sockets_directory'
+after 'deploy:setup', 'deploy:upload_settings'
 before 'deploy:assets:precompile', 'deploy:symlink_db', 'deploy:symlink_api_keys'
