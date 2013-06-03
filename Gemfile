@@ -62,5 +62,4 @@ group :test do
   gem 'capybara', "~> 2.1.0"
   gem 'rb-fsevent'
   gem 'factory_girl', "~> 4.2.0"
-  #gem 'growl'
 end

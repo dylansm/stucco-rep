@@ -6,8 +6,10 @@ env = ENV['RAILS_ENV']
 app_name = env_apps_map[env.to_sym]
 
 threads 4,4
+workers 2
 
 daemonize true
+environment "#{env}"
 
 bind  "unix:///home/deploy/apps/#{app_name}/current/tmp/puma/socket/#{env}-puma.sock"
 pidfile "/home/deploy/apps/#{app_name}/current/tmp/puma/pid/#{env}.pid"
