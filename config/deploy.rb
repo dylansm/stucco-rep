@@ -37,7 +37,6 @@ namespace :deploy do
 
   desc "Start application"
   task :start, :roles => :app do
-    #run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -d -e production -S #{current_path}/tmp/puma/state/#{deploy_env}.state -b unix://#{current_path}/tmp/puma/socket/#{deploy_env}-puma.sock"
     run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -C config/puma.rb"
   end
 
