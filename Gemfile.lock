@@ -5,6 +5,13 @@ GIT
     db_populate (0.2.6)
 
 GIT
+  remote: git://github.com/puma/puma.git
+  revision: 2f506863b4520a4c78fea929dcc0809f05ad2dfd
+  specs:
+    puma (2.0.1)
+      rack (>= 1.1, < 2.0)
+
+GIT
   remote: git://github.com/railstutorial/spork-rails.git
   revision: 5db525af2f917047057f546bc1ac2574d1c6b11e
   specs:
@@ -199,8 +206,6 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    puma (2.0.1)
-      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-oauth2 (1.0.5)
       activesupport (>= 2.3)
@@ -331,7 +336,7 @@ DEPENDENCIES
   omniauth-facebook
   paperclip (~> 3.0)
   pg
-  puma
+  puma!
   rails (= 4.0.0.rc1)
   ranked-model
   rb-fsevent
