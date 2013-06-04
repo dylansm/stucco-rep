@@ -6,7 +6,7 @@ env = ENV['RAILS_ENV']
 app_name = env_apps_map[env.to_sym]
 
 threads 4,4
-workers 2
+#workers 2
 
 daemonize true
 environment 'production'
