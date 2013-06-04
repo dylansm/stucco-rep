@@ -35,6 +35,11 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/api_keys.yml.template #{release_path}/config/api_keys.yml"
   end
 
+  desc "Write environment to flat file"
+  task :write_environment_file, :roles => :app do
+    run "echo #{deploy_env} > #{current_path}/config/rails_env"
+  end
+
   desc "Start application"
   task :start, :roles => :app do
     #run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -d -e production -S #{current_path}/tmp/puma/state/#{deploy_env}.state -b unix://#{current_path}/tmp/puma/socket/#{deploy_env}-puma.sock"
@@ -71,3 +76,4 @@ end
 
 after 'deploy:setup', 'deploy:upload_settings', 'puma:setup'
 before 'deploy:assets:precompile', 'deploy:symlink_db', 'deploy:symlink_api_keys'
+after 'deploy:create_symlink', "deploy:write_environment_file"
