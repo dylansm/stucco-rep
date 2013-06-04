@@ -10,6 +10,7 @@ workers 2
 
 daemonize true
 environment 'production'
+directory "/home/deploy/apps/#{app_name}/current"
 
 bind  "unix:///home/deploy/apps/#{app_name}/current/tmp/puma/socket/#{env}-puma.sock"
 pidfile "/home/deploy/apps/#{app_name}/current/tmp/puma/pid/#{env}.pid"
