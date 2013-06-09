@@ -1,28 +1,3 @@
-- @user == current_user ? title("Edit Your Account") : title("Edit #{@user.first_name} #{@user.last_name}’s Account")
-= form_for(:user, :url => "/users/#{@user.id}", :html => { :method => :put }) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :first_name
-    %br
-    = f.text_field :first_name, :autofocus => true
-    %br
-    = f.label :last_name
-    %br
-    = f.text_field :last_name
-    %br
-    = f.label :email
-    %br
-    = f.email_field :email
-    %br
-    = f.label :admin
-    %br
-    = f.check_box :admin
-  %div
-    = f.label :password
-    %br
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation
-    %br
-    = f.password_field :password_confirmation
-  %div= f.submit "Update User"
+- @user == current_user ? title(t("page_titles.edit_yourself")) : title(t("page_titles.edit_others", first_name: @user.first_name, last_name: @user.last_name))
+
+= render "dashboard/admin/users/form"

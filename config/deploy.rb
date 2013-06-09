@@ -37,12 +37,13 @@ namespace :deploy do
 
   desc "Write environment to flat file"
   task :write_environment_file, :roles => :app do
-    run "echo #{deploy_env} > #{current_path}/config/rails_env"
+    run "if [ -e #{current_path}/config/rails_env_production ]; then rm #{current_path}/config/rails_env_production; fi"
+    run "if [ -e #{current_path}/config/rails_env_staging ]; then rm #{current_path}/config/rails_env_staging; fi"
+    run "touch #{current_path}/config/rails_env_#{deploy_env}"
   end
 
   desc "Start application"
   task :start, :roles => :app do
-    #run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -d -e production -S #{current_path}/tmp/puma/state/#{deploy_env}.state -b unix://#{current_path}/tmp/puma/socket/#{deploy_env}-puma.sock"
     run "cd #{current_path}; RAILS_ENV=#{deploy_env} bundle exec puma -C config/puma.rb"
   end
 

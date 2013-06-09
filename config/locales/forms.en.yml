@@ -1,0 +1,76 @@
+en:
+  legend:
+    contact_info: "Contact Information"
+    personal_info: "Personal Information"
+
+  select:
+    choose: "Choose:"
+    gender:
+      male: "Male"
+      female: "Female"
+    countries:
+      us: "United States"
+
+  helpers:
+    submit:
+      user:
+        create: "Add user"
+        update: "Update user"
+
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+        #html: '<abbr title="required">*</abbr>'
+    # Labels and hints examples
+    # labels:
+    #   password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail para efetuar o sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   username: 'User name to sign in.'
+    #   password: 'No special characters, please.'
+    error_notification:
+      default_message: "Some errors were found, please take a look:"
+    labels:
+      user:
+        first_name: "First name"
+        last_name: "Last name"
+        email: "Email"
+        admin: "Program manager"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        gender: "Gender"
+        planned_grad_year: "Planned graduation year"
+        planned_grad_term: "Planned graduation term"
+
+es:
+  select:
+    choose: "Elíja:"
+    gender:
+      male: "Masculino"
+      female: "Femenina"
+
+  helpers:
+    submit:
+      user:
+        create: "Add usario"
+        update: "Update usario"
+
+  simple_form:
+    labels:
+      user:
+        first_name: "Nombre de pila"
+        last_name: "Apellido"
+        email: "Email"
+        admin: "Director del programa"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de la contraseña"
+        gender: "Gender"

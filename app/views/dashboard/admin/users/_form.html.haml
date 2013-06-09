@@ -1,0 +1,39 @@
+= simple_form_for @user, :method => @method do |f|
+  = devise_error_messages!
+  
+  = f.input :first_name, :autofocus => true
+  = f.input :last_name
+  = f.input :email
+  = f.input :admin 
+  - if @method == "put"
+    = f.input :password
+    = f.input :password_confirmation
+
+  = f.simple_fields_for :user_application do |ua|
+    %fieldset
+      %legend= t("legend.contact_info")
+      = ua.input :gender, collection: [ ['female', 'f'], ['male', 'm'] ], prompt: t("select.choose")
+      = ua.input :mobile_phone
+      = ua.input :street_address
+      = ua.input :street_address2
+      = ua.input :city
+      = ua.input :state, collection: states_list, prompt: t("select.choose")
+      = ua.input :postal_code
+      = ua.input :country, collection: countries_list, selected: "US", prompt: t("select.choose")
+
+    %fieldset
+      %legend= t("legend.personal_info")
+      = ua.input :planned_grad_year, collection: 2013..2028, prompt: t("select.choose")
+      = ua.input :planned_grad_term, collection: school_terms_list, prompt: t("select.choose")
+      = ua.input :major, label: t("terms.major")
+      = ua.input :minor, label: t("terms.minor")
+      = ua.input :gpa, label: t("terms.gpa")
+      = ua.input :extracurriculars, label: t("terms.extracurricular")
+      = ua.input :extracurricular_leadership, :boolean_style => :nested, label: t("terms.extracurricular_leadership")
+      = ua.input :num_facebook_friends, label: t("terms.num_facebook_friends")
+      = ua.input :num_instagram_followers, label: t("terms.num_instagram_followers")
+      = ua.input :num_twitter_followers, label: t("terms.num_twitter_followers")
+      = ua.input :other_social_sites, label: t("terms.other_social_sites")
+      = ua.input :resume, :as => :file, label: t("terms.resume")
+  -#= f.input :skill_level, collection: skills_list, :as => :radio_buttons, label: "adobe product"
+  = f.button :submit

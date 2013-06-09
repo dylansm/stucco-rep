@@ -1,0 +1,7 @@
+AdobeProduct.create(name: "Adobe AfterEffects")
+AdobeProduct.create(name: "Adobe Dreamweaver")
+AdobeProduct.create(name: "Adobe Illustrator")
+AdobeProduct.create(name: "Adobe InDesign")
+AdobeProduct.create(name: "Adobe Muse")
+AdobeProduct.create(name: "Adobe Photoshop")
+AdobeProduct.create(name: "Adobe Premiere")

@@ -51,7 +51,8 @@ describe UsersController do
 
     describe "DELETE #destroy" do
       it "deletes user" do
-        expect { delete :destroy, id: user }.to change(User, :count).by(-1)
+        new_user = FactoryGirl.create(:user)
+        expect { delete :destroy, id: new_user }.to change(User, :count).by -1
       end
     end
 

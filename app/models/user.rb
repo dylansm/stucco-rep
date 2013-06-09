@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+  has_one :user_application, autosave: true
+  belongs_to :school
+  has_many :tools
+  has_many :adobe_products, :through => :tools
+
+  accepts_nested_attributes_for :user_application, :tools
+
   has_many :members, :class_name => "User",
     :foreign_key => "program_admin_id"
   belongs_to :program_admin, :class_name => "User"
@@ -33,15 +40,6 @@ class User < ActiveRecord::Base
       user = self.update_oauth_by_email(auth)
     end
 
-    #unless user
-      #user = User.create(first_name: auth.extra.raw_info.first_name,
-                         #last_name: auth.extra.raw_info.last_name,
-                         #provider: auth.provider,
-                         #uid: auth.uid,
-                         #authentication_token: auth.credentials.token,
-                         #email: auth.info.email,
-                         #password: Devise.friendly_token[0,20])
-    #end
     user
   end
 

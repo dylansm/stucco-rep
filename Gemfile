@@ -18,24 +18,23 @@ gem 'aws-sdk'
 gem 'devise', "~> 3.0.0rc"
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'formtastic'
+gem 'simple_form', '~> 3.0.0rc'
 gem 'coffee-script', :require => 'coffee_script'
-gem 'haml-rails'
 gem 'db_populate', github: 'ffmike/db-populate'
 gem 'aws-ses', "~> 0.5.0", :require => 'aws/ses'
 gem 'kaminari'
 gem 'paperclip', "~> 3.0"
 gem 'ranked-model'
+gem 'haml-rails'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'uglifier', '>= 1.3.0'
+gem 'execjs'
+gem 'zurb-foundation', '~> 4.0.0'
+gem 'modernizr_rails'
 
 group :production, :staging do
   gem "therubyracer", :require => 'v8'
-end
-
-group :assets do
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'sass-rails', '~> 4.0.0.rc1'
-  gem 'uglifier', '>= 1.3.0'
-  gem 'execjs'
 end
 
 group :doc do

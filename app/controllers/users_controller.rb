@@ -11,17 +11,23 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @method = 'put'
     @user = User.find(params[:id])
+    @user_application = @user.user_application
     render "dashboard/admin/users/edit"
   end
 
   def new
+    @method = 'post'
+    @user = User.new
+    @user.build_user_application
     render "dashboard/admin/users/new"
   end
 
   # POST
   def create
     @user = User.new(permitted_user_params)
+
     if @user.save
       redirect_to root_path
     else
@@ -38,7 +44,6 @@ class UsersController < ApplicationController
     end
     
     @user = User.find(params[:id])
-    #params.permit!
     if @user.update_attributes(permitted_user_params)
 
       #TODO enable this
@@ -48,7 +53,7 @@ class UsersController < ApplicationController
       #sign_in @user, :bypass => true
       redirect_to after_update_path_for(@user)
     else
-      render "edit"
+      render "dashboard/admin/users/edit"
     end
   end
 
@@ -64,7 +69,16 @@ class UsersController < ApplicationController
   end
 
   def suspend
+    @user = User.find(params[:id])
+    @user.update_attributes(suspended: true)
+    respond_with @user
   end
+
+  protected
+
+  #def user_application
+    #@user_application ||= @user.build_user_application(params[:user_application])
+  #end
 
   private
 
@@ -72,20 +86,50 @@ class UsersController < ApplicationController
     signed_in_root_path(resource)
   end
 
-  def permitted_user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :admin)
-  end
-
   def fetch_facebook_stream(user)
     user.fetch_facebook_stream
   end
 
-  #def fetch_facebook_stream(user)
-    #posts = FbGraph::Query.new(
-      #"SELECT message,comment_info,share_count,likes,created_time FROM stream WHERE strpos(message, '#adobehashtag') >= 0 AND source_id = #{user.uid} AND updated_time > 1350000000"
-    #)
-    #posts.access_token = user.authentication_token
-    #posts.fetch
-  #end
+  def permitted_user_params
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :email,
+      #:password,
+      #:password_confirmation,
+      :admin,
+      user_application_attributes: [
+        :gender,
+        :mobile_phone,
+        :street_address,
+        :street_address2,
+        :city,
+        :state,
+        :postal_code,
+        :country,
+        :planned_grad_year,
+        :planned_grad_term,
+        :major,
+        :minor,
+        :gpa,
+        :num_facebook_friends,
+        :num_instragram_followers,
+        :num_twitter_followers,
+        :other_social_sites,
+        :extracurriculars,
+        :extracurricular_leadership,
+        :leadership_description,
+        :skill_level,
+        :reference_name,
+        :reference_relationship,
+        :reference_email,
+        :reference_phone,
+        :avatar,
+        :advisory_board_application,
+        :resume
+      ]
+
+    )
+  end
 
 end

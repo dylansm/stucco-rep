@@ -15,7 +15,6 @@ describe "Pages Features" do
     end
 
     it "has home content" do
-      logout(@user)
       expect(page).to have_content('Welcome to the Adobe Rep Portal')
     end
 

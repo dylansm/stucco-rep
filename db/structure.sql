@@ -9,13 +9,6 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: binary_upgrade; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA binary_upgrade;
-
-
---
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -29,94 +22,48 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
-SET search_path = binary_upgrade, pg_catalog;
-
---
--- Name: create_empty_extension(text, text, boolean, text, oid[], text[], text[]); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION create_empty_extension(text, text, boolean, text, oid[], text[], text[]) RETURNS void
-    LANGUAGE c
-    AS '$libdir/pg_upgrade_support', 'create_empty_extension';
-
-
---
--- Name: set_next_array_pg_type_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION set_next_array_pg_type_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_array_pg_type_oid';
-
-
---
--- Name: set_next_heap_pg_class_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION set_next_heap_pg_class_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_heap_pg_class_oid';
-
-
---
--- Name: set_next_index_pg_class_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION set_next_index_pg_class_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_index_pg_class_oid';
-
-
---
--- Name: set_next_pg_authid_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION set_next_pg_authid_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_pg_authid_oid';
-
-
---
--- Name: set_next_pg_enum_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION set_next_pg_enum_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_pg_enum_oid';
-
-
---
--- Name: set_next_pg_type_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION set_next_pg_type_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_pg_type_oid';
-
-
---
--- Name: set_next_toast_pg_class_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION set_next_toast_pg_class_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_toast_pg_class_oid';
-
-
---
--- Name: set_next_toast_pg_type_oid(oid); Type: FUNCTION; Schema: binary_upgrade; Owner: -
---
-
-CREATE FUNCTION set_next_toast_pg_type_oid(oid) RETURNS void
-    LANGUAGE c STRICT
-    AS '$libdir/pg_upgrade_support', 'set_next_toast_pg_type_oid';
-
-
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: programs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE programs (
+    id integer NOT NULL,
+    name character varying(255),
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone,
+    theme_name character varying(255),
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: programs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE programs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: programs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE programs_id_seq OWNED BY programs.id;
+
 
 --
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
@@ -150,7 +97,9 @@ CREATE TABLE users (
     admin boolean DEFAULT false,
     authentication_token character varying(255),
     provider character varying(255),
-    uid character varying(255)
+    uid character varying(255),
+    suspended boolean DEFAULT false,
+    program_admin_id integer
 );
 
 
@@ -177,7 +126,22 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY programs ALTER COLUMN id SET DEFAULT nextval('programs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: programs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY programs
+    ADD CONSTRAINT programs_pkey PRIMARY KEY (id);
 
 
 --
@@ -224,3 +188,9 @@ INSERT INTO schema_migrations (version) VALUES ('20130516210715');
 INSERT INTO schema_migrations (version) VALUES ('20130519060535');
 
 INSERT INTO schema_migrations (version) VALUES ('20130519154612');
+
+INSERT INTO schema_migrations (version) VALUES ('20130529043843');
+
+INSERT INTO schema_migrations (version) VALUES ('20130529200200');
+
+INSERT INTO schema_migrations (version) VALUES ('20130530050725');
