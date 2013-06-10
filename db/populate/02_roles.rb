@@ -10,5 +10,10 @@
   user.skip_email_notification!
 
   user.build_user_application
+
+  AdobeProduct.all.each do |ap|
+    user.tools.build(adobe_product: ap)
+  end
+
   user.save
 end

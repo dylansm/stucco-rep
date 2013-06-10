@@ -31,7 +31,6 @@ describe UsersController do
     end
   end
 
-
   context "as admin" do
 
     before { sign_in admin }

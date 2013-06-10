@@ -13,6 +13,7 @@ describe User do
     it { should respond_to(:admin) }
     it { should respond_to :password }
     it { should respond_to :password_confirmation }
+    it { should respond_to :active_for_authentication }
     
     it { should be_valid }
   end
@@ -23,7 +24,15 @@ describe User do
     end
 
     it "is active (not suspended)" do
-      expect(user.suspended).to eq(false)
+      expect(user.active_for_authentication).to eq(true)
+    end
+
+    it "has an associated user_application" do
+      expect(user.user_application).to be_an_instance_of(UserApplication)
+    end
+
+    it "has associated tools" do
+      expect(user.tools.first).to be_an_instance_of(Tool)
     end
   end
 

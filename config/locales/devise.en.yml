@@ -13,6 +13,7 @@ en:
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account has not been activated yet."
+      suspended: "Your account has been suspended."
       invalid: "Invalid email or password."
       invalid_token: "Invalid authentication token."
       locked: "Your account is locked."

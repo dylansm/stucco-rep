@@ -10,6 +10,9 @@ en:
       manage_programs: "Manage Programs"
       manage_schools: "Manage Schools"
       manage_adobe_products: "Manage Adobe Products"
+      users:  
+        reactivate: "Reactivate"
+        suspend: "Suspend"
 
   terms:
     extracurricular: "Extracurricular activities"

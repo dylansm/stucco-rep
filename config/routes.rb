@@ -1,6 +1,14 @@
 Adoberep::Application.routes.draw do
   # pages
-  get 'manage-users' => 'pages#manage_users'
+  #get 'manage-users' => 'pages#manage_users'
+  namespace :dashboard do
+    get 'manage-users' => 'admin/users#manage_users', :as => "manage_users"
+    get 'manage-adobe-products' => 'admin/adobe_products#index', :as => "manage_adobe_products"
+
+    namespace :admin do
+      resources :adobe_products
+    end
+  end
 
   # users
   devise_for :users, :controllers => { 
@@ -8,12 +16,10 @@ Adoberep::Application.routes.draw do
   }
   resources :users
   put 'users/:id/suspend' => 'users#suspend'
-  #delete 'users/:id' => 'users#destroy', as: :destroy_user
+  put 'users/:id/reactivate' => 'users#reactivate'
   get 'profile' => 'users#show'
-  #devise_scope :user do
-    #resource :user
-    ##delete 'users/:id' => 'users#destroy'
-  #end
+
+
 
   root 'pages#home'
 
@@ -55,7 +61,6 @@ Adoberep::Application.routes.draw do
   #     end
   #   end
 
-  # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)

@@ -23,7 +23,7 @@ gem 'coffee-script', :require => 'coffee_script'
 gem 'db_populate', github: 'ffmike/db-populate'
 gem 'aws-ses', "~> 0.5.0", :require => 'aws/ses'
 gem 'kaminari'
-gem 'paperclip', "~> 3.0"
+gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'ranked-model'
 gem 'haml-rails'
 gem 'coffee-rails', '~> 4.0.0'

@@ -15,8 +15,4 @@ class PagesController < ApplicationController
     end
   end
 
-  def manage_users
-    @users = User.all.page(params[:page])
-  end
-
 end

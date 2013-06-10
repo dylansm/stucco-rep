@@ -18,6 +18,17 @@ GIT
     spork-rails (3.2.1)
       spork (>= 1.0rc0)
 
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 1da9e4d6fed33987bdf8fb9a4f21d1ca902b1c7f
+  specs:
+    paperclip (3.4.2)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -195,12 +206,6 @@ GEM
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
     paint (0.8.6)
-    paperclip (3.4.2)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
-      mime-types
     pg (0.15.1)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -340,7 +345,7 @@ DEPENDENCIES
   nokogiri (~> 1.5.9)
   omniauth
   omniauth-facebook
-  paperclip (~> 3.0)
+  paperclip!
   pg
   puma!
   rails (= 4.0.0.rc1)

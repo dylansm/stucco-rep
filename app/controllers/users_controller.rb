@@ -70,7 +70,13 @@ class UsersController < ApplicationController
 
   def suspend
     @user = User.find(params[:id])
-    @user.update_attributes(suspended: true)
+    @user.update_attributes(active_for_authentication: false)
+    respond_with @user
+  end
+
+  def reactivate
+    @user = User.find(params[:id])
+    @user.update_attributes(active_for_authentication: true)
     respond_with @user
   end
 

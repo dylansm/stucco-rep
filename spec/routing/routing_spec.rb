@@ -22,9 +22,9 @@ describe "routing to delete user" do
 end
 
 describe "routing to user management screen" do
-  it "routes to pages#manage_users" do
-    expect(get: "/manage-users").to route_to(
-      controller: "pages",
+  it "routes to dashboard/admin/users#manage_users" do
+    expect(get: "/dashboard/manage-users").to route_to(
+      controller: "dashboard/admin/users",
       action: "manage_users"
     )
   end

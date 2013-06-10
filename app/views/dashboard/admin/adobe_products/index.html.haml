@@ -1,0 +1,21 @@
+- title 'Manage Adobe Products'
+
+%h2 Manage Adobe Products
+
+= paginate @adobe_products
+
+%h3 Adobe Products
+= link_to "Add new product", new_dashboard_admin_adobe_product_path, { :class => "small button"}
+%table
+  %thead
+    %tr
+      %th Name
+      %th Mnemonic
+      %th{:colspan => "2"} Manage
+  %tbody
+    - @adobe_products.each do |ap|
+      %tr
+        %td= link_to ap.name, dashboard_admin_adobe_product_path(ap)
+        %td
+        %td= link_to "Edit", edit_dashboard_admin_adobe_product_path(ap)
+        %td= link_to "Delete", "#", { class: "delete-adobe-product", :"data-id" => "#{ap.id}", remote: true }

@@ -9,9 +9,9 @@ describe "Page requests" do
     end
   end
 
-  describe "GET /manage-users" do
+  describe "GET /dashboard/manage-users" do
     it "works as root" do
-      get '/manage-users'
+      get '/dashboard/manage-users'
       expect(response.status).to eq(302)
     end
   end

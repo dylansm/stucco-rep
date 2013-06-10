@@ -8,6 +8,7 @@ FactoryGirl.define do
     provider nil
     authentication_token nil
     uid nil
+    user_application
   
     trait :admin do
       last_name "Admin"

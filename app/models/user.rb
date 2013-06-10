@@ -1,15 +1,15 @@
 class User < ActiveRecord::Base
-  has_one :user_application, autosave: true
+  has_one :user_application, autosave: true, dependent: :destroy
   belongs_to :school
   has_many :tools
   has_many :adobe_products, :through => :tools
-
-  accepts_nested_attributes_for :user_application, :tools
 
   has_many :members, :class_name => "User",
     :foreign_key => "program_admin_id"
   belongs_to :program_admin, :class_name => "User"
   belongs_to :program
+
+  accepts_nested_attributes_for :user_application, :tools
   
   # Include default devise modules. Others available are: :token_authenticatable, :confirmable, :registerable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
@@ -29,6 +29,18 @@ class User < ActiveRecord::Base
 
   def skip_email_notification!
     @skip_email_notification = true
+  end
+
+  def active_for_authentication?
+    super and is_active?
+  end
+
+  def is_active?
+    self.active_for_authentication ? true : false
+  end
+
+  def inactive_message
+    self.active_for_authentication ? super : :suspended
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
