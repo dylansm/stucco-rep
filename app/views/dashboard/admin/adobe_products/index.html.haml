@@ -16,6 +16,6 @@
     - @adobe_products.each do |ap|
       %tr
         %td= link_to ap.name, dashboard_admin_adobe_product_path(ap)
-        %td
+        %td= link_to(image_tag(ap.mnemonic.url(:sm)), dashboard_admin_adobe_product_path(ap))
         %td= link_to "Edit", edit_dashboard_admin_adobe_product_path(ap)
         %td= link_to "Delete", "#", { class: "delete-adobe-product", :"data-id" => "#{ap.id}", remote: true }
