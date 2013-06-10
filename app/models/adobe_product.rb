@@ -1,6 +1,5 @@
 class AdobeProduct < ActiveRecord::Base
   validates(:name, presence: true)
-  validates(:mnemonic, presence: true)
 
   has_attached_file :mnemonic, styles: {
     sm: "16x16",
