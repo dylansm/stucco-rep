@@ -16,4 +16,4 @@ bind  "unix:///home/deploy/apps/#{app_name}/current/tmp/puma/socket/#{env}-puma.
 pidfile "/home/deploy/apps/#{app_name}/current/tmp/puma/pid/#{env}.pid"
 state_path "/home/deploy/apps/#{app_name}/current/tmp/puma/state/#{env}.state"
 
-activate_control_app
+activate_control_app "unix:///home/deploy/apps/pumactl_sockets/#{env}_pumactl.sock", { auth_token: "#{env}-token"}

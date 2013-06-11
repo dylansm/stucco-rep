@@ -1,16 +1,17 @@
 $ ->
-  $('.delete-user').each ->
-    id = $(this).attr("data-id")
+  $('.delete-row').each ->
+    path = $(this).attr("data-path")
+    delete_confirm = $(this).attr("data-delete-confirm")
     $tr = $(this).closest('tr')
     $(this).click ->
-      if confirm "Are you sure you want to delete this user?"
+      if confirm delete_confirm
         $.ajaxSetup
           beforeSend: (xhr) ->
             token = $('meta[name="csrf-token"]').attr('content');
             if token
               xhr.setRequestHeader('X-CSRF-Token', token);
         $.ajax
-          url: "/users/#{id}",
+          url: path,
           type: 'post',
           dataType: 'json',
           data: {"_method": "delete"},

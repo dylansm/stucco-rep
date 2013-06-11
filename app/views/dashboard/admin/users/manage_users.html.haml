@@ -1,10 +1,10 @@
-- title 'Manage Users'
+- title t('links.dashboard.manage_users.title')
 
-%h2 Manage Users
+%h2= t('links.dashboard.manage_users.title')
 
 = paginate @users
 
-%h3 Users
+%h3= t("links.dashboard.manage_users.users")
 = link_to "Add new user", new_user_path, { :class => "small button"}
 %table
   %thead
@@ -22,6 +22,6 @@
         %td= link_to u.last_name, user_path(u)
         %td= link_to u.email, user_path(u)
         %td= u.last_sign_in_at
-        %td= link_to "Edit", edit_user_path(u)
+        %td= link_to t("links.edit"), edit_user_path(u)
         %td= link_to link, "#", { class: "toggle-user", :"data-id" => "#{u.id}", :"data-reactivate" => "#{@reactivate}", :"data-suspend" => "#{@suspend}", remote: true }
-        %td= link_to "Delete", "#", { class: "delete-user", :"data-id" => "#{u.id}", remote: true }
+        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-delete-confirm" => "#{@delete_confirm}", :"data-path" => "/users/#{u.id}", :"data-id" => "#{u.id}", remote: true }

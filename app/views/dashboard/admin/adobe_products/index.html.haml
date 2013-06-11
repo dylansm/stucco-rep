@@ -1,10 +1,10 @@
-- title 'Manage Adobe Products'
+- title t('links.dashboard.manage_adobe_products.title')
 
-%h2 Manage Adobe Products
+%h2= t('links.dashboard.manage_adobe_products.title')
 
 = paginate @adobe_products
 
-%h3 Adobe Products
+%h3= t('manage_adobe_products.products')
 = link_to "Add new product", new_dashboard_admin_adobe_product_path, { :class => "small button"}
 %table
   %thead
@@ -17,5 +17,5 @@
       %tr
         %td= link_to ap.name, dashboard_admin_adobe_product_path(ap)
         %td= link_to(image_tag(ap.mnemonic.url(:sm)), dashboard_admin_adobe_product_path(ap))
-        %td= link_to "Edit", edit_dashboard_admin_adobe_product_path(ap)
-        %td= link_to "Delete", "#", { class: "delete-adobe-product", :"data-id" => "#{ap.id}", remote: true }
+        %td= link_to t("links.edit"), edit_dashboard_admin_adobe_product_path(ap)
+        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-delete-confirm" => "#{@delete_confirm}", :"data-path" => "/dashboard/admin/adobe_products/#{ap.id}", :"data-id" => "#{ap.id}", remote: true }

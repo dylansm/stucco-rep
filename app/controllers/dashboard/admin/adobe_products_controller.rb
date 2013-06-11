@@ -3,16 +3,17 @@ class Dashboard::Admin::AdobeProductsController < ApplicationController
   respond_to :html, :json
 
   def index
+    @delete_confirm = t("links.dashboard.adobe-products.delete-confirm")
     @adobe_products = AdobeProduct.order("name ASC").page(params[:page])
   end
 
   def show
-    @adobe_product = adobe_product
+    adobe_product
   end
 
   # get
   def edit
-    @adobe_product = adobe_product
+    adobe_product
   end
 
   #put
@@ -43,31 +44,23 @@ class Dashboard::Admin::AdobeProductsController < ApplicationController
   
   # delete
   def destroy
+    adobe_product.destroy
+    
+    #TODO enable this
+    #set_flash_message :notice, :updated
+
+    respond_with adobe_product
   end
 
   private
 
-  #def permitted_params
-    #params.require(:adobe_product).permit(
-      #:name,
-      #:mnemonic
-    #)
-  #end
-
   def permitted_params
-    params.require(:adobe_product).permit!
+    params.require(:adobe_product).permit(
+      :name,
+      :mnemonic
+    )
   end
-  #def permitted_params
-    #debugger
-    #params.require(:adobe_product).permit(
-      #:name,
-      #:mnemonic,
-      #mnemonic: [
-        #:filename
-      #]
-    #)
-  #end
-  
+
   def adobe_product
     @adobe_product ||= AdobeProduct.find(params[:id])
   end
