@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20130607173221) do
     t.integer  "user_id"
     t.string   "mobile_phone"
     t.string   "gender",                     limit: 1
+    t.text     "bio"
     t.string   "street_address"
     t.string   "street_address2"
     t.string   "city"
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(version: 20130607173221) do
     t.string   "other_social_sites"
     t.string   "member_design_community"
     t.string   "portfolio_url"
+    t.string   "behance_profile_url"
     t.text     "extracurriculars"
     t.boolean  "extracurricular_leadership"
     t.text     "leadership_description"
@@ -87,12 +89,14 @@ ActiveRecord::Schema.define(version: 20130607173221) do
     t.text     "what_sets_you_apart"
     t.string   "do_you_have_time",           limit: 1
     t.string   "available_to_work",          limit: 1
-    t.string   "video_submission_ulr"
+    t.string   "video_submission_url"
     t.string   "resume_file_name"
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
   end
+
+  add_index "user_applications", ["user_id"], name: "index_user_applications_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                     default: "",    null: false
@@ -116,6 +120,7 @@ ActiveRecord::Schema.define(version: 20130607173221) do
     t.boolean  "active_for_authentication", default: true
     t.integer  "program_admin_id"
     t.integer  "school_id"
+    t.integer  "program_id"
     t.integer  "points"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -124,6 +129,8 @@ ActiveRecord::Schema.define(version: 20130607173221) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["program_id"], name: "index_users_on_program_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
 end

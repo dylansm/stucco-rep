@@ -3,7 +3,7 @@ class Dashboard::Admin::AdobeProductsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @delete_confirm = t("links.dashboard.adobe-products.delete-confirm")
+    @delete_confirm = t("links.dashboard.manage_adobe_products.delete-confirm")
     @adobe_products = AdobeProduct.order("name ASC").page(params[:page])
   end
 

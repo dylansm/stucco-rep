@@ -4,8 +4,10 @@ class User < ActiveRecord::Base
   has_many :tools
   has_many :adobe_products, :through => :tools
 
-  has_many :members, :class_name => "User",
-    :foreign_key => "program_admin_id"
+  #has_many :members, :class_name => "User",
+    #:foreign_key => "program_admin_id"
+  #belongs_to :program_admin, :class_name => "User"
+  #belongs_to :program
   belongs_to :program_admin, :class_name => "User"
   belongs_to :program
 

@@ -4,8 +4,8 @@
 
 = paginate @adobe_products
 
-%h3= t('manage_adobe_products.products')
-= link_to "Add new product", new_dashboard_admin_adobe_product_path, { :class => "small button"}
+%h3= t('links.dashboard.manage_adobe_products.products')
+= link_to t("links.dashboard.manage_adobe_products.add"), new_dashboard_admin_adobe_product_path, { :class => "small button"}
 %table
   %thead
     %tr

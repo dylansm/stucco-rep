@@ -1,0 +1,23 @@
+- title t('links.dashboard.manage_programs.title')
+
+%h2= t('links.dashboard.manage_programs.title')
+
+= paginate @programs
+
+%h3= t('manage_programs.programs')
+= link_to t("links.dashboard.manage_programs.add"), new_dashboard_admin_program_path, { :class => "small button"}
+%table
+  %thead
+    %tr
+      %th Name
+      %th # of Users
+      %th Program Managers
+      %th{:colspan => "2"} Manage
+  %tbody
+    - @programs.each do |p|
+      %tr
+        %td= link_to p.name, dashboard_admin_program_path(p)
+        %td= p.users.count
+        %td= p.program_admins.count
+        %td= link_to t("links.edit"), edit_dashboard_admin_program_path(p)
+        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-delete-confirm" => "#{@delete_confirm}", :"data-path" => "/dashboard/admin/programs/#{p.id}", :"data-id" => "#{p.id}", remote: true }

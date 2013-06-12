@@ -15,6 +15,7 @@ set :repository,  "git@github.com:dylansm/adoberep.git"
 set :use_sudo, false
 set :runner, user
 set :normalize_asset_timestamps, false
+set :keep_releases, 3
 
 namespace :deploy do
 

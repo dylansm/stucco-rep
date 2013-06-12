@@ -7,6 +7,8 @@ Adoberep::Application.routes.draw do
 
     namespace :admin do
       resources :adobe_products
+      resources :programs
+      resources :schools
     end
   end
 
