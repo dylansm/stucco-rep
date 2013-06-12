@@ -9,27 +9,23 @@ en:
     edit: "Edit"
     dashboard:
       manage_users:
-        title: "Manage Users"
-        program-managers: "Program Managers"
-        users: "Students"
-        delete-confirm: "Are you sure you want to delete this user?"
         reactivate: "Reactivate"
         suspend: "Suspend"
-        delete-confirm: "Are you sure you want to delete this user?"
+        users-suspend-confirm: "Are you sure you want to suspend this student?"
+        users-reactivate-confirm: "Are you sure you want to reactivate this student?"
+        managers-suspend-confirm: "Are you sure you want to suspend this program manager?"
+        managers-reactivate-confirm: "Are you sure you want to reactivate this manager?"
+        users-delete-confirm: "Are you sure you want to permanently delete this student?"
+        managers-delete-confirm: "Are you sure you want to permanently delete this program manager?"
       manage_programs:
-        title: "Manage Programs"
-        programs: "Programs"
         add: "Add new program"
         delete-confirm: "Are you sure you want to delete this program?"
       manage_schools:
-        title: "Manage Schools"
-        schools: "Schools"
+        add: "Add new school"
+        delete-confirm: "Are you sure you want to delete this school?"
       manage_adobe_products:
-        title: "Manage Adobe Products"
-        products: "Adobe Products"
         add: "Add new product"
         delete-confirm: "Are you sure you want to delete this product?"
-      users:  
 
   terms:
     extracurricular: "Extracurricular activities"
@@ -62,8 +58,26 @@ en:
     new_program: "New Program | Manage Programs"
     new_program_header: "New Program"
     show_program: "%{name} | Manage Programs"
+    program_users: "%{name} Students | Manage Programs"
+    program_users_header: "%{name} Users"
+    program_managers: "%{name} Managers | Manage Programs"
+    program_users_header: "%{name} Managers"
     new_adobe_product: "New Adobe Product | Manage Adobe Products"
     new_adobe_product_header: "New Adobe Product"
     edit_adobe_product: "Edit %{name} | Manage Adobe Products"
     edit_adobe_product_header: "Edit %{name}"
     show_adobe_product: "%{name} | Manage Adobe Products"
+    manage_users: "Manage Users"
+    manage_programs: "Manage Programs"
+    manage_schools: "Manage Schools"
+    manage_adobe_products: "Manage Adobe Products"
+
+  headers:
+    manage_program_managers: "Manage Program Managers"
+    manage_programs: "Manage Programs"
+    manage_users: "Manage All Users"
+    manage_adobe_products: "Manage Adobe Products"
+    students: "Students"
+    program_program_managers: "%{name} Managers"
+    program_managers: "Program Managers"
+    program_users: "%{name} Students"

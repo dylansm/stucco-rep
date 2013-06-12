@@ -7,6 +7,10 @@ class Dashboard::Admin::ProgramsController < ApplicationController
     @delete_confirm = t("links.dashboard.manage_programs.delete-confirm")
   end
 
+  def show
+    program
+  end
+
   def edit
     program
   end
@@ -22,6 +26,15 @@ class Dashboard::Admin::ProgramsController < ApplicationController
 
   def new
     @program = Program.new
+  end
+
+  def create
+    @program = Program.new(permitted_params)
+    if @program.save
+      redirect_to dashboard_admin_programs_path
+    else
+      respond_with @program
+    end
   end
 
   private

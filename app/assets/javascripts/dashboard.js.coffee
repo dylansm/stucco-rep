@@ -1,7 +1,7 @@
 $ ->
   $('.delete-row').each ->
     path = $(this).attr("data-path")
-    delete_confirm = $(this).attr("data-delete-confirm")
+    delete_confirm = $(this).closest('table').attr("data-delete-confirm")
     $tr = $(this).closest('tr')
     $(this).click ->
       if confirm delete_confirm
@@ -23,8 +23,10 @@ $ ->
   #TODO Refactor this into one function?
   $('.toggle-user').each ->
     id = $(this).attr("data-id")
-    reactivate = $(this).attr("data-reactivate")
-    suspend = $(this).attr("data-suspend")
+    reactivate = $(this).closest('table').attr("data-reactivate")
+    suspend = $(this).closest('table').attr("data-suspend")
+    suspend_confirm = $(this).closest('table').attr("data-suspend-confirm")
+    reactivate_confirm = $(this).closest('table').attr("data-reactivate-confirm")
     $tr = $(this).closest('tr')
     $(this).click ->
       $.ajaxSetup
@@ -34,7 +36,7 @@ $ ->
             xhr.setRequestHeader('X-CSRF-Token', token);
       $link = $(this)
       if @text == reactivate
-        if confirm "Are you sure you want to reactivate this user?"
+        if confirm reactivate_confirm
           $.ajax
             url: "/users/#{id}/reactivate",
             type: 'post',
@@ -46,7 +48,7 @@ $ ->
             error: (response) ->
               console.log response
       else
-        if confirm "Are you sure you want to suspend this user?"
+        if confirm suspend_confirm
           $.ajax
             url: "/users/#{id}/suspend",
             type: 'post',

@@ -8,8 +8,12 @@ class User < ActiveRecord::Base
     #:foreign_key => "program_admin_id"
   #belongs_to :program_admin, :class_name => "User"
   #belongs_to :program
-  belongs_to :program_admin, :class_name => "User"
-  belongs_to :program
+  
+  #belongs_to :program
+  #belongs_to :program_admin, :class_name => "User"
+
+  has_many :program_managers
+  has_many :programs, through: :program_managers
 
   accepts_nested_attributes_for :user_application, :tools
   
