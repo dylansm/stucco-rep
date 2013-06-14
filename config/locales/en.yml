@@ -71,6 +71,7 @@ en:
     manage_programs: "Manage Programs"
     manage_schools: "Manage Schools"
     manage_adobe_products: "Manage Adobe Products"
+    edit_school: "Edit %{name}"
 
   headers:
     manage_program_managers: "Manage Program Managers"
@@ -81,3 +82,4 @@ en:
     program_program_managers: "%{name} Managers"
     program_managers: "Program Managers"
     program_users: "%{name} Students"
+    edit_school: "Edit School"

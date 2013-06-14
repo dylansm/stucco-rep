@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130612231553) do
+ActiveRecord::Schema.define(version: 20130614000725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,12 +35,19 @@ ActiveRecord::Schema.define(version: 20130612231553) do
 
   create_table "programs", force: true do |t|
     t.string   "name"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
+    t.string   "program_icon_file_name"
+    t.string   "program_icon_content_type"
+    t.integer  "program_icon_file_size"
+    t.datetime "program_icon_updated_at"
     t.string   "theme_name"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "programs_schools", force: true do |t|
+    t.integer  "program_id"
+    t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,10 +61,11 @@ ActiveRecord::Schema.define(version: 20130612231553) do
   create_table "schools", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
+    t.string   "school_logo_file_name"
+    t.string   "school_logo_content_type"
+    t.integer  "school_logo_file_size"
+    t.datetime "school_logo_updated_at"
+    t.string   "name"
   end
 
   create_table "tools", force: true do |t|

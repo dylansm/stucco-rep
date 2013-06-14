@@ -5,5 +5,6 @@ class Program < ActiveRecord::Base
   has_many :program_managers
   has_many :users, through: :program_managers
   has_many :users
+  has_and_belongs_to_many :schools
   #accepts_nested_attributes_for :users, :program_admins
 end
