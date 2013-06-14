@@ -50,12 +50,18 @@ namespace :deploy do
 
   desc "Restart application"
   task :restart, :roles => :app do
-    run "cd #{current_path}; bundle exec pumactl -S #{current_path}/tmp/puma/state/#{deploy_env}.state restart"
+    #run "cd #{current_path}; bundle exec pumactl -S #{current_path}/tmp/puma/state/#{deploy_env}.state restart"
+    # something like
+    # kill -USR2 21936
+    run "kill -USR2 `ps aux | grep staging-students | grep -v grep | awk '{print $2}'`"
   end
 
   desc "Stop application"
   task :stop, :roles => :app do
-    run "cd #{current_path}; bundle exec pumactl -S #{current_path}/tmp/puma/state/#{deploy_env}.state stop"
+    #run "cd #{current_path}; bundle exec pumactl -S #{current_path}/tmp/puma/state/#{deploy_env}.state stop"
+    # something like
+    # kill -9 21936
+    run "kill -9 `ps aux | grep staging-students | grep -v grep | awk '{print $2}'`"
   end
 end
 
