@@ -3,7 +3,8 @@ class Dashboard::Admin::UsersController < ApplicationController
 
   def manage_users
     localized_links
-    @program_managers = ProgramManager.includes(:user).order("users.last_name ASC").uniq
+    #@program_managers = ProgramManager.includes(:user).uniq.order("users.last_name ASC")
+    @program_managers = ProgramManager.includes(:user).order("users.last_name ASC")
     @users = User.order("last_name ASC").page(params[:page])
   end
 
@@ -15,6 +16,13 @@ class Dashboard::Admin::UsersController < ApplicationController
   def program_managers
     localized_links
     @program_managers = program.program_managers.page(params[:page])
+  end
+
+  def school_users
+    #localized_links
+    #@school = School.includes(:users).find(params[:id]).page(params[:page])
+    @school = School.includes(:users).find(params[:id])
+    @users = @school.users.page(params[:page])
   end
 
   private

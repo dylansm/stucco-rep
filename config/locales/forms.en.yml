@@ -2,6 +2,7 @@ en:
   legend:
     contact_info: "Contact Information"
     personal_info: "Personal Information"
+    skills_info: "Skill Level"
 
   select:
     choose: "Choose:"

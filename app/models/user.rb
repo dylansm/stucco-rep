@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :program_managers
   has_many :programs, through: :program_managers
 
-  accepts_nested_attributes_for :user_application, :tools
+  accepts_nested_attributes_for :user_application, :tools, :programs
   
   # Include default devise modules. Others available are: :token_authenticatable, :confirmable, :registerable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,

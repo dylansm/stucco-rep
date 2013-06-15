@@ -18,9 +18,10 @@ class UsersController < ApplicationController
   end
 
   def new
-    @method = 'post'
     @user = User.new
     @user.build_user_application
+    build_adobe_products
+    @user.school = School.new
     render "dashboard/admin/users/new"
   end
 
@@ -29,9 +30,11 @@ class UsersController < ApplicationController
     @user = User.new(permitted_user_params)
 
     if @user.save
-      redirect_to root_path
+      flash[:notice] = t("devise.users.user.created")
+      redirect_to dashboard_manage_users_path
     else
-      respond_with @user
+      flash[:alert] = t("devise.registrations.failure")
+      render '/dashboard/admin/users/new'
     end
   end
 
@@ -45,19 +48,18 @@ class UsersController < ApplicationController
     
     @user = User.find(params[:id])
     if @user.update_attributes(permitted_user_params)
-
-      #TODO enable this
-      #set_flash_message :notice, :updated
-
+      flash[:notice] = t("devise.users.user.updated")
       # Sign in the user bypassing validation in case his password changed
       #sign_in @user, :bypass => true
-      redirect_to after_update_path_for(@user)
+      #redirect_to after_update_path_for(@user)
+      redirect_to dashboard_manage_users_path
     else
+      flash[:alert] = t("devise.registrations.failure")
       render "dashboard/admin/users/edit"
     end
   end
 
-  # DELETE
+  # DELETE :json
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -101,9 +103,9 @@ class UsersController < ApplicationController
       :first_name,
       :last_name,
       :email,
-      #:password,
-      #:password_confirmation,
       :admin,
+      :tools,
+      :school_id,
       user_application_attributes: [
         :gender,
         :mobile_phone,
@@ -119,7 +121,7 @@ class UsersController < ApplicationController
         :minor,
         :gpa,
         :num_facebook_friends,
-        :num_instragram_followers,
+        :num_instagram_followers,
         :num_twitter_followers,
         :other_social_sites,
         :extracurriculars,
@@ -133,9 +135,22 @@ class UsersController < ApplicationController
         :avatar,
         :advisory_board_application,
         :resume
-      ]
+      ],
+      :program_ids => [],
+      :tools_ids => []
 
     )
+  end
+
+  def build_adobe_products
+    AdobeProduct.all.each do |ap|
+      @user.tools.build(adobe_product: ap)
+    end
+  end
+
+  def build_schools
+    School.all.each do |s|
+    end
   end
 
 end

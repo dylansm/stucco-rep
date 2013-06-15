@@ -45,7 +45,7 @@
         %td= link_to u.last_name, user_path(u)
         %td= link_to u.email, user_path(u)
         %td= link_to (u.user_application.mobile_phone.nil? ? '' : u.user_application.mobile_phone), user_path(u)
-        %td School Here
+        %td= u.school.name unless u.school.nil?
         %td= u.last_sign_in_at
         %td= link_to t("links.edit"), edit_user_path(u)
         %td= link_to link, "#", { class: "toggle-user", :"data-id" => "#{u.id}", remote: true }

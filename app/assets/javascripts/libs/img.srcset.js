@@ -75,6 +75,7 @@
 
                 do {
                     srcset = _srcsets[srcsetLength - srcsetIndex];
+                    if (!srcset) { return; }
 
                     // If img element does not have a parent, remove array index to prevent caching
                     if (!srcset.element.parentNode) {
@@ -129,9 +130,12 @@
                 imgLength   = imgIndex,
                 img         = null,
                 srcset      = '';
+            
+            if (!imgs.length) { return; }
 
             do {
                 img     = imgs[imgLength - imgIndex];
+
                 srcset  = img.getAttribute('srcset') || '';
 
                 if (!srcset) {

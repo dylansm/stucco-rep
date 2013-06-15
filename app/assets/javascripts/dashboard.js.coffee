@@ -1,4 +1,8 @@
 $ ->
+
+  $(".chzn-select").chosen()
+
+
   $('.delete-row').each ->
     path = $(this).attr("data-path")
     delete_confirm = $(this).closest('table').attr("data-delete-confirm")

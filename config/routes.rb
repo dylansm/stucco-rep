@@ -5,6 +5,7 @@ Adoberep::Application.routes.draw do
     get 'manage-users' => 'admin/users#manage_users', :as => "manage_users"
     get 'program-users/:id' => 'admin/users#program_users', :as => "program_users"
     get 'program-managers/:id' => 'admin/users#program_managers', :as => "program_managers"
+    get 'school-users/:id' => 'admin/users#school_users', :as => "school_users"
     #get 'manage-adobe-products' => 'admin/adobe_products#index', :as => "manage_adobe_products"
 
     namespace :admin do

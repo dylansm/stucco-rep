@@ -1,7 +1,12 @@
-a.button:visited {
-  color: #fff;
-}
-
 tr.suspended {
   background: #ddd;
+}
+
+.chzn-container {
+  min-width: 110px;
+}
+
+fieldset {
+  margin: 2em 0;
+  padding: 1em;
 }

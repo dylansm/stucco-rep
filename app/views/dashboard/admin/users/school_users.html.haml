@@ -1,0 +1,26 @@
+- title t('page_titles.school_users', name: @school.name)
+
+%h2= t('headers.school_users', name: @school.name)
+
+= paginate @users
+
+= link_to "Add new user", new_user_path, { :class => "small button"}
+%table{ :"data-reactivate" => "#{@reactivate}", :"data-suspend" => "#{@suspend}", :"data-suspend-confirm" => "#{@users_suspend_confirm}", :"data-reactivate-confirm" => "#{@users_reactivate_confirm}", :"data-delete-confirm" => "#{@users_delete_confirm}" }
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Last Sign In
+      %th{:colspan => "3"} Manage
+  %tbody
+    - @users.each do |u|
+    - u.active_for_authentication ? link = @suspend : link = @reactivate
+      %tr{:class => u.active_for_authentication ? '' : 'suspended' }
+        %td= link_to u.first_name, user_path(u)
+        %td= link_to u.last_name, user_path(u)
+        %td= link_to u.email, user_path(u)
+        %td= u.last_sign_in_at
+        %td= link_to t("links.edit"), edit_user_path(u)
+        %td= link_to link, "#", { class: "toggle-user", :"data-id" => "#{u.id}", remote: true }
+        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/users/#{u.id}", :"data-id" => "#{u.id}", remote: true }
