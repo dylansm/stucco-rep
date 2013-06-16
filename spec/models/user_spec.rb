@@ -19,6 +19,8 @@ describe User do
   end
 
   context "when a user is created" do
+    let(:tool) { FactoryGirl.create :tool }
+
     it "is not an admin" do
       expect(user.admin?).to eq(false)
     end
@@ -32,6 +34,7 @@ describe User do
     end
 
     it "has associated tools" do
+      user.tools.create(tool)
       expect(user.tools.first).to be_an_instance_of(Tool)
     end
   end

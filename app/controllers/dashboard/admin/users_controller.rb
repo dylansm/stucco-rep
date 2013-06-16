@@ -1,7 +1,7 @@
 class Dashboard::Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
 
-  def manage_users
+  def index
     localized_links
     #@program_managers = ProgramManager.includes(:user).uniq.order("users.last_name ASC")
     @program_managers = ProgramManager.includes(:user).order("users.last_name ASC")

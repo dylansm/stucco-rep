@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = t("devise.users.user.created")
-      redirect_to dashboard_manage_users_path
+      redirect_to dashboard_admin_users_path
     else
       flash[:alert] = t("devise.registrations.failure")
       render '/dashboard/admin/users/new'
@@ -49,10 +49,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(permitted_user_params)
       flash[:notice] = t("devise.users.user.updated")
+      #set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case his password changed
       #sign_in @user, :bypass => true
       #redirect_to after_update_path_for(@user)
-      redirect_to dashboard_manage_users_path
+      redirect_to dashboard_admin_users_path
     else
       flash[:alert] = t("devise.registrations.failure")
       render "dashboard/admin/users/edit"

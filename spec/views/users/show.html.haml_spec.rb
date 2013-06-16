@@ -16,6 +16,7 @@ describe "users/show.html.haml" do
 
     it "renders view" do
       assign(:user, user)
+      view.stub(:current_user) { user }
       render
       expect(view).to render_template("users/show")
     end

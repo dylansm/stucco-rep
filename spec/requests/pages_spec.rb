@@ -9,9 +9,9 @@ describe "Page requests" do
     end
   end
 
-  describe "GET /dashboard/manage-users" do
-    it "works as root" do
-      get '/dashboard/manage-users'
+  describe "GET /dashboard/admin/users" do
+    it "should redirect if not logged in" do
+      get '/dashboard/admin/users'
       expect(response.status).to eq(302)
     end
   end
