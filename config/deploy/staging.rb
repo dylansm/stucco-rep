@@ -16,6 +16,7 @@ namespace :deploy do
   desc "Stop application"
   task :stop, :roles => :app do
     run "kill -9 `ps aux | grep /home/deploy/apps/staging-students.adoberep.com/shared/bundle/ruby/2.0.0/bin/puma | grep -v grep | awk '{print $2}'`"
+    run "rm /home/deploy/staging/tmp/puma/socket/staging-puma.sock"
   end
 
 end
