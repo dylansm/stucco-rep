@@ -62,5 +62,5 @@ group :test do
   gem 'selenium-webdriver', '2.0'
   gem 'capybara', "~> 2.1.0"
   gem 'rb-fsevent'
-  gem 'factory_girl', "~> 4.2.0"
+  gem "factory_girl_rails", "~> 4.0"
 end

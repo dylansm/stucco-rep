@@ -10,7 +10,7 @@ FactoryGirl.define do
     uid nil
     user_application
   
-    trait :admin do
+    factory :admin do
       last_name "Admin"
       email "admin@email.com"
       admin true
@@ -21,6 +21,17 @@ FactoryGirl.define do
       authentication_token "foo"
       uid "123"
     end
+
+    factory :user_with_tools do
+      ignore do
+        tools_count 7
+      end
+
+      after(:create) do |user, evaluator|
+        FactoryGirl.create_list(:tool, evaluator.tools_count, user: user)
+      end
+    end
+
   end
 
 end

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe UsersController do
 
-  let(:user) { FactoryGirl.create :user }
-  let(:admin) { FactoryGirl.create(:user, :admin) }
+  let(:user) { create :user }
+  let(:admin) { create(:admin) }
 
   before { @request.env["devise.mapping"] = Devise.mappings[:user] }
 
@@ -50,7 +50,7 @@ describe UsersController do
 
     describe "DELETE #destroy" do
       it "deletes user" do
-        new_user = FactoryGirl.create(:user)
+        new_user = create(:user)
         expect { delete :destroy, id: new_user }.to change(User, :count).by -1
       end
     end
@@ -82,7 +82,7 @@ describe UsersController do
 
   context "when there is a Facebook authentication_token present" do
 
-    let(:fb_user) { FactoryGirl.create :user, :facebook }
+    let(:fb_user) { create :user, :facebook }
     let(:facebook_stream) { File.read(File.join('spec', 'fixtures', 'facebook_stream.json')) }
 
     before do

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe User do
 
-  let(:user) { FactoryGirl.create :user }
-  let(:admin_user) { FactoryGirl.create :user, :admin }
+  let(:user) { create :user }
+  let(:admin_user) { create :admin }
   subject { user }
 
   context "when valid" do
@@ -19,7 +19,8 @@ describe User do
   end
 
   context "when a user is created" do
-    let(:tool) { FactoryGirl.create :tool }
+    let(:tool) { create :tool }
+    let(:user_with_tools) { create(:user_with_tools) }
 
     it "is not an admin" do
       expect(user.admin?).to eq(false)
@@ -34,8 +35,19 @@ describe User do
     end
 
     it "has associated tools" do
-      user.tools.create(tool)
-      expect(user.tools.first).to be_an_instance_of(Tool)
+      expect(user_with_tools.tools.count).to eq(7)
+    end
+    
+    it "has tools of correct class type" do
+      expect(user_with_tools.tools.first).to be_an_instance_of(Tool)
+    end
+
+    it "has user's skill level" do
+      expect(user_with_tools.tools.first.skill_level).to eq(5)
+    end
+
+    it "has adobe product name" do
+      expect(user_with_tools.tools.first.adobe_product.name).to eq("Photoshop")
     end
   end
 

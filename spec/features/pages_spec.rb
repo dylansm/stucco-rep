@@ -7,7 +7,7 @@ describe "Pages Features" do
 
   describe "home page" do
 
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { create(:user) }
 
     before do
       logout(user)
@@ -41,7 +41,7 @@ describe "Pages Features" do
   context "when authenticated" do
     
     before do
-      @user = FactoryGirl.create(:user)
+      @user = create(:user)
       login_as @user, :scope => :user
       visit root_path
     end
@@ -82,7 +82,7 @@ describe "Pages Features" do
     describe "admin visits home page" do
 
       before do
-        @admin = FactoryGirl.create(:user, :admin)
+        @admin = create(:admin)
         login_as @admin, :scope => :user
         visit root_path
       end
@@ -105,8 +105,8 @@ describe "Pages Features" do
 
   context "when editing profile" do
     before do
-      @user = FactoryGirl.create(:user)
-      @admin = FactoryGirl.create(:user, :admin)
+      @user = create(:user)
+      @admin = create(:admin)
       login_as @admin, :scope => :user
       visit edit_user_path(@user)
     end
@@ -130,8 +130,8 @@ describe "Pages Features" do
   context "when users visit profile" do
     
     before do
-      @user = FactoryGirl.create(:user)
-      @admin = FactoryGirl.create(:user, :admin)
+      @user = create(:user)
+      @admin = create(:admin)
       login_as @user, :scope => :user
     end
 
