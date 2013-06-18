@@ -32,6 +32,16 @@ FactoryGirl.define do
       end
     end
 
+    factory :user_with_programs do
+      ignore do
+        programs_count 2
+      end
+
+      after(:create) do |user, evaluator|
+        FactoryGirl.create_list(:program_manager, evaluator.programs_count, user: user)
+      end
+    end
+
   end
 
 end

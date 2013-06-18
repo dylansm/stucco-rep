@@ -16,10 +16,10 @@
     - @program_managers.each do |pm|
     - pm.user.active_for_authentication ? link = @suspend : link = @reactivate
       %tr{:class => pm.user.active_for_authentication ? '' : 'suspended' }
-        %td= link_to pm.user.first_name, user_path(pm.user)
-        %td= link_to pm.user.last_name, user_path(pm.user)
-        %td= link_to pm.user.email, user_path(pm.user)
+        %td= link_to pm.user.first_name, dashboard_admin_user_path(pm.user)
+        %td= link_to pm.user.last_name, dashboard_admin_user_path(pm.user)
+        %td= link_to pm.user.email, dashboard_admin_user_path(pm.user)
         %td= pm.user.last_sign_in_at
-        %td= link_to t("links.edit"), edit_user_path(pm.user)
+        %td= link_to t("links.edit"), edit_dashboard_admin_user_path(pm.user)
         %td= link_to link, "#", { class: "toggle-user", :"data-id" => "#{pm.user.id}", :"data-reactivate" => "#{@reactivate}", :"data-suspend" => "#{@suspend}", :"data-suspend-confirm" => "#{@managers_suspend_confirm}", remote: true }
-        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/users/#{pm.user.id}", :"data-id" => "#{pm.user.id}", remote: true }
+        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/dashboard/admin/users/#{pm.user.id}", :"data-id" => "#{pm.user.id}", remote: true }

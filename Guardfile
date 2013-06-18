@@ -49,9 +49,3 @@ guard 'ctags-bundler', :src_path => ["app", "lib", "spec/support"] do
   watch(/^(app|lib|spec\/support)\/.*\.rb$/)
   watch('Gemfile.lock')
 end
-
-guard 'rspec', :version => 2 do
-  # ...
-  # entries auto-generated after running "guard init rspec"
-  # ...
-end

@@ -42,7 +42,7 @@ $ ->
       if @text == reactivate
         if confirm reactivate_confirm
           $.ajax
-            url: "/users/#{id}/reactivate",
+            url: "/dashboard/admin/users/#{id}/reactivate",
             type: 'post',
             dataType: 'json',
             data: {"_method": "put"},
@@ -54,7 +54,7 @@ $ ->
       else
         if confirm suspend_confirm
           $.ajax
-            url: "/users/#{id}/suspend",
+            url: "/dashboard/admin/users/#{id}/suspend",
             type: 'post',
             dataType: 'json',
             data: {"_method": "put"},

@@ -20,7 +20,7 @@ describe User do
 
   context "when a user is created" do
     let(:tool) { create :tool }
-    let(:user_with_tools) { create(:user_with_tools) }
+    let(:user_with_tools) { create :user_with_tools }
 
     it "is not an admin" do
       expect(user.admin?).to eq(false)
@@ -49,7 +49,24 @@ describe User do
     it "has adobe product name" do
       expect(user_with_tools.tools.first.adobe_product.name).to eq("Photoshop")
     end
+
   end
+
+  context "when a user belongs to a program through program managers" do
+
+    let(:program_with_managers) { create :program_with_managers }
+    let(:program_manager_with_users) { create :program_manager_with_users }
+
+    it "should show program managers for user" do
+      expect(program_with_managers.program_managers.count).to eq 2
+    end
+
+    it "should show users for program manager" do
+      expect(program_manager_with_users.users.count).to eq 10
+    end
+    
+  end
+
 
   context "when an admin is created" do
     it "has admin set to true" do

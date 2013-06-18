@@ -12,6 +12,8 @@ Adoberep::Application.routes.draw do
       resources :schools
       resources :regions
       resources :users
+      put 'users/:id/suspend' => 'users#suspend'
+      put 'users/:id/reactivate' => 'users#reactivate'
     end
   end
 
@@ -19,11 +21,9 @@ Adoberep::Application.routes.draw do
   devise_for :users, :controllers => { 
     :omniauth_callbacks => 'users/omniauth_callbacks'
   }
-  resources :users
-  get 'profile' => 'users#show'
-  put 'users/:id/suspend' => 'users#suspend'
-  put 'users/:id/reactivate' => 'users#reactivate'
 
+  get 'users/:id' => 'users#show', :as => "user"
+  get 'profile' => 'users#show'
 
   root 'pages#home'
 

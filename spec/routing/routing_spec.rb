@@ -13,8 +13,8 @@ end
 
 describe "routing to delete user" do
   it "routes to users#destroy" do
-    expect(delete: user_path('23')).to route_to(
-      controller: 'users',
+    expect(delete: dashboard_admin_user_path('23')).to route_to(
+      controller: 'dashboard/admin/users',
       action: 'destroy',
       id: '23'
     )

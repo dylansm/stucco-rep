@@ -3,7 +3,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
 
-    #if @user.sign_in_count == 0
     unless @user
       set_flash_message(:notice, :inactive)
       redirect_to new_user_session_url and return

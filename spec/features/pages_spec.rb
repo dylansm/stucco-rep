@@ -108,7 +108,7 @@ describe "Pages Features" do
       @user = create(:user)
       @admin = create(:admin)
       login_as @admin, :scope => :user
-      visit edit_user_path(@user)
+      visit edit_dashboard_admin_user_path(@user)
     end
 
     describe "other user's profile" do
@@ -118,7 +118,7 @@ describe "Pages Features" do
     end
 
     describe "user's own profile" do
-      before { visit edit_user_path(@admin) }
+      before { visit edit_dashboard_admin_user_path(@admin) }
       
       it "has page title" do
         expect(page.title).to have_content("Edit Your Account |")

@@ -1,5 +1,5 @@
 -#= simple_form_for @user, :method => @method do |f|
-= simple_form_for @user do |f|
+= simple_form_for([:dashboard, :admin, @user]) do |f|
   = devise_error_messages!
   
   = f.input :first_name, :autofocus => true

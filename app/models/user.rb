@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   has_one :user_application, autosave: true, dependent: :destroy
   belongs_to :school
-  has_many :tools
+  has_many :tools, dependent: :destroy
   has_many :adobe_products, :through => :tools
-  has_many :program_managers
+  has_many :program_managers, dependent: :destroy
   has_many :programs, through: :program_managers
 
   accepts_nested_attributes_for :user_application, :tools, :programs
