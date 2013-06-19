@@ -42,5 +42,7 @@
       %legend= t("legend.skills_info")
       = f.simple_fields_for :tools do |tool_fields|
         = tool_fields.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tool_fields.object.adobe_product.name unless tool_fields.object.adobe_product.nil?}"
+        -#= tool_fields.simple_fields_for :adobe_product do |product|
+          -#=tool_fields.input :skill_level, collection: skills_list, as: :radio_buttons, label: "tool"
 
   = f.button :submit

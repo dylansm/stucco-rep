@@ -28,6 +28,7 @@ class Dashboard::Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_application = @user.user_application
     build_adobe_products
+    sort_user_adobe_products
     render "dashboard/admin/users/edit"
   end
 
@@ -176,7 +177,12 @@ class Dashboard::Admin::UsersController < ApplicationController
     end
   end
 
+  def sort_user_adobe_products
+    Hash[@user.tools.sort_by! { |tool| adobe_products.index(tool.adobe_product_id) }]
+  end
+
   def adobe_product_id_at_index(i)
     adobe_products[i].id.to_s
   end
+
 end
