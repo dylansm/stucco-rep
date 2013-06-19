@@ -40,11 +40,7 @@
 
     %fieldset
       %legend= t("legend.skills_info")
-      = f.simple_fields_for :tools do |tf|
-        = tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tf.object.adobe_product.name unless tf.object.adobe_product.nil?}"
-        -#= tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tf.object.adobe_product.name unless tf.object.adobe_product.nil?}", value_method: lambda { |tool| tf.object.adobe_product.id }
-        -#= tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tf.object.adobe_product.name unless tf.object.adobe_product.nil?}", value_method: lambda { |tool| 1 }
-        -#= tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: tf.object.adobe_prodcuct.nil? ? '' : tf.object.adobe_product
-        -#= tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tf.object.adobe_product.name ||  }"
+      = f.simple_fields_for :tools do |tool_fields|
+        = tool_fields.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tool_fields.object.adobe_product.name unless tool_fields.object.adobe_product.nil?}"
 
   = f.button :submit
