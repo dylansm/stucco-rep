@@ -36,7 +36,7 @@ class Dashboard::Admin::AdobeProductsController < ApplicationController
     @adobe_product = AdobeProduct.new(permitted_params)
 
     if @adobe_product.save
-      redirect_to dashboard_manage_adobe_products_path
+      redirect_to dashboard_admin_adobe_products_path
     else
       respond_with @adobe_product
     end

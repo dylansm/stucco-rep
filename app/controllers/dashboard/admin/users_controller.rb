@@ -28,7 +28,6 @@ class Dashboard::Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_application = @user.user_application
     build_adobe_products
-    sort_user_adobe_products
     render "dashboard/admin/users/edit"
   end
 
@@ -45,6 +44,7 @@ class Dashboard::Admin::UsersController < ApplicationController
       end
     end
 
+    debugger
     @user = User.find(params[:id])
     if @user.update_attributes(permitted_user_params)
       flash[:notice] = t("devise.users.user.updated")
@@ -120,65 +120,58 @@ class Dashboard::Admin::UsersController < ApplicationController
   end
 
   def permitted_user_params
-    params.require(:user).permit!
-    #params.require(:user).permit(
-      #:first_name,
-      #:last_name,
-      #:email,
-      #:admin,
-      #:school_id,
-      #tools_attributes: [
-        #:skill_level,
-        #:adobe_product_id
-      #],
-      #user_application_attributes: [
-        #:id,
-        #:gender,
-        #:mobile_phone,
-        #:street_address,
-        #:street_address2,
-        #:city,
-        #:state,
-        #:postal_code,
-        #:country,
-        #:planned_grad_year,
-        #:planned_grad_term,
-        #:major,
-        #:minor,
-        #:gpa,
-        #:num_facebook_friends,
-        #:num_instagram_followers,
-        #:num_twitter_followers,
-        #:other_social_sites,
-        #:extracurriculars,
-        #:extracurricular_leadership,
-        #:leadership_description,
-        #:skill_level,
-        #:reference_name,
-        #:reference_relationship,
-        #:reference_email,
-        #:reference_phone,
-        #:avatar,
-        #:advisory_board_application,
-        #:resume
-      #],
-      #:program_ids => []
-      ##:tools_ids => []
-    #)
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :email,
+      :admin,
+      :school_id,
+      tools_attributes: [
+        :skill_level,
+        :adobe_product_id
+      ],
+      user_application_attributes: [
+        :gender,
+        :mobile_phone,
+        :street_address,
+        :street_address2,
+        :city,
+        :state,
+        :postal_code,
+        :country,
+        :planned_grad_year,
+        :planned_grad_term,
+        :major,
+        :minor,
+        :gpa,
+        :num_facebook_friends,
+        :num_instagram_followers,
+        :num_twitter_followers,
+        :other_social_sites,
+        :extracurriculars,
+        :extracurricular_leadership,
+        :leadership_description,
+        :skill_level,
+        :reference_name,
+        :reference_relationship,
+        :reference_email,
+        :reference_phone,
+        :avatar,
+        :advisory_board_application,
+        :resume
+      ],
+      :program_ids => []
+    )
   end
 
   def adobe_products
-    @adobe_products ||= AdobeProduct.all
+    @adobe_products ||= AdobeProduct.order("name ASC")
   end
 
   def build_adobe_products
     adobe_products.each do |ap|
       @user.tools.build(adobe_product: ap) unless @user.tools.map { |t| t.adobe_product_id }.include? ap.id
     end
-  end
-
-  def sort_user_adobe_products
-    Hash[@user.tools.sort_by! { |tool| adobe_products.index(tool.adobe_product_id) }]
   end
 
   def adobe_product_id_at_index(i)

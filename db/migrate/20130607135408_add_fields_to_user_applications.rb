@@ -16,7 +16,9 @@ class AddFieldsToUserApplications < ActiveRecord::Migration
     add_column :user_applications, :minor, :string
     add_column :user_applications, :gpa, :float
     add_column :user_applications, :num_facebook_friends, :integer
+    add_column :user_applications, :instagram_username, :string
     add_column :user_applications, :num_instagram_followers, :integer
+    add_column :user_applications, :twitter_username, :string
     add_column :user_applications, :num_twitter_followers, :integer
     add_column :user_applications, :other_social_sites, :string
     add_column :user_applications, :member_design_community, :string

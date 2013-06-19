@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20130614000725) do
   create_table "tools", force: true do |t|
     t.integer  "user_id"
     t.integer  "adobe_product_id"
+    t.string   "name"
     t.integer  "skill_level"
     t.datetime "created_at"
     t.datetime "updated_at"

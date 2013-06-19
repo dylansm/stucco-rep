@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_one :user_application, autosave: true, dependent: :destroy
   belongs_to :school
-  has_many :tools, dependent: :destroy
+  has_many :tools, dependent: :destroy, after_add: :add_name_to_tool
   has_many :adobe_products, :through => :tools
   has_many :program_managers, dependent: :destroy
   has_many :programs, through: :program_managers
@@ -79,6 +79,10 @@ class User < ActiveRecord::Base
   def send_activate_instructions(attributes={})
     generate_reset_password_token! if should_generate_reset_token?
     send_devise_notification(:activate_instructions)
+  end
+
+  def add_name_to_tool(tool)
+    tool.add_names
   end
 
 end
