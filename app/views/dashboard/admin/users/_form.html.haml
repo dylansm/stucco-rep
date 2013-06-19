@@ -1,4 +1,3 @@
--#= simple_form_for @user, :method => @method do |f|
 = simple_form_for([:dashboard, :admin, @user]) do |f|
   = devise_error_messages!
   
@@ -41,9 +40,11 @@
 
     %fieldset
       %legend= t("legend.skills_info")
-      -#= f.simple_fields_for :tools do |t, i|
-        -#= t.input :skill_level, collection: skills_list, :as => :radio_buttons, label: "#{@object_name}"
-        -#= t.association :adobe_product, :as => :
-
+      = f.simple_fields_for :tools do |tf|
+        = tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tf.object.adobe_product.name unless tf.object.adobe_product.nil?}"
+        -#= tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tf.object.adobe_product.name unless tf.object.adobe_product.nil?}", value_method: lambda { |tool| tf.object.adobe_product.id }
+        -#= tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tf.object.adobe_product.name unless tf.object.adobe_product.nil?}", value_method: lambda { |tool| 1 }
+        -#= tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: tf.object.adobe_prodcuct.nil? ? '' : tf.object.adobe_product
+        -#= tf.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tf.object.adobe_product.name ||  }"
 
   = f.button :submit

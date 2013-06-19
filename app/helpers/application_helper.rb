@@ -18,11 +18,11 @@ module ApplicationHelper
 
   def skills_list
     [
-      [ t("terms.skills.beginner"), "novice"],
-      [ t("terms.skills.beginner+"), "novice+"],
-      [ t("terms.skills.intermediate"), "solid"],
-      [ t("terms.skills.intermediate+"), "solid+"],
-      [ t("terms.skills.advanced"), "expert"]
+      [ t("terms.skills.beginner"), 1],
+      [ t("terms.skills.beginner+"), 2],
+      [ t("terms.skills.intermediate"), 3],
+      [ t("terms.skills.intermediate+"), 4],
+      [ t("terms.skills.advanced"), 5]
     ].freeze
   end
 

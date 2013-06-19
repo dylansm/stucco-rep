@@ -12,5 +12,15 @@ FactoryGirl.define do
       end
     end
 
+    #factory :program_with_users do
+      #ignore do
+        #users_count 2
+      #end
+
+      #after(:create) do |program, evaluator|
+        #FactoryGirl.create_list(:user, evaluator.users_count, program: program)
+      #end
+    #end
+
   end
 end

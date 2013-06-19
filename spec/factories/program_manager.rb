@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :program_manager do
 
-    factory :program_manager_with_users do
+    factory :manager_with_users do
       ignore do
         users_count 10
       end

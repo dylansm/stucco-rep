@@ -9,4 +9,13 @@ tr.suspended {
 fieldset {
   margin: 2em 0;
   padding: 1em;
+
+  .radio_buttons {
+    label {
+      display: inline-block;
+      input {
+        margin-left: 1em;
+      }
+    }
+  }
 }
