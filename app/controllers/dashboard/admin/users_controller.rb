@@ -38,14 +38,9 @@ class Dashboard::Admin::UsersController < ApplicationController
       params[:user].delete("password_confirmation")
     end
 
-    if params[:user][:tools_attributes]
-      params[:user][:tools_attributes].keys.each do |k|
-        params[:user][:tools_attributes][k][:adobe_product_id] = adobe_product_id_at_index(k.to_i)
-      end
-    end
-
-    debugger
     @user = User.find(params[:id])
+    map_skills_to_adobe_products
+
     if @user.update_attributes(permitted_user_params)
       flash[:notice] = t("devise.users.user.updated")
       unless @user.admin
@@ -127,6 +122,7 @@ class Dashboard::Admin::UsersController < ApplicationController
       :admin,
       :school_id,
       tools_attributes: [
+        :id,
         :skill_level,
         :adobe_product_id
       ],
@@ -171,6 +167,24 @@ class Dashboard::Admin::UsersController < ApplicationController
   def build_adobe_products
     adobe_products.each do |ap|
       @user.tools.build(adobe_product: ap) unless @user.tools.map { |t| t.adobe_product_id }.include? ap.id
+    end
+  end
+
+  def map_skills_to_adobe_products
+    if params[:user][:tools_attributes]
+      tool_attribs = params[:user][:tools_attributes]
+      tool_attribs.keys.each do |k|
+        unless tool_attribs[k][:id].nil?
+          Tool.find(tool_attribs[k][:id]).update_column("skill_level", tool_attribs[k][:skill_level])
+        else
+          tool_attribs[k][:adobe_product_id] = adobe_product_id_at_index(k.to_i)
+        end
+
+        #tool_attribs[k][:adobe_product_id] = adobe_product_id_at_index(k.to_i)
+        #unless tool_attribs[k][:id].nil?
+          #Tool.find(tool_attribs[k][:id]).destroy
+        #end
+      end
     end
   end
 
