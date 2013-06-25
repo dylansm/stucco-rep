@@ -5,7 +5,10 @@ describe Dashboard::Admin::UsersController do
   let(:user) { create :user }
   let(:admin) { create(:admin) }
 
-  before { @request.env["devise.mapping"] = Devise.mappings[:user] }
+  before do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    ApplicationController.any_instance.stub(:current_user)
+  end
 
   context "as admin" do
 

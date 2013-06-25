@@ -5,17 +5,21 @@ Warden.test_mode!
 
 describe "Pages Features" do
 
+  before do 
+    @user = create :user
+    @program = create :program
+    #ApplicationController.any_instance.stub(:current_user).and_return @user
+    ApplicationController.any_instance.stub(:get_program).and_return @program
+  end
+
   describe "home page" do
 
-    let(:user) { create(:user) }
-
     before do
-      logout(user)
+      logout(@user)
       visit root_path
     end
 
     it "has home content" do
-      # content for the unauthenticated
       expect(page).to have_content('Welcome to the Adobe Rep Portal')
     end
 
@@ -42,7 +46,7 @@ describe "Pages Features" do
   context "when authenticated" do
     
     before do
-      @user = create(:user)
+      #@user = create(:user)
       login_as @user, :scope => :user
       visit root_path
     end
@@ -106,7 +110,7 @@ describe "Pages Features" do
 
   context "when editing profile" do
     before do
-      @user = create(:user)
+      #@user = create(:user)
       @admin = create(:admin)
       login_as @admin, :scope => :user
       visit edit_dashboard_admin_user_path(@user)
@@ -131,7 +135,6 @@ describe "Pages Features" do
   context "when users visit profile" do
     
     before do
-      @user = create(:user)
       @admin = create(:admin)
       login_as @user, :scope => :user
     end

@@ -16,7 +16,7 @@
     - @programs.each do |p|
       %tr
         %td= link_to p.name, dashboard_admin_program_path(p)
-        %td= link_to p.users.length, dashboard_program_users_path(p)
-        %td= link_to p.program_managers.length, dashboard_program_managers_path(p)
+        %td= link_to p.users.where(admin: false).length, dashboard_admin_program_users_path(p)
+        %td= link_to p.users.where(admin: true).length, dashboard_admin_program_managers_path(p)
         %td= link_to t("links.edit"), edit_dashboard_admin_program_path(p)
         %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/dashboard/admin/programs/#{p.id}", :"data-id" => "#{p.id}", remote: true }

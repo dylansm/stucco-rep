@@ -4,24 +4,13 @@ class Dashboard::Admin::UsersController < ApplicationController
 
   def index
     localized_links
-    @program_managers = ProgramManager.joins(:user).select("DISTINCT users.*")
     @programs = Program.all
+    @program_managers = User.where(admin: true).order("last_name ASC")
     @students = User.where(admin: false).order("last_name ASC").page(params[:page])
   end
 
-  def program_users
-    localized_links
-    @users = program.users.page(params[:page])
-  end
-
-  def program_managers
-    localized_links
-    @program_managers = program.program_managers.page(params[:page])
-  end
-
-  def school_users
-    @school = School.includes(:users).find(params[:id])
-    @users = @school.users.page(params[:page])
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -43,9 +32,6 @@ class Dashboard::Admin::UsersController < ApplicationController
 
     if @user.update_attributes(permitted_user_params)
       flash[:notice] = t("devise.users.user.updated")
-      unless @user.admin
-        ProgramManager.where("user_id = ?", @user.id).each { |pm| pm.destroy }
-      end
       redirect_to dashboard_admin_users_path
     else
       flash[:alert] = t("devise.registrations.failure")
@@ -58,6 +44,7 @@ class Dashboard::Admin::UsersController < ApplicationController
     @user.build_user_application
     build_adobe_products
     @user.school = School.new
+    @user.programs.build id: params[:program_id] if params[:program_id]
     render "dashboard/admin/users/new"
   end
 
@@ -80,7 +67,7 @@ class Dashboard::Admin::UsersController < ApplicationController
     @user.destroy
 
     # flash won't magically appear on page
-    flash[:notice] = t("devise.registrations.destroyed")
+    #flash[:notice] = t("devise.registrations.destroyed")
     
     respond_with :dashboard, :admin, @user
   end
@@ -97,10 +84,34 @@ class Dashboard::Admin::UsersController < ApplicationController
     respond_with @user
   end
 
+  # GET
+  def not_in_program
+    @users = User.not_in_program(program)
+    respond_with @users
+  end
+
+  def not_admin_in_program
+    @users = User.not_in_program(program, true)
+    respond_with @users
+  end
+
+  def current_program
+    new_program_id = params[:user][:current_program_id]
+    if user.update_column(:current_program_id, new_program_id)
+      redirect_to root_path
+    else
+      respond_with user
+    end
+  end
+
   private
 
+  def user
+    @user ||= User.find(params[:id])
+  end
+
   def program
-    @program ||= Program.find(params[:id])
+    @program ||= Program.find(params[:program_id])
   end
 
   def localized_links
@@ -112,21 +123,26 @@ class Dashboard::Admin::UsersController < ApplicationController
     @managers_reactivate_confirm = t("links.dashboard.manage_users.managers-reactivate-confirm")
     @users_delete_confirm = t("links.dashboard.manage_users.users-delete-confirm")
     @managers_delete_confirm = t("links.dashboard.manage_users.managers-delete-confirm")
+    @users_remove_confirm = t("links.dashboard.manage_users.users_remove_from_program_confirm")
   end
 
   def permitted_user_params
     params.require(:user).permit(
+      :id,
       :first_name,
       :last_name,
       :email,
+      :mobile_phone,
       :admin,
       :school_id,
+      :avatar,
       tools_attributes: [
         :id,
         :skill_level,
         :adobe_product_id
       ],
       user_application_attributes: [
+        :id,
         :gender,
         :mobile_phone,
         :street_address,
@@ -156,7 +172,10 @@ class Dashboard::Admin::UsersController < ApplicationController
         :advisory_board_application,
         :resume
       ],
-      :program_ids => []
+      :program_ids => [],
+      program_attributes: [
+        :id
+      ]
     )
   end
 
@@ -179,11 +198,6 @@ class Dashboard::Admin::UsersController < ApplicationController
         else
           tool_attribs[k][:adobe_product_id] = adobe_product_id_at_index(k.to_i)
         end
-
-        #tool_attribs[k][:adobe_product_id] = adobe_product_id_at_index(k.to_i)
-        #unless tool_attribs[k][:id].nil?
-          #Tool.find(tool_attribs[k][:id]).destroy
-        #end
       end
     end
   end

@@ -10,6 +10,7 @@ describe User do
     it { should respond_to(:first_name) }
     it { should respond_to(:last_name) }
     it { should respond_to(:email) }
+    it { should respond_to(:mobile_phone) }
     it { should respond_to(:admin) }
     it { should respond_to :password }
     it { should respond_to :password_confirmation }
@@ -50,22 +51,6 @@ describe User do
       expect(user_with_tools.tools.first.adobe_product.name).to eq("Photoshop")
     end
 
-  end
-
-
-  context "when a user belongs to a program through program managers" do
-
-    let(:program_with_managers) { create :program_with_managers }
-    #let(:program_with_users) { create :program_with_users }
-
-    it "should show program managers for program" do
-      expect(program_with_managers.program_managers.count).to eq 2
-    end
-
-    #it "should show users for program manager" do
-      #expect(program_with_users.users.count).to eq 10
-    #end
-    
   end
 
 

@@ -12,9 +12,13 @@ module ApplicationHelper
     end
   end
 
-  def set_flash_message(key, kind, options = {})
-    flash[key] = I18n.t(:"#{resource_name}.#{kind}", { :resource_name => resource_name, :scope => [:devise, controller_name.to_sym], :default => kind }.merge(options))
+  def attributes(attr)
+    @attributes = attr
   end
+
+  #def set_flash_message(key, kind, options = {})
+    #flash[key] = I18n.t(:"#{resource_name}.#{kind}", { :resource_name => resource_name, :scope => [:devise, controller_name.to_sym], :default => kind }.merge(options))
+  #end
 
   def skills_list
     [

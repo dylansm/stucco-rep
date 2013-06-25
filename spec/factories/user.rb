@@ -3,12 +3,14 @@ FactoryGirl.define do
     first_name "Example"
     last_name "User"
     email "user@email.com"
+    mobile_phone "503-555-5555"
     password "foobar123"
     password_confirmation "foobar123"
     provider nil
     authentication_token nil
     uid nil
     user_application
+    current_program_id 1
   
     factory :admin do
       last_name "Admin"

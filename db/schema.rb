@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130614000725) do
+ActiveRecord::Schema.define(version: 20130625201403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,21 +26,34 @@ ActiveRecord::Schema.define(version: 20130614000725) do
     t.datetime "mnemonic_updated_at"
   end
 
-  create_table "program_managers", force: true do |t|
+  create_table "comments", force: true do |t|
+    t.integer  "post_id"
     t.integer  "user_id"
-    t.integer  "program_id"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "posts", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "body"
+    t.string   "video_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
   create_table "programs", force: true do |t|
     t.string   "name"
-    t.string   "program_icon_file_name"
-    t.string   "program_icon_content_type"
-    t.integer  "program_icon_file_size"
-    t.datetime "program_icon_updated_at"
-    t.string   "theme_name"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,6 +63,11 @@ ActiveRecord::Schema.define(version: 20130614000725) do
     t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "programs_users", force: true do |t|
+    t.integer "program_id"
+    t.integer "user_id"
   end
 
   create_table "regions", force: true do |t|
@@ -81,7 +99,6 @@ ActiveRecord::Schema.define(version: 20130614000725) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "mobile_phone"
     t.string   "gender",                     limit: 1
     t.text     "bio"
     t.string   "street_address"
@@ -147,16 +164,17 @@ ActiveRecord::Schema.define(version: 20130614000725) do
     t.string   "uid"
     t.boolean  "active_for_authentication", default: true
     t.integer  "school_id"
-    t.integer  "program_id"
+    t.string   "mobile_phone"
     t.integer  "points"
+    t.integer  "current_program_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
 
+  add_index "users", ["current_program_id"], name: "index_users_on_current_program_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["program_id"], name: "index_users_on_program_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 

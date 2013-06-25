@@ -2,9 +2,6 @@ Adoberep::Application.routes.draw do
   # pages
   #get 'manage-users' => 'pages#manage_users'
   namespace :dashboard do
-    get 'program-users/:id' => 'admin/users#program_users', :as => "program_users"
-    get 'program-managers/:id' => 'admin/users#program_managers', :as => "program_managers"
-    get 'school-users/:id' => 'admin/users#school_users', :as => "school_users"
 
     namespace :admin do
       resources :adobe_products
@@ -12,8 +9,21 @@ Adoberep::Application.routes.draw do
       resources :schools
       resources :regions
       resources :users
+
+      get 'program-users/:id' => 'programs#users', :as => "program_users"
+      get 'program-managers/:id' => 'programs#managers', :as => "program_managers"
+      get 'school-users/:id' => 'schools#users', :as => "school_users"
+
+      get 'users/new/program/:program_id' => 'users#new', as: "new_user_for_program"
+      patch 'programs/:id/add-existing-users' => 'programs#add_existing_users', as: "add_user_to_program"
+      patch 'programs/:id/add-existing-managers' => 'programs#add_existing_managers', as: "add_manager_to_program"
+      # AJAX
       put 'users/:id/suspend' => 'users#suspend'
       put 'users/:id/reactivate' => 'users#reactivate'
+      put 'users/:id/current-program/:program_id' => 'users#current_program'
+      put 'programs/:id/remove/:user_id' => 'programs#remove_user'
+      get 'users/not-in-program/:program_id' => 'users#not_in_program'
+      get 'users/not-admin-in-program/:program_id' => 'users#not_admin_in_program'
     end
   end
 

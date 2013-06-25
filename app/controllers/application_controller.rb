@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   before_filter :configure_devise_permitted_params, if: :devise_controller?
+  before_action :get_program
 
   protected
 
@@ -19,5 +20,11 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def get_program
+    if current_user
+      @program = Program.find(current_user.current_program_id)
+    end
   end
 end

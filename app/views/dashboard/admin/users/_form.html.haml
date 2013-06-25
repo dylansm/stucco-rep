@@ -4,27 +4,27 @@
   = f.input :first_name, :autofocus => true
   = f.input :last_name
   = f.input :email, required: true
-  - if @method == "put" && current_user == @user
-    = f.input :password
-    = f.input :password_confirmation
-  = f.association :programs, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+  = f.input :mobile_phone
+  = f.input :avatar, as: :file, label: "Photo"
   = f.input :admin 
-  = f.association :school, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+  = f.association :programs, include_blank: false, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+  - if current_user == @user
+    %fieldset
+      %legend= t("legend.password")
+      = f.input :password
+      = f.input :password_confirmation
 
   = f.simple_fields_for :user_application do |ua|
     %fieldset
-      %legend= t("legend.contact_info")
+      %legend= t("legend.personal_info")
+      = f.association :school, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
       = ua.input :gender, collection: [ ['female', 'f'], ['male', 'm'] ], prompt: t("select.choose"), input_html: { class: 'chzn-select' }
-      = ua.input :mobile_phone
       = ua.input :street_address
       = ua.input :street_address2
       = ua.input :city
       = ua.input :state, collection: states_list, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
       = ua.input :postal_code
       = ua.input :country, collection: countries_list, selected: "US", prompt: t("select.choose"), input_html: { class: 'chzn-select' }
-
-    %fieldset
-      %legend= t("legend.personal_info")
       = ua.input :planned_grad_year, collection: 2013..2028, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
       = ua.input :planned_grad_term, collection: school_terms_list, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
       = ua.input :major, label: t("terms.major")

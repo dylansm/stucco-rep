@@ -5,9 +5,13 @@ class UsersController < ApplicationController
   def show
     @user = params[:id] ? User.find(params[:id]) : current_user
 
-    unless @user.authentication_token.nil?
+    unless authentication_token.nil?
       @facebook_posts = fetch_facebook_stream(@user)
     end
+  end
+
+  def authentication_token
+    @user.authentication_token
   end
 
   private

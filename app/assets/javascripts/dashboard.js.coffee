@@ -1,28 +1,67 @@
 $ ->
+  $.ajaxSetup
+    beforeSend: (xhr) ->
+      token = $('meta[name="csrf-token"]').attr('content');
+      if token
+        xhr.setRequestHeader('X-CSRF-Token', token);
 
   $(".chzn-select").chosen()
 
+  # choose program
+  $("#user_current_program_id").chosen().change ->
+    $(this).closest('form').submit()
 
-  $('.delete-row').each ->
+  $('.delete-row, .remove-row').each ->
     path = $(this).attr("data-path")
-    delete_confirm = $(this).closest('table').attr("data-delete-confirm")
+    remove_only = ($(this).hasClass("remove-row"))
+    if remove_only
+      delete_confirm = $(this).closest('table').attr("data-remove-confirm")
+      method = {"_method": "put"}
+    else
+      delete_confirm = $(this).closest('table').attr("data-delete-confirm")
+      method = {"_method": "delete"}
     $tr = $(this).closest('tr')
     $(this).click ->
       if confirm delete_confirm
-        $.ajaxSetup
-          beforeSend: (xhr) ->
-            token = $('meta[name="csrf-token"]').attr('content');
-            if token
-              xhr.setRequestHeader('X-CSRF-Token', token);
         $.ajax
           url: path,
           type: 'post',
-          dataType: 'json',
-          data: {"_method": "delete"},
-          success: (data, textStatus, xhr) ->
+          datatype: 'json',
+          data: method,
+          success: (data, textstatus, xhr) =>
             $tr.hide()
+            if remove_only
+              add_existing_users()
           error: (response) ->
             console.log response
+  
+  add_existing_users = ->
+    program_id = $("body").attr("data-program-id")
+    if !!$("body").attr("data-admins")
+      url = "/dashboard/admin/users/not-admin-in-program/#{program_id}"
+    else
+      url = "/dashboard/admin/users/not-in-program/#{program_id}"
+
+    $.ajax
+      url: url,
+      type: 'get',
+      dataType: 'json',
+      success: (data, textStatus, xhr) =>
+        tmpl = JST["user_select_options"]
+        list_html = ''
+        _.each(data, (user) ->
+          name = "#{user.first_name} #{user.last_name}"
+          id = user.id
+          list_html += tmpl(id: id, name: name)
+        )
+        $list = $("#program_user_ids")
+        $list.html(list_html)
+        $list.trigger("liszt:updated");
+
+      error: (response) ->
+        console.log response
+
+
 
   #TODO Refactor this into one function?
   $('.toggle-user').each ->
@@ -33,11 +72,6 @@ $ ->
     reactivate_confirm = $(this).closest('table').attr("data-reactivate-confirm")
     $tr = $(this).closest('tr')
     $(this).click ->
-      $.ajaxSetup
-        beforeSend: (xhr) ->
-          token = $('meta[name="csrf-token"]').attr('content');
-          if token
-            xhr.setRequestHeader('X-CSRF-Token', token);
       $link = $(this)
       if @text == reactivate
         if confirm reactivate_confirm
@@ -64,3 +98,4 @@ $ ->
             error: (response) ->
               console.log response
       return
+

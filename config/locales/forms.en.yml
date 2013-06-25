@@ -1,5 +1,6 @@
 en:
   legend:
+    password: "Password (leave blank if not changing)"
     contact_info: "Contact Information"
     personal_info: "Personal Information"
     skills_info: "Skill Level"
@@ -11,6 +12,8 @@ en:
       female: "Female"
     countries:
       us: "United States"
+    labels:
+      add_existing_user: "Add existing user"
 
   helpers:
     submit:

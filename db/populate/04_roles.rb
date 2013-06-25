@@ -1,9 +1,5 @@
-program_managers = [ User.find(1), User.find(2) ]
-
 program = Program.first
-program_managers.each do |pm|
-  program.program_managers.create(user: pm)
-end
 
-users = [ User.find(3), User.find(4), User.find(5) ]
+users = User.find([1,2,3,4,5])
 program.users << users
+users.each { |u| u.update_column(:current_program_id, program.id) }

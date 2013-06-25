@@ -18,6 +18,12 @@ class Dashboard::Admin::SchoolsController < ApplicationController
     end
   end
 
+  def users
+    @school = School.includes(:users).find(params[:id])
+    @users = @school.users.page(params[:page])
+  end
+
+
 
   private
 

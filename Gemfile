@@ -34,6 +34,9 @@ gem 'execjs'
 gem 'bourbon'
 gem 'neat'
 gem 'modernizr_rails'
+gem 'haml'
+gem 'ejs'
+gem 'haml_coffee_assets', '~> 1.5.1'
 
 group :production, :staging do
   gem "therubyracer", :require => 'v8'

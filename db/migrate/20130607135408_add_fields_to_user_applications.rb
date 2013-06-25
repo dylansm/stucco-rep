@@ -1,7 +1,6 @@
 class AddFieldsToUserApplications < ActiveRecord::Migration
   def change
     add_column :user_applications, :user_id, :integer
-    add_column :user_applications, :mobile_phone, :string
     add_column :user_applications, :gender, :string, :limit => 1
     add_column :user_applications, :bio, :text
     add_column :user_applications, :street_address, :string

@@ -17,6 +17,6 @@
       %tr
         %td= link_to s.name, dashboard_admin_school_path(s)
         %td= link_to(image_tag(s.school_logo.url(:sm), { width: "40px", height: "40px", srcset: "#{s.school_logo.url(:"sm@2x")} 2x" }), dashboard_admin_school_path(s))
-        %td= link_to s.users.length, dashboard_school_users_path(s)
+        %td= link_to s.users.length, dashboard_admin_school_users_path(s)
         %td= link_to t("links.edit"), edit_dashboard_admin_school_path(s)
         %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/dashboard/admin/schools/#{s.id}", :"data-id" => "#{s.id}", remote: true }

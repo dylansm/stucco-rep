@@ -2,12 +2,13 @@ class User < ActiveRecord::Base
   has_one :user_application, autosave: true, dependent: :destroy
   belongs_to :school
   has_many :tools, dependent: :destroy, after_add: :add_name_to_tool
-  has_many :adobe_products, :through => :tools
-  has_many :program_managers, dependent: :destroy
-  has_many :programs, through: :program_managers
+  has_many :adobe_products, through: :tools
+  has_and_belongs_to_many :programs
+  has_many :posts
+  has_many :comments
+  has_many :responses, through: :posts, source: :comments
+  accepts_nested_attributes_for :user_application, :tools
 
-  accepts_nested_attributes_for :user_application, :tools, :programs
-  
   # Include default devise modules. Others available are: :token_authenticatable, :confirmable, :registerable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -16,12 +17,31 @@ class User < ActiveRecord::Base
   validates(:first_name, presence: true)
   validates(:last_name, presence: true)
 
+  has_attached_file :avatar, styles: { sm: "40x40#", :"sm@2x" => "80x80#", med: "60x60#", lg: "120x120#", :"lg@2x" => "240x240#" }
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+
   attr_writer :skip_email_notification
 
   after_create do |user|
     unless @skip_email_notification
       send_activate_instructions
     end
+  end
+
+  class << self
+
+    def not_in_program(program, admin=false)
+      if program.users.any?
+        where("admin = ? AND id NOT IN (?)", admin, program.users.map(&:id))
+      else
+        where("admin = ?", admin)
+      end
+    end
+
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 
   def skip_email_notification!

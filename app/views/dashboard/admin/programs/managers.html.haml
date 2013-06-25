@@ -1,0 +1,51 @@
+- title t('page_titles.program_managers', name: @program.name)
+- attributes({ :"data-user-id" => "#{current_user.id}", :"data-program-id" => "#{@program.id}", :"data-admins" => "true" })
+
+%h2= t('headers.program_program_managers', name: @program.name)
+
+= paginate @program_managers
+
+= link_to "Add new user", dashboard_admin_new_user_for_program_path(@program), { :class => "small button"}
+
+= simple_form_for [:dashboard, :admin, @program], url: dashboard_admin_add_user_to_program_path(@program) do |f|
+  = f.input :managers, as: :hidden, input_html: { value: true }
+  = f.association :users, collection: User.not_in_program(@program, true),
+    label: t('select.labels.add_existing_user'),
+    input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+  = f.submit
+
+%table{ :"data-reactivate" => "#{@reactivate}", 
+  :"data-suspend" => "#{@suspend}", 
+  :"data-suspend-confirm" => "#{@managers_suspend_confirm}", 
+  :"data-reactivate-confirm" => "#{@managers_reactivate_confirm}", 
+  :"data-delete-confirm" => "#{@managers_delete_confirm}", 
+  :"data-remove-confirm" => "#{@users_remove_confirm}" }
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Last Sign In
+      %th{:colspan => "4"} Manage
+  %tbody
+    - @program_managers.each do |pm|
+    - pm.active_for_authentication ? link = @suspend : link = @reactivate
+      %tr{:class => pm.active_for_authentication ? '' : 'suspended' }
+        %td= link_to pm.first_name, dashboard_admin_user_path(pm)
+        %td= link_to pm.last_name, dashboard_admin_user_path(pm)
+        %td= link_to pm.email, dashboard_admin_user_path(pm)
+        %td= pm.last_sign_in_at
+        %td= link_to t("links.edit"), edit_dashboard_admin_user_path(pm)
+        %td= link_to link, "#", { class: "toggle-user", 
+          :"data-id" => "#{pm.id}", 
+          :"data-reactivate" => "#{@reactivate}", 
+          :"data-suspend" => "#{@suspend}", 
+          :"data-suspend-confirm" => "#{@managers_suspend_confirm}", 
+          remote: true }
+        %td= link_to t("links.dashboard.manage_programs.remove_user"), "#", { class: "remove-row", 
+          :"data-path" => "/dashboard/admin/programs/#{@program.id}/remove/#{pm.id}", 
+          remote: true }
+        %td= link_to t("links.delete"), "#", { class: "delete-row", 
+          :"data-path" => "/dashboard/admin/users/#{pm.id}", 
+          :"data-id" => "#{pm.id}", 
+          remote: true }

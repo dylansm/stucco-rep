@@ -19,13 +19,13 @@
     - @program_managers.each do |pm|
     - pm.active_for_authentication ? link = @suspend : link = @reactivate
       %tr{:class => pm.active_for_authentication ? '' : 'suspended' }
-        %td= link_to pm.first_name, dashboard_admin_path(pm)
-        %td= link_to pm.last_name, dashboard_admin_path(pm)
-        %td= link_to pm.email, dashboard_admin_path(pm)
-        -#%td= pm.programs
+        %td= link_to pm.first_name, dashboard_admin_user_path(pm)
+        %td= link_to pm.last_name, dashboard_admin_user_path(pm)
+        %td= link_to pm.email, dashboard_admin_user_path(pm)
         %td
-          - @programs.each do |program|
-            = program.name
+          %ul
+          - pm.programs.each do |p|
+            %li= link_to p.name, dashboard_admin_program_path(p)
 
         %td= pm.last_sign_in_at
         %td= link_to t("links.edit"), edit_dashboard_admin_user_path(pm)
@@ -39,6 +39,7 @@
       %th First Name
       %th Last Name
       %th Email
+      %th Programs
       %th Mobile Phone
       %th School
       %th Last Sign In
@@ -50,7 +51,11 @@
         %td= link_to u.first_name, dashboard_admin_user_path(u)
         %td= link_to u.last_name, dashboard_admin_user_path(u)
         %td= link_to u.email, dashboard_admin_user_path(u)
-        %td= link_to (u.user_application.mobile_phone.nil? ? '' : u.user_application.mobile_phone), dashboard_admin_user_path(u)
+        %td
+          %ul
+            - u.programs.each do |p|
+              %li= link_to p.name, dashboard_admin_program_path(p)
+        %td= link_to (u.mobile_phone.nil? ? '' : u.mobile_phone), dashboard_admin_user_path(u)
         %td= u.school.name unless u.school.nil?
         %td= u.last_sign_in_at
         %td= link_to t("links.edit"), edit_dashboard_admin_user_path(u)
