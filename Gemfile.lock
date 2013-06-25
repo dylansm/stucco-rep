@@ -115,7 +115,11 @@ GEM
       warden (~> 1.2.1)
     diff-lcs (1.2.4)
     ejs (1.1.1)
+    em-websocket (0.5.0)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.5.3)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -140,6 +144,10 @@ GEM
       thor (>= 0.14.6)
     guard-ctags-bundler (0.1.6)
       guard (>= 1.1)
+    guard-livereload (1.4.0)
+      em-websocket (>= 0.5.0)
+      guard (>= 1.8.0)
+      multi_json (~> 1.7)
     guard-rspec (2.5.4)
       guard (>= 1.1)
       rspec (~> 2.11)
@@ -161,6 +169,7 @@ GEM
     hashie (2.0.5)
     highline (1.6.19)
     hike (1.2.3)
+    http_parser.rb (0.5.3)
     httpauth (0.2.0)
     httpclient (2.3.3)
     i18n (0.6.4)
@@ -351,6 +360,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   fb_graph
   guard-ctags-bundler
+  guard-livereload
   guard-rspec (~> 2.5.0)
   guard-spork (~> 1.5.0)
   haml
