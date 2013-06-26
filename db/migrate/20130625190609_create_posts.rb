@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :body
       t.string :video_id
+      t.string :video_provider
 
       t.timestamps
     end

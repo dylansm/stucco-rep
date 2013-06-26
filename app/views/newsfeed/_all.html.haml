@@ -1,0 +1,6 @@
+%h2 Newsfeed
+
+= render "newsfeed/shared/post_form"
+
+- @posts.each do |post|
+  = post.title

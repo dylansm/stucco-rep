@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :tools, dependent: :destroy, after_add: :add_name_to_tool
   has_many :adobe_products, through: :tools
   has_and_belongs_to_many :programs
+  has_many :program_marquees, through: :programs
   has_many :posts
   has_many :comments
   has_many :responses, through: :posts, source: :comments

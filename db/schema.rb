@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130625201403) do
+ActiveRecord::Schema.define(version: 20130625234305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20130625201403) do
     t.string   "title"
     t.text     "body"
     t.string   "video_id"
+    t.string   "video_provider"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -51,6 +52,18 @@ ActiveRecord::Schema.define(version: 20130625201403) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "program_marquees", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "marquee_file_name"
+    t.string   "marquee_content_type"
+    t.integer  "marquee_file_size"
+    t.datetime "marquee_updated_at"
+  end
+
+  add_index "program_marquees", ["user_id"], name: "index_program_marquees_on_user_id", using: :btree
 
   create_table "programs", force: true do |t|
     t.string   "name"

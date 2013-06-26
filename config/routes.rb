@@ -1,6 +1,4 @@
 Adoberep::Application.routes.draw do
-  # pages
-  #get 'manage-users' => 'pages#manage_users'
   namespace :dashboard do
 
     namespace :admin do
@@ -27,13 +25,18 @@ Adoberep::Application.routes.draw do
     end
   end
 
+  namespace :newsfeed do
+    resources :posts
+  end
+
   # users
   devise_for :users, :controllers => { 
     :omniauth_callbacks => 'users/omniauth_callbacks'
   }
 
-  get 'users/:id' => 'users#show', :as => "user"
+  get 'users/:id' => 'users#show', as: "user"
   get 'profile' => 'users#show'
+  patch 'users/:id' => 'users#create_post', as: "create_post"
 
   root 'pages#home'
 
