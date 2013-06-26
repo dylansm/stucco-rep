@@ -27,7 +27,8 @@ class Dashboard::Admin::ProgramsController < ApplicationController
   # PUT
   def add_existing_users
     params[:program][:user_ids].concat program.users.map(&:id)
-    if program.update(permitted_params)
+    @program = Program.find(params[:id])
+    if @program.update(permitted_params)
       if params[:program][:managers] == "true"
         redirect_to dashboard_admin_program_managers_path(program)
       else
@@ -67,7 +68,8 @@ class Dashboard::Admin::ProgramsController < ApplicationController
 
   def managers
     localized_links
-    @program_managers = program.users.where(admin: true).page(params[:page])
+    @program = Program.includes(:users).find(params[:id])
+    @program_managers = @program.users.where(admin: true).page(params[:page])
   end
 
   private

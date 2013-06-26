@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def program
+    Program.find(current_program_id)
+  end
+
   def skip_email_notification!
     @skip_email_notification = true
   end

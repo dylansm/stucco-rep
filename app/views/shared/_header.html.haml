@@ -1,0 +1,23 @@
+%header
+  .leftheader
+    = link_to t('nav.home'), "http://www.adobe.com", { class: "logo" }
+    - if user_signed_in?
+      - if current_user.programs.length > 1
+        = simple_form_for [:dashboard, :admin, current_user], 
+          url: "/dashboard/admin/users/#{current_user.id}/current-program/#{@program.id}", method: :put do |f|
+          = f.input :current_program_id, collection: current_user.programs, label: false, input_html: { class: 'chzn-select', 
+            :"data-placeholder" => t("select.choose") }
+      - else
+        = link_to current_user.program.name, root_path, { class: "program-title"}
+
+      .rightheader
+        %a.dashboard
+          Dashboard
+        %a.newsfeed
+          Newsfeed
+        %a.menu
+          Menu
+          = link_to t('nav.logout'), destroy_user_session_path, :method => :delete
+          = link_to 'My Profile', profile_path
+    - else
+      =link_to t('nav.login'), new_user_session_path
