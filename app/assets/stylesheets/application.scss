@@ -1,6 +1,22 @@
-@import "bourbon";
-@import "neat";
-@import "chosen";
-@import "typography";
-@import "rock-hammer/rock-hammer";
-@import "base";
+// @import "bourbon";
+// @import "neat";
+// @import "libs/chosen";
+// @import "rock-hammer";
+// @import "base";
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// PULLED IN THE CONTENT OF ROCK-HAMMER.SCSS TO SIMPLIFY THINGS A BIT. I'LL CLEAN UP LATER.
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+
+Built on Rock Hammer by Stuff and Nonsense
+URL: http://stuffandnonsense.co.uk/projects/rock-hammer/ 
+
+*/
+
+$media-queries-supported : true;
+
+// Import all SASS imports
+@import 'imports';
+

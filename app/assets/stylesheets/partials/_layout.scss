@@ -1,0 +1,40 @@
+// Rock Hammer by Stuff and Nonsense
+// Version: <!-- $version -->
+// URL: http://stuffandnonsense.co.uk/projects/rock-hammer/
+// Version: <!-- $license -->
+
+[role="banner"] {
+	@include clearfix;
+}
+
+////////////////////////
+// FROM THE ROOT BASE.CSS.SCSS FILE
+////////////////////////
+
+.chzn-container {
+	min-width: 110px;
+}
+
+table {
+	border-collapse: separate; // most likely change this!
+	border-spacing: 4px;
+
+	tr.suspended {
+		background: #ddd;
+	}
+}
+
+fieldset {
+	margin: 2em 0;
+	padding: 1em;
+
+	.radio_buttons {
+		label {
+			display: inline-block;
+			input {
+				margin-left: 1em;
+			}
+		}
+	}
+}
+
