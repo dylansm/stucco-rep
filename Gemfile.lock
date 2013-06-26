@@ -169,6 +169,7 @@ GEM
     hashie (2.0.5)
     highline (1.6.19)
     hike (1.2.3)
+    hookup (1.2.2)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
     httpclient (2.3.3)
@@ -366,6 +367,7 @@ DEPENDENCIES
   haml
   haml-rails
   haml_coffee_assets (~> 1.5.1)
+  hookup
   jbuilder (~> 1.0.1)
   jquery-rails
   kaminari

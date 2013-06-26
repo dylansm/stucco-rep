@@ -16,3 +16,18 @@ gems.tags
 /tmp
 
 .DS_Store
+
+[merge]
+  tool = FileMerge
+[diff]
+  tool = FileMerge
+[difftool]
+  prompt = false
+[mergetool]
+  keepBackup = true
+  prompt = false
+  trustExitCode = true
+[mergetool "FileMerge"]
+  cmd = /usr/bin/opendiff --wait "$LOCAL" "$REMOTE"
+[difftool "FileMerge"]
+  cmd = /usr/bin/opendiff "$LOCAL" "$REMOTE"

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20130625234305) do
     t.string   "title"
     t.text     "body"
     t.string   "video_id"
+    t.string   "video_provider"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -51,13 +52,6 @@ ActiveRecord::Schema.define(version: 20130625234305) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
-
-  create_table "program_managers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "program_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "program_marquees", force: true do |t|
     t.integer  "user_id"
@@ -73,12 +67,6 @@ ActiveRecord::Schema.define(version: 20130625234305) do
 
   create_table "programs", force: true do |t|
     t.string   "name"
-    t.string   "program_icon_file_name"
-    t.string   "program_icon_content_type"
-    t.integer  "program_icon_file_size"
-    t.datetime "program_icon_updated_at"
-    t.string   "theme_name"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -124,7 +112,6 @@ ActiveRecord::Schema.define(version: 20130625234305) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "mobile_phone"
     t.string   "gender",                     limit: 1
     t.text     "bio"
     t.string   "street_address"
@@ -190,16 +177,17 @@ ActiveRecord::Schema.define(version: 20130625234305) do
     t.string   "uid"
     t.boolean  "active_for_authentication", default: true
     t.integer  "school_id"
-    t.integer  "program_id"
+    t.string   "mobile_phone"
     t.integer  "points"
+    t.integer  "current_program_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
 
+  add_index "users", ["current_program_id"], name: "index_users_on_current_program_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["program_id"], name: "index_users_on_program_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 

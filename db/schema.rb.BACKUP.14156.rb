@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20130625234305) do
     t.string   "title"
     t.text     "body"
     t.string   "video_id"
+    t.string   "video_provider"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20130625234305) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
+<<<<<<< HEAD
   create_table "program_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "program_id"
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(version: 20130625234305) do
     t.datetime "updated_at"
   end
 
+=======
   create_table "program_marquees", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -71,6 +74,7 @@ ActiveRecord::Schema.define(version: 20130625234305) do
 
   add_index "program_marquees", ["user_id"], name: "index_program_marquees_on_user_id", using: :btree
 
+>>>>>>> 31727b57b3464ee4c8b84c1d7f71cb3b3eda7863
   create_table "programs", force: true do |t|
     t.string   "name"
     t.string   "program_icon_file_name"
