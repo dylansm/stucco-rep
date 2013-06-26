@@ -8,8 +8,45 @@
     %meta{ name:"viewport", content: "width=device-width, initial-scale=1.0" }
     = csrf_meta_tags
   %body{ @attributes ||= {} }
-    = render "shared/nav"
+  
+    %header
+      .leftheader
+        %a.logo
+        %a.site-title
+          Adobe Campus Ambassador Portal
+      .rightheader
+        %a.dashboard
+          Dashboard
+        %a.newsfeed
+          Newsfeed
+        %a.menu
+          Menu
+    
+    %nav
+      = render "shared/nav"
+      
+    .content
+      .leftcol
+        %h1 This is the left column content.
+        
+      .rightcol
+        
+        %h1 This is the right column content.
+        
+        %p.notice= notice
+        %p.alert= alert
+        
+        = yield
+        
+        %footer
+          This is the footer content/nav.
+    
+    
+    
+    
+    
+    
+    
 
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    
+    
