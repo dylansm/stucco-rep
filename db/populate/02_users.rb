@@ -8,6 +8,12 @@
      encrypted_password: "$2a$10$btEN1wy3rfw7IjslcyiBzuLaKqCXCJ4uIM/5eswe48U33KKuiJciG", admin: true,
      avatar_file_name: "Passport-photo.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 24460, avatar_updated_at: "2013-06-25 18:06:04.876058000"
   },
+  {email: "paul@kingbirdcreative.com", first_name: "Paul", last_name: "Terhaar", admin: true,
+     encrypted_password: "$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa"
+  },
+  {email: "idahotallpaul@gmail.com", first_name: "Paul", last_name: "Terhaar",
+     encrypted_password: "$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa"
+  },
   {email: "foliomedia2@yahoo.com", first_name: "Michael", last_name: "Hfuhruhurr", 
      encrypted_password: "$2a$10$TwVWBd5ilT7kmwhXI3gMmuB1CfLOku/hGgQIne1avyKpA0Byzj496"
   },
