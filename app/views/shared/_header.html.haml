@@ -9,15 +9,13 @@
             :"data-placeholder" => t("select.choose") }
       - else
         = link_to current_user.program.name, root_path, { class: "program-title"}
-
-      .rightheader
-        %a.dashboard
-          Dashboard
-        %a.newsfeed
-          Newsfeed
-        %a.menu
-          Menu
-          = link_to t('nav.logout'), destroy_user_session_path, :method => :delete
-          = link_to 'My Profile', profile_path
     - else
       =link_to t('nav.login'), new_user_session_path
+
+  .rightheader
+    = link_to "Dashboard", "#"
+    = link_to "Newsfeed", "#"
+    = link_to "Menu", "#"
+    .hidden-menu
+      = link_to t('nav.logout'), destroy_user_session_path, :method => :delete
+      = link_to 'My Profile', profile_path
