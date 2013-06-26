@@ -12,16 +12,90 @@
 
 
 // tmp
-.logo {
-  float: left;
-  text-indent: -9999px;
-  width: 38px;
-  height: 62px;
-  background: image_url("adobe_logo.png") 0 0 no-repeat;
+
+
+.pagewrapper {
+	position: relative;
+	
+	// this toggles the nav in from the right side of the page
+	&.nav-active {
+		nav {
+			float: left;
+			width: 50%;
+			margin-left: 50%;
+		}
+		
+		.content {
+			float: left;
+			margin-left: -50%;
+			width: 100%;
+		}
+	}
 }
 
+header {
+	
+	@include clearfix;
+	position: relative;
+	background-color: #000;
+	min-height: 55px;
+	color: #fff;
+	
+	.logo {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		text-indent: -9999px;
+		width: 38px;
+		height: 62px;
+		background: image_url("adobe_logo.png") 0 0 no-repeat;
+	}
+	
+	.leftheader {
+		float: left;
+	}
+	
+	.rightheader {
+		float: right;
+	}
+	
+	.program-title {
+		padding: 15px 0 0 53px;
+		margin: 0 0 0 0;
+	}
+	
+	
+}
 
+nav {
+	transition: .2s all ease;			
+	-webkit-transition: .2s all ease;
+	background-color: #fff;
+	
+	float: left;
+	width: 0;
+	margin-left: 100%;
+	overflow-x: hidden;
+	position: absolute;
+	
+	ul {
+		margin: 0 0 0 0;
+		padding: 0 0 0 0;
+		li {
+			margin: 0 0 0 0;
+			padding: 0 0 0 0;
+		}
+	}
+}
 
+.content {
+	
+	transition: .2s all ease;			
+	-webkit-transition: .2s all ease;
+	position: absolute;
+	float: left;
+	width: 100%;
+}
 
 
 
