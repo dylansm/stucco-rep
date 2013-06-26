@@ -12,10 +12,11 @@
     - else
       =link_to t('nav.login'), new_user_session_path
 
-  .rightheader
-    = link_to "Dashboard", "#"
-    = link_to "Newsfeed", "#"
-    = link_to "Menu", "#"
-    .hidden-menu
-      = link_to t('nav.logout'), destroy_user_session_path, :method => :delete
-      = link_to 'My Profile', profile_path
+  - if user_signed_in?
+    .rightheader
+      = link_to "Dashboard", "#"
+      = link_to "Newsfeed", "#"
+      = link_to "Menu", "#"
+      .hidden-menu
+        = link_to t('nav.logout'), destroy_user_session_path, :method => :delete
+        = link_to 'My Profile', profile_path
