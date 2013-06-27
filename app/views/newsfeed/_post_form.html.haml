@@ -1,0 +1,8 @@
+-#= simple_form_for(@user, :url => create_post_path(@user)) do |f|
+= simple_form_for([:newsfeed, @post]) do |f|
+  = f.input :text, as: :text
+  = f.input :image, as: :file
+  = f.input :video_id
+  = simple_fields_for :user do |user_fields|
+    = f.association :user, as: :hidden
+  = f.submit

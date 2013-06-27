@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require hamlcoffee
 //= require modernizr
+//= require_tree ./libs
 //= require_tree ./templates
-//= require_tree .
+//= require dashboard.js.coffee
+//= require posts.js.coffee
 
