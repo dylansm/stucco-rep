@@ -3,6 +3,13 @@
 // URL: http://stuffandnonsense.co.uk/projects/rock-hammer/
 // Version: <!-- $license -->
 
+// $bp2 : 480px 	30em
+// $bp3 : 600px 	37.5em
+// $bp4 : 768px 	48em
+// $bp5 : 992px 	62em
+// $bp6 : 1382px	86.375em
+
+
 // 1. ROOT 					==============================
 // 2. TYPOGRAPHY 			==============================
 // 3. COLOUR 				==============================
@@ -12,17 +19,184 @@
 
 
 // tmp
-.logo {
-  float: left;
-  text-indent: -9999px;
-  width: 38px;
-  height: 62px;
-  background: image_url("adobe_logo.png") 0 0 no-repeat;
+
+
+.pagewrapper {
+	position: relative;
+	
+	// this toggles the nav in from the right side of the page
+	&.nav-active {
+		nav {
+			float: left;
+			width: 50%;
+			margin-left: 50%;
+		}
+		
+		.content {
+			float: left;
+			margin-left: -50%;
+			width: 100%;
+		}
+		
+		@include media-query-bp($bp3) {
+			nav {
+				float: none;
+				width: 100%;
+				height: 50px;
+				margin-left: 0;
+				
+			}
+
+			.content {
+				// float: left;
+				margin-left: 0;
+				// width: 100%;
+			}
+		}
+		
+	}
 }
 
+header {
+	
+	@include clearfix;
+	position: relative;
+	background-color: #000;
+	min-height: 55px;
+	color: #fff;
+	
+	.logo {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		text-indent: -9999px;
+		width: 38px;
+		height: 62px;
+		background: image_url("adobe_logo.png") 0 0 no-repeat;
+	}
+	
+	.leftheader {
+		float: left;
+	}
+	
+	.rightheader {
+		float: right;
+	}
+	
+	.program-title {
+		padding: 15px 0 0 53px;
+		margin: 0 0 0 0;
+	}
+	
+	
+}
 
+nav {
+	transition: .2s all ease;			
+	-webkit-transition: .2s all ease;
+	background-color: #fff;
+	
+	float: left;
+	width: 0;
+	margin-left: 100%;
+	overflow-x: hidden;
+	position: absolute;
+	
+	ul {
+		margin: 0 0 0 0;
+		padding: 0 0 0 0;
+		li {
+			margin: 0 0 0 0;
+			padding: 0 0 0 0;
+			list-style: none;
+		}
+	}
+	
+	@include media-query-bp($bp3) {
+		position: static;
+		overflow-y: hidden;
+		overflow-x: visible;
+		width: 100%;
+		height: 0;
+		float: none;
+		margin-left: 0;
+		
+		ul {
+			float: right;
+			li {
+				float: left;
+				margin: 10px 10px 10px 10px;
+			}
+		}
+	}
+	
+}
 
+.content {
+	
+	transition: .2s all ease;			
+	-webkit-transition: .2s all ease;
+	position: absolute;
+	// float: left;
+	width: 100%;
+	
+	@include outer-container;
+	
+	.leftcol {
+		
+		// padding: 20px 20px 20px 20px;
+		
+		@include media-query-bp($bp3) {
+			@include span-columns(4);
+			@include omega();
+			// padding: 40px 40px 40px 40px;
+		}
+		
+	}
+	
+	.rightcol {
+		
+		background-color: $maincontentbg;
+		
+		// padding: 20px 20px 20px 20px;
+		
+		@include media-query-bp($bp3) {
+			@include span-columns(8, table);
+			border-left: 1px solid $lightneutralcolor;
+			// padding: 40px 60px;
+			
+		}
+		
+	}
+}
 
+footer {
+	
+	@include clearfix;
+	padding: 10px 10px 10px 10px;
+	
+	ul {
+		
+		float: left;
+		margin: 0 0 0 0;
+		padding: 0 0 0 0;
+		
+		li {
+			list-style: none;
+			float: left;
+			margin: 0 10px 0 0;
+			font-size: 10px;
+			line-height: 10px;
+		}
+	}
+	
+	p {
+		float: right;
+		margin: 0 0 0 0;
+		font-size: 10px;
+		line-height: 10px;
+	}
+}
 
 
 

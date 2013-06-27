@@ -102,3 +102,5 @@ $ ->
               console.log response
       return
 
+  $('a.menu').click ->
+    $('div.pagewrapper').toggleClass('nav-active')

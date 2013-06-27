@@ -9,31 +9,52 @@
     = favicon_link_tag "/assets/favicon.ico"
     = csrf_meta_tags
   %body{ @attributes ||= {} }
-  
-    = render "shared/header"
     
-    .content
-      .leftcol
-        %h1 This is the left column content.
+    / = render "shared/header"
+    
+    .pagewrapper
+    
+      %header
+        .leftheader
+          = link_to t('nav.home'), "http://www.adobe.com", { class: "logo" }
+          %p.program-title Adobe Campus Ambassador Portal
         
-      .rightcol
+        .rightheader
+          %a.dashboard Dashbaord
+          %a.newsfeed Newsfeed
+          %a.menu Menu
+    
+      %nav
+        %ul
+          %li= link_to "Files", "#"
+          %li= link_to "Calendar", "#"
+          %li= link_to "Members", "#"
+          %li= link_to "Reports", "#"
+          %li= link_to "Admin", "#"
+          %li= link_to "My Profile", "#"
+          %li= link_to "Logout", "#"
         
-        %h1 This is the right column content.
+      .content
+        .leftcol
+          %h1 This is the left column content.
         
-        %p.notice= notice
-        %p.alert= alert
+        .rightcol
         
-        = yield
+          %h1 This is the right column content.
         
-        %footer
-          This is the footer content/nav.
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
+          %p.notice= notice
+          %p.alert= alert
+        
+          / We are temporarily dumping nav into the body while we work out structure and styling in the header.
+          This is temporary:
+          = render "shared/header"
+        
+          = yield
+        
+          %footer
+            %ul
+              %li= link_to "Help", "#"
+              %li= link_to "Terms of Use", "#"
+              %li= link_to "Privacy Policy and Cookies", "#"
+              %li= link_to "Language: English", "#"
+            %p.copywright ©2013 Adobe Systems Incorporated. All Rights Reserved

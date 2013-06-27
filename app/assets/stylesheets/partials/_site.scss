@@ -34,7 +34,7 @@ html {
 
 body {
 	@include zero;
-	width : 100%;
+	max-width : $maxwidth;
 	background-color : transparent;
 	font-family : $basefontfamily;
 	@include font-size($basefontsize);
