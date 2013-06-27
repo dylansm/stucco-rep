@@ -73,6 +73,7 @@ header {
 		width: 38px;
 		height: 62px;
 		background: image_url("adobe_logo.png") 0 0 no-repeat;
+		z-index: 500;
 	}
 	
 	.leftheader {
@@ -95,6 +96,7 @@ nav {
 	transition: .2s all ease;			
 	-webkit-transition: .2s all ease;
 	background-color: #fff;
+	border-bottom: 1px solid #C7C7C7;
 	
 	float: left;
 	width: 0;
@@ -139,11 +141,13 @@ nav {
 	position: absolute;
 	// float: left;
 	width: 100%;
+	border-right: 1px solid #C7C7C7;
 	
 	@include outer-container;
 	
 	.leftcol {
 		
+		background-color: #fff;
 		// padding: 20px 20px 20px 20px;
 		
 		@include media-query-bp($bp3) {
@@ -157,18 +161,32 @@ nav {
 	.rightcol {
 		
 		background-color: $maincontentbg;
+		// border-right: 1px solid #C7C7C7;
 		
 		// padding: 20px 20px 20px 20px;
 		
 		@include media-query-bp($bp3) {
 			@include span-columns(8, table);
-			border-left: 1px solid $lightneutralcolor;
 			// padding: 40px 60px;
 			
 		}
 		
 	}
 }
+
+// inner left and right column units of content. 
+// contains padding, margins, borders
+.leftwrapper {
+	padding: 20px 60px 20px 40px;
+	border-bottom: 1px solid #E7E7E7;
+}
+
+.rightwrapper {
+	padding: 20px 130px 20px 60px;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #C7C7C7;
+}
+
 
 footer {
 	
