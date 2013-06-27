@@ -91,7 +91,8 @@ $no-mq-classname 				: ".lt-ie9";
 
 
 // Now define your design’s typography by setting a base typeface and size
-$basefontfamily 				: Palatino, "Times New Roman", Times, serif;
+// $basefontfamily 				: Palatino, "Times New Roman", Times, serif;
+$basefontfamily 				: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $basefontsize 					: 16;
 
 // Your headings may inherit the base typeface, or you may set a different font stack
