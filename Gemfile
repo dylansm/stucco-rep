@@ -50,6 +50,7 @@ end
 group :development do
   gem 'guard-ctags-bundler'
   gem 'guard-livereload'
+  gem 'hookup'
 end
 
 group :test, :development do
