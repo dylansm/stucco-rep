@@ -191,6 +191,27 @@ nav {
 }
 
 
+/*Dylan Temp*/
+.avatar-xlg {
+  width: 140px;
+  height: 140px;
+}
+
+.avatar-lg {
+  width: 120px;
+  height: 120px;
+}
+
+.avatar-med {
+  width: 60px;
+  height: 60px;
+}
+
+.avatar-sm {
+  width: 40px;
+  height: 40px;
+}
+
 footer {
 	
 	@include clearfix;

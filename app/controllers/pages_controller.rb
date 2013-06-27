@@ -3,10 +3,10 @@ class PagesController < ApplicationController
 
   def home
     if user
-      #@post = user.posts.build
-      user.posts.build
-      @posts = Post.includes(:users, :comments).all
+      @post = user.posts.build
+      @posts = Post.includes(:comments).to_a
       if user.admin?
+        #TODO paginate this
         @users ||= User.all
         render "dashboard/admin"
       else

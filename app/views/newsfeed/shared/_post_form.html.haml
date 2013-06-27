@@ -1,6 +1,0 @@
--#= simple_form_for([:newsfeed, @post]) do |f|
-= simple_form_for(@user, :url => create_post_path(@user)) do |f|
-  = simple_fields_for :post do |pf|
-    = pf.input :title
-    = pf.input :body, as: :text
-  = f.submit

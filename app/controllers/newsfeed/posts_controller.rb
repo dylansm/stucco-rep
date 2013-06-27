@@ -2,7 +2,8 @@ class Newsfeed::PostsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    debugger
+    @user = User.find(params[:post][:user_id])
+    @user.posts << Post.new(permitted_params)
   end
 
   def update
@@ -16,7 +17,10 @@ class Newsfeed::PostsController < ApplicationController
       :body,
       :image,
       :video_id,
-      :video_provider
+      :video_provider,
+      user: [
+        :id
+      ]
     )
   end
 end
