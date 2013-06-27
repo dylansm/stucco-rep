@@ -7,8 +7,7 @@
 
 = link_to "Add new user", dashboard_admin_new_user_for_program_path(@program), { :class => "small button"}
 
-= simple_form_for [:dashboard, :admin, @program], url: dashboard_admin_add_user_to_program_path(@program) do |f|
-  = f.input :managers, as: :hidden, input_html: { value: true }
+= simple_form_for [:dashboard, :admin, @program], url: dashboard_admin_add_manager_to_program_path(@program) do |f|
   = f.association :users, collection: User.not_in_program(@program, true),
     label: t('select.labels.add_existing_user'),
     input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }

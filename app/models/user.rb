@@ -31,11 +31,11 @@ class User < ActiveRecord::Base
 
   class << self
 
-    def not_in_program(program, admin=false)
+    def not_in_program(program, admin_only=false)
       if program.users.any?
-        where("admin = ? AND id NOT IN (?)", admin, program.users.map(&:id))
+        where("admin = ? AND id NOT IN (?)", admin_only, program.users.map(&:id))
       else
-        where("admin = ?", admin)
+        where("admin = ?", admin_only)
       end
     end
 
@@ -46,7 +46,11 @@ class User < ActiveRecord::Base
   end
 
   def program
-    Program.find(current_program_id)
+    begin
+      Program.find(current_program_id)
+    rescue ActiveRecord::RecordNotFound
+      nil
+    end
   end
 
   def skip_email_notification!

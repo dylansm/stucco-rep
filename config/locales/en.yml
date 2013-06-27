@@ -86,3 +86,10 @@ en:
     program_managers: "Program Managers"
     program_users: "%{name} Students"
     edit_school: "Edit School"
+
+  alerts:
+    no_current_program: "You are not assigned to an active program. Please check with your program manager."
+    remove_users_before_delete: "Please remove or delete users before deleting this program."
+    there_must_be_one_program: "This is the last program. Please create a new program before removing this one."
+    your_last_program: "You must be a manager on at least one other program before removing yourself from this program."
+    user_last_program: "This user must be on at least one other program before being removed from this program."

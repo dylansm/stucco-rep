@@ -29,9 +29,12 @@ $ ->
           datatype: 'json',
           data: method,
           success: (data, textstatus, xhr) =>
-            $tr.hide()
-            if remove_only
-              add_existing_users()
+            if data.deleted || data.removed
+              $tr.hide()
+              if remove_only
+                add_existing_users()
+            else
+              alert data.message if data.message
           error: (response) ->
             console.log response
   

@@ -26,25 +26,39 @@ class Dashboard::Admin::ProgramsController < ApplicationController
 
   # PUT
   def add_existing_users
-    params[:program][:user_ids].concat program.users.map(&:id)
     @program = Program.find(params[:id])
+    params[:program][:user_ids].concat @program.users.map(&:id)
     if @program.update(permitted_params)
-      if params[:program][:managers] == "true"
-        redirect_to dashboard_admin_program_managers_path(program)
-      else
-        redirect_to dashboard_admin_program_users_path(program)
-      end
+      redirect_to dashboard_admin_program_users_path(program)
     else
-      respond_with program
+      respond_with :dashboard, :admin, program
+    end
+  end
+
+  def add_existing_managers
+    @program = Program.find(params[:id])
+    params[:program][:user_ids].concat @program.users.where(admin: true).map(&:id)
+    if @program.update(permitted_params)
+      redirect_to dashboard_admin_program_managers_path(program)
+    else
+      respond_with :dashboard, :admin, program
     end
   end
 
   # PUT ajax
   def remove_user
     user = User.includes(:programs).find(params[:user_id])
-    @program = user.programs.find(params[:id])
-    @program.users.delete(user)
-    respond_with :dashboard, :admin, @program
+    if user.programs.count == 1
+      if user == current_user
+        render json: { removed: false, message: t('alerts.your_last_program') }
+      else
+        render json: { removed: false, message: t('alerts.user_last_program') }
+      end
+    else
+      @program = user.programs.find(params[:id])
+      @program.users.delete(user)
+      render json: { removed: true }
+    end
   end
 
   def new
@@ -57,6 +71,18 @@ class Dashboard::Admin::ProgramsController < ApplicationController
       redirect_to dashboard_admin_programs_path
     else
       respond_with @program
+    end
+  end
+
+  def destroy
+    @program = Program.find(params[:id])
+    if Program.count == 1
+      render json: { deleted: false, message: t('alerts.there_must_be_one_program') }
+    elsif @program.users.any?
+      render json: { deleted: false, message: t('alerts.remove_users_before_delete') }
+    else
+      program.destroy
+      render json: { deleted: true }
     end
   end
 

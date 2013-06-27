@@ -74,8 +74,10 @@ class Dashboard::Admin::UsersController < ApplicationController
 
   def suspend
     @user = User.find(params[:id])
-    @user.update_attributes(active_for_authentication: false)
-    respond_with @user
+    unless @user == current_user
+      @user.update_attributes(active_for_authentication: false)
+      respond_with @user
+    end
   end
 
   def reactivate
@@ -86,13 +88,15 @@ class Dashboard::Admin::UsersController < ApplicationController
 
   # GET
   def not_in_program
+    @program = Program.find(params[:program_id])
     @users = User.not_in_program(program)
-    respond_with @users
+    render json: @users
   end
 
   def not_admin_in_program
+    @program = Program.find(params[:program_id])
     @users = User.not_in_program(program, true)
-    respond_with @users
+    render json: @users
   end
 
   def current_program

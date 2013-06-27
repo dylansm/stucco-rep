@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   before_action :set_locale
@@ -15,7 +13,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email) }
     devise_parameter_sanitizer.for(:password) { |u| u.permit(:password, :password_confirmation) }
   end
-
+  
   private
 
   def set_locale
@@ -24,7 +22,17 @@ class ApplicationController < ActionController::Base
 
   def get_program
     if current_user
-      @program = Program.find(current_user.current_program_id)
+      @program = current_user.program || find_another_program
+      unless @program
+        sign_out_and_redirect root_path
+        flash[:alert] = t("alerts.no_current_program")
+      end
     end
+  end
+
+  def find_another_program
+    program = current_user.programs.first
+    current_user.update_column(:current_program_id, program.id) if program
+    program
   end
 end
