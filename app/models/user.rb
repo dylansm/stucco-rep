@@ -18,7 +18,10 @@ class User < ActiveRecord::Base
   validates(:first_name, presence: true)
   validates(:last_name, presence: true)
 
-  has_attached_file :avatar, styles: { sm: "40x40#", :"sm@2x" => "80x80#", smmed: "50x50#", :"smmed@2x" => "100x100#", med: "60x60#", medlg: "70x70#", lg: "120x120#", :"lg@2x" => "240x240#", super: "140x140#", :"super@2x" => "280x280#" }
+  has_attached_file(:avatar,
+                    styles: { sm: "40x40#", :"sm@2x" => "80x80#", smmed: "50x50#", :"smmed@2x" => "100x100#", med: "60x60#", medlg: "70x70#", lg: "120x120#", :"lg@2x" => "240x240#", super: "140x140#", :"super@2x" => "280x280#" },
+                    default_url: "/assets/:attachment/missing/:style/avatar_missing.gif"
+                   )
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
 
   attr_writer :skip_email_notification
@@ -43,6 +46,11 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def avatar_url
+    #avatar.url(:lg) if avatar.file?
+    avatar.url(:lg)
   end
 
   def program

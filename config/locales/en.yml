@@ -8,6 +8,7 @@ en:
   links:
     delete: "Delete"
     edit: "Edit"
+    load_more_posts: "More Posts"
     dashboard:
       manage_users:
         reactivate: "Reactivate"

@@ -38,6 +38,7 @@ Adoberep::Application.routes.draw do
   get 'profile' => 'users#show'
   patch 'users/:id' => 'users#create_post', as: "create_post"
 
+  get 'pages/styles' => 'pages#styles'
   root 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
