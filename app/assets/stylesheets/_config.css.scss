@@ -30,19 +30,6 @@
 
 // STEP ONE: BASICS ================================================
 
-
-// Start the ‘atmosphere’ of your design by defining the colours of your pages and text
-
-$bodycolor 						: rgb(255,255,255);
-// $bodycolor 						: #F0F0F0;
-$textcolor 						: rgb(71,63,63);
-
-// some custom colors
-$maincontentbg					: #E7E7E7;
-
-
-
-
 // Next are two variables that will be used throughout your design;
 // $gutterwidth for horizontal spacing and $baselineheight for vertical rhythm
 
@@ -86,37 +73,25 @@ $no-mq-classname 				: ".lt-ie9";
 
 
 
-
-// STEP TWO: TYPOGRAPHY ================================================
-
-
-// Now define your design’s typography by setting a base typeface and size
-// $basefontfamily 				: Palatino, "Times New Roman", Times, serif;
-$basefontfamily 				: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$basefontsize 					: 16;
-
-// Your headings may inherit the base typeface, or you may set a different font stack
-$baseheadingfont 				: inherit;
-
-// Choose between normal, bold or set a font-weight number (eg: 700) for your headings
-$baseheadingfontweight 			: bold;
-
-// Your headings may inherit the $textcolor, or you may set a different colour
-$baseheadingfontcolor 			: inherit;
-
-// Often you’ll use an alternative typeface (eg: for buttons, form inputs and tables)
-$altfontfamily 					: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$altlineheight 					: 1.35em;
-
-// You can choose a special typeface just for ampersands too
-$ampfontfamily 					: local('Georgia'), local('Garamond'), local('Palatino'), local('Book Antiqua');
-
-//  And if your site’s for geeks, you’ll need a font for code too
-$codefont 						: Monaco, Courier New, monospace;
-
-
-
 // STEP THREE: COLOUR ================================================
+
+// Start the ‘atmosphere’ of your design by defining the colours of your pages and text
+$bodycolor 						: rgb(255,255,255);
+$textcolor 						: rgb(71,63,63);
+
+// Adobe colors
+// $adobegray						:
+// $adobecharcoalgray				:
+// $adobewarmgray					:
+// $adobered						:
+// $adobeorange					:
+// $adobeyellow					:
+// $adobegreen						:
+// $adobeblue						:
+
+
+// some custom colors
+$maincontentbg					: #E7E7E7;
 
 
 // Define your design’s palette by choosing three main colours
@@ -152,6 +127,37 @@ $successcolor 					: rgb(188,212,222);
 $warningcolor 					: $errorcolor;
 
 
+
+
+
+
+
+// STEP TWO: TYPOGRAPHY ================================================
+
+
+// Now define your design’s typography by setting a base typeface and size
+// $basefontfamily 				: Palatino, "Times New Roman", Times, serif;
+$basefontfamily 				: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$basefontsize 					: 16;
+
+// Your headings may inherit the base typeface, or you may set a different font stack
+$baseheadingfont 				: inherit;
+
+// Choose between normal, bold or set a font-weight number (eg: 700) for your headings
+$baseheadingfontweight 			: bold;
+
+// Your headings may inherit the $textcolor, or you may set a different colour
+$baseheadingfontcolor 			: inherit;
+
+// Often you’ll use an alternative typeface (eg: for buttons, form inputs and tables)
+$altfontfamily 					: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$altlineheight 					: 1.35em;
+
+// You can choose a special typeface just for ampersands too
+$ampfontfamily 					: local('Georgia'), local('Garamond'), local('Palatino'), local('Book Antiqua');
+
+//  And if your site’s for geeks, you’ll need a font for code too
+$codefont 						: Monaco, Courier New, monospace;
 
 
 
