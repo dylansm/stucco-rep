@@ -10,5 +10,6 @@ class UserApplication < ActiveRecord::Base
     'text/rtf', 
     'text/richtext', 
     'text/plain'
-  ]
+  ],
+  :path => ":attachment/:id/:basename.:extension"
 end

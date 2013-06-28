@@ -4,7 +4,6 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :user_id
       t.text :text
       t.string :video_id
-      t.datetime :published_at
 
       t.timestamps
     end

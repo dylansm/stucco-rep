@@ -24,4 +24,11 @@ CFB.Posts = class Posts
         console.log response
 
   add_posts: (data) ->
+    tmpl = JST["post"]
+    posts = ''
+    _.each(data, (post) ->
+      posts += tmpl(id: post.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text)
+    )
+    console.log posts
+    $("#posts-container").append(posts)
     console.log data

@@ -3,7 +3,7 @@ class Newsfeed::PostsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @posts = Post.all.page(params[:page])
+    @posts = Post.includes(:user, :comments).order("created_at ASC").page(params[:page])
     render json: @posts
   end
 
