@@ -1,17 +1,15 @@
 / examples start
 
-%h2 Headings
-.l-summary
+%hr
+%h1 Headings
+%hr
+
+.l-content
+  %h1 Heading level one <h1>
   %p
     First-level headings are marked up using
     %code ‹h1›
     tags.
-  %p.secondary
-    %b Typeface:
-    / $basefont
-/ l-summary
-.l-content
-  %h1 Heading level one
   %p
     The heading above is a first-level, heading one that may be used for page titles as well as titles in sectioning elements including
     = succeed "," do
@@ -20,70 +18,42 @@
     and
     = succeed "." do
       %code ‹article›
-/ l-content
-/ l-wrap
-/ Next
 
-.l-summary
+.l-content
+  %h2 Heading level two
   %p
     Second-level headings are marked up using
     %code ‹h2›
     tags.
-  %p.secondary
-    %b Typeface:
-    / $basefont
-/ l-summary
-.l-content
-  %h2 Heading level two
   %p The heading above is a second-level, heading two. You may use more than one to create a document, section or article outline.
-/ l-content
-/ l-wrap
-/ Next
 
-.l-summary
+.l-content
+  %h3 Heading level three
   %p
     Third-level headings are marked up using
     %code ‹h3›
     tags.
-  %p.secondary
-    %b Typeface:
-    / $basefont
-/ l-summary
-.l-content
-  %h3 Heading level three
   %p The heading above is a third-level, heading three. You may use more than one to create a document, section or article outline.
-/ l-content
-/ l-wrap
-/ Next
 
-.l-summary
-  %p
-    Fourth, fifth and sixth level headings are marked up using
-    %code ‹h4› ‹h5› ‹h6›
-    tags.
-  %p.secondary
-    %b Typeface:
-    / $basefont
-/ l-summary
 .l-content
   %h4 Heading 4
   %h5 Heading 5
   %h6 Heading 6
+  %p
+    Fourth, fifth and sixth level headings are marked up using
+    %code ‹h4› ‹h5› ‹h6›
+    tags.
   %p The headings above are a fourth, fifth and sixth level, headings four, five and six. Use to create a document, section or article outline.
-/ l-content
-/ l-wrap
-/ Next
+
+%hr
 
 %h2 Paragraphs
 .l-summary
   %h3 Unclassified paragraph
-/ l-summary
+
 .l-content
   %p
-    / $example-short
-/ l-content
-/ l-wrap
-/ Next
+    This is an unclassified paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 .l-summary
   %h3 Lead paragraph
@@ -91,13 +61,10 @@
     An additional
     %code lead
     class alters a paragraph’s presentation.
-/ l-summary
+
 .l-content
   %p.lead
-    / $example-long
-/ l-content
-/ l-wrap
-/ Next
+    This is a lead paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 .l-summary
   %h3 Secondary paragraph
@@ -105,13 +72,10 @@
     An additional
     %code secondary
     class alters a paragraph’s presentation.
-/ l-summary
+
 .l-content
   %p.secondary
-    / $example-long
-/ l-content
-/ l-wrap
-/ Next
+    This is a secondary paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 .l-summary
   %h3 Tertiary paragraph
@@ -119,13 +83,12 @@
     An additional
     %code tertiary
     class alters a paragraph’s presentation.
-/ l-summary
+
 .l-content
   %p.tertiary
-    / $example-long
-/ l-content
-/ l-wrap
-/ Next
+    This is a tertiary paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    
+%hr
 
 %h2 Quotations
 .l-summary
@@ -135,34 +98,30 @@
     tags. You may use an optional
     %code ‹cite›
     element to cite an attribution.
-/ l-summary
+
 .l-content
   %blockquote
     %p
-      / $example-long
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     %small
       %cite
-        / $title
-/ l-content
-/ l-wrap
-/ Next
+        Some guy said this.
 
 .l-summary
   %p
     An additional
     %code pull-right
     class alters a block quote’s presentation.
-/ l-summary
+
 .l-content
   %blockquote.pull-right
     %p
-      / $example-short
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     %small
       %cite
-        / $title
-/ l-content
-/ l-wrap
-/ Next
+        Some guy said this.
+
+%hr
 
 %h2 Lists
 .l-summary
@@ -176,7 +135,7 @@
     %li{:style => "float:left;width:32px;list-style-type:square;font-size:6.4rem;"}
     %li{:style => "float:left;width:32px;list-style-type:decimal;font-size:3rem;"}
     %li{:style => "float:left;width:32px;list-style-type:lower-alpha;font-size:3rem;"}
-/ l-summary
+
 .l-content
   %ul{:style => "padding-left:3.25rem;margin-bottom:3rem;margin-left:22px;font-size:1.4rem;overflow:hidden;padding-left:3.25rem;"}
     %li{:style => "float:left;width:44.25%;min-width:14rem;list-style-type:none;"} None
@@ -200,7 +159,7 @@
     Unordered lists are marked up using
     %code ‹ul›
     tags. An unordered list describes a collection of items.
-/ l-summary
+
 .l-content
   %ul
     %li Unordered list item
@@ -209,13 +168,10 @@
     %li Unordered list item
     %li Unordered list item
     %li Unordered list item
-/ l-content
-/ l-wrap
-/ Next
 
 .l-summary
   %h3 Nested unordered list
-/ l-summary
+
 .l-content
   %ul
     %li Unordered list item
@@ -225,24 +181,18 @@
         %li Nested unordered list item
         %li Nested unordered list item
     %li Unordered list item
-/ l-content
-/ l-wrap
-/ Next
 
 .l-summary
   %p
     An additional
     %code inline
     class alters a list’s presentation.
-/ l-summary
+
 .l-content
   %ul.inline
     %li Inline list item
     %li Inline list item
     %li Inline list item
-/ l-content
-/ l-wrap
-/ Next
 
 .l-summary
   %h3 Ordered list
@@ -250,7 +200,7 @@
     Ordered lists are marked up using
     %code ‹ol›
     tags. An ordered list may have various numbering schemes presented through CSS.
-/ l-summary
+
 .l-content
   %ol
     %li Ordered list item
@@ -259,13 +209,10 @@
     %li Ordered list item
     %li Ordered list item
     %li Ordered list item
-/ l-content
-/ l-wrap
-/ Next
 
 .l-summary
   %h3 Nested ordered list
-/ l-summary
+
 .l-content
   %ol
     %li Ordered list item
@@ -275,13 +222,10 @@
         %li Nested ordered list item
         %li Nested ordered list item
     %li Ordered list item
-/ l-content
-/ l-wrap
-/ Next
 
 .l-summary
   %h3 Footnotes
-/ l-summary
+
 .l-content
   %ol.footnotes
     %li
@@ -296,9 +240,6 @@
       Footnote ordered list item
       %sup
         %a{:href => "", :title => "Back"} ↑
-/ l-content
-/ l-wrap
-/ Next
 
 .l-summary
   %h3 Definition list
@@ -310,16 +251,13 @@
     and definition descriptions
     = succeed "." do
       %code ‹dd›
-/ l-summary
+
 .l-content
   %dl
     %dt
-      / $title
+      Some guy said this.
     %dd
-      / $example-short
-/ l-content
-/ l-wrap
-/ Next
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 .l-summary
   %h3 Horizontal definition list
@@ -327,16 +265,15 @@
     An additional
     %code dl-horizontal
     class alters a definition list’s presentation.
-/ l-summary
+
 .l-content
   %dl.dl-horizontal
     %dt
-      / $title
+      Some guy said this.
     %dd
-      / $example-short
-/ l-content
-/ l-wrap
-/ Next
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+%hr
 
 %h2 Text level elements
 %p
@@ -369,4 +306,1416 @@
   superscript and
   %sub sub
   subscript.
+
+
+////////////////////////////////////////
+/ colors
+
+%hr
+%h1 Colors
+%hr
+
+.l-summary
+  %h3 Primary colour
+  %p.secondary rgb(146,154,0)
+.l-content
+  .swatch.swatch-base
+    .swatch-row.swatch-row-one.clearfix
+      %span
+      %span
+      %span
+      %span
+    .swatch-row.swatch-row-two.clearfix
+      %span
+      %span
+      %span
+      %span
+.l-summary
+  %h3 Secondary colour
+  %p.secondary rgb(164,50,21)
+.l-content
+  .swatch.swatch-secondary
+    .swatch-row.swatch-row-one.clearfix
+      %span
+      %span
+      %span
+      %span
+    .swatch-row.swatch-row-two.clearfix
+      %span
+      %span
+      %span
+      %span
+.l-summary
+  %h3 Tertiary colour
+  %p.secondary rgb(41,47,54)
+.l-content
+  .swatch.swatch-tertiary
+    .swatch-row.swatch-row-one.clearfix
+      %span
+      %span
+      %span
+      %span
+    .swatch-row.swatch-row-two.clearfix
+      %span
+      %span
+      %span
+      %span
+.l-summary
+  %h3 Neutral colour
+  %p.secondary rgb(41,47,54)
+.l-content
+  .swatch.swatch-neutral
+    .swatch-row.swatch-row-one.clearfix
+      %span
+      %span
+      %span
+      %span
+    .swatch-row.swatch-row-two.clearfix
+      %span
+      %span
+      %span
+      %span
+
+
+
+/////////////////////////////////////////
+/ images
+%hr
+%h1 Images
+%hr
+
+.l-wrap
+  .l-summary
+    %p
+      %b Note:
+      %code img-rounded
+      and
+      %code img-circle
+      are unsupported by IE7-8.
+  / l-summary
+  .l-content
+    %p 
+      %img.img-rounded{:alt => "",  :src => "/assets/avatars/missing/lg/avatar_missing.gif", :width => "128"}/
+    %p 
+      %img.img-circle{:alt => "",   :src => "/assets/avatars/missing/lg/avatar_missing.gif", :width => "128"}/
+    %p
+      %img.img-polaroid{:alt => "", :src => "/assets/avatars/missing/lg/avatar_missing.gif", :width => "128"}/
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Figures and figcaptions
+  / l-summary
+  .l-content
+    %figure
+      %img.img-rounded{:alt => "", :src => "/assets/avatars/missing/lg/avatar_missing.gif", :width => "128"}/
+      %figcaption Figure caption
+  / l-content
+/ l-wrap
+
+
+/////////////////////////////////////////
+/ navigation
+%hr
+%h1 Navigation
+%hr
+
+.l-wrap
+  .l-summary
+    %h3 Basic navbar
+    %p
+      Basic navbar is marked up using
+      %code ‹ul›
+      tags with an additional
+      %code navbar
+      and
+      %code navbar--inner
+      classes.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navbar
+    .navbar
+      .navbar__inner
+        %a.navbar__brand{:href => "#"} Rock Hammer
+        %ul.nav
+          %li.active
+            %a{:href => "#"} One
+          %li
+            %a{:href => "#"} Two
+          / <li class="divider-vertical"></li>
+          %li
+            %a{:href => "#"} Three
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  %h2 Tabs
+  .l-summary
+    %h3 Tabbed navigation
+    %p
+      All navigation units are marked up using
+      %code ‹ul›
+      tags with an additional
+      %code nav nav-tabs
+      classes.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#tab1"} Section 1
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab2"} Section 2
+      .tab-content
+        #tab1.tab-pane.fade.active
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+        / tab-pane
+        / Next
+        #tab2.tab-pane.fade
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks. In field geology, they are used to obtain a fresh surface of a rock in order to determine its composition, nature, mineralogy, history and field estimate of rock strength. In fossil collecting and mineral collecting, they are employed to break rocks with the aim of revealing fossils inside. Geologists’ hammers are also sometimes used for scale in a photograph.
+        / tab-pane
+      / tab-content
+    / tabbable
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Navigation tabbed below
+    %p
+      An additional
+      %code tabs-below
+      class alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    .tabbable.tabs-below
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#tab1"} Section 1
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab2"} Section 2
+      .tab-content
+        #tab1.tab-pane.fade.active
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+        / tab-pane
+        / Next
+        #tab2.tab-pane.fade
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks. In field geology, they are used to obtain a fresh surface of a rock in order to determine its composition, nature, mineralogy, history and field estimate of rock strength. In fossil collecting and mineral collecting, they are employed to break rocks with the aim of revealing fossils inside. Geologists’ hammers are also sometimes used for scale in a photograph.
+        / tab-pane
+      / tab-content
+    / tabbable
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Navigation tabbed left
+    %p
+      An additional
+      %code tabs-left
+      class alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    .tabbable.tabs-left
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#tab1"} Section 1
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab2"} Section 2
+      .tab-content
+        #tab1.tab-pane.fade.active
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+        / tab-pane
+        / Next
+        #tab2.tab-pane.fade
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks. In field geology, they are used to obtain a fresh surface of a rock in order to determine its composition, nature, mineralogy, history and field estimate of rock strength. In fossil collecting and mineral collecting, they are employed to break rocks with the aim of revealing fossils inside. Geologists’ hammers are also sometimes used for scale in a photograph.
+        / tab-pane
+      / tab-content
+    / tabbable
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Navigation tabbed right
+    %p
+      An additional
+      %code tabs-right
+      class alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    .tabbable.tabs-right
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#tab1"} Section 1
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab2"} Section 2
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab3"} Section 3
+      .tab-content
+        #tab1.tab-pane.fade.active
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+        / tab-pane
+        / Next
+        #tab2.tab-pane.fade
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+        / tab-pane
+        / Next
+        #tab3.tab-pane.fade
+          %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks. In field geology, they are used to obtain a fresh surface of a rock in order to determine its composition, nature, mineralogy, history and field estimate of rock strength. In fossil collecting and mineral collecting, they are employed to break rocks with the aim of revealing fossils inside. Geologists’ hammers are also sometimes used for scale in a photograph.
+        / tab-pane
+      / tab-content
+    / tabbable
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Breadcrumbs
+    %p
+      Breadcrumbs are marked up using
+      %code ‹ul›
+      tags with an additional
+      %code breadcrumb
+      class.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#breadcrumbs
+    %ul.breadcrumb
+      %li
+        %a{:href => "#"} Home
+        %span.divider /
+      %li
+        %a{:href => "#"} One
+        %span.divider /
+      %li.active Two
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Pill shaped navigation
+    %p
+      Pills are marked up using
+      %code ‹ul›
+      tags with additional
+      %code nav
+      and
+      %code nav-pills
+      classes.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    %ul.nav.nav-pills
+      %li.disabled
+        %a{:href => "#"} One
+      %li.active
+        %a{:href => "#"} Two
+      %li
+        %a{:href => "#"} Three
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 List navigation
+    %p
+      Lists are marked up using
+      %code ‹ul›
+      tags with additional
+      %code nav
+      and
+      %code nav-list
+      classes.
+      %code nav-header
+      class also alters the presentation of list items.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    %ul.nav.nav-list
+      %li.nav-header Nav header
+      %li
+        %a{:href => "#"} One
+      %li
+        %a{:href => "#"} Two
+      %li
+        %a{:href => "#"} Three
+      %li.divider
+      %li
+        %a{:href => "#"} Four
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Stacked tabbed navigation
+    %p
+      Stacked tabs are marked up using
+      %code ‹ul›
+      tags with additional
+      = succeed "," do
+        %code nav
+      %code nav-tabs
+      and
+      %code nav-stacked
+      classes.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    %ul.nav.nav-tabs.nav-stacked
+      %li.active
+        %a{:href => "#"} One
+      %li
+        %a{:href => "#"} Two
+      %li
+        %a{:href => "#"} Three
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Stacked pill shaped navigation
+    %p
+      Stacked pills are marked up using
+      %code ‹ul›
+      tags with additional
+      = succeed "," do
+        %code nav
+      %code nav-pills
+      and
+      %code nav-stacked
+      classes.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    %ul.nav.nav-pills.nav-stacked
+      %li.active
+        %a{:href => "#"} One
+      %li
+        %a{:href => "#"} Two
+      %li
+        %a{:href => "#"} Three
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  %h2 Pagination
+  .l-summary
+    %p
+      All pagination units are marked up using
+      %code ‹ul›
+      tags with an additional
+      %code pagination
+      class.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#pagination
+    .pagination
+      %ul
+        %li
+          %a{:href => "#"} Prev
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#"} Next
+    .pagination
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} ←
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} →
+    .pagination
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} «
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} »
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Centered pagination
+    %p
+      An additional
+      %code pagination-centered
+      class alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#pagination
+    .pagination.pagination-centered
+      %ul
+        %li
+          %a{:href => "#"} Prev
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#"} Next
+    .pagination.pagination-centered
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} ←
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} →
+    .pagination.pagination-centered
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} «
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} »
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Right aligned pagination
+    %p
+      An additional
+      %code pagination-right
+      class alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#pagination
+    .pagination.pagination-right
+      %ul
+        %li
+          %a{:href => "#"} Prev
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#"} Next
+    .pagination.pagination-right
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} ←
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} →
+    .pagination.pagination-right
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} «
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} »
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Pagination sizes
+    %p
+      Additional
+      = succeed "," do
+        %code pagination-large
+      %code pagination-small
+      and
+      %code pagination-mini
+      classes alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#pagination
+    .pagination.pagination-large
+      %ul
+        %li
+          %a{:href => "#"} Prev
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#"} Next
+    .pagination.pagination-large
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} «
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} »
+    .pagination.pagination-small
+      %ul
+        %li
+          %a{:href => "#"} Prev
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#"} Next
+    .pagination.pagination-small
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} «
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} »
+    .pagination.pagination-mini
+      %ul
+        %li
+          %a{:href => "#"} Prev
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#"} Next
+    .pagination.pagination-mini
+      %ul
+        %li
+          %a{:href => "#", :title => "Previous"} «
+        %li
+          %a{:href => "#"} 1
+        %li.active
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#", :title => "Next"} »
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h2 Pager
+    %p
+      Pager units are marked up using
+      %code ‹ul›
+      tags with an additional
+      %code pager
+      class.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html
+    %ul.pager
+      %li
+        %a{:href => "#"}
+          ←
+          %abbr Prev
+      %li
+        %a{:href => "#"} Next →
+  / l-content
+/ l-wrap
+
+
+
+/////////////////////////////////////////
+/ modules
+%hr
+%h1 Modules
+%hr
+
+
+.l-wrap
+  %h2 Hero unit
+  %p
+    Hero units are marked up using
+    %code ‹div›
+    tags with an additional
+    %code hero-unit
+    class.
+  / http://twitter.github.com/bootstrap/components.html#misc
+  .hero-unit
+    %h1 Rock Hammer
+    %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+    %p
+      %a.btn.btn-primary.btn-large{:href => "#"} Learn more
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Media
+    %p
+      All media units are marked up using
+      %code ‹div›
+      tags with additional
+      = succeed "," do
+        %code media-unit
+      %code media-body
+      and
+      %code media-heading
+      classes. Optional
+      %code pull-left
+      and
+      %code pull-right
+      classes float anchored images.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#media
+    .media
+      %a.pull-left{:href => "#"}
+        %img.media-object{:alt => "", :src => "/assets/avatars/missing/lg/avatar_missing.gif", :width => "64"}/
+      .media-body
+        %h4.media-heading Rock Hammer
+        %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+      / media-body
+    / media
+    / Next
+    .media
+      %a.pull-right{:href => "#"}
+        %img.media-object{:alt => "", :src => "/assets/avatars/missing/lg/avatar_missing.gif", :width => "64"}/
+      .media-body
+        %h4.media-heading Rock Hammer
+        %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+      / media-body
+    / media
+    / Next
+    .media
+      %a.pull-left{:href => "#"}
+        %img.media-object{:alt => "", :src => "/assets/avatars/missing/lg/avatar_missing.gif", :width => "64"}/
+      .media-body
+        %h4.media-heading Rock Hammer
+        %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+      / media-body
+    / media
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  %h2 Alerts
+  .l-summary
+    %p
+      All alert units are marked up using
+      %code ‹div›
+      tags with an additional
+      %code alert
+      class.
+    %p
+      Additional
+      = succeed "," do
+        %code alert--error
+      %code alert--info
+      and
+      %code alert--success
+      classes alters their presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#alerts
+    .alert
+      %strong Rock Hammer
+      A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+    / Next
+    .alert.alert--error
+      %strong Rock Hammer
+      A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+    / Next
+    .alert.alert--info
+      %strong Rock Hammer
+      A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+    / Next
+    .alert.alert--success
+      %strong Rock Hammer
+      A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  %h2 Wells
+  .l-summary
+    %p
+      All well units are marked up using
+      %code ‹div›
+      tags with an additional
+      %code well
+      class.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#media
+    .well
+      %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %p
+      An additional
+      %code well--large
+      class alters the presentation.
+  / l-summary
+  .l-content
+    .well.well--large
+      %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %p
+      An additional
+      %code well--small
+      class alters the presentation.
+  / l-summary
+  .l-content
+    .well.well--small
+      %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+  / l-content
+/ l-wrap
+
+
+
+
+
+/////////////////////////////////////////
+/ forms
+%hr
+%h1 Forms
+%hr
+
+.l-wrap
+  .l-summary
+    %h3 Standard form
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/base-css.html#forms
+    %form
+      %fieldset
+        %legend Rock Hammer
+        %label Your name
+        %input{:placeholder => "eg: Andrew Doyle", :type => "text"}/
+        %span.help-block A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+      %fieldset
+        %label.checkbox
+          %input{:type => "checkbox"}/
+          I agree to terms and conditions
+        %button.btn Submit
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Search form
+    %p
+      An additional
+      %code form-search
+      class alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/base-css.html#forms
+    %form.form-search
+      %input.input-medium.search-query{:type => "text"}/
+      %button.btn Search
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Inline form
+    %p
+      An additional
+      %code form-inline
+      class alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/base-css.html#forms
+    %form.form-inline
+      %input.input-medium{:type => "text"}/
+      %input.input-medium{:type => "password"}/
+      %label.checkbox
+        %input{:type => "checkbox"}/
+        I agree to terms and conditions
+      %button.btn Submit
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Horizontal form
+    %p
+      An additional
+      %code form-horizontal
+      class alters the presentation.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/base-css.html#forms
+    %form.form-horizontal
+      .control-group
+        %label.control-label{:for => "email"} Email
+        .controls
+          %input#email{:name => "email", :type => "text"}/
+        / controls
+      / control-group
+      .control-group
+        %label.control-label{:for => "password"} Password
+        .controls
+          %input#password{:name => "password", :type => "password"}/
+        / controls
+      / control-group
+      .control-group
+        .controls
+          %label.checkbox
+            %input{:type => "checkbox"}/
+            Remember me
+        / controls
+      / control-group
+      .control-group
+        .controls
+          %button.btn Submit
+        / controls
+      / control-group
+    / form-horizontal
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Form elements
+  / l-summary
+  .l-content
+    %form
+      %p
+        %label{:for => "text"}
+          The input below is
+          %code text
+        %br/
+        %input#text{:placeholder => "Placeholder", :type => "text"}/
+      %p
+        %label{:for => "email"}
+          The input below is
+          %code email
+        %br/
+        %input#email{:type => "email"}/
+      %p
+        %label{:for => "url"}
+          The input below is
+          %code url
+        %br/
+        %input#url{:type => "url"}/
+      %p
+        %label{:for => "number"}
+          The input below is
+          %code number
+        %br/
+        %input#number{:type => "number"}/
+      %p
+        %label{:for => "tel"}
+          The input below is
+          %code tel
+        %br/
+        %input#tel{:type => "tel"}/
+      %p
+        The control below is
+        %code select
+        %br/
+        %select
+          %option Jan
+          %option Feb
+          %option March
+          %option April
+          %option May
+      %p
+        The control below is a multiple
+        %code select
+        %br/
+        %select{:multiple => "multiple"}
+          %option Jan
+          %option Feb
+          %option March
+          %option April
+          %option May
+      %ul
+        %li
+          %label.checkbox
+            %input{:type => "checkbox"}/
+            Checkbox option
+        %li
+          %label.checkbox
+            %input{:type => "checkbox"}/
+            Checkbox option
+      %p
+        %label.radio
+          %input#optionsRadios1{:checked => "", :name => "optionsRadios", :type => "radio", :value => "option1"}/
+          Radio option
+        %label.radio
+          %input#optionsRadios2{:name => "optionsRadios", :type => "radio", :value => "option2"}/
+          Radio option
+      %p
+        %label{:for => "textarea"}
+          The input below is a
+          %code textarea
+        %br/
+        %textarea#textarea
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  %h2 Buttons
+  %p
+    Buttons are marked up using either
+    = succeed "," do
+      %code ‹button›
+    %code ‹input›
+    or
+    %code ‹a›
+    tags with an additional
+    %code btn
+    class. Additional classes alter their presentation.
+  .l-summary
+    %h3 Standard button
+    %p
+      An additional
+      %code btn
+      class creates a standard button.
+  / l-summary
+  .l-content
+    %p
+      %button.btn{:type => "button"} Button
+      %input.btn{:type => "submit", :value => "Submit"}/
+      %a.btn{:href => "#"} Anchor
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Primary button
+    %p
+      An additional
+      %code btn-primary
+      class alters the presentation.
+  / l-summary
+  .l-content
+    %p
+      %button.btn.btn-primary{:type => "button"} Button
+      %input.btn.btn-primary{:type => "submit", :value => "Submit"}/
+      %a.btn.btn-primary{:href => "#"} Anchor
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Info button
+    %p
+      An additional
+      %code btn-info
+      class alters the presentation.
+  / l-summary
+  .l-content
+    %p
+      %button.btn.btn-info{:type => "button"} Button
+      %input.btn.btn-info{:type => "submit", :value => "Submit"}/
+      %a.btn.btn-info{:href => "#"} Anchor
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Success button
+    %p
+      An additional
+      %code btn-success
+      class alters the presentation.
+  / l-summary
+  .l-content
+    %p
+      %button.btn.btn-success{:type => "button"} Button
+      %input.btn.btn-success{:type => "submit", :value => "Submit"}/
+      %a.btn.btn-success{:href => "#"} Anchor
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Warning button
+    %p
+      An additional
+      %code btn-warning
+      class alters the presentation.
+  / l-summary
+  .l-content
+    %p
+      %button.btn.btn-warning{:type => "button"} Button
+      %input.btn.btn-warning{:type => "submit", :value => "Submit"}/
+      %a.btn.btn-warning{:href => "#"} Anchor
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Inverted button
+    %p
+      An additional
+      %code btn-inverse
+      class alters the presentation.
+  / l-summary
+  .l-content
+    %p
+      %button.btn.btn-inverse{:type => "button"} Button
+      %input.btn.btn-inverse{:type => "submit", :value => "Submit"}/
+      %a.btn.btn-inverse{:href => "#"} Anchor
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Button sizes
+    %p
+      Additional
+      = succeed "," do
+        %code btn-mini
+      = succeed "," do
+        %code btn-small
+      %code btn-large
+      and
+      %code btn-extlarge
+      classes alters the presentation.
+  / l-summary
+  .l-content
+    %p
+      %button.btn.btn-mini{:type => "button"} Button
+      %button.btn.btn-small{:type => "button"} Button
+      %button.btn.btn-large{:type => "button"} Button
+      %button.btn.btn-extlarge{:type => "button"} Button
+  / l-content
+/ l-wrap
+
+
+
+
+
+/////////////////////////////////////////
+/ tables
+%hr
+%h1 Tables
+%hr
+
+
+.l-wrap
+  .l-summary
+    %h3 Unclassified table
+    %p
+      Tabular data is marked up using
+      %code ‹table›
+      tags with an additional
+      %code table
+      class.
+  / l-summary
+  .l-content
+    %table.table
+      %thead
+        %tr
+          %th{:scope => "col"} Header
+          %th Header
+          %th Header
+      %tbody
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Condensed table
+    %p
+      An additional
+      %code table-condensed
+      class alters the presentation.
+  / l-summary
+  .l-content
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th{:scope => "col"} Header
+          %th Header
+          %th Header
+      %tbody
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Striped table
+    %p
+      An additional
+      %code table-striped
+      class alters the presentation.
+  / l-summary
+  .l-content
+    %table.table.table-striped
+      %thead
+        %tr
+          %th{:scope => "col"} Header
+          %th Header
+          %th Header
+      %tbody
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Bordered table
+    %p
+      An additional
+      %code table-bordered
+      class alters the presentation.
+  / l-summary
+  .l-content
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th{:scope => "col"} Header
+          %th Header
+          %th Header
+      %tbody
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h3 Bordered and striped table
+    %p
+      Additional
+      = succeed "," do
+        %code table-condensed
+      %code table-bordered
+      and
+      %code table-striped
+      classes may be combined.
+  / l-summary
+  .l-content
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th{:scope => "col"} Header
+          %th Header
+          %th Header
+      %tbody
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+        %tr
+          %th{:scope => "row"} Data
+          %td Data
+          %td Data
+  / l-content
+/ l-wrap
+
+
+
+
+
+
+/////////////////////////////////////////
+/ widgets
+%hr
+%h1 Widgets
+%hr
+
+
+.l-wrap
+  .l-summary
+    %h3 Accordion
+  / l-summary
+  .l-content
+    #accordion.accordion
+      .accordion__group
+        .accordion__heading
+          %a.accordion__toggle{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#accordion__collapse__01"}
+            Rock Hammer
+        / accordion-heading
+        #accordion__collapse__01.accordion__body.collapse.in
+          .accordion__inner
+            %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+          / accordion-inner
+        / accordion-body
+      / accordion-group
+      / Next
+      .accordion__group
+        .accordion__heading
+          %a.accordion__toggle{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#accordion__collapse__02"}
+            Rock Hammer
+        #accordion__collapse__02.accordion__body.collapse
+          .accordion__inner
+            %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+          / accordion-inner
+        / accordion-body
+      / accordion-group
+      / Next
+      .accordion__group
+        .accordion__heading
+          %a.accordion__toggle{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#accordion__collapse__03"}
+            Rock Hammer
+        #accordion__collapse__03.accordion__body.collapse
+          .accordion__inner
+            %p A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+          / accordion-inner
+        / accordion-body
+      / accordion-group
+      / Last
+    / accordion
+  / l-content
+/ l-wrap
+/ Next
+.l-wrap
+  .l-summary
+    %h2 Carousel
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/javascript.html#carousel
+    #myCarousel.carousel.slide
+      .carousel-inner
+        .item.active
+          %img{:alt => "", :src => "http://malarkey.github.io/Rock-Hammer/img/tmp/rock-hammer-1.jpg"}/
+          .carousel-caption
+            %h4 Rock Hammer
+            %p.secondary A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+        .item
+          %img{:alt => "", :src => "http://malarkey.github.io/Rock-Hammer/img/tmp/rock-hammer-2.jpg"}/
+          .carousel-caption
+            %h4 Rock Hammer
+            %p.secondary A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks. In field geology, they are used to obtain a fresh surface of a rock in order to determine its composition, nature, mineralogy, history and field estimate of rock strength. In fossil collecting and mineral collecting, they are employed to break rocks with the aim of revealing fossils inside. Geologists’ hammers are also sometimes used for scale in a photograph.
+        .item
+          %img{:alt => "", :src => "http://malarkey.github.io/Rock-Hammer/img/tmp/rock-hammer-3.jpg"}/
+          .carousel-caption
+            %h4 Rock Hammer
+            %p.secondary A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel", :title => "Prev"} «
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel", :title => "Next"} »
+  / l-content
 / l-wrap
