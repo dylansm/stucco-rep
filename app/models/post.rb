@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   def as_json(options={})
     super(options.merge(
       :only => [ :id, :text, :published_at, :image_url ], 
-      :include => [ user: { only: [ :id, :name ], methods: [ :avatar_url ] }, 
+      :include => [ user: { only: [ :id ], methods: [ :avatar_url, :name ] }, 
                     comments: { only: [ :text ] } ],
       :methods => [ :image_url ]))
   end

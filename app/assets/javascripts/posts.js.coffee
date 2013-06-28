@@ -6,8 +6,9 @@ $ ->
 CFB.Posts = class Posts
 
   constructor: ->
-    @next_page = 2
+    @next_page = 1
     @init_events()
+    @fetch_posts()
     
   init_events: ->
     $("a#more-posts").click =>
@@ -20,6 +21,7 @@ CFB.Posts = class Posts
       datatype: 'json',
       success: (data, textstatus, xhr) =>
         @add_posts(data)
+        @next_page += 1
       error: (response) ->
         console.log response
 
@@ -29,6 +31,4 @@ CFB.Posts = class Posts
     _.each(data, (post) ->
       posts += tmpl(id: post.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text)
     )
-    console.log posts
     $("#posts-container").append(posts)
-    console.log data
