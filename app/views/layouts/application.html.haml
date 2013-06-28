@@ -7,7 +7,7 @@
     = javascript_include_tag "modernizr"
     = javascript_include_tag "//use.typekit.net/nzh4pgb.js"
     :javascript
-      try{typekit.load();}catch(e){}
+      try{Typekit.load();}catch(e){}
     %meta{ name:"viewport", content: "width=device-width, initial-scale=1.0" }
     = favicon_link_tag "/assets/favicon.ico"
     = csrf_meta_tags
@@ -39,21 +39,27 @@
         
       .content
         .leftcol
-          %h1 This is the left column content.
-        
+          
+          .leftwrapper
+            %p This is the left column content.
+          
         .rightcol
         
-          %h1 This is the right column content.
+          .rightwrapper
+            %p This is the right column content.
+            / We are temporarily dumping nav into the body while we work out structure and styling in the header.
+            This is the temporary login and nav stuff:
+            
+            %p= render "shared/header"
         
-          %p.notice= notice
-          %p.alert= alert
+            
+          .rightwrapper
+          
+            %p.notice= notice
+            %p.alert= alert
         
-          / We are temporarily dumping nav into the body while we work out structure and styling in the header.
-          This is temporary:
-          = render "shared/header"
-        
-          = yield
-        
+            = yield
+            
           %footer
             %ul
               %li= link_to "Help", "#"
