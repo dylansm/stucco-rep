@@ -1,5 +1,12 @@
 class Newsfeed::PostsController < ApplicationController
   before_filter :authenticate_user!
+  respond_to :html, :json
+
+  def index
+    @posts = Post.all.page(params[:page])
+    render json: @posts
+  end
+
 
   def create
     @user = User.find(params[:post][:user_id])

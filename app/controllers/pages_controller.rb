@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
     if user
       @post = user.posts.build
-      @posts = Post.includes(:comments).to_a
+      @posts = Post.includes(:comments).order("published_at").page(params[:page])
       if user.admin?
         #TODO paginate this
         @users ||= User.all

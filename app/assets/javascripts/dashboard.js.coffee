@@ -1,3 +1,8 @@
+module = (name) ->
+  window[name] = window[name] or {}
+
+module "CFB"
+
 $ ->
   $.ajaxSetup
     beforeSend: (xhr) ->

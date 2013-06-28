@@ -1,6 +1,6 @@
 class Dashboard::Admin::UsersController < ApplicationController
-  respond_to :html, :json
   before_filter :authenticate_user!
+  respond_to :html, :json
 
   def index
     localized_links

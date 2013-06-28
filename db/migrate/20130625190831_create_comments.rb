@@ -3,7 +3,8 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.integer :post_id
       t.integer :user_id
-      t.text :body
+      t.text :text
+      t.datetime :published_at
 
       t.timestamps
     end
