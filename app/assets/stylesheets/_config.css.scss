@@ -137,7 +137,7 @@ $warningcolor 					: $errorcolor;
 
 // Now define your design’s typography by setting a base typeface and size
 // $basefontfamily 				: Palatino, "Times New Roman", Times, serif;
-$basefontfamily 				: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$basefontfamily 				: "adobe-clean","Helvetica Neue",Helvetica,Arial,sans-serif;
 $basefontsize 					: 16;
 
 // Your headings may inherit the base typeface, or you may set a different font stack
@@ -150,7 +150,7 @@ $baseheadingfontweight 			: bold;
 $baseheadingfontcolor 			: inherit;
 
 // Often you’ll use an alternative typeface (eg: for buttons, form inputs and tables)
-$altfontfamily 					: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$altfontfamily 					: "adobe-clean","Helvetica Neue",Helvetica,Arial,sans-serif;
 $altlineheight 					: 1.35em;
 
 // You can choose a special typeface just for ampersands too
