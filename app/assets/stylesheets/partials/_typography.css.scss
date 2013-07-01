@@ -67,7 +67,7 @@ ul,
 dl,
 address {
 	margin-bottom : $baselineheight;
-	@include font-size($basefontsize);
+	@include font-size($basefontsize * .875); // 14/16 = .875
 	line-height : $baselineheight;
 }
 

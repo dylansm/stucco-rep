@@ -14,8 +14,8 @@ URL: http://stuffandnonsense.co.uk/projects/rock-hammer/
 @import "config";
 
 // Choose between reset and normalise
-@import "partials/utils/reset";
-// @import "partials/utils/normalise";
+// @import "partials/utils/reset";
+@import "partials/utils/normalise";
 
 // Sass mixins
 @import "partials/mixins";
@@ -43,26 +43,26 @@ URL: http://stuffandnonsense.co.uk/projects/rock-hammer/
 // references, nor delete the files from your project (you may need
 // them later,) simply comment them out using // 
 
-// @import "partials/bootstrap/bootstrap-accordion";
-// @import "partials/bootstrap/bootstrap-alerts";
-// @import "partials/bootstrap/bootstrap-breadcrumbs";
-// @import "partials/bootstrap/bootstrap-carousel";
-// @import "partials/bootstrap/bootstrap-hero";
-// @import "partials/bootstrap/bootstrap-media";
-// @import "partials/bootstrap/bootstrap-modal";
-// @import "partials/bootstrap/bootstrap-navs";
-// @import "partials/bootstrap/bootstrap-navbar";
-// @import "partials/bootstrap/bootstrap-pager";
-// @import "partials/bootstrap/bootstrap-pagination";
-// @import "partials/bootstrap/bootstrap-popover";
-// @import "partials/bootstrap/bootstrap-tables";
-// @import "partials/bootstrap/bootstrap-tooltip";
-// @import "partials/bootstrap/bootstrap-wells";
-// @import "partials/bootstrap/bootstrap-forms";
-// @import "partials/bootstrap/bootstrap-form-help";
-// @import "partials/bootstrap/bootstrap-form-horizontal";
-// @import "partials/bootstrap/bootstrap-form-search";
-// @import "partials/bootstrap/bootstrap-form-buttons";
+@import "partials/bootstrap/bootstrap-accordion";
+@import "partials/bootstrap/bootstrap-alerts";
+@import "partials/bootstrap/bootstrap-breadcrumbs";
+@import "partials/bootstrap/bootstrap-carousel";
+@import "partials/bootstrap/bootstrap-hero";
+@import "partials/bootstrap/bootstrap-media";
+@import "partials/bootstrap/bootstrap-modal";
+@import "partials/bootstrap/bootstrap-navs";
+@import "partials/bootstrap/bootstrap-navbar";
+@import "partials/bootstrap/bootstrap-pager";
+@import "partials/bootstrap/bootstrap-pagination";
+@import "partials/bootstrap/bootstrap-popover";
+@import "partials/bootstrap/bootstrap-tables";
+@import "partials/bootstrap/bootstrap-tooltip";
+@import "partials/bootstrap/bootstrap-wells";
+@import "partials/bootstrap/bootstrap-forms";
+@import "partials/bootstrap/bootstrap-form-help";
+@import "partials/bootstrap/bootstrap-form-horizontal";
+@import "partials/bootstrap/bootstrap-form-search";
+@import "partials/bootstrap/bootstrap-form-buttons";
 
 // Choose a responsive navigation pattern, or add a brand new one
 // @import "partials/nav/navigation-toggle";

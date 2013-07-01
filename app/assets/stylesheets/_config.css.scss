@@ -77,7 +77,8 @@ $no-mq-classname 				: ".lt-ie9";
 
 // Start the ‘atmosphere’ of your design by defining the colours of your pages and text
 $bodycolor 						: rgb(255,255,255);
-$textcolor 						: rgb(71,63,63);
+// $textcolor 						: rgb(71,63,63);
+$textcolor 						: #333;
 
 // Adobe colors
 // $adobegray						:
@@ -95,12 +96,14 @@ $maincontentbg					: #E7E7E7;
 
 
 // Define your design’s palette by choosing three main colours
-$primarycolor 					: rgb(146,154,0);
+// $primarycolor 					: rgb(146,154,0);
+$primarycolor 					: #50B7F1;
 $secondarycolor 				: rgb(164,50,21);
 $tertiarycolor 					: rgb(41,47,54);
 
 // Now set a neutral colour for borders etc.
-$neutralcolor 					: rgb(71,63,63);
+// $neutralcolor 					: rgb(71,63,63);
+$neutralcolor 					: #999;
 $midneutralcolor 				: darken($neutralcolor,25%);
 $darkneutralcolor 				: darken($neutralcolor,50%);
 $lightneutralcolor 				: lighten($neutralcolor,25%);
@@ -114,14 +117,16 @@ $white 							: rgb(255,255,255);
 // Choose a colour for your hyperlinks. Often this will be the $primarycolor 
 $linkcolor 		    			: $primarycolor;
 $linkcolorhover 				: darken($linkcolor, 10);
-$linkcolorvisited   			: darken($linkcolorhover, 10);
-$linkcolorfocus 				: darken($linkcolorvisited, 10);
+// $linkcolorvisited   			: darken($linkcolorhover, 10);
+// $linkcolorfocus 				: darken($linkcolorvisited, 10);
+$linkcolorvisited   			: $primarycolor;
+$linkcolorfocus 				: darken($linkcolor, 10);
 
 // Now define another set of colours. These will be used to style alerts and buttons
 /*$alertcolor 					: rgb(218,79,73);*/
 $alertcolor 					: rgb(255,255,255);
 $errorcolor 					: rgb(176,20,0);
-$infocolor 					: rgb(216,220,162);
+$infocolor 						: rgb(216,220,162);
 $inversecolor 					: rgb(65,65,65);
 $successcolor 					: rgb(188,212,222);
 $warningcolor 					: $errorcolor;
@@ -144,7 +149,8 @@ $basefontsize 					: 16;
 $baseheadingfont 				: inherit;
 
 // Choose between normal, bold or set a font-weight number (eg: 700) for your headings
-$baseheadingfontweight 			: bold;
+// $baseheadingfontweight 			: bold;
+$baseheadingfontweight 			: normal;
 
 // Your headings may inherit the $textcolor, or you may set a different colour
 $baseheadingfontcolor 			: inherit;
@@ -169,7 +175,7 @@ $codefont 						: Monaco, Courier New, monospace;
 $bordercolor    				: $lighterneutralcolor;
 $borderstyle					: solid;
 $borderwidth 					: 1px;
-$borderradius 					: 4px;
+$borderradius 					: 0px;
 
 
 
@@ -538,7 +544,7 @@ $formfontfamily 				: $basefontfamily;
 
 // =inputs ============
 
-$forminputpadding				: 6px 11px;
+$forminputpadding				: 8px 8px 7px 8px;
 
 // Inputs have a default flat background colour
 // Add an optional gradient in _bootstrap-forms.scss
@@ -546,7 +552,8 @@ $forminputpadding				: 6px 11px;
 $formbinputbackgroundcolor 		: $white;
 
 // Set inputs’ border width
-$forminputborderwidth			: $borderwidth * 2;
+// $forminputborderwidth			: $borderwidth * 2;
+$forminputborderwidth			: $borderwidth;
 
 // Set inputs’ border style
 $forminputborderstyle			: $borderstyle;
@@ -583,7 +590,7 @@ $formsmallcolor 				: lighten($textcolor, 10%);
 
 // =buttons ============
 
-$buttonpadding 					: 6px 11px;
+$buttonpadding 					: 6px 15px;
 
 // Buttons have a default flat background colour
 // Add an optional gradient in _bootstrap-form-buttons.scss
@@ -611,12 +618,15 @@ $buttonfontfamily 				: $basefontfamily;
 // Set the button’s font-size. 
 // Use only a number. Units (em/px/%) are not required
 // Default is $basefontsize defined above
-$buttonfontsize 				: $basefontsize;
+$buttonfontsize 				: $basefontsize; 
+// $buttonfontsize 				: 0.875em; // 14/16 = .875
+
 
 // Set the default button’s text colour
 // Colours for :hover and :active  are derived automatically from $buttoncolor
 // Override colours for :hover and :active in _bootstrap-form-buttons.scss
-$buttoncolor 					: $lightneutralcolor;
+// $buttoncolor 					: $lightneutralcolor;
+$buttoncolor 					: $neutralcolor;
 
 
 
@@ -626,9 +636,12 @@ $buttoncolor 					: $lightneutralcolor;
 
 
 // Set the primary action button’s border and text colours
-$buttonbordercolorprimary		: darken($primarycolor, 10%);
-$buttoncolorprimary				: $white;
-
+$buttonbordercolorprimary			: #527593;
+$buttoncolorprimary					: $white;
+$buttongradientlightprimary			: #50a3e2;
+$buttongradientdarkprimary			: #247fcc;
+$buttongradientlighthoverprimary	: #2b85cf;
+$buttongradientdarkhoverprimary		: #2970aa;
 
 // Set the error button’s border and text colours
 $buttonbordercolorerror			: darken($errorcolor, 10%);
