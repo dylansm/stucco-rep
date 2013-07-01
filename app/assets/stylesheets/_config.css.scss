@@ -53,13 +53,15 @@ $baselineheight 				: 1.5em;
 // 600px 	37.5em
 // 768px 	48em
 // 992px 	62em
+// 67.75em; // 1084/16 = 67.75
 // 1382px	86.375em
  
-$bp2 							: 30em;  		
-$bp3 							: 37.5em;  	
-$bp4 							: 48em;  		
-$bp5 							: 62em; 		
-$bp6 							: 86.375em; 	
+$bp2 							: 30em;
+$bp3 							: 37.5em;
+$bp4 							: 48em;
+// $bp5 							: 62em;
+$bp5 							: 67.75em; // 1084/16 = 67.75
+$bp6 							: 86.375em;
 
 // Does your design needs a maximum width to maintain readable line lengths? 
 
