@@ -1,5 +1,6 @@
 .post
-  %img{ src: "#{@avatar_url}", alt: "#{@name}",  class: "avatar-med img-circle", srcset: "#{@avatar_url} 2x" }
+  .img-circle
+    %img{ src: "#{@avatar_url}", alt: "#{@name}",  class: "avatar-med img-circle", srcset: "#{@avatar_url} 2x" }
   %h4= @name
   .text= @text
   != JST["#{@video_type}"](@video_id) if @video_type

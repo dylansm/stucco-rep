@@ -18,24 +18,26 @@
     .pagewrapper
     
       %header
-        .leftheader
-          = link_to t('nav.home'), "http://www.adobe.com", { class: "logo" }
-          %p.program-title Adobe Campus Ambassador Portal
+        .headerwrapper
+          .leftheader
+            = link_to t('nav.home'), "http://www.adobe.com", { class: "logo" }
+            %p.program-title Adobe Campus Ambassador Portal
         
-        .rightheader
-          = link_to "Dashboard", dashboard_path
-          = link_to "Newsfeed", root_path
-          %a.menu Menu
+          .rightheader
+            %a.dashboard Dashbaord
+            %a.newsfeed Newsfeed
+            %a.menu Menu
     
       %nav
-        %ul
-          %li= link_to "Files", "#"
-          %li= link_to "Calendar", "#"
-          %li= link_to "Members", "#"
-          %li= link_to "Reports", "#"
-          %li= link_to "Admin", "#"
-          %li= link_to "My Profile", "#"
-          %li= link_to "Logout", "#"
+        .navwrapper
+          %ul
+            %li= link_to "Files", "#"
+            %li= link_to "Calendar", "#"
+            %li= link_to "Members", "#"
+            %li= link_to "Reports", "#"
+            %li= link_to "Admin", "#"
+            %li= link_to "My Profile", "#"
+            %li= link_to "Logout", "#"
         
       .content
         .leftcol
