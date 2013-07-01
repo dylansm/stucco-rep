@@ -1,9 +1,9 @@
 require "spec_helper"
 
 describe "Page requests" do
-  before do
-    ApplicationController.any_instance.stub(:current_user)
-  end
+  #before do
+    #ApplicationController.any_instance.stub(:current_user)
+  #end
 
   describe "GET /" do
     it "works as root" do

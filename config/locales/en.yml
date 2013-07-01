@@ -76,6 +76,8 @@ en:
     manage_schools: "Manage Schools"
     manage_adobe_products: "Manage Adobe Products"
     edit_school: "Edit %{name}"
+    newsfeed: "Newsfeed"
+    dashboard: "Dashboard"
 
   headers:
     manage_program_managers: "Manage Program Managers"

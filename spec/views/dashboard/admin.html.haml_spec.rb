@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "dashboard/admin.html.haml" do
+
+  before { @post = create :post }
   
   it "renders admin_tools partial" do
     render

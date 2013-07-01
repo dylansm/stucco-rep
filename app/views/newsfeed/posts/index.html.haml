@@ -1,0 +1,11 @@
+- title t("page_titles.newsfeed")
+
+%h2 Newsfeed
+
+= render "newsfeed/shared/post_form"
+
+#posts-container
+
+%a#more-posts= t('links.load_more_posts')
+
+= render "dashboard/admin/admin_tools"

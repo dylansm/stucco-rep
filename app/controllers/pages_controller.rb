@@ -5,13 +5,16 @@ class PagesController < ApplicationController
     if user
       @post = user.posts.build
       @posts = Post.includes(:comments).order("created_at").page(params[:page])
-      if user.admin?
-        #TODO paginate this
-        @users ||= User.all
-        render "dashboard/admin"
-      else
-        render "dashboard/user"
-      end
+      
+      redirect_to dashboard_url
+      
+      #if user.admin?
+        #@users ||= User.page(params[:page])
+        #render "dashboard/admin"
+      #else
+        #render "dashboard/user"
+      #end
+
     else
       render "pages/home"
     end

@@ -1,4 +1,7 @@
 Adoberep::Application.routes.draw do
+
+  get 'dashboard' => 'dashboard#index', as: "dashboard"
+
   namespace :dashboard do
 
     namespace :admin do
@@ -26,7 +29,12 @@ Adoberep::Application.routes.draw do
   end
 
   namespace :newsfeed do
-    resources :posts
+    get '/' => 'posts#index'
+    resources :posts do
+      collection do
+        get 'page/:page' => 'posts#index'
+      end
+    end
   end
 
   # users
