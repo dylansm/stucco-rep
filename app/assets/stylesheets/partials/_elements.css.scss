@@ -25,10 +25,12 @@ img {
 }
 
 .img-rounded {
+	display: inline-block;
 	border-radius :$borderradius;
 }
 
 .img-polaroid {
+	display: inline-block;
 	padding : $gutterwidth / 2;
 	background-color : $white;
 	border : 1px solid $bordercolor;
@@ -36,9 +38,13 @@ img {
 }
 
 .img-circle {
-	border-radius : 500px;
+	display: inline-block;
+	border-radius : 50%;
 	border: 3px solid #fff;
-	@include box-shadow(0px 0px 8px rgba(0,0,0,.1))
+	@include box-shadow(0px 0px 8px rgba(0,0,0,.1));
+	img {
+		border-radius : 50%;
+	}
 }
 
 // figure
