@@ -5,45 +5,12 @@
 %hr
 
 .l-content
-  %h1 Heading level one <h1>
-  %p
-    First-level headings are marked up using
-    %code ‹h1›
-    tags.
-  %p
-    The heading above is a first-level, heading one that may be used for page titles as well as titles in sectioning elements including
-    = succeed "," do
-      %code ‹body›
-    %code ‹section›
-    and
-    = succeed "." do
-      %code ‹article›
-
-.l-content
-  %h2 Heading level two
-  %p
-    Second-level headings are marked up using
-    %code ‹h2›
-    tags.
-  %p The heading above is a second-level, heading two. You may use more than one to create a document, section or article outline.
-
-.l-content
-  %h3 Heading level three
-  %p
-    Third-level headings are marked up using
-    %code ‹h3›
-    tags.
-  %p The heading above is a third-level, heading three. You may use more than one to create a document, section or article outline.
-
-.l-content
-  %h4 Heading 4
-  %h5 Heading 5
-  %h6 Heading 6
-  %p
-    Fourth, fifth and sixth level headings are marked up using
-    %code ‹h4› ‹h5› ‹h6›
-    tags.
-  %p The headings above are a fourth, fifth and sixth level, headings four, five and six. Use to create a document, section or article outline.
+  %h1 h1 Heading level one
+  %h2 h2 Heading level two
+  %h3 h3 Heading level three
+  %h4 h4 Heading 4
+  %h5 h5 Heading 5
+  %h6 h6 Heading 6
 
 %hr
 
@@ -1441,6 +1408,36 @@
   / l-content
 / l-wrap
 / Next
+
+.l-wrap
+  .l-summary
+    %h3 Segmented Buttons
+    / %p
+    /   Stacked tabs are marked up using
+    /   %code ‹ul›
+    /   tags with additional
+    /   = succeed "," do
+    /     %code nav
+    /   %code nav-tabs
+    /   and
+    /   %code nav-stacked
+    /   classes.
+  / l-summary
+  .l-content
+    / http://twitter.github.com/bootstrap/components.html#navs
+    %ul.btn-segmented
+      %li.active
+        %a.btn{:href => "#"} One
+      %li
+        %a.btn{:href => "#"} Two
+      %li
+        %a.btn{:href => "#"} Three
+  / l-content
+/ l-wrap
+/ Next
+
+
+
 .l-wrap
   .l-summary
     %h3 Button sizes
@@ -1457,10 +1454,11 @@
   / l-summary
   .l-content
     %p
-      %button.btn.btn-mini{:type => "button"} Button
-      %button.btn.btn-small{:type => "button"} Button
-      %button.btn.btn-large{:type => "button"} Button
-      %button.btn.btn-extlarge{:type => "button"} Button
+      %button.btn.btn-mini{:type => "button"} Mini
+      %button.btn.btn-small{:type => "button"} Small
+      %button.btn{:type => "button"} Normal
+      %button.btn.btn-large{:type => "button"} Large
+      %button.btn.btn-extlarge{:type => "button"} ExtLarge
   / l-content
 / l-wrap
 

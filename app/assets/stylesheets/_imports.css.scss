@@ -14,8 +14,8 @@ URL: http://stuffandnonsense.co.uk/projects/rock-hammer/
 @import "config";
 
 // Choose between reset and normalise
-@import "partials/utils/reset";
-// @import "partials/utils/normalise";
+// @import "partials/utils/reset";
+@import "partials/utils/normalise";
 
 // Sass mixins
 @import "partials/mixins";
