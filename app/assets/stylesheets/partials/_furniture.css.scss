@@ -88,11 +88,43 @@ header {
 	
 	.rightheader {
 		float: right;
+		font-size: 1.1875em;
+		margin: 15px 10px 0px 0px;
 	}
 	
 	.program-title {
-		padding: 15px 0 0 53px;
+		padding: 10px 0 0 53px;
 		margin: 0 0 0 0;
+		font-size: 24px;
+	}
+	
+	a {
+		text-decoration : none;
+		color : $neutralcolor;
+		
+		padding: 0px 15px 0px 0px;
+		
+		
+		&:visited {
+			color : $neutralcolor;
+		}
+
+		&:hover {
+			text-decoration : underline;
+			color : $tertiarycolor;
+		}
+
+		&:focus {
+			outline : thin dotted;
+			color : $tertiarycolor;
+		}
+
+		&:hover,
+		&:active {
+			outline : 0;
+			color: $tertiarycolor;
+		}
+
 	}
 	
 	
@@ -122,8 +154,11 @@ nav {
 			margin: 0 0 0 0;
 			padding: 0 0 0 0;
 			list-style: none;
+			
 		}
 	}
+	
+	
 	
 	@include media-query-bp($bp3) {
 		position: static;
@@ -152,7 +187,7 @@ nav {
 	position: absolute;
 	// float: left;
 	width: 100%;
-	background-color: #fff;
+	background-color: $sidebarbg;
 	
 	border-right: 1px solid #C7C7C7;
 	
@@ -164,7 +199,7 @@ nav {
 	
 	.leftcol {
 		
-		background-color: #fff;
+		background-color: $sidebarbg;
 		// padding: 20px 20px 20px 20px;
 		
 		display : none;
@@ -185,6 +220,7 @@ nav {
 	
 	.rightcol {
 		
+		// background-color: $maincontentbg;
 		background-color: $maincontentbg;
 		// border-right: 1px solid #C7C7C7;
 		
@@ -210,9 +246,16 @@ nav {
 	padding: 20px 130px 20px 60px;
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #C7C7C7;
+	
 	&:first-child {
 		border-top: none;
 	}
+	
+	&.dark {
+		background-color: $secondarycolor;
+		color: $tertiarycolor;
+	}
+	
 }
 
 

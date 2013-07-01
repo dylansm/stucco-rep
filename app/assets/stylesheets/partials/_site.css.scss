@@ -33,7 +33,7 @@ html {
 	-ms-text-size-adjust : 100%;
 	
 	@include media-query-bp($bp5) {
-		background : $maincontentbg;
+		// background : $maincontentbg;
 		// background : #f0f0f0;
 		
 	}

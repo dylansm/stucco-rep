@@ -94,14 +94,17 @@ $textcolor 						: #333;
 
 
 // some custom colors
-$maincontentbg					: #E7E7E7;
+$maincontentbg					: #fff;
+$sidebarbg						: #f0f0f0;
 
 
 // Define your design’s palette by choosing three main colours
 // $primarycolor 					: rgb(146,154,0);
 $primarycolor 					: #50B7F1;
-$secondarycolor 				: rgb(164,50,21);
-$tertiarycolor 					: rgb(41,47,54);
+// $secondarycolor 				: rgb(164,50,21);
+$secondarycolor 				: #494d4e;
+// $tertiarycolor 					: rgb(41,47,54);
+$tertiarycolor 					: #f0f0f0;
 
 // Now set a neutral colour for borders etc.
 // $neutralcolor 					: rgb(71,63,63);
@@ -174,7 +177,8 @@ $codefont 						: Monaco, Courier New, monospace;
 // Next set variables for your design’s borders. 
 // These will be inherited by many Rock Hammer elements below 
 
-$bordercolor    				: $lighterneutralcolor;
+// $bordercolor    				: $lighterneutralcolor;
+$bordercolor    				: $lightneutralcolor;
 $borderstyle					: solid;
 $borderwidth 					: 1px;
 $borderradius 					: 0px;
