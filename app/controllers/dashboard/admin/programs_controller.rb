@@ -20,7 +20,7 @@ class Dashboard::Admin::ProgramsController < ApplicationController
     if program.update(permitted_params)
       redirect_to dashboard_admin_programs_path
     else
-      respond_with program
+      respond_with :dashboard, :admin, program
     end
   end
 

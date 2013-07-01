@@ -1,0 +1,1 @@
+%iframe{ src: "http://player.vimeo.com/video/#{@video_id}",  width: "500", height: "281", frameborder: "0", webkitAllowFullScreen: "true",  mozallowfullscreen: "true", allowFullScreen: "true" }

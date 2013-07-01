@@ -3,7 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.integer :user_id
       t.text :text
-      t.string :video_id
+      t.string :video_url
 
       t.timestamps
     end
