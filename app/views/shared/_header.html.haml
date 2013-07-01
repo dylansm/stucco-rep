@@ -14,8 +14,8 @@
 
 - if user_signed_in?
   / .rightheader
-  = link_to "Dashboard", "#"
-  = link_to "Newsfeed", "#"
+  = link_to "Dashboard", dashboard_path
+  = link_to "Newsfeed", newsfeed_path
   = link_to "Menu", "#"
   .hidden-menu
     = link_to t('nav.logout'), destroy_user_session_path, :method => :delete

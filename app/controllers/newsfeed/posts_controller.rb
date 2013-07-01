@@ -3,6 +3,7 @@ class Newsfeed::PostsController < ApplicationController
   respond_to :html, :json
 
   def index
+    @post = user.posts.build
     @posts = Post.includes(:user, :comments).page(params[:page])
     @num_pages = @posts.num_pages
 
@@ -18,13 +19,16 @@ class Newsfeed::PostsController < ApplicationController
     @user = User.find(params[:post][:user_id])
     @post = Post.new(permitted_params)
     if @user.posts << @post
-      redirect_to root_url
+      redirect_to newsfeed_url
     else
-      render "dashboard/admin"
+      render "newsfeed/posts/index"
     end
   end
 
   def update
+  end
+
+  def delete
   end
 
   private
@@ -37,4 +41,9 @@ class Newsfeed::PostsController < ApplicationController
       :user_id
     )
   end
+
+  def user
+    @user ||= current_user
+  end
+
 end
