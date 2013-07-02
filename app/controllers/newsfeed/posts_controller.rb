@@ -19,9 +19,11 @@ class Newsfeed::PostsController < ApplicationController
     @user = User.find(params[:post][:user_id])
     @post = Post.new(permitted_params)
     if @user.posts << @post
-      redirect_to newsfeed_url
+      #redirect_to newsfeed_url
+      render json: @post
     else
-      render "newsfeed/posts/index"
+      #TODO
+      #render "newsfeed/posts/index"
     end
   end
 

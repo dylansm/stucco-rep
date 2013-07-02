@@ -1,8 +1,8 @@
--#= simple_form_for([:newsfeed, @post], remote: true) do |f|
-= simple_form_for([:newsfeed, @post]) do |f|
-  = f.input :text, as: :text
-  = f.input :image, as: :file
-  = f.input :video_url
-  = simple_fields_for :user do |user_fields|
-    = f.association :user, as: :hidden
-  = f.submit
+#create-post
+  = simple_form_for([:newsfeed, @post], html: { data: { remote: true, url: '/newsfeed/posts', type: :json } }) do |f|
+    = f.input :text, as: :text
+    = f.input :image, as: :file
+    = f.input :video_url
+    = simple_fields_for :user do |user_fields|
+      = f.association :user, as: :hidden
+    = f.submit
