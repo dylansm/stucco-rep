@@ -19,15 +19,19 @@ class Post < ActiveRecord::Base
   end
 
   def video_id
+    @video_id ||= derive_id_from_url
+  end
+
+  private
+
+  def derive_id_from_url
     if video_type == "youtube"
       video_url.gsub('http://youtu.be/', '')
     elsif video_type == "vimeo"
       last_slash_index = video_url.rindex(/\/\d/) + 1
-      video_url[last_slash_index..-1]
+      id = video_url[last_slash_index..-1]
     end
   end
-
-  private
 
   def derive_video_type_from_url
     if /youtu.be/ =~ video_url

@@ -3,5 +3,5 @@
     %img{ src: "#{@avatar_url}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
   %h4= @name
   .text= @text
-  != JST["#{@video_type}"](@video_id) if @video_type
+  != JST["#{@video_type}"](video_id: "#{@video_id}") if @video_type
       
