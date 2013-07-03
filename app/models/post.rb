@@ -3,15 +3,18 @@ class Post < ActiveRecord::Base
   has_many :comments
   validates(:text, presence: true)
   default_scope { order("created_at DESC") }
+
+  has_attached_file :post_image, styles: { sm: "320x", med: "530x", :"sm@2x" => "640x", :"med@2x" => "1060x" }
   
   def as_json(options={})
     super(options.merge(
-      only: [ :id, :text, :published_at ], methods: [ :image_url, :video_type, :video_id ],
+      only: [ :id, :text, :published_at ], methods: [ :post_image_urls, :video_type, :video_id ],
       include: [ user: { only: [ :id ], methods: [ :avatar_url, :name ] }, 
                  comments: { only: [ :text ] } ]))
   end
 
-  def image_url
+  def post_image_urls
+    { med: post_image.url(:med), :"med_2x" => post_image.url(:"med@2x"), sm: post_image.url(:sm), sm_2x: post_image.url(:"sm@2x") } if post_image.file?
   end
 
   def video_type

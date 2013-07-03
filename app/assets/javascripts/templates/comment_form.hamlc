@@ -1,0 +1,6 @@
+#comment-form
+  %textarea
+  %button.cancel
+    Cancel
+  %button.comment
+    Comment

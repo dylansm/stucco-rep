@@ -16,6 +16,8 @@
 //= require modernizr
 //= require_tree ./libs
 //= require_tree ./templates
+//= require utils.js.coffee
 //= require dashboard.js.coffee
+//= require comments.js.coffee
 //= require posts.js.coffee
 

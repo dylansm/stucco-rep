@@ -11,7 +11,6 @@ class Newsfeed::PostsController < ApplicationController
       format.html
       format.json { render json: { posts: @posts, num_pages: @num_pages } }
     end
-
     #render json: { posts: @posts, num_pages: @num_pages }
   end
 
@@ -19,11 +18,13 @@ class Newsfeed::PostsController < ApplicationController
     @user = User.find(params[:post][:user_id])
     @post = Post.new(permitted_params)
     if @user.posts << @post
-      #redirect_to newsfeed_url
-      render json: @post
+      respond_to do |format|
+        format.html { redirect_to newsfeed_url }
+        format.json { render json: @post }
+      end
     else
-      #TODO
-      #render "newsfeed/posts/index"
+      #redirect_to newsfeed_url
+      render "newsfeed/posts/index.html"
     end
   end
 
@@ -39,6 +40,7 @@ class Newsfeed::PostsController < ApplicationController
     params.require(:post).permit(
       :text,
       :photo,
+      :post_image,
       :video_url,
       :user_id
     )
