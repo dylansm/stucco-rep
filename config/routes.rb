@@ -34,6 +34,7 @@ Adoberep::Application.routes.draw do
       collection do
         get 'page/:page' => 'posts#index'
       end
+      resources :comments
     end
   end
 

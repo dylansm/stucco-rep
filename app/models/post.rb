@@ -8,9 +8,8 @@ class Post < ActiveRecord::Base
   
   def as_json(options={})
     super(options.merge(
-      only: [ :id, :text, :published_at ], methods: [ :post_image_urls, :video_type, :video_id ],
-      include: [ user: { only: [ :id ], methods: [ :avatar_url, :name ] }, 
-                 comments: { only: [ :text ] } ]))
+      only: [ :id, :text, :created_at ], methods: [ :post_image_urls, :video_type, :video_id, :comments ],
+      include: [ user: { only: [ :id ], methods: [ :avatar_url, :name ] } ]))
   end
 
   def post_image_urls

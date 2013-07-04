@@ -14,13 +14,9 @@ CFB.Posts = class Posts
     
   init_events: ->
     if CFB.touch
-      @$more_link.bind("touchstart",
-        => @fetch_posts()
-      )
-
+      @$more_link.bind("touchstart", => @fetch_posts())
     else
-      @$more_link.click =>
-        @fetch_posts()
+      @$more_link.click => @fetch_posts()
 
     $("#new_post").on("ajax:success", (e, data, status, xhr) =>
       @clear_post_form()
@@ -62,8 +58,11 @@ CFB.Posts = class Posts
     $("#new_post").after(template)
 
   build_post: (post) ->
+
+    console.log post
+
     tmpl = JST["post"]
     if post.post_image_urls
-      tmpl(id: post.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text, img_med: post.post_image_urls.med, img_med_2x: post.post_image_urls.med_2x, img_sm: post.post_image_urls.sm, img_sm_2x: post.post_image_urls.sm_2x, video_type: post.video_type, video_id: post.video_id)
+      tmpl(id: post.id, user_id: post.user.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text, comments: post.comments, img_med: post.post_image_urls.med, img_med_2x: post.post_image_urls.med_2x, img_sm: post.post_image_urls.sm, img_sm_2x: post.post_image_urls.sm_2x, video_type: post.video_type, video_id: post.video_id)
     else
-      tmpl(id: post.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text, video_type: post.video_type, video_id: post.video_id)
+      tmpl(id: post.id, user_id: post.user.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text, comments: post.comments, video_type: post.video_type, video_id: post.video_id)

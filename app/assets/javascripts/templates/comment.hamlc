@@ -1,0 +1,5 @@
+.comment
+  -#%img{ src: }
+  %p
+    %a{ href: "/users/#{@id}"}= @name
+    = @text

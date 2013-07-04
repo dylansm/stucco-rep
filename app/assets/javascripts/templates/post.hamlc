@@ -1,7 +1,8 @@
 .post{ data-id: "#{@id}"}
   .avatar-med.img-circle
     %img{ src: "#{@avatar_url}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
-  %h4= @name
+  %h4
+    %a{ href:"/users/#{@user_id}" }= @name
   .text= @text
   .post-image
     - if @img_med_2x
@@ -9,6 +10,8 @@
   != JST["#{@video_type}"](video_id: "#{@video_id}") if @video_type
 
   .comments-container
+    - for comment in @comments
+      != JST["comment"](id: comment.user.id, name: comment.user.name, text: comment.text)
 
   .comment-link
     %a{ href: "#", :data-remote => true } Comment
