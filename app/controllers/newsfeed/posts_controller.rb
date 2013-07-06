@@ -9,9 +9,8 @@ class Newsfeed::PostsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: { posts: @posts, num_pages: @num_pages } }
+      format.json { render json: @posts, each_serializer: PostSerializer }
     end
-    #render json: { posts: @posts, num_pages: @num_pages }
   end
 
   def create

@@ -6,6 +6,8 @@ $ ->
 CFB.Posts = class Posts
 
   constructor: ->
+    @$container = $("#posts-container")
+    @num_pages = @$container.attr("data-pages")
     @next_page = 1
     @$more_link = $("a#more-posts")
     @$create_submit = $("input[type=submit]")
@@ -30,7 +32,7 @@ CFB.Posts = class Posts
       datatype: 'json',
       success: (data, textstatus, xhr) =>
         @add_posts(data)
-        if @next_page < data.num_pages
+        if @next_page < @num_pages
           @next_page += 1
         else
           @$more_link.hide()
@@ -45,7 +47,7 @@ CFB.Posts = class Posts
     _.each(posts_data, (post) =>
       posts += @build_post post
     )
-    $("#posts-container").append(posts)
+    @$container.append(posts)
     CFB.Comments.init()
 
   clear_post_form: ->
@@ -54,13 +56,10 @@ CFB.Posts = class Posts
     $("#post_image").parent().html($("#post_image").parent().html())
 
   prepend_new_post: (data) ->
-    template = @build_post data
-    $("#new_post").after(template)
+    template = @build_post data.post
+    $("#posts-container").prepend(template)
 
   build_post: (post) ->
-
-    console.log post
-
     tmpl = JST["post"]
     if post.post_image_urls
       tmpl(id: post.id, user_id: post.user.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text, comments: post.comments, img_med: post.post_image_urls.med, img_med_2x: post.post_image_urls.med_2x, img_sm: post.post_image_urls.sm, img_sm_2x: post.post_image_urls.sm_2x, video_type: post.video_type, video_id: post.video_id)

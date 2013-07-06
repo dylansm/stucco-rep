@@ -4,7 +4,7 @@
 
 = render "newsfeed/shared/post_form"
 
-#posts-container
+#posts-container{ :"data-pages" => @num_pages }
 
 %a#more-posts= t('links.load_more_posts')
 

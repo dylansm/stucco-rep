@@ -32,11 +32,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  #def as_json(options={})
-    #super(options.merge(
-      #only: [ :id ], methods: [ :name, :avatar_url ] ))
-  #end
-
   class << self
 
     def not_in_program(program, admin_only=false)
@@ -48,6 +43,14 @@ class User < ActiveRecord::Base
     end
 
   end
+
+  #def as_json(options={})
+    #debugger
+    #if options[:newsfeed] == true
+      #super(options.merge(
+        #only: [ :id ], methods: [ :name, :avatar_url ] ))
+    #end
+  #end
 
   def name
     "#{first_name} #{last_name}"

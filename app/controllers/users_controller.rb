@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 
   # PUT
   def create_post
-    debugger
     if @user.update_attributes(permitted_user_params)
       respond_with @post
     end

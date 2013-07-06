@@ -5,12 +5,6 @@ class Post < ActiveRecord::Base
   default_scope { order("created_at DESC") }
 
   has_attached_file :post_image, styles: { sm: "320x", med: "530x", :"sm@2x" => "640x", :"med@2x" => "1060x" }
-  
-  def as_json(options={})
-    super(options.merge(
-      only: [ :id, :text, :created_at ], methods: [ :post_image_urls, :video_type, :video_id, :comments ],
-      include: [ user: { only: [ :id ], methods: [ :avatar_url, :name ] } ]))
-  end
 
   def post_image_urls
     { med: post_image.url(:med), :"med_2x" => post_image.url(:"med@2x"), sm: post_image.url(:sm), sm_2x: post_image.url(:"sm@2x") } if post_image.file?
