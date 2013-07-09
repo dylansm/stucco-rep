@@ -49,19 +49,20 @@ $baselineheight 				: 1.5em;
 // Ems are default, but you may use px if you prefer
 // Five are included but you may add more
 
-// 480px 	30em
-// 600px 	37.5em
-// 768px 	48em
-// 992px 	62em
-// 67.75em; // 1084/16 = 67.75
-// 1382px	86.375em
+// $bp2 480px 	30em
+// $bp3 600px 	37.5em
+// $bp4 768px 	48em
+// $bp5 992px 	62em
+// $bp5 1084px	67.75em; // 1084/16 = 67.75
+// $bp6 1382px	86.375em
  
 $bp2 							: 30em;
 $bp3 							: 37.5em;
 $bp4 							: 48em;
-// $bp5 							: 62em;
-$bp5 							: 67.75em; // 1084/16 = 67.75
-$bp6 							: 86.375em;
+$bp5 							: 62em;
+// $bp5 							: 67.75em; // 1084/16 = 67.75
+// $bp6 							: 86.375em;
+$bp6 							: 67.75em; // 1084/16 = 67.75
 
 // Does your design needs a maximum width to maintain readable line lengths? 
 
@@ -94,14 +95,17 @@ $textcolor 						: #333;
 
 
 // some custom colors
-$maincontentbg					: #E7E7E7;
+$maincontentbg					: #fff;
+$sidebarbg						: #f0f0f0;
 
 
 // Define your design’s palette by choosing three main colours
 // $primarycolor 					: rgb(146,154,0);
 $primarycolor 					: #50B7F1;
-$secondarycolor 				: rgb(164,50,21);
-$tertiarycolor 					: rgb(41,47,54);
+// $secondarycolor 				: rgb(164,50,21);
+$secondarycolor 				: #494d4e;
+// $tertiarycolor 					: rgb(41,47,54);
+$tertiarycolor 					: #f0f0f0;
 
 // Now set a neutral colour for borders etc.
 // $neutralcolor 					: rgb(71,63,63);
@@ -174,7 +178,8 @@ $codefont 						: Monaco, Courier New, monospace;
 // Next set variables for your design’s borders. 
 // These will be inherited by many Rock Hammer elements below 
 
-$bordercolor    				: $lighterneutralcolor;
+// $bordercolor    				: $lighterneutralcolor;
+$bordercolor    				: $lightneutralcolor;
 $borderstyle					: solid;
 $borderwidth 					: 1px;
 $borderradius 					: 0px;

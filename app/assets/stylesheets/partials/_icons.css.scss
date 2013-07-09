@@ -1,0 +1,170 @@
+@font-face {
+	font-family: 'Adobe-CAP-Icon-Set';
+	src:url('Adobe-CAP-Icon-Set.eot');
+	src:url('Adobe-CAP-Icon-Set.eot?#iefix') format('embedded-opentype'),
+		url('Adobe-CAP-Icon-Set.woff') format('woff'),
+		url('Adobe-CAP-Icon-Set.ttf') format('truetype'),
+		url('Adobe-CAP-Icon-Set.svg#Adobe-CAP-Icon-Set') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'Adobe-CAP-Icon-Set';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-workshops, .icon-video, .icon-twitter, .icon-star, .icon-rating, .icon-plus, .icon-photo, .icon-newsfeed, .icon-menu, .icon-mail, .icon-instagram, .icon-fb, .icon-edit, .icon-edit-hover, .icon-dashboard, .icon-close, .icon-behance, .icon-attendees, .icon-logout, .icon-profile, .icon-share {
+	font-family: 'Adobe-CAP-Icon-Set';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-workshops:before {
+	content: "\77";
+}
+.icon-video:before {
+	content: "\76";
+}
+.icon-twitter:before {
+	content: "\74";
+}
+.icon-star:before {
+	content: "\73";
+}
+.icon-rating:before {
+	content: "\72";
+}
+.icon-plus:before {
+	content: "\61";
+}
+.icon-photo:before {
+	content: "\70";
+}
+.icon-newsfeed:before {
+	content: "\6e";
+}
+.icon-menu:before {
+	content: "\6d";
+}
+.icon-mail:before {
+	content: "\6c";
+}
+.icon-instagram:before {
+	content: "\69";
+}
+.icon-fb:before {
+	content: "\66";
+}
+.icon-edit:before {
+	content: "\5b";
+}
+.icon-edit-hover:before {
+	content: "\5d";
+}
+.icon-dashboard:before {
+	content: "\64";
+}
+.icon-close:before {
+	content: "\63";
+}
+.icon-behance:before {
+	content: "\62";
+}
+.icon-attendees:before {
+	content: "\32";
+}
+.icon-logout:before {
+	content: "\6f";
+}
+.icon-profile:before {
+	content: "\31";
+}
+.icon-share:before {
+	content: "\5e";
+}
+
+
+////////////////////////////////////////////////
+// copied from the sample html head:
+
+// .glyph {
+// 	font-size: 16px;
+// 	float: left;
+// 	text-align: center;
+// 	background: #eee;
+// 	padding: .75em;
+// 	margin: .75em 1.5em .75em 0;
+// 	width: 7.5em;
+// 	border-radius: .25em;
+// 	box-shadow: inset 0 0 0 1px #f8f8f8, 0 0 0 1px #CCC;
+// }
+// .glyph input {
+// 	font-family: consolas, monospace;
+// 	font-size: 13px;
+// 	width: 100%;
+// 	text-align: center;
+// 	border: 0;
+// 	box-shadow: 0 0 0 1px #ccc;
+// 	padding: .125em;
+// }
+// .w-main {
+// 	width: 80%;
+// }
+// .centered {
+// 	margin-left: auto;
+// 	margin-right: auto;
+// }
+// .fs1 {
+// 	font-size: 2em;
+// }
+// header {
+// 	margin: 2em 0;
+// 	padding-bottom: .5em;
+// 	color: #666;
+// 	box-shadow: 0 2px #eee;
+// }
+// header h1 {
+// 	font-size: 2em;
+// 	font-weight: normal;
+// }
+// .clearfix:before, .clearfix:after { content: ""; display: table; }
+// .clearfix:after, .clear { clear: both; }
+// footer {
+// 	margin-top: 2em;
+// 	padding: .5em 0;
+// 	box-shadow: 0 -2px #eee;
+// }
+// a, a:visited {
+// 	color: #B35047;
+// 	text-decoration: none;
+// }
+// a:hover, a:focus {color: #000;}
+// .box1 {
+// 	font-size: 16px;
+// 	display: inline-block;
+// 	width: 15em;
+// 	padding: .25em .5em;
+// 	background: #eee;
+// 	margin: .5em 1em .5em 0;
+// }
+// 
+
+

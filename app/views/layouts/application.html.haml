@@ -24,20 +24,36 @@
             %p.program-title Adobe Campus Ambassador Portal
         
           .rightheader
-            %a.dashboard Dashbaord
-            %a.newsfeed Newsfeed
-            %a.menu Menu
+            %a.dashboard.active
+              %span.icon.icon-dashboard
+              %span.label
+                \ Dashboard
+            %a.newsfeed 
+              %span.icon.icon-newsfeed
+              %span.label
+                \ Newsfeed
+            %a.menu
+              %span.icon.icon-menu
     
       %nav
         .navwrapper
           %ul
-            %li= link_to "Files", "#"
-            %li= link_to "Calendar", "#"
-            %li= link_to "Members", "#"
-            %li= link_to "Reports", "#"
-            %li= link_to "Admin", "#"
-            %li= link_to "My Profile", "#"
-            %li= link_to "Logout", "#"
+            %li
+              %a
+                %span.icon.icon-attendees
+                \ Members
+            %li
+              %a.active
+                %span.icon.icon-share
+                \ Share a Link
+            %li
+              %a
+                %span.icon.icon-profile
+                \ My Profile
+            %li
+              %a
+                %span.icon.icon-logout
+                \ Logout
         
       .content
         .leftcol
@@ -47,7 +63,7 @@
           
         .rightcol
         
-          .rightwrapper
+          .rightwrapper.dark
             %p This is the right column content.
             / We are temporarily dumping nav into the body while we work out structure and styling in the header.
             This is the temporary login and nav stuff:
