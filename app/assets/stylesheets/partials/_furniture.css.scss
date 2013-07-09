@@ -30,13 +30,13 @@
 	&.nav-active {
 		nav {
 			float: left;
-			width: 50%;
-			margin-left: 50%;
+			width: 75%;
+			margin-left: 25%;
 		}
 		
 		.content {
 			float: left;
-			margin-left: -50%;
+			margin-left: -75%;
 			width: 100%;
 		}
 		
@@ -203,7 +203,8 @@ nav {
 	position: absolute;
 	
 	.navwrapper {
-		max-width: $bp6;
+		width: $bp6;
+		
 	}
 	
 	ul {
@@ -271,6 +272,11 @@ nav {
 		height: 0;
 		float: none;
 		margin-left: 0;
+		
+		.navwrapper {
+			width: auto;
+			max-width: $bp6;
+		}
 		
 		ul {
 			float: right;
