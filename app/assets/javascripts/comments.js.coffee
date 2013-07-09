@@ -50,7 +50,7 @@ CFB.Comments = class Comments
         console.log response
 
   add_comment: (data) =>
-    tmpl = JST["comment"](id: data.user.id, name: data.user.name, text: data.text)
+    tmpl = JST["comment"](id: data.comment.user.id, name: data.comment.user.name, text: data.comment.text)
     $post_container = $(".post[data-id='#{@post_id}']")
     $comments_container = $(".comments-container", $post_container)
     $comments_container.append(tmpl)
