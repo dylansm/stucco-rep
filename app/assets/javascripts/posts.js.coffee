@@ -48,7 +48,8 @@ CFB.Posts = class Posts
       posts += @build_post post
     )
     @$container.append(posts)
-    CFB.Comments.init()
+    @comments = CFB.Comments.init()
+    @likes = CFB.Likes.init(posts_data)
 
   clear_post_form: ->
     $("#post_text").val("")
@@ -58,6 +59,7 @@ CFB.Posts = class Posts
   prepend_new_post: (data) ->
     template = @build_post data.post
     $("#posts-container").prepend(template)
+    @comments.init_latest_post()
 
   build_post: (post) ->
     tmpl = JST["post"]

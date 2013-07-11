@@ -27,21 +27,36 @@ class Newsfeed::PostsController < ApplicationController
     end
   end
 
-  def update
-  end
-
-  def delete
+  # POST AJAX create like
+  def likes
+    params.merge!({ user_id: current_user.id })
+    @liked_post = Post.find(params[:post_id])
+    like = Like.where("post_id = ? AND user_id = ?", params[:post_id], params[:user_id])
+    if like.any?
+      destroy_like like
+    else
+      like = Like.create({ user_id: params[:user_id], post_id: params[:post_id]})
+    end
+    render json: @liked_post, serializer: LikedPostSerializer
   end
 
   private
 
+  def destroy_like(like)
+    like.each do |like|
+      like.destroy
+    end
+  end
+
   def permitted_params
     params.require(:post).permit(
+      :post_id,
       :text,
       :photo,
       :post_image,
       :video_url,
-      :user_id
+      :user_id,
+      :likes
     )
   end
 

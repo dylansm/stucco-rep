@@ -19,5 +19,6 @@
 //= require utils.js.coffee
 //= require dashboard.js.coffee
 //= require comments.js.coffee
+//= require likes.js.coffee
 //= require posts.js.coffee
 
