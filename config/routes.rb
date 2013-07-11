@@ -50,6 +50,7 @@ Adoberep::Application.routes.draw do
   patch 'users/:id' => 'users#create_post', as: "create_post"
 
   get 'pages/styles' => 'pages#styles'
+  get 'pages/newsfeed-dev' => 'pages#newsfeed_dev'
   root 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

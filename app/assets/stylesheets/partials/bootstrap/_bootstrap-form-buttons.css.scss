@@ -11,6 +11,7 @@
 	padding : $buttonpadding;
 	margin-bottom : 0;
 	*margin-left : .3em;
+	// min-height: 34px;
 	font : {
 		weight : lighter;
 		family : $buttonfontfamily;
@@ -196,9 +197,9 @@
 }
 
 .btn-small {
-	padding : 5px 10px;
-	@include font-size($buttonfontsize / 1.5);
-	line-height : inherit;
+	padding : 5px 20px;
+	@include font-size($buttonfontsize * .75); // 12/16 = .75
+	line-height : 1em;
 }
 
 .btn-mini {

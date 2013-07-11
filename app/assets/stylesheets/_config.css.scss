@@ -34,7 +34,7 @@
 // $gutterwidth for horizontal spacing and $baselineheight for vertical rhythm
 
 $gutterwidth 					: 24px;
-$baselineheight 				: 1.5em;
+$baselineheight 				: 1.375em; // 22/16 = 1.375
 
 
 
@@ -78,38 +78,18 @@ $no-mq-classname 				: ".lt-ie9";
 
 // STEP THREE: COLOUR ================================================
 
-// Start the ‘atmosphere’ of your design by defining the colours of your pages and text
-$bodycolor 						: rgb(255,255,255);
-// $textcolor 						: rgb(71,63,63);
-$textcolor 						: #333;
-
-// Adobe colors
-// $adobegray						:
-// $adobecharcoalgray				:
-// $adobewarmgray					:
-// $adobered						:
-// $adobeorange					:
-// $adobeyellow					:
-// $adobegreen						:
-// $adobeblue						:
-
-
-// some custom colors
-$maincontentbg					: #fff;
-$sidebarbg						: #f0f0f0;
-
-
 // Define your design’s palette by choosing three main colours
 // $primarycolor 					: rgb(146,154,0);
-$primarycolor 					: #50B7F1;
 // $secondarycolor 				: rgb(164,50,21);
-$secondarycolor 				: #494d4e;
 // $tertiarycolor 					: rgb(41,47,54);
-$tertiarycolor 					: #f0f0f0;
+// $secondarycolor 				: #494d4e; // dark gray
+$primarycolor 					: #50B7F1; // blue
+$secondarycolor 				: #333; // dark gray
+$tertiarycolor 					: #f0f0f0; // light gray
 
 // Now set a neutral colour for borders etc.
 // $neutralcolor 					: rgb(71,63,63);
-$neutralcolor 					: #999;
+$neutralcolor 					: #888; // medium gray
 $midneutralcolor 				: darken($neutralcolor,25%);
 $darkneutralcolor 				: darken($neutralcolor,50%);
 $lightneutralcolor 				: lighten($neutralcolor,25%);
@@ -117,14 +97,14 @@ $lighterneutralcolor 			: lighten($neutralcolor,50%);
 $lightestneutralcolor 			: lighten($neutralcolor,70%);
 
 // Sometimes you may want $black and $white to be ‘almost black’ and ’off-white’
-$black 							: rgb(0,0,0);
-$white 							: rgb(255,255,255);
+$black 							: #000;
+$white 							: #fff;
 
 // Choose a colour for your hyperlinks. Often this will be the $primarycolor 
-$linkcolor 		    			: $primarycolor;
-$linkcolorhover 				: darken($linkcolor, 10);
 // $linkcolorvisited   			: darken($linkcolorhover, 10);
 // $linkcolorfocus 				: darken($linkcolorvisited, 10);
+$linkcolor 		    			: $primarycolor;
+$linkcolorhover 				: darken($linkcolor, 10);
 $linkcolorvisited   			: $primarycolor;
 $linkcolorfocus 				: darken($linkcolor, 10);
 
@@ -137,7 +117,21 @@ $inversecolor 					: rgb(65,65,65);
 $successcolor 					: rgb(188,212,222);
 $warningcolor 					: $errorcolor;
 
+// Start the ‘atmosphere’ of your design by defining the colours of your pages and text
+// $textcolor 						: rgb(71,63,63);
+$bodycolor 						: $white;
+$textcolor 						: $secondarycolor;
+$textcolorlight					: $neutralcolor;
+$textcolordark					: $black;
 
+// some custom colors
+$maincontentbg					: $white;
+$sidebarbg						: $tertiarycolor;
+$wellbg							: $secondarycolor;
+
+// top bar gradient colors
+$navbargradientlight			: #282828;
+$navbargradientdark				: #191919;
 
 
 
@@ -217,7 +211,8 @@ $borderradius 					: 0px;
 // TYPOGRAPHY =============================================================================
 
 // Background colour for blockquotes, ins, and mark
-$basefontbackgroundcolor		: $lightestneutralcolor; 
+// $basefontbackgroundcolor		: $lightestneutralcolor; 
+$basefontbackgroundcolor		: $tertiarycolor; 
 
 
 
@@ -551,7 +546,7 @@ $formfontfamily 				: $basefontfamily;
 
 // =inputs ============
 
-$forminputpadding				: 8px 8px 7px 8px;
+$forminputpadding				: 7px 8px 6px 8px;
 
 // Inputs have a default flat background colour
 // Add an optional gradient in _bootstrap-forms.scss
@@ -597,7 +592,8 @@ $formsmallcolor 				: lighten($textcolor, 10%);
 
 // =buttons ============
 
-$buttonpadding 					: 6px 15px;
+// $buttonpadding 					: 6px 15px;
+$buttonpadding 					: 5px 15px 5px 15px;
 
 // Buttons have a default flat background colour
 // Add an optional gradient in _bootstrap-form-buttons.scss
