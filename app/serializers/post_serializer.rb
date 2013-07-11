@@ -1,6 +1,7 @@
 class PostSerializer < ActiveModel::Serializer
   attributes :id, :text, :created_at, :post_image_urls, :video_type, :video_id
   has_many :comments
+  has_many :likes, each_serializer: LikeSerializer
   has_one :user, serializer: PostUserSerializer
   
   def post_image_urls

@@ -34,7 +34,9 @@ Adoberep::Application.routes.draw do
       collection do
         get 'page/:page' => 'posts#index'
       end
+      # AJAX
       resources :comments
+      post :likes
     end
   end
 

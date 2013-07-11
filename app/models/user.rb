@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :responses, through: :posts, source: :comments
+  has_many :likes, dependent: :destroy
   accepts_nested_attributes_for :user_application, :tools
 
   # Include default devise modules. Others available are: :token_authenticatable, :confirmable, :registerable, :lockable, :timeoutable and :omniauthable
