@@ -22,6 +22,9 @@ class PagesController < ApplicationController
 
   def styles
   end
+  
+  def newsfeed_dev
+  end
 
   private
 

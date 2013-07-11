@@ -5,10 +5,38 @@
 
 // Typography =============================================
 
+/////////////////////////
+// ADOBE SPECIFIC MIXINS
+@mixin text-small {
+	@include font-size($basefontsize * .875); // 14/16 = .875
+	line-height: 1.25em; // 20/16 = 1.25
+}
+
+@mixin text-xsmall {
+	@include font-size($basefontsize * .75); // 12/16 = .75
+	line-height: .9375em; // 15/16 = .9375
+}
+
+@mixin text-color-normal {
+	color: $textcolor;
+}
+
+@mixin text-color-dark {
+	color: $textcolordark;
+}
+
+@mixin text-color-light {
+	color: $textcolorlight;
+}
+
+
+/////////////////////////
+
 @mixin font-size($font-size: 16){
 	font-size : #{$font-size}px;
 	font-size : #{$font-size / 10}rem; 
 }
+
 
 @mixin css-hyphens($val:auto) {
 	-webkit-hyphens : $val;

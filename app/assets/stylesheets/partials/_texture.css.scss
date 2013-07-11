@@ -14,7 +14,8 @@
 @mixin infograd 		{ @include vertical($infocolor, darken($infocolor, 10%)); }
 @mixin inversegrad 		{ @include vertical($inversecolor, darken($inversecolor, 10%)); }
 @mixin navigationgrad 	{ @include vertical($navigationbackgroundcolor, darken($navigationbackgroundcolor, 10%)); }
-@mixin navbargrad 		{ @include vertical($navbarbackgroundcolor, darken($navbarbackgroundcolor, 10%)); }
+// @mixin navbargrad 		{ @include vertical($navbarbackgroundcolor, darken($navbarbackgroundcolor, 10%)); }
+@mixin navbargrad 		{ @include vertical($navbargradientlight, $navbargradientdark); }
 @mixin paginationgrad 	{ @include vertical($paginationbackgroundcolor, darken($paginationbackgroundcolor, 10%)); }
 @mixin pagergrad 		{ @include vertical($pagerbackgroundcolor, darken($pagerbackgroundcolor, 10%)); }
 // @mixin primarygrad 		{ @include vertical($primarycolor, darken($primarycolor, 10%)); }
