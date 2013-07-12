@@ -67,9 +67,10 @@ ol,
 ul,
 dl,
 address {
-	margin-bottom : $baselineheight;
 	@include font-size($basefontsize); // 16/16 = 1
 	line-height : $baselineheight;
+	margin-bottom : $basefontsize;
+	// margin-bottom : $baselineheight;
 }
 
 small {
