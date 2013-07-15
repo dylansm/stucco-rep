@@ -49,10 +49,13 @@
         %span.icon.icon-star
   
       
-    .post-comments-data  
-      %p
-        %a{:class => "btn comment-link", "data-remote" => "", :href => "#"} 2 Comments
-        %a{:class => "btn like-link", "data-remote" => "", :href => "#"} 12 Likes
+    .post-action  
+      %a{:class => "like-link", "data-remote" => "", :href => "#"}
+        %span.icon.icon-star
+        Likes (12)
+      %a{:class => "comment-link", "data-remote" => "", :href => "#"}
+        %span.icon.icon-star
+        Comments (2)
     
     .post-comments
       %a{:class => "more-comments", :href => "#"} 
@@ -140,10 +143,14 @@
       /   %span.icon.icon-star
       /   
     /   
-    .post-comments-data  
-      %p
-        %a{:class => "btn comment-link", "data-remote" => "", :href => "#"} 2 Comments
-        %a{:class => "btn like-link", "data-remote" => "", :href => "#"} 12 Likes
+    .post-action  
+      %a{:class => "like-link", "data-remote" => "", :href => "#"}
+        %span.icon.icon-star
+        Like
+      %a{:class => "comment-link", "data-remote" => "", :href => "#"}
+        %span.icon.icon-star
+        Comment
+    
     / 
     / .post-comments
     /   %a{:class => "more-comments", :href => "#"} 

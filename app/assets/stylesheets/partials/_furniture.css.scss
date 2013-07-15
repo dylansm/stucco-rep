@@ -365,7 +365,7 @@ nav {
 // contains padding, margins, borders
 .leftwrapper {
 	padding: 20px 60px 20px 40px;
-	border-top: 1px solid $white;
+	border-top: 1px solid $tertiarycolor;
 	border-bottom: 1px solid $lightneutralcolor;
 	
 	&:first-child {
@@ -375,11 +375,22 @@ nav {
 
 .rightwrapper {
 	
-	padding: 5px 10px 5px 10px;
-	border-bottom: 1px solid #E7E7E7;
+	padding: 10px 10px 10px 10px;
+	// border-bottom: 1px solid #E7E7E7;
+
+	border-top: 1px solid $tertiarycolor;
+	border-bottom: 1px solid $lightneutralcolor;
+	
+	&:first-child {
+		border-top: none;
+	}
+
+
 	
 	@include media-query-bp($bp3) {
 		padding: 20px 20px 20px 60px;
+		border-top: none;
+		border-bottom: 1px solid #E7E7E7;
 		
 		// set the max width of child elements 
 		div {
@@ -404,7 +415,7 @@ nav {
 
 .post {
 	background-color: $white;
-	padding: 10px 10px 0px 10px;
+	// padding: 10px 10px 0px 10px;
 	
 	p {
 		margin-top: 0;
@@ -420,6 +431,7 @@ nav {
 	position: relative;
 	min-height: 56px;
 	margin-bottom: 5px;
+	padding: 10px 10px 10px 10px;
 	
 	p {
 		margin: 0 0 0 60px;
@@ -428,8 +440,8 @@ nav {
 	
 	.author-image {
 		position: absolute;
-		left: -5px;
-		top: -5px;
+		left: 5px;
+		top: 5px;
 		width: 56px; // add 3 px all around to accomodate for 3px stroke
 	}
 	
@@ -487,6 +499,8 @@ nav {
 
 .post-content {
 	
+	padding: 0px 10px 10px 10px;
+	
 	.post-image {
 		margin-bottom: 10px;
 	}
@@ -543,6 +557,46 @@ nav {
 	
 }
 
+.post-action {
+	
+	// p {
+		// display: table;
+		
+		// @include outer-container;
+		
+		// @include row (12);
+	// }
+	
+	@include clearfix;
+	
+	a {
+		display: block;
+		width: 50%;
+		float: left;
+		// $buttonpadding 					: 5px 15px 5px 15px;
+		padding: 8px 15px 8px 15px;;
+		background-color: $tertiarycolor;
+		@include text-h2-size;
+		// include margin bottom below ht text size import to override
+		margin-bottom: 0px;
+		text-align: center;
+		
+		// @include span-columns(6, table);
+		// @include pad();
+		// @include omega;
+		
+		&:last-child {
+			// @include reset-display;
+			// @include omega()
+			border-left: 1px solid $lightneutralcolor;
+			@include text-color-light;
+		}
+		
+	}
+}
+
+
+
 // .post-comments
 //   %a{:class => "more-comments", :href => "#"} 2 more comments
 //   .comment
@@ -560,7 +614,7 @@ nav {
 .post-comments {
 	background-color: $sidebarbg;
 	padding: 10px;
-	margin: 0 0 16px 0;
+	margin: 10px 10px 16px 10px;
 	
 	.more-comments {
 		// @include text-h2-size;
@@ -613,7 +667,8 @@ nav {
 }
 
 .comment-form {
-	
+	margin: 0 0 0 0;
+	padding: 0px 10px 0px 10px;
 }
 
 
