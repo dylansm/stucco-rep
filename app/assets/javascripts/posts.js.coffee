@@ -62,8 +62,28 @@ CFB.Posts = class Posts
     @comments.init_latest_post()
 
   build_post: (post) ->
-    tmpl = JST["post"]
+    user_id = parseInt $("body").attr("data-user-id"), 10
+    post_data =
+      id: post.id
+      user_id: post.user.id
+      name: post.user.name
+      avatar_url: post.user.avatar_url
+      text: post.text
+      comments: post.comments
+      video_type: post.video_type
+      video_id: post.video_id
+
     if post.post_image_urls
-      tmpl(id: post.id, user_id: post.user.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text, comments: post.comments, img_med: post.post_image_urls.med, img_med_2x: post.post_image_urls.med_2x, img_sm: post.post_image_urls.sm, img_sm_2x: post.post_image_urls.sm_2x, video_type: post.video_type, video_id: post.video_id)
-    else
-      tmpl(id: post.id, user_id: post.user.id, name: post.user.name, avatar_url: post.user.avatar_url, text: post.text, comments: post.comments, video_type: post.video_type, video_id: post.video_id)
+      img_data =
+        img_med: post.post_image_urls.med
+        img_med_2x: post.post_image_urls.med_2x
+        img_sm: post.post_image_urls.sm
+        img_sm_2x: post.post_image_urls.sm_2x
+
+      _.extend(post_data, img_data)
+
+    if post.user.id == user_id
+      _.extend(post_data, { post_author: true })
+
+    tmpl = JST["post"]
+    tmpl(post_data)

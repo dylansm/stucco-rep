@@ -411,6 +411,11 @@ nav {
     /*border-bottom: solid;*/
     padding-bottom: 2em;
 
+    ul.post-admin {
+      float: right;
+      list-style: none;
+    }
+
     h4 {
       margin-bottom: .2em;
     }

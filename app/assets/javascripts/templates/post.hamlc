@@ -1,4 +1,11 @@
-.post{ data-id: "#{@id}"}
+.post{ data-id: "#{@id}" }
+  - if @post_author
+    %ul.post-admin
+      %li
+        %a{ href: "#", :"data-remote" => true }Edit
+      %li
+        %a{ href: "#", :"data-remote" => true }Delete
+
   .avatar-med.img-circle
     %img{ src: "#{@avatar_url}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
   %h4
