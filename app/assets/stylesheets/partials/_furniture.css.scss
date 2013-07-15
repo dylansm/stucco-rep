@@ -459,6 +459,7 @@ nav {
 	@include media-query-bp($bp3) {
 		
 		min-height: auto;
+		padding: 0px 0px 0px 0px;
 		padding-top: 24px;
 		margin-bottom: 12px;
 		
@@ -501,6 +502,9 @@ nav {
 	
 	padding: 0px 10px 10px 10px;
 	
+	@include media-query-bp($bp3) {
+		padding: 0 0 0 0;
+	}
 	.post-image {
 		margin-bottom: 10px;
 	}
@@ -574,7 +578,7 @@ nav {
 		width: 50%;
 		float: left;
 		// $buttonpadding 					: 5px 15px 5px 15px;
-		padding: 8px 15px 8px 15px;;
+		padding: 8px 5px 8px 5px;;
 		background-color: $tertiarycolor;
 		@include text-h2-size;
 		// include margin bottom below ht text size import to override
@@ -615,6 +619,10 @@ nav {
 	background-color: $sidebarbg;
 	padding: 10px;
 	margin: 10px 10px 16px 10px;
+	
+	@include media-query-bp($bp3) {
+		margin: 10px 0px 16px 0px;
+	}
 	
 	.more-comments {
 		// @include text-h2-size;
@@ -669,6 +677,11 @@ nav {
 .comment-form {
 	margin: 0 0 0 0;
 	padding: 0px 10px 0px 10px;
+	
+	@include media-query-bp($bp3) {
+		padding: 0 0 0 0;
+	}
+	
 }
 
 
