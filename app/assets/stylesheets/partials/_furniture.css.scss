@@ -347,9 +347,12 @@ nav {
 	
 	.rightcol {
 		
-		background-color: $maincontentbg;
+		background-color: darken($tertiarycolor, 5%);
 		
 		@include media-query-bp($bp3) {
+			
+			background-color: $maincontentbg;
+			
 			@include span-columns(8, table);
 			// padding: 40px 60px;
 			
@@ -371,8 +374,22 @@ nav {
 }
 
 .rightwrapper {
-	padding: 20px 130px 20px 60px;
+	
+	padding: 5px 10px 5px 10px;
 	border-bottom: 1px solid #E7E7E7;
+	
+	@include media-query-bp($bp3) {
+		padding: 20px 20px 20px 60px;
+		
+		// set the max width of child elements 
+		div {
+			max-width: 530px;
+		}
+	}
+	
+	@include media-query-bp($bp4) {
+		// padding: 20px 130px 20px 60px;
+	}
 	
 	&.dark {
 		background-color: $wellbg;
@@ -380,6 +397,229 @@ nav {
 	}
 	
 }
+
+
+
+// NEWSFEED CONTENT //////////////////////////////////////////////
+
+.post {
+	background-color: $white;
+	padding: 10px 10px 0px 10px;
+	
+	p {
+		margin-top: 0;
+	}
+	
+	@include media-query-bp($bp3) {
+		padding: 0px 0px 0px 0px;
+	}
+}
+
+.post-author {
+	
+	position: relative;
+	min-height: 56px;
+	margin-bottom: 5px;
+	
+	p {
+		margin: 0 0 0 60px;
+		padding-top: 6px;
+	}
+	
+	.author-image {
+		position: absolute;
+		left: -5px;
+		top: -5px;
+		width: 56px; // add 3 px all around to accomodate for 3px stroke
+	}
+	
+	.author-name {
+		@include text-h2-size;
+		margin: 0 0 0 0;
+	}
+	
+	.author-school-name {
+		@include text-xsmall;
+		display: block;
+		font-weight: bold;
+	}
+	
+	@include media-query-bp($bp3) {
+		
+		min-height: auto;
+		padding-top: 24px;
+		margin-bottom: 12px;
+		
+		p {
+			margin: 0 0 0 0;
+			padding-top: 0px;
+		}
+		
+		.author-image {
+			position: absolute;
+			left: -82px; // 66 + 16 = 82
+			top: 0px;
+			width: 66px; // add 3 px all around to accomodate for 3px stroke
+		}
+		.author-school-name {
+			display: inline-block;
+		}
+	}
+}
+
+// .post-content
+//         
+//   %p Colonies descended from astronomers, dream of the mind's eye the ash of stellar alchemy, hydrogen atoms? Inconspicuous motes of rock and gas.
+//   %p Dream of the mind's eye the only home we've ever known. Descended from astronomers science rich in mystery? Jean-François Champollion venture a billion trillion shores of the cosmic ocean?
+// 
+//   .post-image
+//     %img{:src => "http://placekitten.com/800/500"}
+// 
+//   %span.timestamp
+//     / %span.icon.icon-clock / need this icon
+//     %span.icon.icon-workshops
+//     %span.short-time
+//       16h
+//     %span.long-time
+//       16 hours ago
+// 
+
+
+.post-content {
+	
+	.post-image {
+		margin-bottom: 10px;
+	}
+	
+	.timestamp {
+		@include text-xsmall;
+		@include text-color-light;
+		
+		.long-time {
+			display: none;
+		}
+		
+		@include media-query-bp($bp3) {
+			.long-time {
+				display: inline-block;
+			}
+			.short-time {
+				display: none;
+			}
+		}
+	}
+	
+	.rating {
+		@include text-xsmall;
+		@include text-color-light;
+		float: right;
+		
+		.icon-star {
+	        position:relative;
+			
+			&.star-lit {
+				color: #fbab20;
+				text-shadow: 0px 1px 1px rgba($textcolorlight, .5);
+			}
+			
+		    &:after {
+		        content: '';
+		        position:absolute;
+		        display:block;
+		        top:0;
+		        left:0;
+		        height:100%;
+		        width:100%;
+		        background: -moz-linear-gradient(	top,  rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 100%);
+		        background: -webkit-linear-gradient(top,  rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 100%);
+		        background: -o-linear-gradient(		top,  rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 100%);
+		        background: -ms-linear-gradient(	top,  rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 100%);
+		        background: linear-gradient(		top,  rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 100%);
+		        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+		    }
+		}
+		
+	}
+	
+}
+
+// .post-comments
+//   %a{:class => "more-comments", :href => "#"} 2 more comments
+//   .comment
+//     .img-circle
+//       %a{:href => "/users/5"}
+//         %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+//     %p 
+//       %span.author-name
+//         %a{:href => "/users/5"} Michael Hfuhruhur
+//       Tunguska event? Venture, gathered by gravity, prime number, Sea of Tranquility the carbon in our apple pies Drake Equation!
+//     %p 
+//       At the edge of forever, science rich in heavy atoms tingling of the spine from which we spring cosmic fugue, inconspicuous motes of rock and gas something incredible is waiting to be known brain is the seed of intelligence another world Orion's sword Cambrian explosion.
+// 
+
+.post-comments {
+	background-color: $sidebarbg;
+	padding: 10px;
+	margin: 0 0 16px 0;
+	
+	.more-comments {
+		// @include text-h2-size;
+		font-weight: bold;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+		margin: 0 0 0 0;
+	
+		&.hidden {
+			display: none;
+		}
+	}
+	
+	.comment {
+		position: relative;
+		min-height: 51px;
+		margin-bottom: 6px;
+		
+		p {
+			margin: 0 0 0 60px;
+			// padding-top: 16px;
+			@include text-small;
+			@include text-color-light;
+			
+			&:first-of-type {
+				padding-top: 16px;
+			}
+			
+			&:last-child {
+				margin-bottom: 0px;
+			}
+		}
+		
+		.author-image {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 51px; // 45 + add 3 px all around to accomodate for 3px stroke
+			float: left;
+		}
+	}
+	
+	@include media-query-bp($bp3) {
+		padding: 20px 20px 20px 20px;
+		
+	}
+	
+	
+}
+
+.comment-form {
+	
+}
+
+
+// END NEWSFEED CONTENT //////////////////////////////////////////////
+
+
 
 
 /*Dylan Temp*/
@@ -404,50 +644,50 @@ nav {
 }
 
 #posts-container {
-  .post {
-    clear: left;
-    margin-top: 1px;
-    margin-bottom: 2em;
-    /*border-bottom: solid;*/
-    padding-bottom: 2em;
+	.post {
+		clear: left;
+		margin-top: 1px;
+		margin-bottom: 2em;
+		/*border-bottom: solid;*/
+		padding-bottom: 2em;
 
-    ul.post-admin {
-      float: right;
-      list-style: none;
-    }
+		h4 {
+			margin-bottom: .2em;
+		}
 
-    h4 {
-      margin-bottom: .2em;
-    }
-  }
+	}
 
-  .comment-link, .like-link {
-    float: left;
-  }
+	.comment-link, .like-link {
+		float: left;
+	}
 
-  .comment-link {
-    position: relative;
-    margin-right: 1.2em;
+	.comment-link {
+		position: relative;
+		margin-right: 1.2em;
 
-    &.open {
-      width: 100%;
-    }
+		&.open {
+			width: 100%;
+		}
 
-    #comment-form {
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
+		#comment-form {
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
 
-      button {
-        float: right;
+			button {
+				float: right;
 
-        &.cancel {
-          margin-left: .4em;
-        }
-      }
-    }
-  }
+				&.cancel {
+					margin-left: .4em;
+				}
+
+			}
+
+		}
+
+	}
+
 }
 
 footer {

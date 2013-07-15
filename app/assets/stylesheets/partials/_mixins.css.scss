@@ -7,9 +7,17 @@
 
 /////////////////////////
 // ADOBE SPECIFIC MIXINS
+@mixin text-h2-size {
+	@include font-size($basefontsize * 1.1875); // 19/16 = 1.1875
+	line-height: 1.25; // 20/16 = 1.25
+	margin-bottom: $baselineheight * 1.1875;
+}
+
 @mixin text-small {
 	@include font-size($basefontsize * .875); // 14/16 = .875
-	line-height: 1.25em; // 20/16 = 1.25
+	// line-height: 1.25em; // 20/16 = 1.25
+	line-height : $baselineheight;
+	margin-bottom: $baselineheight / 1.375;
 }
 
 @mixin text-xsmall {
