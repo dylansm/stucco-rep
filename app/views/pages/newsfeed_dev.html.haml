@@ -32,30 +32,40 @@
   
       .post-image
         %img{:src => "http://placekitten.com/800/500"}
-    
-      %span.timestamp
-        / %span.icon.icon-clock / need this icon
-        %span.icon.icon-workshops
-        %span.short-time
-          16h
-        %span.long-time
-          16 hours ago
       
-      %span.rating
-        %span.icon.icon-star.star-lit
-        %span.icon.icon-star.star-lit
-        %span.icon.icon-star.star-lit
-        %span.icon.icon-star
-        %span.icon.icon-star
+      .post-meta
+      
+        %span.timestamp
+          / %span.icon.icon-clock / need this icon
+          %span.icon.icon-workshops
+          %span.short-time
+            16h
+          %span.long-time
+            16 hours ago
+        
+        %span.like-count 
+          %span.icon.icon-star
+          12 Likes
+        %span.comment-count
+          %span.icon.icon-star
+          2 Comments
+
+  
+        %span.rating
+          %span.icon.icon-star.star-lit
+          %span.icon.icon-star.star-lit
+          %span.icon.icon-star.star-lit
+          %span.icon.icon-star
+          %span.icon.icon-star
   
       
     .post-action  
-      %a{:class => "like-link", "data-remote" => "", :href => "#"}
-        %span.icon.icon-star
-        Likes (12)
       %a{:class => "comment-link", "data-remote" => "", :href => "#"}
         %span.icon.icon-star
-        Comments (2)
+        Comment
+      %a{:class => "like-link liked", "data-remote" => "", :href => "#"}
+        %span.icon.icon-star
+        I Like This
     
     .post-comments
       %a{:class => "more-comments", :href => "#"} 
@@ -126,30 +136,38 @@
   
       / .post-image
       /   %img{:src => "http://placekitten.com/800/500"}
-    
-      %span.timestamp
-        / %span.icon.icon-clock / need this icon
-        %span.icon.icon-workshops
-        %span.short-time
-          16h
-        %span.long-time
-          16 hours ago
+      .post-meta
       
-      / %span.rating
-      /   %span.icon.icon-star.star-lit
-      /   %span.icon.icon-star.star-lit
-      /   %span.icon.icon-star.star-lit
-      /   %span.icon.icon-star
-      /   %span.icon.icon-star
+        %span.timestamp
+          / %span.icon.icon-clock / need this icon
+          %span.icon.icon-workshops
+          %span.short-time
+            16h
+          %span.long-time
+            16 hours ago
+        
+        %span.like-count 
+          %span.icon.icon-star
+          12 Likes
+        %span.comment-count
+          %span.icon.icon-star
+          2 Comments
+      
+        / %span.rating
+        /   %span.icon.icon-star.star-lit
+        /   %span.icon.icon-star.star-lit
+        /   %span.icon.icon-star.star-lit
+        /   %span.icon.icon-star
+        /   %span.icon.icon-star
+        /   
       /   
-    /   
     .post-action  
-      %a{:class => "like-link", "data-remote" => "", :href => "#"}
-        %span.icon.icon-star
-        Like
       %a{:class => "comment-link", "data-remote" => "", :href => "#"}
         %span.icon.icon-star
         Comment
+      %a{:class => "like-link", "data-remote" => "", :href => "#"}
+        %span.icon.icon-star
+        Like
     
     / 
     / .post-comments
