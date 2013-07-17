@@ -104,3 +104,15 @@ $ ->
 
   $('a.menu').click ->
     $('div.pagewrapper').toggleClass('nav-active')
+
+  # $('.post-edit a.edit').click ->
+  #   $(event.currentTarget).parent().toggleClass('edit-active')
+
+  $('.post-edit a.edit').bind 'click', (event) =>
+    $(event.currentTarget).parent().toggleClass('edit-active')
+
+  # $('a.like-link').click ->
+  #   $(event.currentTarget).toggleClass('liked')
+  
+  $('a.like-link').bind 'click', (event) =>
+    $(event.currentTarget).toggleClass('liked')

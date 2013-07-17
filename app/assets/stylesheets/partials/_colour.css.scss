@@ -6,7 +6,8 @@
 a {
 	text-decoration : none;
 	color : $linkcolor;
-
+	@include transition(all, .05s);
+	
 	&:visited {
 		color : $linkcolorvisited;
 	}

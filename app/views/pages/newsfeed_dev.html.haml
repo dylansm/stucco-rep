@@ -1,4 +1,8 @@
 / .rightwrapper.dark
+
+.rightwrapper.dark
+  
+
   
 .rightwrapper
   .post{"data-id" => "30"}
@@ -16,61 +20,54 @@
           %span.university-name
             University of Idaho
         
-    / .edit-post
-    /   %a.dashboard.active
-    /     %span.icon.icon-edit
-    /   %ul.edit-post-options
-    /     %li
-    /       %a{:href => "#"} Delete
-    /     %li
-    /       %a{:href => "#"} Edit
+    .post-edit
+      %a.edit
+        %span.icon.icon-edit
+      .post-edit-options
+        %ul
+          %li
+            %a{:href => "#"} Delete
+          %li
+            %a{:href => "#"} Edit
     
-    .post-content
+    .post-content.editing
             
       %p Colonies descended from astronomers, dream of the mind's eye the ash of stellar alchemy, hydrogen atoms? Inconspicuous motes of rock and gas.
       %p Dream of the mind's eye the only home we've ever known. Descended from astronomers science rich in mystery? Jean-François Champollion venture a billion trillion shores of the cosmic ocean?
   
       .post-image
         %img{:src => "http://placekitten.com/800/500"}
-      
+        %a{:href => "#", :class => "remove-image"}
+          %span.icon.icon-close
+          
       .post-meta
-      
         %span.timestamp
           / %span.icon.icon-clock / need this icon
-          %span.icon.icon-workshops
+          %span.icon.icon-clock
           %span.short-time
             16h
           %span.long-time
             16 hours ago
         
-        %span.like-count 
-          %span.icon.icon-star
-          12 Likes
-        %span.comment-count
-          %span.icon.icon-star
-          2 Comments
-
-  
         %span.rating
           %span.icon.icon-star.star-lit
           %span.icon.icon-star.star-lit
           %span.icon.icon-star.star-lit
           %span.icon.icon-star
           %span.icon.icon-star
-  
       
     .post-action  
       %a{:class => "comment-link", "data-remote" => "", :href => "#"}
-        %span.icon.icon-star
-        Comment
+        %span.icon.icon-comment
+        %span.link-text Comment
       %a{:class => "like-link liked", "data-remote" => "", :href => "#"}
-        %span.icon.icon-star
-        I Like This
+        %span.icon.icon-like
+        %span.link-text Like (12)
     
     .post-comments
-      %a{:class => "more-comments", :href => "#"} 
-        2 more comments
-        %span.icon.icon-star
+      / %a{:class => "more-comments", :href => "#"} 
+      /   2 more comments
+      /   %span.icon.icon-star
       .comment
         .author-image.img-circle
           %a{:href => "/users/5"}
@@ -120,15 +117,16 @@
           %span.icon.icon-star 
           %span.university-name
             University of Idaho
-        
-    / .edit-post
-    /   %a.dashboard.active
+    
+    / .post-edit.edit-active
+    /   %a.edit
     /     %span.icon.icon-edit
-    /   %ul.edit-post-options
-    /     %li
-    /       %a{:href => "#"} Delete
-    /     %li
-    /       %a{:href => "#"} Edit
+    /   .post-edit-options
+    /     %ul
+    /       %li
+    /         %a{:href => "#"} Delete
+    /       %li
+    /         %a{:href => "#"} Edit
     
     .post-content
             
@@ -140,18 +138,18 @@
       
         %span.timestamp
           / %span.icon.icon-clock / need this icon
-          %span.icon.icon-workshops
+          %span.icon.icon-clock
           %span.short-time
             16h
           %span.long-time
             16 hours ago
         
-        %span.like-count 
-          %span.icon.icon-star
-          12 Likes
-        %span.comment-count
-          %span.icon.icon-star
-          2 Comments
+        / %span.like-count 
+        /   %span.icon.icon-star
+        /   12 Likes
+        / %span.comment-count
+        /   %span.icon.icon-star
+        /   2 Comments
       
         / %span.rating
         /   %span.icon.icon-star.star-lit
@@ -163,11 +161,11 @@
       /   
     .post-action  
       %a{:class => "comment-link", "data-remote" => "", :href => "#"}
-        %span.icon.icon-star
-        Comment
+        %span.icon.icon-comment
+        %span.link-text Comment
       %a{:class => "like-link", "data-remote" => "", :href => "#"}
-        %span.icon.icon-star
-        Like
+        %span.icon.icon-like
+        %span.link-text Like
     
     / 
     / .post-comments

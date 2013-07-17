@@ -62,7 +62,10 @@
             %p This is the left column content.
           
         .rightcol
-          .rightwrapper.dark
+      
+          = yield
+            
+          .rightwrapper
             %p This is the right column content.
             / We are temporarily dumping nav into the body while we work out structure and styling in the header.
             This is the temporary login and nav stuff:
@@ -70,9 +73,7 @@
             %p= render "shared/header"
             %p.notice= notice
             %p.alert= alert
-      
-          = yield
-            
+          
           %footer
             %ul
               %li= link_to "Help", "#"

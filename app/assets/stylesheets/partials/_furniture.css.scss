@@ -132,8 +132,11 @@ header {
 	}
 	
 	.program-title {
-		transition: .5s all ease;			
-		-webkit-transition: .5s all ease;
+		
+		@include transition(all, .25s);
+		
+		// transition: .5s all ease;			
+		// -webkit-transition: .5s all ease;
 		
 		padding: 12px 0 0 53px;
 		margin: 0 0 0 0;
@@ -158,8 +161,11 @@ header {
 	}
 	
 	a {
-		transition: .5s all ease;			
-		-webkit-transition: .5s all ease;
+		
+		@include transition(all, .25s);
+		
+		// transition: .5s all ease;			
+		// -webkit-transition: .5s all ease;
 		
 		text-decoration : none;
 		color : $textcolorlight;
@@ -194,8 +200,11 @@ header {
 }
 
 nav {
-	transition: .2s all ease;			
-	-webkit-transition: .2s all ease;
+	
+	@include transition(all, .25s);
+	
+	// transition: .2s all ease;			
+	// -webkit-transition: .2s all ease;
 	background-color: $white;
 	
 	float: left;
@@ -214,8 +223,9 @@ nav {
 		padding: 0 0 0 0;
 		
 		li {
-			transition: .2s all ease;			
-			-webkit-transition: .2s all ease;
+			@include transition(all, .2s);
+			// transition: .2s all ease;			
+			// -webkit-transition: .2s all ease;
 			margin: 0 0 0 0;
 			padding: 0 0 0 0;
 			list-style: none;
@@ -225,8 +235,9 @@ nav {
 	}
 	
 	a {
-		transition: .2s all ease;			
-		-webkit-transition: .2s all ease;
+		@include transition(all, .2s);
+		// transition: .2s all ease;
+		// -webkit-transition: .2s all ease;
 		// text-decoration : none;
 		display: inline-block;
 		color : $textcolorlight;
@@ -314,8 +325,12 @@ nav {
 
 .content {
 	
-	transition: .2s all ease;			
-	-webkit-transition: .2s all ease;
+	// @include transition($property: all, $duration: $transitionduration, $ms: false)
+	
+	@include transition(all);
+	
+	// transition: .2s all ease;			
+	// -webkit-transition: .2s all ease;
 	position: absolute;
 	// float: left;
 	width: 100%;
@@ -393,7 +408,7 @@ nav {
 		border-bottom: 1px solid #E7E7E7;
 		
 		// set the max width of child elements 
-		div {
+		* {
 			max-width: 530px;
 		}
 	}
@@ -414,11 +429,16 @@ nav {
 // NEWSFEED CONTENT //////////////////////////////////////////////
 
 .post {
+	position: relative;
 	background-color: $white;
 	// padding: 10px 10px 0px 10px;
 	
 	p {
 		margin-top: 0;
+	}
+	
+	&:last-child {
+		// margin-bottom: 0px;
 	}
 	
 	@include media-query-bp($bp3) {
@@ -452,6 +472,7 @@ nav {
 	
 	.author-school-name {
 		@include text-xsmall;
+		@include text-color-light;
 		display: block;
 		font-weight: bold;
 	}
@@ -460,7 +481,7 @@ nav {
 		
 		min-height: auto;
 		padding: 0px 0px 0px 0px;
-		padding-top: 24px;
+		padding-top: 18px;
 		margin-bottom: 12px;
 		
 		p {
@@ -475,21 +496,165 @@ nav {
 			width: 66px; // add 3 px all around to accomodate for 3px stroke
 		}
 		.author-school-name {
-			display: inline-block;
+			// display: inline-block;
 		}
 	}
 }
 
+
+// .post-edit
+//   %a.edit.active
+//     %span.icon.icon-edit
+//   .post-edit-options
+//     %ul
+//       %li
+//         %a{:href => "#"} Delete
+//       %li
+//         %a{:href => "#"} Edit
+
+.post-edit {
+	
+	position: absolute;
+	top: 18px;
+	right: 10px;
+	
+	@include media-query-bp($bp3) {
+		right: 0px;
+	}
+	
+	a.edit {
+		cursor: pointer;
+		font-size: 24px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		
+		&:hover {
+			text-decoration: none;
+			span.icon-edit:before {
+				content: "\5d";
+			}
+		}
+	}
+	
+	.post-edit-options {
+		
+		// hide until the active class is added
+		display: none;
+		
+		position: relative;
+		top: 44px;
+		right: 0px;
+		background-color: $white;
+		border: 1px solid $lightneutralcolor;
+		padding: 20px;
+		
+		// creates the arrow at the top of the box
+		&:after { 
+			pointer-events: none;
+			content: " "; 
+			display: block; 
+			width: 0; 
+			height: 0;
+			border-top:    10px solid transparent;
+			border-left:   10px solid transparent;
+			border-right:  10px solid transparent;
+			border-bottom: 10px solid white;
+			position: absolute;
+			top: -20px;
+			right: 1px;
+			margin-top: 1px; 
+			z-index: 2; 
+		}	
+		
+		&:before { 
+			pointer-events: none;
+			content: " "; 
+			display: block; 
+			width: 0; 
+			height: 0;
+			border-top:    10px solid transparent;
+			border-left:   10px solid transparent;
+			border-right:  10px solid transparent;
+			border-bottom: 10px solid $lightneutralcolor;
+			position: absolute;
+			top: -20px;
+			right: 1px;
+			// margin-top: -50px; 
+			margin-left: 0px;
+			z-index: 1; 
+		}	
+
+		ul {
+			margin: 0 0 0 0;
+			padding: 0 0 0 0;
+			
+			li {
+				@include text-small;
+				margin: 0 0 10px 0;
+				padding: 0 0 0 0;
+				
+				line-height: 1em;
+				list-style: none;
+				&:last-child {
+					margin-bottom: 0px;
+				}
+			}
+		}
+	}
+	
+	&.edit-active {
+		a.edit {
+			span.icon-edit:before {
+				content: "\5d";
+			}
+		}
+		
+		.post-edit-options {
+			display: block;
+		}
+		
+	}
+	
+}
+
 .post-content {
 	
-	padding: 0px 10px 10px 10px;
+	padding: 0px 10px 15px 10px;
 	
 	@include media-query-bp($bp3) {
 		padding: 0 0 20px 0;
 	}
 	
 	.post-image {
-		margin-bottom: 10px;
+		position: relative;
+		margin-bottom: 15px;
+		
+		.remove-image {
+			background-color: $white;
+			border-radius : 50%;
+			@include box-shadow(0px 0px 8px rgba(0,0,0,.25));
+			padding: 3px;
+			display: none;
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			font-size: 36px;
+			color: $warningcolor;
+			
+			&:hover {
+				text-decoration: none;
+				color: lighten($warningcolor, 5%);
+				// darken($tertiarycolor, 5%);
+			}
+		}
+	}
+	
+	&.editing {
+		.remove-image {
+			display: block;
+		}
+		
 	}
 	
 	.post-meta {
@@ -564,9 +729,10 @@ nav {
 
 .post-action {
 	@include clearfix;
-	margin-bottom: 10px;
+	// margin-bottom: 10px;
 	
 	a {
+		
 		display: block;
 		width: 50%;
 		float: left;
@@ -578,11 +744,34 @@ nav {
 		margin-bottom: 0px;
 		text-align: center;
 		
-		.icon {
-			color: $textcolorlight;
-			position:relative;
+		&:hover {
+			text-decoration: none;
+			.link-text {
+				text-decoration: underline;
+			}
 			
+			.icon {
+				color: inherit;
+			}
+		}	
+		
+		
+		span {
+			
+			&.icon {
+				@include transition(all, .05s);
+				color: $textcolorlight;
+				padding-right: 5px;
+				margin-top: 2px;
+				display: inline-block;
+				vertical-align: top;
+			}
+
+			&.link-text {
+
+			}
 		}
+		
 		
 		&.liked {
 			.icon {
@@ -607,6 +796,7 @@ nav {
 				
 			}
 		}
+		
 		&:last-child {
 			border-left: 1px solid $lightneutralcolor;
 		}
@@ -640,7 +830,7 @@ nav {
 .post-comments {
 	background-color: $sidebarbg;
 	padding: 10px;
-	margin: 0px 10px 16px 10px;
+	margin: 10px 10px 16px 10px;
 	
 	@include media-query-bp($bp3) {
 		margin: 10px 0px 16px 0px;
