@@ -134,9 +134,11 @@ $ ->
   
   $('a.mobile-new-post-toggle').bind 'click', (event) =>
     $('.new-post').toggleClass('mobile-new-post-active')
-    
-  # mobile-new-post-toggle  
-    
+  
+  # new-post-cancel
+  $('.new-post-cancel').bind 'click', (event) =>
+    $('.new-post').removeClass('mobile-new-post-active')
+  
     
     
 

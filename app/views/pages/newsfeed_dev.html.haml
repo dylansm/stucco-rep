@@ -29,7 +29,9 @@
         %a{:class => "video-upload-link", :href => "#"}
           %span.icon.icon-video
           %span.link-text Embed Video
-      %input.btn.btn-primary.new-post-submit{:type => "submit", :value => "Post"}
+      .new-post-action
+        %input.btn.new-post-cancel{:type => "reset", :value => "Cancel"}
+        %input.btn.btn-primary.new-post-submit{:type => "submit", :value => "Post"}
     
 
   
@@ -60,14 +62,16 @@
             %a{:href => "#"} Edit
     
     .post-content.editing
-            
-      %p Colonies descended from astronomers, dream of the mind's eye the ash of stellar alchemy, hydrogen atoms? Inconspicuous motes of rock and gas.
-      %p Dream of the mind's eye the only home we've ever known. Descended from astronomers science rich in mystery? Jean-François Champollion venture a billion trillion shores of the cosmic ocean?
+      
+      .text-wrapper
+        %p Colonies descended from astronomers, dream of the mind's eye the ash of stellar alchemy, hydrogen atoms? Inconspicuous motes of rock and gas.
+        %p Dream of the mind's eye the only home we've ever known. Descended from astronomers science rich in mystery? Jean-François Champollion venture a billion trillion shores of the cosmic ocean?
   
       .post-image
         %img{:src => "http://placekitten.com/800/500"}
-        %a{:href => "#", :class => "remove-image"}
-          %span.icon.icon-close
+        %a.btn.btn-small.btn-primary{:href => "#", :class => "remove-image"} 
+          Delete
+          / %span.icon.icon-close
           
       .post-meta
         %span.timestamp
@@ -158,8 +162,10 @@
     /         %a{:href => "#"} Edit
     
     .post-content
-            
-      %p Descended from astronomers science rich in mystery? Jean-François Champollion venture a billion trillion shores of the cosmic ocean?
+      
+      .text-wrapper
+      
+        %p Descended from astronomers science rich in mystery? Jean-François Champollion venture a billion trillion shores of the cosmic ocean?
   
       / .post-image
       /   %img{:src => "http://placekitten.com/800/500"}

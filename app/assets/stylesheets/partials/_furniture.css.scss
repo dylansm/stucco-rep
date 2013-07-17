@@ -463,8 +463,9 @@ nav {
 .new-post {
 	
 	@include clearfix;
-	padding-top: 40px;
-	padding-bottom: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	@include transition(all);
 	
 	form {
 		overflow: hidden;
@@ -482,6 +483,8 @@ nav {
 	@include media-query-bp($bp3) {
 		&.dark {
 			background-color: $secondarycolor;
+			padding-top: 40px;
+			padding-bottom: 40px;
 		}
 		
 		form {
@@ -530,6 +533,8 @@ nav {
 	
 	&.mobile-new-post-active {
 		background-color: $secondarycolor;
+		padding-top: 40px;
+		padding-bottom: 40px;
 		
 		form {
 			height: auto;
@@ -630,9 +635,22 @@ nav {
 				}
 			}
 		}
-
-		.new-post-submit {
+		
+		.new-post-action {
 			float: right;
+		}
+		
+		.new-post-cancel {
+			// float: right;
+			// display: inline-block;
+			// width: auto;
+			
+			border-color: lighten($secondarycolor,20%);
+			border-bottom-color : lighten($secondarycolor,10%)
+			
+		}
+		.new-post-submit {
+			// float: right;
 		}
 	
 	}
@@ -840,26 +858,30 @@ nav {
 		margin-bottom: 15px;
 		
 		.remove-image {
-			background-color: $white;
-			border-radius : 50%;
-			@include box-shadow(0px 0px 8px rgba(0,0,0,.25));
-			padding: 3px;
-			display: none;
+			// background-color: $white;
+			// border-radius : 50%;
+			// @include box-shadow(0px 0px 8px rgba(0,0,0,.25));
+			// padding: 3px;
+			// display: none;
 			position: absolute;
-			top: -10px;
-			right: -10px;
-			font-size: 36px;
-			color: $warningcolor;
-			
-			&:hover {
-				text-decoration: none;
-				color: lighten($warningcolor, 5%);
-				// darken($tertiarycolor, 5%);
-			}
+			top: 10px;
+			right: 10px;
+			// font-size: 36px;
+			// color: $warningcolor;
+			// 
+			// &:hover {
+			// 	text-decoration: none;
+			// 	color: lighten($warningcolor, 5%);
+			// 	// darken($tertiarycolor, 5%);
+			// }
 		}
 	}
 	
 	&.editing {
+		
+		.text-wrapper {
+			display: none;
+		}
 		.remove-image {
 			display: block;
 		}
