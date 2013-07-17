@@ -1,7 +1,30 @@
 / .rightwrapper.dark
 
-.rightwrapper.dark
-  
+.rightwrapper.dark.new-post
+  %form
+    %textarea.new-post-text{:placeholder => "Write a new post…"}
+    .secondary-inputs.choose-video
+      .photo-video-upload
+        / %input.new-post-photo#file{:name => "file", :type => "file"}
+        .photo-upload{:style => "overflow: hidden"}
+          / %button.btn.btn-primary.choose-photo Choose Photo
+          / %span.input-wrapper
+          /   %input{:type => "text"}/
+          %div{:style => "float: left;"}
+            %button.btn.btn-primary.choose-photo Choose Photo
+          %div{:style => "overflow: hidden"}
+            %input{:disabled => "", :type => "text", :placeholder => "Browse to an image…"}
+        %input.new-post-video-url{:type => "text", :placeholder => "Enter YouTube or Vimeo URL…"}
+    .new-post-buttons
+      .photo-video-toggle  
+        %a{:class => "photo-upload-link", :href => "#"}
+          %span.icon.icon-photo
+          %span.link-text Upload Photo
+        %a{:class => "video-upload-link", :href => "#"}
+          %span.icon.icon-video
+          %span.link-text Embed Video
+      %input.btn.btn-primary.new-post-submit{:type => "submit", :value => "Post"}
+    
 
   
 .rightwrapper

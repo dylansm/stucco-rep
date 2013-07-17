@@ -36,8 +36,8 @@ a {
 }
 
 ::selection {
-	background-color : lighten($primarycolor, 65%);
-	color : $primarycolor;
+	background-color : lighten($primarycolor, 25%);
+	color : $textcolorlight;
 	text-shadow : none;
 }
 

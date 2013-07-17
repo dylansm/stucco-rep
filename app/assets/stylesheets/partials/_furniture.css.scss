@@ -428,6 +428,134 @@ nav {
 
 // NEWSFEED CONTENT //////////////////////////////////////////////
 
+// .rightwrapper.dark.new-post
+//   %form
+//     %textarea.new-post-text{:placeholder => "Write a new post…"}
+//     .secondary-inputs
+//       .photo-video-upload
+//         / %input.new-post-photo#file{:name => "file", :type => "file"}
+//         .photo-upload{:style => "overflow: hidden"}
+//           / %button.btn.btn-primary.choose-photo Choose Photo
+//           / %span.input-wrapper
+//           /   %input{:type => "text"}/
+//           %div{:style => "float: left;"}
+//             %button.btn.btn-primary.choose-photo Choose Photo
+//           %div{:style => "overflow: hidden"}
+//             %input{:disabled => "", :type => "text", :placeholder => "Browse to an image…"}
+//         %input.new-post-video-url{:type => "text", :placeholder => "Enter YouTube or Vimeo URL…"}
+//     .photo-video-toggle  
+//       %a{:class => "photo-upload-link", :href => "#"}
+//         %span.icon.icon-photo
+//         %span.link-text Upload Photo
+//       %a{:class => "video-upload-link", :href => "#"}
+//         %span.icon.icon-video
+//         %span.link-text Embed Video
+//       %input.btn.btn-primary{:type => "submit", :value => "Post"}
+
+
+// styles for post composer are here
+.new-post {
+	
+	padding-top: 40px;
+	padding-bottom: 40px;
+	@include clearfix;
+	
+	.secondary-inputs {
+		@include transition(all);
+		position: relative;
+		overflow: hidden;
+		height: 0px;
+		@include clearfix;
+		
+		.photo-video-upload {
+			@include transition(all);
+			position: absolute;
+			top: 0px;
+			overflow: hidden;
+			width: 100%;
+			max-height: 100px;
+			height: 100px;
+		}
+		
+		&.choose-photo {
+			height: 43px;
+			.photo-video-upload {
+				top: 0px;
+			}
+		}
+		&.choose-video {
+			height: 43px;
+			.photo-video-upload {
+				top: -43px;
+			}
+		}
+	}
+	
+    .new-post-buttons {
+		padding: 10px 0px 20px 0px;
+		.photo-video-toggle {
+
+			float: left;
+			margin-top: 3px;
+			a {
+				color: $white;
+
+				&.photo-upload-link {
+					padding-top: 10px;
+				}
+				&.video-upload-link {
+
+				}
+
+				&:hover {
+					color: $primarycolor;
+					text-decoration: none;
+				}
+			}
+
+			.icon {
+				display: inline-block;
+				vertical-align: top;
+				font-size: 28px;
+				margin-top: 0px;
+				margin-right: 5px;
+			}
+
+			.link-text {
+				display: inline-block;
+				max-width: 0px;
+				overflow: hidden;
+				margin-top: 5px;
+			}
+
+			@include media-query-bp($bp5) {
+				.link-text {
+					max-width: 350px;
+				}
+
+				a {
+					padding: 0px 20px 0px 0px;
+				}
+			}
+		}
+
+		.new-post-submit {
+			float: right;
+		}
+	
+	}
+	
+}
+
+
+
+
+
+
+
+
+// styles for each individual post are south of here
+
 .post {
 	position: relative;
 	background-color: $white;
@@ -500,17 +628,6 @@ nav {
 		}
 	}
 }
-
-
-// .post-edit
-//   %a.edit.active
-//     %span.icon.icon-edit
-//   .post-edit-options
-//     %ul
-//       %li
-//         %a{:href => "#"} Delete
-//       %li
-//         %a{:href => "#"} Edit
 
 .post-edit {
 	
@@ -729,7 +846,6 @@ nav {
 
 .post-action {
 	@include clearfix;
-	// margin-bottom: 10px;
 	
 	a {
 		
