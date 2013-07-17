@@ -71,9 +71,9 @@ URL: http://stuffandnonsense.co.uk/projects/rock-hammer/
 // @import "partials/nav/navigation-left-nav-flyout";
 // @import "partials/nav/navigation-responsive-nav";
 
-// Styles for the Rock Hammer examples page
+// Styles for site layout and content are here
 @import "partials/furniture";
-
+@import "partials/content-posts";
 @media print {
 	@import "partials/print"; }
 
