@@ -89,7 +89,7 @@ input[type="tel"] {
 	padding : $forminputpadding;
 	@include font-size(14); // 14/16 = .875
 	line-height : $baselineheight;
-	color : inherit;
+	color : $textcolor;
 	border-radius : $forminputborderradius;
 	vertical-align : middle;
 }
@@ -242,7 +242,7 @@ textarea[disabled],
 input[readonly],
 select[readonly],
 textarea[readonly] {
-	opacity : .25;
+	opacity : .90;
 }
 
 // actions

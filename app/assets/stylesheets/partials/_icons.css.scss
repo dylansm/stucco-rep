@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-workshops, .icon-video, .icon-twitter, .icon-star, .icon-rating, .icon-plus, .icon-photo, .icon-newsfeed, .icon-menu, .icon-mail, .icon-instagram, .icon-fb, .icon-edit, .icon-edit-hover, .icon-dashboard, .icon-close, .icon-behance, .icon-attendees, .icon-logout, .icon-profile, .icon-share {
+.icon-workshops, .icon-video, .icon-twitter, .icon-star, .icon-rating, .icon-plus, .icon-photo, .icon-newsfeed, .icon-menu, .icon-mail, .icon-instagram, .icon-fb, .icon-edit, .icon-edit-hover, .icon-dashboard, .icon-close, .icon-behance, .icon-attendees, .icon-logout, .icon-profile, .icon-share, .icon-like, .icon-more, .icon-expand, .icon-contract, .icon-comment, .icon-clock, .icon-box-3-plus, .icon-box-2, .icon-box-1 {
 	font-family: 'Adobe-CAP-Icon-Set';
 	speak: none;
 	font-style: normal;
@@ -99,6 +99,33 @@ you can use the generic selector below, but it's slower:
 }
 .icon-share:before {
 	content: "\5e";
+}
+.icon-like:before {
+	content: "\4c";
+}
+.icon-more:before {
+	content: "\2c";
+}
+.icon-expand:before {
+	content: "\23";
+}
+.icon-contract:before {
+	content: "\2d";
+}
+.icon-comment:before {
+	content: "\43";
+}
+.icon-clock:before {
+	content: "\3e";
+}
+.icon-box-3-plus:before {
+	content: "\2b";
+}
+.icon-box-2:before {
+	content: "\3d";
+}
+.icon-box-1:before {
+	content: "\b1";
 }
 
 
