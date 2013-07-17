@@ -1,9 +1,15 @@
 / .rightwrapper.dark
 
 .rightwrapper.dark.new-post
+  
+  %a{:class => "mobile-new-post-toggle", :href => "#"}
+    %span.icon.icon-box-1
+    %span.link-text New Post
+    
+
   %form
     %textarea.new-post-text{:placeholder => "Write a new post…"}
-    .secondary-inputs.choose-video
+    .secondary-inputs
       .photo-video-upload
         / %input.new-post-photo#file{:name => "file", :type => "file"}
         .photo-upload{:style => "overflow: hidden"}

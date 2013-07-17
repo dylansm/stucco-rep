@@ -429,6 +429,12 @@ nav {
 // NEWSFEED CONTENT //////////////////////////////////////////////
 
 // .rightwrapper.dark.new-post
+// 
+//   .mobile-new-post-toggle
+//     %a{:class => "photo-upload-link", :href => "#"}
+//       %span.icon.icon-box-1
+//       %span.link-text New Post
+//   
 //   %form
 //     %textarea.new-post-text{:placeholder => "Write a new post…"}
 //     .secondary-inputs
@@ -456,19 +462,99 @@ nav {
 // styles for post composer are here
 .new-post {
 	
+	@include clearfix;
 	padding-top: 40px;
 	padding-bottom: 40px;
-	@include clearfix;
 	
+	form {
+		overflow: hidden;
+		height: 0px;
+		margin-bottom: 0;
+		padding: 0px 20px 0px 20px;
+	}
+	
+	// had to override the .dark to level up on specificity
+	// to be able to change the bg color for the New Post Button
+	&.dark {
+		background-color: $tertiarycolor;
+	}
+	
+	@include media-query-bp($bp3) {
+		&.dark {
+			background-color: $secondarycolor;
+		}
+		
+		form {
+			height: auto;
+			padding: 0px 0px 0px 0px;
+		}
+	}
+	
+	.mobile-new-post-toggle {
+		position: relative;
+		display: block;
+		// padding-bottom: 40px;
+		text-align: center;
+		overflow: hidden;
+		// height: 70px;
+		@include transition(all);
+		
+		.icon {
+			// padding-top: 10px;
+			display: inline-block;
+			vertical-align: top;
+			font-size: 28px;
+			// margin-top: 0px;
+			margin-right: 5px;
+		}
+		
+		.link-text {
+			@include text-h2-size;
+			display: inline-block;
+			max-width: 350px;
+			overflow: hidden;
+			margin-top: 2px;
+			margin-bottom: 0px;
+			
+		}
+		&:hover {
+			// color: $primarycolor;
+			text-decoration: none;
+		}
+		
+		
+		@include media-query-bp($bp3) {
+			height: 0px;
+		}
+	}
+	
+	&.mobile-new-post-active {
+		background-color: $secondarycolor;
+		
+		form {
+			height: auto;
+		}
+		
+		.mobile-new-post-toggle {
+			height: 0px;
+			padding: 0px 0px 0px 0px;
+		}
+	}
+	
+	
+	// all inside the form tag
 	.secondary-inputs {
 		@include transition(all);
+		@include opacity(0);
 		position: relative;
 		overflow: hidden;
 		height: 0px;
 		@include clearfix;
 		
+		
 		.photo-video-upload {
 			@include transition(all);
+			@include transitionDelay(.25s);
 			position: absolute;
 			top: 0px;
 			overflow: hidden;
@@ -479,12 +565,16 @@ nav {
 		
 		&.choose-photo {
 			height: 43px;
+			@include opacity(1);
+			
 			.photo-video-upload {
 				top: 0px;
 			}
 		}
 		&.choose-video {
 			height: 43px;
+			@include opacity(1);
+			
 			.photo-video-upload {
 				top: -43px;
 			}
@@ -499,14 +589,16 @@ nav {
 			margin-top: 3px;
 			a {
 				color: $white;
-
+				white-space: nowrap;
+				
 				&.photo-upload-link {
 					padding-top: 10px;
 				}
 				&.video-upload-link {
 
 				}
-
+				
+				&.selected,
 				&:hover {
 					color: $primarycolor;
 					text-decoration: none;
@@ -528,11 +620,11 @@ nav {
 				margin-top: 5px;
 			}
 
-			@include media-query-bp($bp5) {
+			@include media-query-bp($bp4) {
 				.link-text {
 					max-width: 350px;
 				}
-
+			
 				a {
 					padding: 0px 20px 0px 0px;
 				}

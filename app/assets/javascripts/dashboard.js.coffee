@@ -116,3 +116,27 @@ $ ->
   
   $('a.like-link').bind 'click', (event) =>
     $(event.currentTarget).toggleClass('liked')
+  
+  # new post js
+  $('a.photo-upload-link').bind 'click', (event) =>
+    $('a.photo-upload-link').toggleClass('selected')
+    $('a.video-upload-link').removeClass('selected')
+    
+    $('.secondary-inputs').removeClass('choose-video')
+    $('.secondary-inputs').toggleClass('choose-photo')
+    
+  $('a.video-upload-link').bind 'click', (event) =>
+    $('a.video-upload-link').toggleClass('selected')
+    $('a.photo-upload-link').removeClass('selected')
+    
+    $('.secondary-inputs').removeClass('choose-photo')
+    $('.secondary-inputs').toggleClass('choose-video')
+  
+  $('a.mobile-new-post-toggle').bind 'click', (event) =>
+    $('.new-post').toggleClass('mobile-new-post-active')
+    
+  # mobile-new-post-toggle  
+    
+    
+    
+
