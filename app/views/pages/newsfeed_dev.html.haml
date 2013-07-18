@@ -1,11 +1,6 @@
 / .rightwrapper.dark
 
 .rightwrapper.dark.new-post
-  
-  %a{:class => "mobile-new-post-toggle", :href => "#"}
-    %span.icon.icon-box-1
-    %span.link-text New Post
-    
 
   %form
     %textarea.new-post-text{:placeholder => "Write a new post…"}
@@ -33,6 +28,10 @@
         %input.btn.new-post-cancel{:type => "reset", :value => "Cancel"}
         %input.btn.btn-primary.new-post-submit{:type => "submit", :value => "Post"}
     
+  %a{:class => "mobile-new-post-toggle", :href => "#"}
+    %span.icon.icon-box-1
+    %span.link-text New Post
+
 
   
 .rightwrapper
