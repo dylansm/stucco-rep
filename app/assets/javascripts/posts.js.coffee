@@ -120,13 +120,15 @@ CFB.Posts = class Posts
 
   edit_post: (e, id) ->
     if @edit_id
-      return
+      if @edit_id == id
+        return
+      @cancel_edit_post(e)
     @edit_id = id
     e.preventDefault()
     $post = $(e.target).closest("div.post")
     $post_content = $(".post-content", $post)
     $post_content.addClass("editing")
-    $text_wrap = $("div:first", $post_content)
+    $text_wrap = $("div:first p", $post_content)
 
     #TODO remove this
     $text_wrap.hide()
@@ -170,7 +172,9 @@ CFB.Posts = class Posts
 
 
   html_safe: (text) ->
-    text = text.replace(/\n/, "<br/></br>")
+    # line breaks
+    text = text.replace(/\n/, "</p><p>")
+    # links
     url_re = /(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g
     url_match = text.match(url_re)
     _.each(url_match, (url) ->
@@ -181,9 +185,7 @@ CFB.Posts = class Posts
         full_url = "http://#{url}"
 
       anchor_re = new RegExp("[^/>']#{url}", 'g')
-
       text = text.replace(anchor_re, " <a href='#{full_url}' target='_blank'>#{url}</a>")
-      console.log text
     )
 
     text

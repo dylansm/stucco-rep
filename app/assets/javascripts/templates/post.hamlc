@@ -11,7 +11,8 @@
   %h4
     %a{ href:"/users/#{@user_id}" }= @name
   .post-content
-    %div!= @text
+    %div
+      %p!= @text
     .post-image
       - if @img_med_2x
         %img{ src: @img_med, alt: "Post image", srcset: "#{@img_med_2x} 2x" }
