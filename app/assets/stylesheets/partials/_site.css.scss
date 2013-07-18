@@ -23,6 +23,11 @@
 	width : device-width;
 }
 
+* {
+	// -webkit-backface-visibility: hidden;
+	// @include translate3d ();
+}
+
 html {
 	background : $bodycolor;
 	// background : $maincontentbg;
