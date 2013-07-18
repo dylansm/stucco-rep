@@ -171,25 +171,19 @@ CFB.Posts = class Posts
 
   html_safe: (text) ->
     text = text.replace(/\n/, "<br/></br>")
-    url_regex = /(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g
-    url_match = text.match(url_regex)
-    _.each(url_match, (u) ->
-      console.log u
-      url = u
-      protocol_regex = /^http:\/\//
-      if protocol_regex.test(url)
+    url_re = /(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g
+    url_match = text.match(url_re)
+    _.each(url_match, (url) ->
+      protocol_re = /^http:\/\//
+      if protocol_re.test(url)
         full_url = url
       else
         full_url = "http://#{url}"
-      text = text.replace(url, "<a href='#{full_url}' target='_blank'>#{url}</a>")
+
+      anchor_re = new RegExp("[^/>']#{url}", 'g')
+
+      text = text.replace(anchor_re, " <a href='#{full_url}' target='_blank'>#{url}</a>")
+      console.log text
     )
-    #if url_match
-      #url = url_match[0]
-      #protocol_regex = /^http:\/\//
-      #if protocol_regex.test(url)
-        #full_url = url
-      #else
-        #full_url = "http://#{url}"
-      #text = text.replace(url, "<a href='#{full_url}' target='_blank'>#{url}</a>")
 
     text
