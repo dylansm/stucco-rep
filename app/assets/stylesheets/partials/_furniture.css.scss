@@ -23,9 +23,8 @@
 
 .pagewrapper {
 	position: relative;
-	
 	margin: 0 auto;
-	
+	overflow: hidden;
 	// this toggles the nav in from the right side of the page
 	&.nav-active {
 		nav {
@@ -61,6 +60,11 @@
 				border-bottom: 1px solid $lightneutralcolor;
 				
 			}
+			
+			.width-limiter {
+				height: 58px;
+			}
+			
 
 			.content {
 				// float: left;
@@ -314,6 +318,15 @@ nav {
 			right: 0px;
 		}
 		
+		.width-limiter {
+			@include transition(all);
+			@include clearfix;
+			max-width: $bp6;
+			position: relative;
+			height: 0px;
+			overflow: hidden;
+		}
+		
 		ul {
 			float: right;
 			li {
@@ -357,8 +370,8 @@ nav {
 	
 	// transition: .2s all ease;			
 	// -webkit-transition: .2s all ease;
-	position: absolute;
-	// float: left;
+	// position: absolute;
+	float: left;
 	width: 100%;
 	background-color: $sidebarbg;
 	

@@ -2,44 +2,61 @@
 .new-post {
 	
 	@include clearfix;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	// padding-top: 0px;
+	// padding-bottom: 0px;
+	padding: 0 0 0 0;
 	@include transition(all);
+	// @include transitionDelay(.25s);
+	
 	
 	form {
+		display: block;
 		overflow: hidden;
-		height: 0px;
+		// height:0;
+		max-height: 0px;
 		margin-bottom: 0;
 		padding: 0px 20px 0px 20px;
+		@include transition(all);
+		// @include transitionDelay(.5s);
+		// @include translate3d (0, -150%);
+		// @include opacity (0%);
+		@include translate3d ();
+		
 	}
 	
 	// had to override the .dark to level up on specificity
 	// to be able to change the bg color for the New Post Button
 	&.dark {
-		background-color: $tertiarycolor;
+		// background-color: $tertiarycolor;
 	}
 	
 	@include media-query-bp($bp3) {
-		&.dark {
-			background-color: $secondarycolor;
-			padding-top: 40px;
-			padding-bottom: 40px;
-		}
+		
+		padding: 40px 20px 40px 60px;
 		
 		form {
-			height: auto;
+			// height: auto;
+			max-height: 200px;
 			padding: 0px 0px 0px 0px;
+			// padding: 40px 20px 40px 60px;
+			
 		}
+		
 	}
 	
 	.mobile-new-post-toggle {
 		position: relative;
 		display: block;
-		// padding-bottom: 40px;
+		padding: 20px;
 		text-align: center;
 		overflow: hidden;
-		// height: 70px;
+		max-height: 70px;
+		background-color: $tertiarycolor;
+		
 		@include transition(all);
+		@include transitionDelay(.25s);
+		@include translate3d ();
+		
 		
 		.icon {
 			// padding-top: 10px;
@@ -66,21 +83,39 @@
 		
 		
 		@include media-query-bp($bp3) {
-			height: 0px;
+			// max-height: 0px;
+			display: none;
 		}
 	}
 	
 	&.mobile-new-post-active {
-		background-color: $secondarycolor;
-		padding-top: 40px;
-		padding-bottom: 40px;
+		// background-color: $secondarycolor;
+		// padding-top: 40px;
+		// padding-bottom: 40px;
+		// @include transitionDelay(0s);
 		
 		form {
-			height: auto;
+			padding-top: 40px;
+			padding-bottom: 40px;
+			// padding: 40px 20px 40px 60px;
+			
+			// height:auto;
+			max-height: 250px;
+			// @include opacity (100%);
+			// @include translate3d (0, 0%);
+			@include media-query-bp($bp3) {
+				padding-top: 0px;
+				padding-bottom: 0px;
+			}
 		}
 		
 		.mobile-new-post-toggle {
-			height: 0px;
+			
+			max-height: 0px;
+			// @include opacity (0);
+			// @include translate3d (0, 50%);
+			// @include transitionDelay(.5s);
+			
 			padding: 0px 0px 0px 0px;
 		}
 	}
