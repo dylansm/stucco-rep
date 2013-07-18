@@ -54,7 +54,7 @@
 		background-color: $tertiarycolor;
 		
 		@include transition(all);
-		@include transitionDelay(.25s);
+		// @include transitionDelay(.25s);
 		@include translate3d ();
 		
 		
