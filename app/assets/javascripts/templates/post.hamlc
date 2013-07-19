@@ -6,12 +6,19 @@
       %li
         %a{ href: "#", :"data-remote" => "true" }Delete
 
-  .avatar-med.img-circle
-    %img{ src: "#{@avatar_url}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
-  %h4
-    %a{ href:"/users/#{@user_id}" }= @name
+  .post-author
+    .author-image.img-circle
+      %img{ src: "#{@avatar_url}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
+    %p
+      %span.author-name
+        %a{ href:"/users/#{@user_id}" }= @name
+      - if @school_name
+        %span.author-school-name
+          %span.icon.icon-pin
+          %span.university-name= @school_name
   .post-content
-    %div!= @text
+    %div
+      %p!= @text
     .post-image
       - if @img_med_2x
         %img{ src: @img_med, alt: "Post image", srcset: "#{@img_med_2x} 2x" }

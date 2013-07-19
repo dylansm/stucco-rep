@@ -65,6 +65,7 @@ CFB.Posts = class Posts
 
   add_posts: (data) ->
     posts_data = data.posts
+    #console.log posts_data
     tmpl = JST["post"]
     posts = ''
     _.each(posts_data, (post) =>
@@ -97,6 +98,7 @@ CFB.Posts = class Posts
       id: post.id
       user_id: post.user.id
       name: post.user.name
+      school_name: post.user.school.name if post.user.school
       avatar_url: post.user.avatar_url
       text: @html_safe(post.text)
       comments: post.comments
@@ -120,13 +122,15 @@ CFB.Posts = class Posts
 
   edit_post: (e, id) ->
     if @edit_id
-      return
+      if @edit_id == id
+        return
+      @cancel_edit_post()
     @edit_id = id
     e.preventDefault()
     $post = $(e.target).closest("div.post")
     $post_content = $(".post-content", $post)
     $post_content.addClass("editing")
-    $text_wrap = $("div:first", $post_content)
+    $text_wrap = $("div:first p", $post_content)
 
     #TODO remove this
     $text_wrap.hide()
@@ -134,30 +138,35 @@ CFB.Posts = class Posts
     $new_textarea = $("#post_text").clone()
     $new_textarea.addClass("edit-mode")
     $new_textarea.text($text_wrap.text())
-    @init_edit_cancel($post)
+    @init_edit_cancel($post_content)
     $text_wrap.after($new_textarea)
 
-  init_edit_cancel: ($post) ->
-    $cancel_link = $("#cancel-edit-link")
+  init_edit_cancel: ($post_content) ->
+    $cancel_link = $("#cancel-edit")
     if $cancel_link.length > 0
       return if $post.contains($cancel_link)
     else
-      cancel_tmpl = JST["cancel_edit_post"]()
-      $post.prepend(cancel_tmpl)
+      edit_tmpl = JST["edit_post_ui"]()
+      $post_content.append(edit_tmpl)
 
-    $cancel_link = $("a#cancel-edit-link", $post)
+    $cancel_link = $("button#cancel-edit", $post_content)
     if CFB.touch
       $cancel_link.bind("touchstart", (e) => @cancel_edit_post(e))
     else
       $cancel_link.click (e) => @cancel_edit_post(e)
 
-  cancel_edit_post: (e) ->
-    e.preventDefault()
+  cancel_edit_post: (e=null) ->
     @edit_id = null
-    $post = $(e.target).closest("div.post")
+    if e
+      e.preventDefault()
+      $post = $(e.target).closest("div.post")
+      $cancel_el = $(e.target)
+    else
+      $post = $(".post-content.editing").parent()
+      $cancel_el = $("#cancel-edit")
+    $cancel_el.parent().detach()
     $post_content = $(".post-content", $post)
     $post_content.removeClass("editing")
-    $(e.target).detach()
     $(".edit-mode", $post).each ->
       $(this).detach()
 
@@ -170,7 +179,9 @@ CFB.Posts = class Posts
 
 
   html_safe: (text) ->
-    text = text.replace(/\n/, "<br/></br>")
+    # line breaks
+    text = text.replace(/\n/, "</p><p>")
+    # links
     url_re = /(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g
     url_match = text.match(url_re)
     _.each(url_match, (url) ->
@@ -181,9 +192,7 @@ CFB.Posts = class Posts
         full_url = "http://#{url}"
 
       anchor_re = new RegExp("[^/>']#{url}", 'g')
-
       text = text.replace(anchor_re, " <a href='#{full_url}' target='_blank'>#{url}</a>")
-      console.log text
     )
 
     text

@@ -1,12 +1,14 @@
 - title t("page_titles.newsfeed")
 - attributes({ :"data-user-id" => "#{current_user.id}" })
 
-%h2 Newsfeed
+.rightwrapper
 
-= render "newsfeed/shared/post_form"
+  %h2 Newsfeed
 
-#posts-container{ :"data-pages" => @num_pages }
+  = render "newsfeed/shared/post_form"
 
-%a#more-posts= t('links.load_more_posts')
+  #posts-container{ :"data-pages" => @num_pages }
 
-= render "dashboard/admin/admin_tools"
+  %a#more-posts= t('links.load_more_posts')
+
+  = render "dashboard/admin/admin_tools"
