@@ -1,11 +1,4 @@
 .post{ data-id: "#{@id}" }
-  - if @post_author
-    %ul.post-admin
-      %li
-        %a{ href: "#", :"data-remote" => "true" }Edit
-      %li
-        %a{ href: "#", :"data-remote" => "true" }Delete
-
   .post-author
     .author-image.img-circle
       %img{ src: "#{@avatar_url}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
@@ -16,13 +9,26 @@
         %span.author-school-name
           %span.icon.icon-pin
           %span.university-name= @school_name
+
+  - if @post_author
+    .post-edit
+      %a.edit{ :"data-remote" => "true", href: "#" }
+        %span.icon.icon-edit
+      .post-edit-options
+        %ul
+          %li
+            %a{ href: "#", :"data-remote" => "true" }Edit
+          %li
+            %a{ href: "#", :"data-remote" => "true" }Delete
+
   .post-content
-    %div
+    %div.text-wrapper
       %p!= @text
     .post-image
       - if @img_med_2x
         %img{ src: @img_med, alt: "Post image", srcset: "#{@img_med_2x} 2x" }
-    != JST["#{@video_type}"](video_id: "#{@video_id}") if @video_type
+    .post-video
+      != JST["#{@video_type}"](video_id: "#{@video_id}") if @video_type
 
   .comments-container
     - for comment in @comments

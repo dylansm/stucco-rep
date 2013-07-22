@@ -401,7 +401,8 @@
 		}
 	}
 	
-	&.edit-active {
+	/*&.edit-active {*/
+	&.non-modal {
 		a.edit {
 			span.icon-edit:before {
 				content: "\5d";
@@ -450,13 +451,12 @@
 	
 	&.editing {
 		
-		.text-wrapper {
+		.text-wrapper, .post-video {
 			display: none;
 		}
 		.remove-image {
 			display: block;
 		}
-		
 	}
 	
 	.post-meta {
