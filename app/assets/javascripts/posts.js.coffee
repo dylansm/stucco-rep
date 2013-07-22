@@ -31,22 +31,41 @@ CFB.Posts = class Posts
     if id
       $post_admin = $("div.post[data-id=['#{id}']")
     else
-      $post_admin = $("div.post ul.post-admin")
+      #$post_admin = $("div.post ul.post-admin")
+      $post_admin = $("div.post div.post-edit")
 
     $post_admin.each ->
       if id
         post_id = id
       else
         post_id = $(this).parent().attr("data-id")
+      $editor_wrap = $("a.edit", this)
       $edit = $("li:first a", this)
       $delete = $("li:last a", this)
 
       if CFB.touch
-        $edit.bind("touchstart", (e) -> _this.edit_post(e, post_id))
-        $delete.bind("touchstart", (e) -> _this.delete_post(e, post_id))
+        $editor_wrap.bind("touchstart", (e) ->
+          e.preventDefault()
+          #$(this).parent().toggleClass('edit-active')
+          $(this).parent().toggleClass('non-modal')
+          CFB.Utils.non_modal_ui()
+        )
+        $edit.bind("touchstart", (e) ->
+          _this.edit_post(e, post_id))
+        $delete.bind("touchstart", (e) ->
+          _this.delete_post(e, post_id))
       else
-        $edit.click (e) -> _this.edit_post(e, post_id)
-        $delete.click (e) -> _this.delete_post(e, post_id)
+        #$editor_wrap.click -> $(this).parent().toggleClass('edit-active')
+        $editor_wrap.click ->
+          $(this).parent().toggleClass('non-modal')
+          CFB.Utils.non_modal_ui()
+
+        $edit.click (e) ->
+          $editor_wrap.parent().removeClass("non-modal")
+          _this.edit_post(e, post_id)
+        $delete.click (e) ->
+          $editor_wrap.parent().removeClass("non-modal")
+          _this.delete_post(e, post_id)
 
   fetch_posts: ->
     $.ajax
@@ -100,7 +119,7 @@ CFB.Posts = class Posts
       name: post.user.name
       school_name: post.user.school.name if post.user.school
       avatar_url: post.user.avatar_url
-      text: @html_safe(post.text)
+      text: CFB.Utils.html(post.text)
       comments: post.comments
       video_type: post.video_type
       video_id: post.video_id
@@ -130,14 +149,14 @@ CFB.Posts = class Posts
     $post = $(e.target).closest("div.post")
     $post_content = $(".post-content", $post)
     $post_content.addClass("editing")
-    $text_wrap = $("div:first p", $post_content)
-
-    #TODO remove this
-    $text_wrap.hide()
-
+    $text_wrap = $("div:first", $post_content)
     $new_textarea = $("#post_text").clone()
     $new_textarea.addClass("edit-mode")
-    $new_textarea.text($text_wrap.text())
+    $new_textarea.text($("p", $text_wrap).text())
+    window.setTimeout ->
+      $new_textarea.height($new_textarea[0].scrollHeight)
+    , 1
+
     @init_edit_cancel($post_content)
     $text_wrap.after($new_textarea)
 
@@ -154,6 +173,9 @@ CFB.Posts = class Posts
       $cancel_link.bind("touchstart", (e) => @cancel_edit_post(e))
     else
       $cancel_link.click (e) => @cancel_edit_post(e)
+  
+  init_update: ->
+    $update_el
 
   cancel_edit_post: (e=null) ->
     @edit_id = null
@@ -170,29 +192,13 @@ CFB.Posts = class Posts
     $(".edit-mode", $post).each ->
       $(this).detach()
 
-    #TODO remove this
-    $(":hidden", $post).show()
-
   delete_post: (e, id) ->
     e.preventDefault()
     $post = $(e.target).closest("div.post")
+    console.log $post
 
+  update_post: (e, id) ->
+    e.preventDefault()
+    $post = $(e.target).closest("div.post")
+    console.log $post
 
-  html_safe: (text) ->
-    # line breaks
-    text = text.replace(/\n/, "</p><p>")
-    # links
-    url_re = /(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g
-    url_match = text.match(url_re)
-    _.each(url_match, (url) ->
-      protocol_re = /^http:\/\//
-      if protocol_re.test(url)
-        full_url = url
-      else
-        full_url = "http://#{url}"
-
-      anchor_re = new RegExp("[^/>']#{url}", 'g')
-      text = text.replace(anchor_re, " <a href='#{full_url}' target='_blank'>#{url}</a>")
-    )
-
-    text
