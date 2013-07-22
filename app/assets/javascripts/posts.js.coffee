@@ -29,9 +29,8 @@ CFB.Posts = class Posts
   init_edit_events: (id=null) ->
     _this = @
     if id
-      $post_admin = $("div.post[data-id=['#{id}']")
+      $post_admin = $("div.post[data-id='#{id}'] div.post-edit")
     else
-      #$post_admin = $("div.post ul.post-admin")
       $post_admin = $("div.post div.post-edit")
 
     $post_admin.each ->
@@ -46,7 +45,6 @@ CFB.Posts = class Posts
       if CFB.touch
         $editor_wrap.bind("touchstart", (e) ->
           e.preventDefault()
-          #$(this).parent().toggleClass('edit-active')
           $(this).parent().toggleClass('non-modal')
           CFB.Utils.non_modal_ui()
         )
@@ -55,8 +53,8 @@ CFB.Posts = class Posts
         $delete.bind("touchstart", (e) ->
           _this.delete_post(e, post_id))
       else
-        #$editor_wrap.click -> $(this).parent().toggleClass('edit-active')
         $editor_wrap.click ->
+          console.log "clicken"
           $(this).parent().toggleClass('non-modal')
           CFB.Utils.non_modal_ui()
 
@@ -169,10 +167,13 @@ CFB.Posts = class Posts
       $post_content.append(edit_tmpl)
 
     $cancel_link = $("button#cancel-edit", $post_content)
+    $update_link = $("button#edit-submit", $post_content)
     if CFB.touch
       $cancel_link.bind("touchstart", (e) => @cancel_edit_post(e))
+      $update_link.bind("touchstart", (e) => @update_post(e))
     else
       $cancel_link.click (e) => @cancel_edit_post(e)
+      $update_link.click (e) => @update_post(e)
   
   init_update: ->
     $update_el
@@ -195,10 +196,40 @@ CFB.Posts = class Posts
   delete_post: (e, id) ->
     e.preventDefault()
     $post = $(e.target).closest("div.post")
-    console.log $post
+    delete_confirm = "Are you sure you want to delete this post?"
+    if confirm delete_confirm
+      $.ajax
+        url: "/newsfeed/posts/#{id}",
+        type: 'post',
+        dataType: 'json',
+        data: {"_method": "delete"},
+        success: (data, textStatus, xhr) =>
+          @remove_post($post)
+        error: (response) ->
+          console.log response
 
-  update_post: (e, id) ->
+  remove_post: ($post) ->
+    $post.fadeOut 'slow', ->
+      $post.detach()
+
+  update_post: (e) ->
     e.preventDefault()
     $post = $(e.target).closest("div.post")
-    console.log $post
-
+    id = parseInt $post.attr("data-id"), 10
+    text = $("textarea:first", ".post[data-id='#{id}']").val()
+    post_json = { utf8: "✓", _method: 'patch', post: { text: text } }
+    $.ajax
+      url: "newsfeed/posts/#{id}",
+      type: 'post',
+      datatype: 'json',
+      data: post_json,
+      success: (data, textstatus, xhr) =>
+        @render_updated_post($post, id, data)
+      error: (response) ->
+        console.log response
+      
+  render_updated_post: ($post, id, data) ->
+    @cancel_edit_post()
+    template = @build_post data.post
+    $post.replaceWith(template)
+    @init_edit_events(id)

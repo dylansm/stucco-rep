@@ -24,11 +24,12 @@
   .post-content
     %div.text-wrapper
       %p!= @text
-    .post-image
-      - if @img_med_2x
+    - if @img_med_2x
+      .post-image
         %img{ src: @img_med, alt: "Post image", srcset: "#{@img_med_2x} 2x" }
-    .post-video
-      != JST["#{@video_type}"](video_id: "#{@video_id}") if @video_type
+    - if @video_id
+      .post-video
+        != JST["#{@video_type}"](video_id: "#{@video_id}") if @video_type
 
   .comments-container
     - for comment in @comments

@@ -27,6 +27,23 @@ class Newsfeed::PostsController < ApplicationController
     end
   end
 
+  # POST AJAX update
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(permitted_params)
+      render json: @post, serializer: PostSerializer
+    else
+      render json: { updated: false, message: "Something went horribly wrong."}
+    end
+  end
+
+  # DELETE AJAX
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    render json: { deleted: true }
+  end
+
   # POST AJAX create like
   def likes
     params.merge!({ user_id: current_user.id })
