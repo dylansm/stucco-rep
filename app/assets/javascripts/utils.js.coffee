@@ -10,7 +10,7 @@ CFB.Utils = class Utils
 
 CFB.Utils.html = (text) ->
   # line breaks
-  text = text.replace(/\n\r/g, "</p><p>")
+  text = text.replace(/\n(\n|\r)/g, "</p><p>")
   # links
   url_re = /(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g
   url_match = text.match(url_re)
