@@ -140,6 +140,7 @@ $ ->
     $('.new-post').removeClass('mobile-new-post-active')
   
   $(".post-video").fitVids();
-    
+  
+  $('textarea').autosize({append: "\n"})  
     
 
