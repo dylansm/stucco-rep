@@ -54,7 +54,6 @@ CFB.Posts = class Posts
           _this.delete_post(e, post_id))
       else
         $editor_wrap.click ->
-          console.log "clicken"
           $(this).parent().toggleClass('non-modal')
           CFB.Utils.non_modal_ui()
 
