@@ -111,7 +111,14 @@ textarea {
 
 textarea {
 	height : auto;
-	resize-x : none;
+	// resize-x : none;
+	max-height: 200px;
+	resize: none;
+	
+	@include media-query-bp($bp3) {
+		max-height: none;
+	}
+	
 }
 
 textarea,
@@ -185,8 +192,6 @@ input,
 textarea {
 	@include placeholder($formplaceholdercolor);
 	@include transition(height, .1s);
-	max-height: 200px;
-	
 }
 
 // radio / checkbox

@@ -1602,8 +1602,9 @@
         = succeed "," do
           %code btn-small
         %code btn-large
-        and
         %code btn-extlarge
+        and
+        %code btn-full-width
         classes alters the presentation.
     / l-summary
     .l-content
@@ -1613,6 +1614,8 @@
         %button.btn{:type => "button"} Normal
         %button.btn.btn-large{:type => "button"} Large
         %button.btn.btn-extlarge{:type => "button"} ExtLarge
+      %p
+        %button.btn.btn-full-width{:type => "button"} Full-width
     / l-content
   / l-wrap
 

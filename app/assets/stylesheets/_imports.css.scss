@@ -74,6 +74,8 @@ URL: http://stuffandnonsense.co.uk/projects/rock-hammer/
 // Styles for site layout and content are here
 @import "partials/furniture";
 @import "partials/content-posts";
+@import "partials/content-student-info";
+
 @media print {
 	@import "partials/print"; }
 
