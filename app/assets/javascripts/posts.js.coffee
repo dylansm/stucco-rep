@@ -28,6 +28,7 @@ CFB.Posts = class Posts
 
   init_edit_events: (id=null) ->
     _this = @
+    $(".post-video").fitVids();
     if id
       $post_admin = $("div.post[data-id='#{id}'] div.post-edit")
     else
@@ -147,17 +148,34 @@ CFB.Posts = class Posts
     $post_content = $(".post-content", $post)
     $post_content.addClass("editing")
     $text_wrap = $("div:first", $post_content)
-    $new_textarea = $("#post_text").clone()
-    $new_textarea.addClass("edit-mode")
-    $new_textarea.text($("p", $text_wrap).text())
-    window.setTimeout ->
-      $new_textarea.height($new_textarea[0].scrollHeight)
-    , 1
+    text = $("p", $text_wrap).text()
+    #$new_textarea = $("#post_text").clone()
+    #$new_textarea.addClass("edit-mode")
+    #$new_textarea.text($("p", $text_wrap).text())
 
-    @init_edit_cancel($post_content)
-    $text_wrap.after($new_textarea)
+    #window.setTimeout ->
+      #$new_textarea.height($new_textarea[0].scrollHeight)
+    #, 1
 
-  init_edit_cancel: ($post_content) ->
+    @init_cancel_update($post_content)
+
+    #$text_wrap.after($new_textarea)
+
+    edit_tmpl = JST["edit_post"](text: text)
+    $text_wrap.after(edit_tmpl)
+
+
+    #$text_wrap.after($new_textarea)
+
+    #new_video_url_field = document.createElement("input")
+    #new_video_url_field.setAttribute("type", "text")
+    #new_video_url_field.setAttribute("id", "edit-url")
+    #new_vid_label = document.createElement("label")
+    #new_vid_label.text("Video URL")
+    #$new_textarea.after($(new_vid_label))
+    #$new_vid_label.append($(new_video_url_field))
+
+  init_cancel_update: ($post_content) ->
     $cancel_link = $("#cancel-edit")
     if $cancel_link.length > 0
       return if $post.contains($cancel_link)
@@ -174,9 +192,6 @@ CFB.Posts = class Posts
       $cancel_link.click (e) => @cancel_edit_post(e)
       $update_link.click (e) => @update_post(e)
   
-  init_update: ->
-    $update_el
-
   cancel_edit_post: (e=null) ->
     @edit_id = null
     if e
@@ -186,7 +201,8 @@ CFB.Posts = class Posts
     else
       $post = $(".post-content.editing").parent()
       $cancel_el = $("#cancel-edit")
-    $cancel_el.parent().detach()
+    #$cancel_el.parent().detach()
+    $("#edit-post-form").detach()
     $post_content = $(".post-content", $post)
     $post_content.removeClass("editing")
     $(".edit-mode", $post).each ->

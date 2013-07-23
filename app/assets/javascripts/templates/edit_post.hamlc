@@ -1,0 +1,4 @@
+#edit-post-form
+  %textarea
+  %label{ for: "edit_video_url" }
+  %input{ type: "text", id: "edit_video_url" }
