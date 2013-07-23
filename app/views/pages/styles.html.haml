@@ -1550,16 +1550,13 @@
   .l-wrap
     .l-summary
       %h3 Segmented Buttons
-      / %p
-      /   Stacked tabs are marked up using
-      /   %code ‹ul›
-      /   tags with additional
-      /   = succeed "," do
-      /     %code nav
-      /   %code nav-tabs
-      /   and
-      /   %code nav-stacked
-      /   classes.
+      %p
+        To create a group of buttons, they must be nested inside a
+        %code ‹ul class="btn-segmented"›
+        The selected button is highlighted by modifying the list item with an
+        %code active
+        class.  
+        %code ‹li class="active"›
     / l-summary
     .l-content
       / http://twitter.github.com/bootstrap/components.html#navs
@@ -1573,6 +1570,25 @@
     / l-content
   / l-wrap
   / Next
+
+  .l-wrap
+    .l-summary
+      %h3 More Content button
+      %p
+        An additional
+        %code btn-more-content
+        class alters the presentation. The text is wrapped in a 
+        %code ‹span class="more-content-text"›
+        and the down arrow icon is wrapped in a 
+        %code ‹span class="icon icon-more"›
+        
+    / l-summary
+    .l-content
+      %p
+        %a.btn.btn-more-content{:href => "#"}
+          %span.more-content-text
+            More Posts
+          %span.icon.icon-more
 
 
 
