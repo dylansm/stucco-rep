@@ -139,6 +139,7 @@ $ ->
   $('.new-post-cancel').bind 'click', (event) =>
     $('.new-post').removeClass('mobile-new-post-active')
   
+  $(".post-video").fitVids();
     
     
 
