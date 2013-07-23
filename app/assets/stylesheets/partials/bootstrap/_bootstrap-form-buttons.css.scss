@@ -257,6 +257,25 @@
 /*btn.btn-toolbar*/
 
 
+// CUSTOM BUTTONS
+// %a.btn.btn-more-content{:href => "#"}
+//   %span.more-content-text
+//     More Posts
+//   %span.icon.icon-more
+
+.btn-more-content {
+	display: block;
+	
+	span {
+		display: inline-block;
+		vertical-align: text-top;
+		
+		&.icon {
+			padding-top: 3px;
+		}
+	}
+}
+	
 
 ul.btn-segmented {
 	display : inline-block;
