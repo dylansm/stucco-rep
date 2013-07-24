@@ -51,6 +51,9 @@ Adoberep::Application.routes.draw do
 
   get 'pages/styles' => 'pages#styles'
   get 'pages/newsfeed-dev' => 'pages#newsfeed_dev'
+  get 'pages/member-directory' => 'pages#member_directory'
+  get 'pages/student-profile' => 'pages#student_profile'
+  
   root 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

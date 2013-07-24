@@ -110,7 +110,8 @@ header {
 	
 	.rightheader {
 		float: right;
-		font-size: 1.1875em;
+		// font-size: 1.1875em;
+		@include text-h2-size;
 		margin: 15px 0px 0px 0px;
 		
 		.icon {
@@ -247,10 +248,11 @@ nav {
 			@include transition(all, .2s);
 			// transition: .2s all ease;			
 			// -webkit-transition: .2s all ease;
+			@include text-h2-size;
 			margin: 0 0 0 0;
 			padding: 0 0 0 0;
 			list-style: none;
-			font-size: 1.1875em; //19/16 = 1.1875
+			// font-size: 1.1875em; //19/16 = 1.1875
 			
 		}
 	}
@@ -419,19 +421,48 @@ nav {
 	}
 }
 
+.profile-banner {
+	
+	.student-profile & {
+		height: 90px;
+		background-image: image_url("profile-bg.jpg");
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-size: cover;
+
+		@include media-query-bp($bp3) {
+			height: 120px;
+		}
+	}
+}
+
 // inner left and right column units of content. 
 // contains padding, margins, borders
 .leftwrapper {
-	padding: 20px 60px 20px 40px;
+	word-wrap: break-word;
+	
+	padding: 20px 20px 20px 20px;
 	border-top: 1px solid $tertiarycolor;
 	border-bottom: 1px solid $lightneutralcolor;
 	
 	&:first-child {
 		border-top: none;
 	}
+	
+	@include media-query-bp($bp4) {
+		padding: 30px 30px 30px 30px;
+	}
 }
 
 .rightwrapper {
+	
+	.student-profile & {
+		
+		@include media-query-bp($bp3, "max") {
+			padding: 0;
+		}
+	}
+	
 	
 	padding: 10px 10px 10px 10px;
 	// border-bottom: 1px solid #E7E7E7;
@@ -446,7 +477,7 @@ nav {
 
 	
 	@include media-query-bp($bp3) {
-		padding: 20px 20px 20px 60px;
+		padding: 20px 20px 20px 20px;
 		border-top: none;
 		border-bottom: 1px solid #E7E7E7;
 		
@@ -457,7 +488,7 @@ nav {
 	}
 	
 	@include media-query-bp($bp4) {
-		// padding: 20px 130px 20px 60px;
+		padding: 20px 20px 20px 60px;
 	}
 	
 	&.dark {
