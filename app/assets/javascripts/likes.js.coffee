@@ -18,11 +18,11 @@ CFB.Likes = class Likes
 
   init_like: (link) ->
     _this = @
-    post_id = $(link).parent().attr("data-id")
+    post_id = $(link).closest(".post").attr("data-id")
     if CFB.touch
-      $("a", link).on("touchstart", (e) -> _this.toggle_like(e, post_id))
+      $(link).on("touchstart", (e) -> _this.toggle_like(e, post_id))
     else
-      $("a", link).on("click", (e) -> _this.toggle_like(e, post_id))
+      $(link).on("click", (e) -> _this.toggle_like(e, post_id))
 
   toggle_like: (e, post_id) ->
     like_json = { post_id: post_id }
@@ -39,7 +39,7 @@ CFB.Likes = class Likes
   update_like_link: (post_id, likes)->
     num_likes = likes.length
     $post = $(".post[data-id='#{post_id}']")
-    $link = $(".like-link a", $post)
+    $link = $(".like-link", $post)
     if num_likes > 0
       user_ids = _.pluck(likes, 'user_id')
       if _.contains(user_ids, @user_id)

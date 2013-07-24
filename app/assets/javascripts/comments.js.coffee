@@ -6,7 +6,7 @@ CFB.Comments = class Comments
   
   init_events: ->
     _this = @
-    $(".comment-link").each ->
+    $("a.comment-link").each ->
       _this.init_comment_link(this)
   
   init_latest_post: ->
@@ -15,11 +15,11 @@ CFB.Comments = class Comments
 
   init_comment_link: (link) ->
     _this = @
-    post_id = $(link).parent().attr("data-id")
+    post_id = $(link).closest(".post").attr("data-id")
     if CFB.touch
-      $("a", link).on("touchstart", (e) -> _this.swap_comment_link(e, link.parentNode, post_id))
+      $(link).on("touchstart", (e) -> _this.swap_comment_link(e, this, post_id))
     else
-      $("a", link).on("click", (e) -> _this.swap_comment_link(e, link.parentNode, post_id))
+      $(link).on("click", (e) -> _this.swap_comment_link(e, this, post_id))
         
   swap_comment_link: (e, link, post_id) ->
     e.preventDefault()
@@ -39,14 +39,19 @@ CFB.Comments = class Comments
     _this = @
     if CFB.touch
       $("button.submit", @$comment_form).on("touchstart", -> _this.submit_comment(this.parentNode))
-      $("button.cancel", @$comment_form).on("touchstart", -> _this.remove_form(this.parentNode))
+      $("button.cancel", @$comment_form).on("touchstart", -> _this.remove_form())
     else
       $("button.submit", @$comment_form).on("click", -> _this.submit_comment(this.parentNode))
-      $("button.cancel", @$comment_form).on("click", -> _this.remove_form(this.parentNode))
+      $("button.cancel", @$comment_form).on("click", -> _this.remove_form())
 
-  remove_form: (comment_form) ->
-    $(comment_form.parentNode).removeClass("open")
-    $(comment_form).remove()
+  remove_form: ->
+    #$("#comment-form").closest(".comment-link.open").removeClass("open")
+    $test = $("#comment-form").closest(".comment-link.open")
+    $("#comment-form").detach()
+    $test.removeClass("open")
+
+    #$(comment_form.parentNode).removeClass("open")
+    #$(comment_form).remove()
 
   submit_comment: (comment_form) ->
     if $("#comment-text", comment_form).val() == ""
