@@ -36,7 +36,7 @@
 	
 	@include media-query-bp($bp3) {
 		
-		padding: 40px 20px 40px 60px;
+		padding: 40px 20px 40px 20px;
 		
 		form {
 			// height: auto;
@@ -46,6 +46,10 @@
 			
 		}
 		
+	}
+	
+	@include media-query-bp($bp4) {
+		padding: 40px 20px 40px 60px;
 	}
 	
 	.mobile-new-post-toggle {
@@ -278,6 +282,7 @@
 	
 	.author-name {
 		@include text-h2-size;
+		font-weight: bold;
 		margin: 0 5px 0 0;
 	}
 	
@@ -289,6 +294,21 @@
 	}
 	
 	@include media-query-bp($bp3) {
+		
+		p {
+			margin: 0 0 0 50px;
+			padding-top: 6px;
+		}
+		
+		.author-image {
+			position: absolute;
+			left: -5px;
+			top: 5px;
+			width: 56px; // add 3 px all around to accomodate for 3px stroke
+		}
+	}
+	
+	@include media-query-bp($bp4) {
 		
 		min-height: auto;
 		padding: 0px 0px 0px 0px;

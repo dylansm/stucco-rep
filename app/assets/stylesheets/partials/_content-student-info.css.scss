@@ -1,0 +1,324 @@
+// .leftwrapper
+//   
+//   .student-info
+//   
+//     .student-info-primary
+//       .student-image.img-circle
+//         %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+//       %p
+//         %span.student-name
+//           %a{:href => "/users/5"} Michael Hfuhruhurr
+//         %span.student-school-name 
+//           / %span.icon.icon-marker / need this icon
+//           %span.icon.icon-pin
+//           %span.university-name
+//             University of Idaho
+//         %a.edit-profile{:href => "/"} Edit Profile
+//       
+//     .student-info-secondary
+//       %p.student-bio
+//         Plus sized hand model. Actually, that's a lie. I do know how to hypnotize a chicken though. Honest.
+//       %p.student-portfolio-link
+//         %a{:href => "/"} www.whoisowenjones.com
+//       %p.bio-links
+//         %a{:href => "/"} 
+//           %span.icon.icon-fb
+//         %a{:href => "/"} 
+//           %span.icon.icon-twitter
+//         %a{:href => "/"} 
+//           %span.icon.icon-instagram
+//         %a{:href => "/"} 
+//           %span.icon.icon-behance
+//         %a{:href => "/"} 
+//           %span.icon.icon-mail
+//       %h2.student-points
+//         %span.total 2346
+//         %span.pts pts
+
+// $bp2 : 480px 	30em
+// $bp3 : 600px 	37.5em
+// $bp4 : 768px 	48em
+// $bp5 : 992px 	62em
+// $bp6 : 1382px	86.375em
+
+
+// These styles modify the student-info layout for the member directory
+// they're called from the bp2 & bp4 media queries at the bottom
+@mixin directory-entry-styles() {
+	
+	.student-info-primary {
+		@include span-columns(7);
+		margin-bottom: 0;
+	}
+
+	.student-info-secondary {
+		@include span-columns(5);
+		text-align: right;
+	
+		.bio-links {
+			margin: 10px 0 0 0;
+			
+			.icon {
+				font-size: 1.875em; // 30/16 = 1.875
+				margin: 0 0px 0px 0;
+			}
+		}
+	}
+}
+
+
+
+.student-info {
+	@include outer-container;
+	
+	.student-info-primary {
+		position: relative;
+		margin-bottom: 10px;
+		@include clearfix;
+		
+		.student-image {
+			width: 86px;
+			margin-bottom: 10px;
+			margin-left: -5px;
+		}
+
+		p {
+			// @include omega();
+			margin: 0 0 0 0;
+		}
+
+
+		@include media-query-bp($bp5) {
+			.student-image {
+				position: absolute;
+			}
+
+			p {
+				padding: 15px 0px 0px 0px;
+				margin: 0px 0px 10px 90px;
+			}
+		}
+
+		.student-name {
+			@include text-h2-size;
+			font-weight: bold;
+			display: block;
+			margin: 0 0 0 0;
+		}
+
+		.student-school-name {
+			@include text-small;
+			@include text-color-light;
+			display: block;
+			font-weight: bold;
+			margin: 0 0 0 0;
+		}
+
+		.edit-profile {
+			@include text-small;
+			display: block;
+			margin: 0 0 0 0;
+		}
+	}
+
+	.student-info-secondary {
+		margin: 0 0 0 0;
+
+		.student-bio {
+			@include text-small;
+			@include text-color-light;
+			margin: 0 0 0px 0;
+		}
+
+		.student-portfolio-link {
+			@include text-small;
+			margin: 0 0 10px 0;
+		}
+
+		.bio-links {
+			margin: 0 0 10px 0;
+			display: inline-block;
+
+			.icon {
+				font-size: 1.875em; // 30/16 = 1.875
+				display: inline-block;
+			}
+		}
+
+		.student-points {
+			@include text-color-light;
+			font-weight: lighter;
+			margin: 0 0 0 0;
+
+		    .total {
+				font-size: 2.5em; // 40/16 = 2.5
+				line-height: 1em;
+			}
+		}
+	}
+	
+	.student-profile & {
+		
+		// @include media-query-bp($bp3) {	
+			margin-top: 0px;
+			padding-top: 0px;
+
+			.student-info-primary {
+
+				.student-image {
+					width: 146px;
+					position: absolute;
+					top: -106px;
+				}
+
+				p {
+					margin: 50px 0 0 0;
+				}
+
+				.student-name {
+					@include text-h1-size;
+					margin: 0 0 0 0;
+				}
+
+				.student-school-name {
+					@include text-normal;
+					margin: 0 0 0 0;
+				}
+
+				.edit-profile {
+					display: none;
+				}
+			}
+		// }
+	}
+	
+	
+	.student-profile .rightwrapper & {
+		padding: 20px;
+		background-color: $white;
+		
+		.student-info-primary {
+			
+			.student-image {
+				width: 76px;
+				position: absolute;
+				top: -56px;
+			}
+			
+			p {
+				margin: 30px 0 0 0;
+			}
+			.student-name {
+				@include text-h2-size;
+				margin: 0 0 0 0;
+			}
+			.student-school-name {
+				@include text-small;
+				margin: 0 0 0 0;
+			}
+		}
+		
+		.student-info-secondary {
+			.bio-links {
+				.icon {
+					font-size: 2.8125em; // 45/16 = 2.8125
+					margin: 0 10px 10px 0;
+				}
+			}
+		}
+		
+		
+		// display: none;
+		
+		@include media-query-bp($bp3) {	
+			display: none;
+		}
+	}
+	
+
+
+	// when student-info is nested in the member-directory...
+	.member-directory & {
+		padding: 10px;
+		
+		.student-info-primary {
+			position: relative;
+			margin-bottom: 10px;
+			@include clearfix;
+			
+			.student-image {
+				position: absolute;
+			}
+
+			p {
+				padding: 20px 0px 0px 0px;
+				margin: 0px 0px 10px 90px;
+				min-height: 86px;
+			}
+		}
+		
+		.student-info-secondary {
+			
+			.student-bio {
+				@include text-small;
+				@include text-color-light;
+				margin: 0 0 0px 0;
+			}
+			
+			.student-portfolio-link {
+				margin: 0 0 10px 0;
+			}
+			
+			.bio-links {
+				
+				.icon {
+					font-size: 2.8125em; // 45/16 = 2.8125
+					margin: 0 10px 10px 0;
+				}
+			}
+		}
+		
+		// Need the same styles called from mq 2 and 4 but not 3
+		@include media-query-bp($bp2) {
+			@include media-query-bp($bp3, "max") {
+				@include directory-entry-styles;
+			}
+		}
+		@include media-query-bp($bp4) {
+			@include directory-entry-styles;
+		}
+		
+		@include media-query-bp($bp5) {
+			.student-info-primary {
+				.student-image {
+					width: 126px;
+				}
+
+				p {
+					padding: 40px 0px 0px 0px;
+					margin: 0px 0px 0px 140px;
+					min-height: 126px;
+				}
+			}
+
+			.student-info-secondary {
+				.bio-links {
+					margin: 20px 0 0 0;
+					.icon {
+						margin: 0 0px 10px 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+

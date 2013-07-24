@@ -26,6 +26,12 @@ class PagesController < ApplicationController
   def newsfeed_dev
   end
 
+  def member_directory
+  end
+
+  def student_profile
+  end
+
   private
 
   def user

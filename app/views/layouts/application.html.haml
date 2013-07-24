@@ -57,12 +57,14 @@
                   \ Logout
         
       .content
+        / .content.student-profile
+        
+        .profile-banner
+        
         .leftcol
           
-          .leftwrapper
-            = render partial: "shared/left_column"
+          = render partial: "shared/left_column"
 
-          
         .rightcol
       
           = yield
