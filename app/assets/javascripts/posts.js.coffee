@@ -120,6 +120,7 @@ CFB.Posts = class Posts
       text: CFB.Utils.html(post.text)
       comments: post.comments
       video_type: post.video_type
+      video_url: post.video_url if post.video_url
       video_id: post.video_id
 
     if post.post_image_urls
@@ -148,37 +149,22 @@ CFB.Posts = class Posts
     $post_content = $(".post-content", $post)
     $post_content.addClass("editing")
     $text_wrap = $("div:first", $post_content)
-    text = $("p", $text_wrap).text()
-    #$new_textarea = $("#post_text").clone()
-    #$new_textarea.addClass("edit-mode")
-    #$new_textarea.text($("p", $text_wrap).text())
+    #text = $("p", $text_wrap).text()
+    text = ''
+    $("p", $text_wrap).each ->
+      text += $(this).text() + "\n\n"
+    video_url = $post.attr("data-video-url")
+    @init_cancel_update($post, $post_content)
 
-    #window.setTimeout ->
-      #$new_textarea.height($new_textarea[0].scrollHeight)
-    #, 1
-
-    @init_cancel_update($post_content)
-
-    #$text_wrap.after($new_textarea)
-
-    edit_tmpl = JST["edit_post"](text: text)
+    edit_tmpl = JST["edit_post"](text: text, video_url: video_url)
     $text_wrap.after(edit_tmpl)
+    $edit_textarea = $('#edit-post-form textarea:first')
+    $edit_textarea.autosize({append: "\n"})  
 
-
-    #$text_wrap.after($new_textarea)
-
-    #new_video_url_field = document.createElement("input")
-    #new_video_url_field.setAttribute("type", "text")
-    #new_video_url_field.setAttribute("id", "edit-url")
-    #new_vid_label = document.createElement("label")
-    #new_vid_label.text("Video URL")
-    #$new_textarea.after($(new_vid_label))
-    #$new_vid_label.append($(new_video_url_field))
-
-  init_cancel_update: ($post_content) ->
-    $cancel_link = $("#cancel-edit")
-    if $cancel_link.length > 0
-      return if $post.contains($cancel_link)
+  init_cancel_update: ($post, $post_content) ->
+    cancel_link = document.getElementById("cancel-edit")
+    if cancel_link
+      return if $.contains($post[0], cancel_link)
     else
       edit_tmpl = JST["edit_post_ui"]()
       $post_content.append(edit_tmpl)
@@ -197,11 +183,9 @@ CFB.Posts = class Posts
     if e
       e.preventDefault()
       $post = $(e.target).closest("div.post")
-      $cancel_el = $(e.target)
     else
       $post = $(".post-content.editing").parent()
-      $cancel_el = $("#cancel-edit")
-    #$cancel_el.parent().detach()
+    $("#update-buttons").detach()
     $("#edit-post-form").detach()
     $post_content = $(".post-content", $post)
     $post_content.removeClass("editing")
@@ -232,7 +216,8 @@ CFB.Posts = class Posts
     $post = $(e.target).closest("div.post")
     id = parseInt $post.attr("data-id"), 10
     text = $("textarea:first", ".post[data-id='#{id}']").val()
-    post_json = { utf8: "✓", _method: 'patch', post: { text: text } }
+    video_url = document.getElementById("edit-video-url").value;
+    post_json = { utf8: "✓", _method: 'patch', post: { text: text, video_url: video_url } }
     $.ajax
       url: "newsfeed/posts/#{id}",
       type: 'post',

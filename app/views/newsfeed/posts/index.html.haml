@@ -5,7 +5,14 @@
 
   %h2 Newsfeed
 
-  = render "newsfeed/shared/post_form"
+  #create-post
+    = simple_form_for([:newsfeed, @post], html: { data: { remote: true, type: :json } }) do |f|
+      = f.input :text, as: :text
+      = f.input :post_image, as: :file
+      = f.input :video_url
+      = simple_fields_for :user do |user_fields|
+        = f.association :user, as: :hidden
+      = f.submit
 
   #posts-container{ :"data-pages" => @num_pages }
 

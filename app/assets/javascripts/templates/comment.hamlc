@@ -1,5 +1,5 @@
 .comment
-  -#%img{ src: }
-  %p
-    %a{ href: "/users/#{@id}"}= @name
-    = @text
+  %a{ href: "/users/#{@id}"}= @name
+  .comment-text
+    %p
+      != @text

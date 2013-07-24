@@ -1,4 +1,4 @@
-.post{ data-id: "#{@id}" }
+.post{ data: { id: "#{@id}", :"video-url" => "#{@video_url}" } }
   .post-author
     .author-image.img-circle
       %img{ src: "#{@avatar_url}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
@@ -22,7 +22,7 @@
             %a{ href: "#", :"data-remote" => "true" }Delete
 
   .post-content
-    %div.text-wrapper
+    .text-wrapper
       %p!= @text
     - if @img_med_2x
       .post-image
@@ -31,12 +31,38 @@
       .post-video
         != JST["#{@video_type}"](video_id: "#{@video_id}") if @video_type
 
+    .post-meta
+      %span.timestamp
+        %span.icon.icon-clock
+        %span.short-time
+        %span.long-time
+
+      - if @post_author
+        %span.rating
+          %span.icon.icon-star
+          %span.icon.icon-star
+          %span.icon.icon-star
+          %span.icon.icon-star
+          %span.icon.icon-star
+
+  .post-action
+    %a.comment-link{ href: "#", :data-remote => true }
+      %span.icon.icon-comment
+      %span.link-text
+        Comment
+
+    %a.like-link{ href: "#", :data-remote => true }
+      %span.icon.icon-like
+      %span.link-text
+        Like
+
+
+  -#.comment-link
+    -#%a
+
+  -#.like-link
+    -#%a{ href: "#", :data-remote => true } Like
+
   .comments-container
     - for comment in @comments
-      != JST["comment"](id: comment.user.id, name: comment.user.name, text: comment.text)
-
-  .comment-link
-    %a{ href: "#", :data-remote => true } Comment
-
-  .like-link
-    %a{ href: "#", :data-remote => true } Like
+      != JST["comment"](id: comment.user.id, name: comment.user.name, text: CFB.Utils.html(comment.text))

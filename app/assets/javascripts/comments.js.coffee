@@ -29,7 +29,10 @@ CFB.Comments = class Comments
     tmpl = JST["comment_form"]()
     $(link).addClass("open")
     $(link).append(tmpl)
-    $("#comment-text", link).focus()
+    $comment_textarea = $("#comment-text", link)
+    $comment_textarea.focus()
+    $comment_textarea.autosize({append: "\n"})  
+
     @init_delayed_events()
 
   init_delayed_events: ->
@@ -61,10 +64,10 @@ CFB.Comments = class Comments
         console.log response
 
   add_comment: (data) =>
-    tmpl = JST["comment"](id: data.comment.user.id, name: data.comment.user.name, text: data.comment.text)
+    comment_tmpl = JST["comment"](id: data.comment.user.id, name: data.comment.user.name, text: CFB.Utils.html(data.comment.text))
     $post_container = $(".post[data-id='#{@post_id}']")
     $comments_container = $(".comments-container", $post_container)
-    $comments_container.append(tmpl)
+    $comments_container.append(comment_tmpl)
 
 CFB.Comments.init = ->
   new CFB.Comments()
