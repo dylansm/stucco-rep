@@ -144,6 +144,7 @@ CFB.Posts = class Posts
       if @edit_id == id
         return
       @cancel_edit_post()
+    @comments.remove_all_forms()
     @edit_id = id
     e.preventDefault()
     $post = $(e.target).closest("div.post")

@@ -40,14 +40,17 @@ CFB.Likes = class Likes
     num_likes = likes.length
     $post = $(".post[data-id='#{post_id}']")
     $link = $(".like-link", $post)
+    $link_text = $("span.link-text", $link)
     if num_likes > 0
       user_ids = _.pluck(likes, 'user_id')
       if _.contains(user_ids, @user_id)
-        $link.html("Liked (#{num_likes})")
+        $link.addClass("liked")
       else
-        $link.html("Likes (#{num_likes})")
+        $link.removeClass("liked")
+      $link_text.html("Like (#{num_likes})")
     else
-      $link.html("Like")
+      $link.removeClass("liked")
+      $link_text.html("Like")
 
 
 CFB.Likes.init = (likes_data) ->

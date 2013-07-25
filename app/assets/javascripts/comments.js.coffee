@@ -29,7 +29,7 @@ CFB.Comments = class Comments
     tmpl = JST["comment_form"]()
     $(link).addClass("open")
     $(link).before(tmpl)
-    $comment_textarea = $("#comment-text", link)
+    $comment_textarea = $(link).prev().find("textarea")
     $comment_textarea.focus()
     $comment_textarea.autosize({append: "\n"})  
 
@@ -45,13 +45,21 @@ CFB.Comments = class Comments
       $("button.cancel", @$comment_form).on("click", (e) -> _this.remove_form(e))
 
   remove_form: (e) ->
-    $(".comment-link.open", $(e.target).closest(".post")).removeClass("open")
-    $("#comment-form").detach()
+    $form = $(".comment-link", $(e.target).closest(".post")).prev()
+    $(e.target).closest(".comment-form").next().removeClass("open")
+    $form.detach()
+
+  # public
+  remove_all_forms: ->
+    $(".comment-link").removeClass("open")
+    $form = $(".comment-link").prev()
+    $form.detach()
 
   submit_comment: (comment_form) ->
-    if $("#comment-text", comment_form).val() == ""
+    $comment_textarea = $("textarea:first", comment_form)
+    if $comment_textarea.val() == ""
       return
-    comment_json = { utf8: "✓", comment: { text: $("#comment-text").val() }}
+    comment_json = { utf8: "✓", comment: { text: $comment_textarea.val() }}
     $.ajax
       url: "/newsfeed/posts/#{@post_id}/comments",
       type: 'post',

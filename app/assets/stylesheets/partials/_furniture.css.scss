@@ -589,34 +589,36 @@ nav {
 	/*}*/
 
 	.comment-link {
-		position: relative;
-		margin-right: 1.2em;
+          position: relative;
+          margin-right: 1.2em;
 
-		&.open {
-			width: 100%;
-                  span {
-                    display: none;
-                  }
+          &.open {
+            width: 100%;
+            span {
+              display: none;
+            }
 
-                  & + a.like-link {
-                    display: none;
-                  }
-		}
+            & + a.like-link {
+              display: none;
+            }
+          }
 
-		#comment-form {
-			width: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
+        }
 
-			button {
-				float: right;
+        .comment-form {
+          width: 100%;
 
-				&.cancel {
-					margin-right: .4em;
-				}
-			}
-		}
+          textarea {
+            margin-bottom: .5em;
+          }
+
+          button {
+            float: right;
+
+            &.cancel {
+              margin-right: .4em;
+            }
+          }
         }
 }
 
