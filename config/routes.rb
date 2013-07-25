@@ -53,6 +53,7 @@ Adoberep::Application.routes.draw do
   get 'pages/newsfeed-dev' => 'pages#newsfeed_dev'
   get 'pages/member-directory' => 'pages#member_directory'
   get 'pages/student-profile' => 'pages#student_profile'
+  get 'pages/dashboard-dev' => 'pages#dashboard_dev'
   
   root 'pages#home'
 

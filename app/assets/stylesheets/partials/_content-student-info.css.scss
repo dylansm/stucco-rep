@@ -190,9 +190,6 @@
 			}
 		}
 		
-		
-		// display: none;
-		
 		@include media-query-bp($bp3) {	
 			display: none;
 		}
@@ -332,6 +329,14 @@
 	.btn-small {
 		padding: 5px 10px;
 	}
+	
+	// hide from desktop if it's on the dashboard page and in the rightwrapper
+	.dashboard .rightwrapper & {
+		@include media-query-bp($bp3) {	
+			display: none;
+		}
+	}
+	
 }
 
 ul.leaderbaord-list {
@@ -352,32 +357,38 @@ ul.leaderbaord-list {
 		
 		span {
 			&.student-rank {
-				@include span-columns(1 of 8);
-				// @include omega;
-				
-				// float: left;
-				// margin-right: 5px;
+				@include span-columns(1 of 12);
 				font-weight: bold;
-				text-align: right;
 				// padding-left: 5px;
 				color: $primarycolor;
 			}
 			&.student-name {
-				@include span-columns(4 of 8);
-				// @include omega;
-				// padding-left: 5px;
-				// float: left;
+				@include span-columns(8 of 12);
 				font-weight: bold;
 			}
 			&.student-score {
-				// float: right;
-				@include span-columns(3 of 8);
-				// @include omega;
+				@include span-columns(3 of 12);
 				text-align: right;
-				padding-right: 5px;
+				// padding-right: 5px;
 			}
 		}
 		
+		@include media-query-bp($bp3) {
+			
+			span {
+				&.student-rank {
+					@include span-columns(1 of 8);
+					// padding-left: 0px;
+				}
+				&.student-name {
+					@include span-columns(4 of 8);
+				}
+				&.student-score {
+					@include span-columns(3 of 8);
+					// padding-right: 0px;
+				}
+			}
+		}
 		@include media-query-bp($bp5) {
 			
 			span {
@@ -387,15 +398,16 @@ ul.leaderbaord-list {
 				}
 				&.student-name {
 					@include span-columns(8 of 12);
-					padding-left: 5px;
+					// padding-left: 5px;
 				}
 				&.student-score {
 					@include span-columns(3 of 12);
 					// padding-right: 5px;
 				}
 			}
-			
 		}
+		
+		
 	}
 }
 

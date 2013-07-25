@@ -1,41 +1,4 @@
-.leftwrapper
-  
-  .student-info
-  
-    .student-info-primary
-      .student-image.img-circle
-        %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
-      %p
-        %span.student-name
-          Michael Hfuhruhurr
-        %span.student-school-name 
-          / %span.icon.icon-marker / need this icon
-          %span.icon.icon-pin
-          %span.university-name
-            University of Idaho
-        %a.edit-profile{:href => "/"} Edit Profile
-      
-    .student-info-secondary
-      %p.student-bio
-        Plus sized hand model. Actually, that's a lie. I do know how to hypnotize a chicken though. Honest.
-      %p.student-portfolio-link
-        %a{:href => "/"} www.whoisowenjones.com
-      %p.bio-links
-        %a{:href => "/"} 
-          %span.icon.icon-fb
-        %a{:href => "/"} 
-          %span.icon.icon-twitter
-        %a{:href => "/"} 
-          %span.icon.icon-instagram
-        %a{:href => "/"} 
-          %span.icon.icon-behance
-        %a{:href => "/"} 
-          %span.icon.icon-mail
-      %h2.student-points
-        %span.total 2346
-        %span.pts pts
-
-.leftwrapper
+.rightwrapper
   
   .leaderboard
     
@@ -138,3 +101,7 @@
           %span.student-score 2,246
 
       
+/ DO THIS FOR NOW UNTIL WE HAVE LOGIC IN THE APPLICATION TEMPLATE TO ADD THE CLASS
+%script{:type=>"text/javascript"}
+  $('.content').addClass('dashboard')
+
