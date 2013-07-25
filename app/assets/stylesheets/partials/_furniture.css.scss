@@ -556,41 +556,14 @@ nav {
 			margin-bottom: .2em;
 		}
 
-                .comment {
-                  clear: left;
-
-                  a:first-child {
-                    float: left;
-                    padding-right: .6em;
-                  }
-
-                  .comment-text {
-                    float: left;
-                    margin-top: .2em;
-
-                    p {
-                      font-size: .8em;
-                      margin-bottom: .5em;
-                    }
-                  }
-                }
-
 	}
 
 	.comment-link, .like-link {
           float: left;
 	}
-	/*.comment-link {*/
-          /*float: left;*/
-	/*}*/
-	/*.like-link {*/
-          /*float: right;*/
-          /*margin-top: -38px;*/
-	/*}*/
 
 	.comment-link {
           position: relative;
-          margin-right: 1.2em;
 
           &.open {
             width: 100%;
