@@ -29,7 +29,7 @@ CFB.Comments = class Comments
     tmpl = JST["comment_form"]()
     $(link).addClass("open")
     $post = $(link).closest(".post")
-    $comments = $(".comments-container", $post)
+    $comments = $(".post-comments", $post)
     $comments.after(tmpl)
     $comment_textarea = $(link).prev().find("textarea")
     $comment_textarea.focus()
@@ -76,7 +76,7 @@ CFB.Comments = class Comments
   add_comment: (data) =>
     comment_tmpl = JST["comment"](id: data.comment.user.id, name: data.comment.user.name, text: CFB.Utils.html(data.comment.text))
     $post_container = $(".post[data-id='#{@post_id}']")
-    $comments_container = $(".comments-container", $post_container)
+    $comments_container = $(".post-comments", $post_container)
     $comments_container.append(comment_tmpl)
 
 CFB.Comments.init = ->
