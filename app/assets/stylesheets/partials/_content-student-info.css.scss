@@ -1,40 +1,3 @@
-// .leftwrapper
-//   
-//   .student-info
-//   
-//     .student-info-primary
-//       .student-image.img-circle
-//         %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
-//       %p
-//         %span.student-name
-//           %a{:href => "/users/5"} Michael Hfuhruhurr
-//         %span.student-school-name 
-//           / %span.icon.icon-marker / need this icon
-//           %span.icon.icon-pin
-//           %span.university-name
-//             University of Idaho
-//         %a.edit-profile{:href => "/"} Edit Profile
-//       
-//     .student-info-secondary
-//       %p.student-bio
-//         Plus sized hand model. Actually, that's a lie. I do know how to hypnotize a chicken though. Honest.
-//       %p.student-portfolio-link
-//         %a{:href => "/"} www.whoisowenjones.com
-//       %p.bio-links
-//         %a{:href => "/"} 
-//           %span.icon.icon-fb
-//         %a{:href => "/"} 
-//           %span.icon.icon-twitter
-//         %a{:href => "/"} 
-//           %span.icon.icon-instagram
-//         %a{:href => "/"} 
-//           %span.icon.icon-behance
-//         %a{:href => "/"} 
-//           %span.icon.icon-mail
-//       %h2.student-points
-//         %span.total 2346
-//         %span.pts pts
-
 // $bp2 : 480px 	30em
 // $bp3 : 600px 	37.5em
 // $bp4 : 768px 	48em
@@ -222,7 +185,7 @@
 			.bio-links {
 				.icon {
 					font-size: 2.8125em; // 45/16 = 2.8125
-					margin: 0 10px 10px 0;
+					margin: 0 5px 10px 0;
 				}
 			}
 		}
@@ -273,14 +236,14 @@
 				
 				.icon {
 					font-size: 2.8125em; // 45/16 = 2.8125
-					margin: 0 10px 10px 0;
+					margin: 0 5px 10px 0;
 				}
 			}
 		}
 		
 		// Need the same styles called from mq 2 and 4 but not 3
 		@include media-query-bp($bp2) {
-			@include media-query-bp($bp3, "max") {
+			@include media-query-bp(($bp3 - 1), "max") {
 				@include directory-entry-styles;
 			}
 		}
@@ -314,6 +277,127 @@
 }
 
 
+// gonna put other sidebar stuff here for now...
+
+// .leftwrapper
+//   
+//   .leaderboard
+//     
+//     %h2 Leaderboard
+//     %p Who's in the lead? Who is making moves? Check both individual and school rankings.
+//     
+//     %ul.btn-segmented.leaderboard-toggle
+//       %li.active
+//         %a.btn.btn-small.student{:href => "#"} Ambassador
+//       %li
+//         %a.btn.btn-small.school{:href => "#"} School
+//     
+//     %ul.leaderbaord-list.leaderboard-student
+//       %li 
+//         
+//         %span.student-score 5,639
+//         %span.student-name  Vince Ready
+//         %span.student-rank  1
+//       %li
+//         %span.student-score 5,124
+//         %span.student-name  Nina Brentlinger
+//         %span.student-rank  2
+//       %li
+//         %span.student-score 4,835
+//         %span.student-name  Dylan Smith
+//         %span.student-rank  3
+//       %li
+//         %span.student-score 4,562
+//         %span.student-name  Leona Guidance
+//         %span.student-rank  4
+// 
+
+.leaderboard {
+	
+	h2 {
+		margin: 0 0 10px 0;
+	}
+	
+	p {
+		@include text-small;
+		@include text-color-light;
+		margin: 0 0 10px 0;
+		
+	}
+	
+	ul.btn-segmented {
+		margin: 0 0 10px 0;
+	}
+	
+	.btn-small {
+		padding: 5px 10px;
+	}
+}
+
+ul.leaderbaord-list {
+	
+	li {
+		@include outer-container;
+		@include clearfix;
+		list-style: none;
+		@include text-xsmall;
+		line-height: 1em;
+		margin: 0 0 0 0;
+		padding: 5px 0 5px 0;
+		border-bottom: 1px solid $lightneutralcolor;
+		
+		&:first-child {
+			border-top: 1px solid $lightneutralcolor;
+		}
+		
+		span {
+			&.student-rank {
+				@include span-columns(1 of 8);
+				// @include omega;
+				
+				// float: left;
+				// margin-right: 5px;
+				font-weight: bold;
+				text-align: right;
+				// padding-left: 5px;
+				color: $primarycolor;
+			}
+			&.student-name {
+				@include span-columns(4 of 8);
+				// @include omega;
+				// padding-left: 5px;
+				// float: left;
+				font-weight: bold;
+			}
+			&.student-score {
+				// float: right;
+				@include span-columns(3 of 8);
+				// @include omega;
+				text-align: right;
+				padding-right: 5px;
+			}
+		}
+		
+		@include media-query-bp($bp5) {
+			
+			span {
+				&.student-rank {
+					@include span-columns(1 of 12);
+					// text-align: right;
+				}
+				&.student-name {
+					@include span-columns(8 of 12);
+					padding-left: 5px;
+				}
+				&.student-score {
+					@include span-columns(3 of 12);
+					// padding-right: 5px;
+				}
+			}
+			
+		}
+	}
+}
 
 
 

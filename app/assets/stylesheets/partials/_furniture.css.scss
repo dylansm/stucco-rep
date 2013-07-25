@@ -419,6 +419,18 @@ nav {
 		}
 		
 	}
+	
+	// hide the rightwrapper that contains the duplicate profile content 
+	// when larger than the 3rd breakpoint
+	&.student-profile {
+		@include media-query-bp($bp3) {
+			.rightcol {
+				.rightwrapper:first-child {
+					display: none;
+				}
+			}
+		}
+	}
 }
 
 .profile-banner {
@@ -456,25 +468,32 @@ nav {
 
 .rightwrapper {
 	
+	padding: 10px 10px 10px 10px;
+	// border-bottom: 1px solid #E7E7E7;
+	border-top: 1px solid $tertiarycolor;
+	border-bottom: 1px solid $lightneutralcolor;
+	
+	// when the .rightwrapper has a parent with a .student-profile class
 	.student-profile & {
-		
-		@include media-query-bp($bp3, "max") {
-			padding: 0;
+		&:first-child {
+			
+			// hide the rightwrapper that contains the duplicate profile content 
+			// when larger than the 3rd breakpoint
+			@include media-query-bp($bp3) {
+				display: none;
+			}
+			
+			// but until then, remove its padding
+			@include media-query-bp($bp3, "max") {
+				padding: 0;
+			}
 		}
 	}
 	
 	
-	padding: 10px 10px 10px 10px;
-	// border-bottom: 1px solid #E7E7E7;
-
-	border-top: 1px solid $tertiarycolor;
-	border-bottom: 1px solid $lightneutralcolor;
-	
 	&:first-child {
 		border-top: none;
 	}
-
-
 	
 	@include media-query-bp($bp3) {
 		padding: 20px 20px 20px 20px;
