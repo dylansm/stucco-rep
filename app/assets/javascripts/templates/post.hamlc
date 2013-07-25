@@ -46,22 +46,15 @@
           %span.icon.icon-star
 
   .post-action
-    %a.comment-link{ href: "#", :data-remote => true }
+    %a.comment-link{ href: "#", :"data-remote" => "true" }
       %span.icon.icon-comment
       %span.link-text
         Comment
 
-    %a.like-link{ href: "#", :data-remote => true }
+    %a.like-link{ href: "#", :"data-remote" => "true" }
       %span.icon.icon-like
       %span.link-text
         Like
-
-
-  -#.comment-link
-    -#%a
-
-  -#.like-link
-    -#%a{ href: "#", :data-remote => true } Like
 
   .comments-container
     - for comment in @comments
