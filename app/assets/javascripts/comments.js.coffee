@@ -28,7 +28,9 @@ CFB.Comments = class Comments
     @post_id = post_id
     tmpl = JST["comment_form"]()
     $(link).addClass("open")
-    $(link).before(tmpl)
+    $post = $(link).closest(".post")
+    $comments = $(".comments-container", $post)
+    $comments.after(tmpl)
     $comment_textarea = $(link).prev().find("textarea")
     $comment_textarea.focus()
     $comment_textarea.autosize({append: "\n"})  
