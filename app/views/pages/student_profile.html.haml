@@ -1,9 +1,3 @@
-
-%script{:type=>"text/javascript"}
-  //your code goes here - dont forget the indent!
-  $('.content').addClass('student-profile')
-  
-
 .rightwrapper
   
   .student-info
@@ -40,3 +34,144 @@
       %h2.student-points
         %span.total 2346
         %span.pts pts
+
+
+/ and some newsfeed posts for filler...
+.rightwrapper
+  .post{"data-id" => "30"}
+    
+    .post-author
+      .author-image.img-circle
+        %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+      %p
+        %span.author-name
+          %a{:href => "/users/5"} Michael Hfuhruhurr
+        %span.author-school-name 
+          / %span.icon.icon-marker / need this icon
+          %span.icon.icon-pin
+          %span.university-name
+            University of Idaho
+        
+    .post-edit
+      %a.edit
+        %span.icon.icon-edit
+      .post-edit-options
+        %ul
+          %li
+            %a{:href => "#"} Delete
+          %li
+            %a{:href => "#"} Edit
+    
+    .post-content
+      .text-wrapper
+        %p Colonies descended from astronomers, dream of the mind's eye the ash of stellar alchemy, hydrogen atoms? Inconspicuous motes of rock and gas.
+        %p Dream of the mind's eye the only home we've ever known. Descended from astronomers science rich in mystery? Jean-François Champollion venture a billion trillion shores of the cosmic ocean?
+        
+      .post-image
+        %img{:src => "http://placekitten.com/800/500"}
+        %a.btn.btn-small.btn-primary.remove-image{:href => "#"} 
+          Delete
+          
+      .post-video
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "349", :src => "http://www.youtube.com/embed/FKWwdQu6_ok", :width => "425"}
+      
+      .post-meta
+        %span.timestamp
+          %span.icon.icon-clock
+          %span.short-time
+            16h
+          %span.long-time
+            16 hours ago
+        
+        %span.rating
+          %span.icon.icon-star.star-lit
+          %span.icon.icon-star.star-lit
+          %span.icon.icon-star.star-lit
+          %span.icon.icon-star
+          %span.icon.icon-star
+      
+    .post-action  
+      %a{:class => "comment-link", "data-remote" => "", :href => "#"}
+        %span.icon.icon-comment
+        %span.link-text Comment
+      %a{:class => "like-link liked", "data-remote" => "", :href => "#"}
+        %span.icon.icon-like
+        %span.link-text Like (12)
+    
+    .post-comments
+      .comment
+        .author-image.img-circle
+          %a{:href => "/users/5"}
+            %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+        %p 
+          %span.author-name
+            %a{:href => "/users/5"} Michael Hfuhruhur
+          Tunguska event? Venture, gathered by gravity, prime number, Sea of Tranquility the carbon in our apple pies Drake Equation!
+        %p 
+          At the edge of forever, science rich in heavy atoms tingling of the spine from which we spring cosmic fugue, inconspicuous motes of rock and gas something incredible is waiting to be known brain is the seed of intelligence another world Orion's sword Cambrian explosion.
+
+      .comment
+        .author-image.img-circle
+          %a{:href => "/users/5"}
+            %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+        %p 
+          %span.author-name
+            %a{:href => "/users/5"} Michael Hfuhruhur
+          Whatever.
+      
+      .comment
+        .author-image.img-circle
+          %a{:href => "/users/5"}
+            %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+        %p 
+          %span.author-name
+            %a{:href => "/users/5"} Michael Hfuhruhur
+          Network of wormholes hundreds of thousands Flatland light years circumnavigated billions upon billions colonies Euclid. 
+      
+    %form.comment-form
+      %textarea{:placeholder => "Write a comment..."}
+
+.rightwrapper
+  .post{"data-id" => "30"}
+    .post-author
+      .author-image.img-circle
+        %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+      %p
+        %span.author-name
+          %a{:href => "/users/5"} Michael Hfuhruhurr
+        %span.author-school-name 
+          %span.icon.icon-pin
+          %span.university-name
+            University of Idaho
+    
+    .post-content
+      .text-wrapper
+        %p Descended from astronomers science rich in mystery? Jean-François Champollion venture a billion trillion shores of the cosmic ocean?
+  
+      .post-meta
+        %span.timestamp
+          %span.icon.icon-clock
+          %span.short-time
+            16h
+          %span.long-time
+            16 hours ago
+        
+    .post-action  
+      %a{:class => "comment-link", "data-remote" => "", :href => "#"}
+        %span.icon.icon-comment
+        %span.link-text Comment
+      %a{:class => "like-link", "data-remote" => "", :href => "#"}
+        %span.icon.icon-like
+        %span.link-text Like
+
+.rightwrapper
+  %a.btn.btn-more-content{:href => "#"}
+    %span.more-content-text
+      More Posts
+    %span.icon.icon-more
+
+/ DO THIS FOR NOW UNTIL WE HAVE LOGIC IN THE APPLICATION TEMPLATE TO ADD THE CLASS
+%script{:type=>"text/javascript"}
+  $('.content').addClass('student-profile')
+
+
