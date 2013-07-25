@@ -566,17 +566,6 @@ nav {
 	.comment-link {
           position: relative;
 
-          &.open {
-            width: 100%;
-            span {
-              display: none;
-            }
-
-            & + a.like-link {
-              display: none;
-            }
-          }
-
         }
 
         .comment-form {

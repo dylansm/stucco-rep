@@ -1,5 +1,5 @@
 .comment
-  %a{ href: "/users/#{@id}"}= @name
-  .comment-text
-    %p
-      != @text
+  %p
+    %span.author-name
+      %a{ href: "/users/#{@id}"}= @name
+    != @text
