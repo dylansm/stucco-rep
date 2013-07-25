@@ -21,11 +21,14 @@ CFB.Utils.html = (text) ->
     else
       full_url = "http://#{url}"
 
-    anchor_re = new RegExp("[^/>']#{url}", 'g')
+    anchor_re = new RegExp("[^/>']?#{CFB.Utils.escape_regexp(url)}", 'g')
     text = text.replace(anchor_re, " <a href='#{full_url}' target='_blank'>#{url}</a>")
   )
 
   text
+
+CFB.Utils.escape_regexp = (text) ->
+  text.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
 
 CFB.Utils.non_modal_ui = ->
   if CFB.touch
@@ -38,3 +41,15 @@ CFB.Utils.non_modal_ui = ->
   hide_non_modals = (e) ->
     unless $(e.target).closest(".non-modal").length > 0
       $(".non-modal").removeClass("non-modal")
+
+$ ->
+  ua = window.navigator.userAgent.toLowerCase()
+  if ua.indexOf("msie") > -1
+    ieVersionRE = /msie (\d+)/
+    match = ua.match(ieVersionRE)
+    if match
+      v = match[1]
+      if v >= 9
+        $(document.documentElement).addClass("ie"+v)
+      else
+        $(document.documentElement).addClass("lt-ie9")

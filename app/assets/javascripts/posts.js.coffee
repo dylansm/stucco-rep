@@ -28,7 +28,9 @@ CFB.Posts = class Posts
 
   init_edit_events: (id=null) ->
     _this = @
-    $(".post-video").fitVids();
+    #console.log $(document.documentElement).hasClass("js")
+
+    $(".post-video").fitVids() unless $(document.documentElement).hasClass("ie9");
     if id
       $post_admin = $("div.post[data-id='#{id}'] div.post-edit")
     else
@@ -101,6 +103,7 @@ CFB.Posts = class Posts
   prepend_new_post: (data) ->
     template = @build_post data.post
     $("#posts-container").prepend(template)
+    @init_edit_events(data.post.id)
     @comments.init_latest_post()
 
   build_post: (post) ->
@@ -149,7 +152,6 @@ CFB.Posts = class Posts
     $post_content = $(".post-content", $post)
     $post_content.addClass("editing")
     $text_wrap = $("div:first", $post_content)
-    #text = $("p", $text_wrap).text()
     text = ''
     $("p", $text_wrap).each ->
       text += $(this).text() + "\n\n"
