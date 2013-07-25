@@ -275,40 +275,6 @@
 
 
 // gonna put other sidebar stuff here for now...
-
-// .leftwrapper
-//   
-//   .leaderboard
-//     
-//     %h2 Leaderboard
-//     %p Who's in the lead? Who is making moves? Check both individual and school rankings.
-//     
-//     %ul.btn-segmented.leaderboard-toggle
-//       %li.active
-//         %a.btn.btn-small.student{:href => "#"} Ambassador
-//       %li
-//         %a.btn.btn-small.school{:href => "#"} School
-//     
-//     %ul.leaderbaord-list.leaderboard-student
-//       %li 
-//         
-//         %span.student-score 5,639
-//         %span.student-name  Vince Ready
-//         %span.student-rank  1
-//       %li
-//         %span.student-score 5,124
-//         %span.student-name  Nina Brentlinger
-//         %span.student-rank  2
-//       %li
-//         %span.student-score 4,835
-//         %span.student-name  Dylan Smith
-//         %span.student-rank  3
-//       %li
-//         %span.student-score 4,562
-//         %span.student-name  Leona Guidance
-//         %span.student-rank  4
-// 
-
 .leaderboard {
 	
 	h2 {
