@@ -559,8 +559,15 @@ nav {
 	}
 
 	.comment-link, .like-link {
-		float: left;
+          float: left;
 	}
+	/*.comment-link {*/
+          /*float: left;*/
+	/*}*/
+	/*.like-link {*/
+          /*float: right;*/
+          /*margin-top: -38px;*/
+	/*}*/
 
 	.comment-link {
 		position: relative;
@@ -568,6 +575,13 @@ nav {
 
 		&.open {
 			width: 100%;
+                  span {
+                    display: none;
+                  }
+
+                  & + a.like-link {
+                    display: none;
+                  }
 		}
 
 		#comment-form {

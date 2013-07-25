@@ -28,7 +28,7 @@ CFB.Comments = class Comments
     @post_id = post_id
     tmpl = JST["comment_form"]()
     $(link).addClass("open")
-    $(link).append(tmpl)
+    $(link).before(tmpl)
     $comment_textarea = $("#comment-text", link)
     $comment_textarea.focus()
     $comment_textarea.autosize({append: "\n"})  
@@ -39,19 +39,14 @@ CFB.Comments = class Comments
     _this = @
     if CFB.touch
       $("button.submit", @$comment_form).on("touchstart", -> _this.submit_comment(this.parentNode))
-      $("button.cancel", @$comment_form).on("touchstart", -> _this.remove_form())
+      $("button.cancel", @$comment_form).on("touchstart", (e) -> _this.remove_form(e))
     else
       $("button.submit", @$comment_form).on("click", -> _this.submit_comment(this.parentNode))
-      $("button.cancel", @$comment_form).on("click", -> _this.remove_form())
+      $("button.cancel", @$comment_form).on("click", (e) -> _this.remove_form(e))
 
-  remove_form: ->
-    #$("#comment-form").closest(".comment-link.open").removeClass("open")
-    $test = $("#comment-form").closest(".comment-link.open")
+  remove_form: (e) ->
+    $(".comment-link.open", $(e.target).closest(".post")).removeClass("open")
     $("#comment-form").detach()
-    $test.removeClass("open")
-
-    #$(comment_form.parentNode).removeClass("open")
-    #$(comment_form).remove()
 
   submit_comment: (comment_form) ->
     if $("#comment-text", comment_form).val() == ""

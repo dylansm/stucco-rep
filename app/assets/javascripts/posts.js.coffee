@@ -28,8 +28,6 @@ CFB.Posts = class Posts
 
   init_edit_events: (id=null) ->
     _this = @
-    #console.log $(document.documentElement).hasClass("js")
-
     $(".post-video").fitVids() unless $(document.documentElement).hasClass("ie9");
     if id
       $post_admin = $("div.post[data-id='#{id}'] div.post-edit")

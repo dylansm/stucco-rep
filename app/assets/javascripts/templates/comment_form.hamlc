@@ -1,6 +1,6 @@
 #comment-form
   %textarea#comment-text
-  %button.submit.btn.btn-primary.btn-small
-    Comment
   %button.cancel.btn.btn-small
     Cancel
+  %button.submit.btn.btn-primary.btn-small
+    Comment
