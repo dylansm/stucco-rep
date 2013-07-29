@@ -31,7 +31,10 @@ class PagesController < ApplicationController
 
   def student_profile
   end
-
+  
+  def dashboard_dev
+  end
+  
   private
 
   def user

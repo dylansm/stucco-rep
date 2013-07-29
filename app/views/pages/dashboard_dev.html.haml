@@ -1,56 +1,19 @@
-.leftwrapper
-  
-  .student-info
-  
-    .student-info-primary
-      .student-image.img-circle
-        %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
-      %p
-        %span.student-name
-          Michael Hfuhruhurr
-        %span.student-school-name 
-          / %span.icon.icon-marker / need this icon
-          %span.icon.icon-pin
-          %span.university-name
-            University of Idaho
-        %a.edit-profile{:href => "/"} Edit Profile
-      
-    .student-info-secondary
-      %p.student-bio
-        Plus sized hand model. Actually, that's a lie. I do know how to hypnotize a chicken though. Honest.
-      %p.student-portfolio-link
-        %a{:href => "/"} www.whoisowenjones.com
-      %p.bio-links
-        %a{:href => "/"} 
-          %span.icon.icon-fb
-        %a{:href => "/"} 
-          %span.icon.icon-twitter
-        %a{:href => "/"} 
-          %span.icon.icon-instagram
-        %a{:href => "/"} 
-          %span.icon.icon-behance
-        %a{:href => "/"} 
-          %span.icon.icon-mail
-      %h2.student-points
-        %span.total 2346
-        %span.pts pts
-
-.leftwrapper
+.rightwrapper
   
   .leaderboard
-  
+    
     .contentheader
       %h2 Leaderboard
       %p Who's in the lead? Who is making moves? Check both individual and school rankings.
-  
+    
     .leaderboard-toggle
-  
+    
       %ul.btn-segmented
         %li.active
           %a.btn.btn-small.student{"data-toggle" => "tab", :href => ".leaderboard-student"} Ambassador
         %li
           %a.btn.btn-small.school{"data-toggle" => "tab", :href => ".leaderboard-school"} School
-  
+    
     .tab-content
     
       / student list
@@ -140,64 +103,8 @@
           %span.student-name  Boise State University
           %span.student-score 2,246
 
+      
+/ DO THIS FOR NOW UNTIL WE HAVE LOGIC IN THE APPLICATION TEMPLATE TO ADD THE CLASS
+%script{:type=>"text/javascript"}
+  $('.content').addClass('dashboard')
 
-.leftwrapper
-
-  .share-a-link
-
-    .contentheader
-      %h2 Share a link
-      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      
-      
-      .collapsible.open
-        %a.collapsible-header{:href => "#"} 
-          Adobe Student Microsite 
-          %span.icon.icon-expand
-      
-        %ul
-          %li
-            %a{:href => "#"} 
-              %span.icon.icon-fb
-              %span.label Share on Facebook
-          %li
-            %a{:href => "#"} 
-              %span.icon.icon-twitter
-              %span.label Post on Twitter
-          %li
-            %a{:href => "#"} 
-              %span.icon.icon-plus
-              %span.label Copy link to clipboard
-      
-      .collapsible
-        %a.collapsible-header{:href => "#"} 
-          Adobe Student Microsite 
-          %span.icon.icon-expand
-      
-        %ul
-          %li
-            %a{:href => "#"} 
-              %span.icon.icon-fb
-              %span.label Share on Facebook
-          %li
-            %a{:href => "#"} 
-              %span.icon.icon-twitter
-              %span.label Post on Twitter
-          %li
-            %a{:href => "#"} 
-              %span.icon.icon-plus
-              %span.label Copy link to clipboard
-      
-
-.leftwrapper
-  
-  .workshops-and-activity
-  
-    .contentheader
-      %h2 Workshops & Activity
-      %p Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-    
-    %a.btn.btn-primary.btn-full-width{:href => "#"} Plan a Workshop
-    %a.btn.btn-primary.btn-full-width{:href => "#"} Submit a Workshop Report
-    %a.btn.btn-primary.btn-full-width{:href => "#"} Submit a Weekly Report
-    

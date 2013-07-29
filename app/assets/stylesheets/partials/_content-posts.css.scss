@@ -1,4 +1,5 @@
 // styles for post composer are here
+// .new-post modifies rightwrapper 
 .new-post {
 	
 	@include clearfix;
@@ -8,6 +9,9 @@
 	@include transition(all);
 	// @include transitionDelay(.25s);
 	@include translate3d ();
+	
+	background-color: $wellbg;
+	color: $tertiarycolor;
 	
 	
 	form {
@@ -30,9 +34,9 @@
 	
 	// had to override the .dark to level up on specificity
 	// to be able to change the bg color for the New Post Button
-	&.dark {
-		// background-color: $tertiarycolor;
-	}
+	// &.dark {
+	// 	// background-color: $tertiarycolor;
+	// }
 	
 	@include media-query-bp($bp3) {
 		
@@ -238,7 +242,11 @@
 }
 
 
-
+.post-wrapper {
+	@include media-query-bp($bp3, "max") {
+		padding: 10px;
+	}
+}
 
 
 // styles for each individual post are south of here

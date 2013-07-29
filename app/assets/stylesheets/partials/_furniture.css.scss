@@ -468,28 +468,11 @@ nav {
 
 .rightwrapper {
 	
-	padding: 10px 10px 10px 10px;
+	// padding: 10px 10px 10px 10px;
+	padding: 20px 20px 20px 20px;
 	// border-bottom: 1px solid #E7E7E7;
 	border-top: 1px solid $tertiarycolor;
 	border-bottom: 1px solid $lightneutralcolor;
-	
-	// when the .rightwrapper has a parent with a .student-profile class
-	.student-profile & {
-		&:first-child {
-			
-			// hide the rightwrapper that contains the duplicate profile content 
-			// when larger than the 3rd breakpoint
-			@include media-query-bp($bp3) {
-				display: none;
-			}
-			
-			// but until then, remove its padding
-			@include media-query-bp($bp3, "max") {
-				padding: 0;
-			}
-		}
-	}
-	
 	
 	&:first-child {
 		border-top: none;
@@ -510,11 +493,30 @@ nav {
 		padding: 20px 20px 20px 60px;
 	}
 	
-	&.dark {
-		background-color: $wellbg;
-		color: $tertiarycolor;
+	// &.dark {
+	// 	background-color: $wellbg;
+	// 	color: $tertiarycolor;
+	// }
+	
+}
+
+.contentheader {
+	
+	text-align: center;
+	
+	h2 {
+		margin: 0 0 10px 0;
 	}
 	
+	p {
+		@include text-small;
+		@include text-color-light;
+		margin: 0 0 10px 0;
+	}
+	
+	.leftwrapper & {
+		text-align: left;	
+	}
 }
 
 

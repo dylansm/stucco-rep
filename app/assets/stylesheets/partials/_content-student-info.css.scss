@@ -30,6 +30,19 @@
 }
 
 
+// modifies rightwrapper 
+.student-info-wrapper {
+	
+	// but until then, remove its padding
+	@include media-query-bp($bp3, "max") {
+		padding: 0;
+	}
+	// hide the rightwrapper that contains the duplicate profile content 
+	// when larger than the 3rd breakpoint
+	@include media-query-bp($bp3) {
+		display: none;
+	}
+}
 
 .student-info {
 	@include outer-container;
@@ -190,9 +203,6 @@
 			}
 		}
 		
-		
-		// display: none;
-		
 		@include media-query-bp($bp3) {	
 			display: none;
 		}
@@ -279,59 +289,47 @@
 
 // gonna put other sidebar stuff here for now...
 
-// .leftwrapper
-//   
-//   .leaderboard
-//     
-//     %h2 Leaderboard
-//     %p Who's in the lead? Who is making moves? Check both individual and school rankings.
-//     
-//     %ul.btn-segmented.leaderboard-toggle
-//       %li.active
-//         %a.btn.btn-small.student{:href => "#"} Ambassador
-//       %li
-//         %a.btn.btn-small.school{:href => "#"} School
-//     
-//     %ul.leaderbaord-list.leaderboard-student
-//       %li 
-//         
-//         %span.student-score 5,639
-//         %span.student-name  Vince Ready
-//         %span.student-rank  1
-//       %li
-//         %span.student-score 5,124
-//         %span.student-name  Nina Brentlinger
-//         %span.student-rank  2
-//       %li
-//         %span.student-score 4,835
-//         %span.student-name  Dylan Smith
-//         %span.student-rank  3
-//       %li
-//         %span.student-score 4,562
-//         %span.student-name  Leona Guidance
-//         %span.student-rank  4
-// 
-
 .leaderboard {
 	
-	h2 {
-		margin: 0 0 10px 0;
-	}
-	
-	p {
-		@include text-small;
-		@include text-color-light;
-		margin: 0 0 10px 0;
-		
-	}
-	
-	ul.btn-segmented {
-		margin: 0 0 10px 0;
+	.btn-segmented {
+		margin-bottom: 10px;
 	}
 	
 	.btn-small {
 		padding: 5px 10px;
 	}
+	
+	// hide from desktop if it's on the dashboard page and in the rightwrapper
+	.dashboard .rightwrapper & {
+		
+		.leaderboard-toggle {
+			text-align: center;
+		}
+
+		.btn-segmented {
+			margin-bottom: 20px;
+			width: 275px;
+			@include clearfix;
+
+			li {
+				display: inline-block;
+				width: 50%;
+
+				a {
+					width: 100%;
+					padding : $buttonpadding;
+					margin-bottom : 0;
+					@include font-size($buttonfontsize);
+					line-height : $baselineheight;
+				}
+			}
+		}
+		
+		@include media-query-bp($bp3) {	
+			display: none;
+		}
+	}
+	
 }
 
 ul.leaderbaord-list {
@@ -352,32 +350,38 @@ ul.leaderbaord-list {
 		
 		span {
 			&.student-rank {
-				@include span-columns(1 of 8);
-				// @include omega;
-				
-				// float: left;
-				// margin-right: 5px;
+				@include span-columns(1 of 12);
 				font-weight: bold;
-				text-align: right;
 				// padding-left: 5px;
 				color: $primarycolor;
 			}
 			&.student-name {
-				@include span-columns(4 of 8);
-				// @include omega;
-				// padding-left: 5px;
-				// float: left;
+				@include span-columns(8 of 12);
 				font-weight: bold;
 			}
 			&.student-score {
-				// float: right;
-				@include span-columns(3 of 8);
-				// @include omega;
+				@include span-columns(3 of 12);
 				text-align: right;
-				padding-right: 5px;
+				// padding-right: 5px;
 			}
 		}
 		
+		@include media-query-bp($bp3) {
+			
+			span {
+				&.student-rank {
+					@include span-columns(1 of 8);
+					// padding-left: 0px;
+				}
+				&.student-name {
+					@include span-columns(4 of 8);
+				}
+				&.student-score {
+					@include span-columns(3 of 8);
+					// padding-right: 0px;
+				}
+			}
+		}
 		@include media-query-bp($bp5) {
 			
 			span {
@@ -387,20 +391,137 @@ ul.leaderbaord-list {
 				}
 				&.student-name {
 					@include span-columns(8 of 12);
-					padding-left: 5px;
+					// padding-left: 5px;
 				}
 				&.student-score {
 					@include span-columns(3 of 12);
 					// padding-right: 5px;
 				}
 			}
+		}
+		
+		
+	}
+}
+
+.share-a-link {
+	// .collapsible.open
+	//       %a.collapsible-header{:href => "#"} 
+	//         Adobe Student Microsite 
+	//         %span.icon.icon-expand
+	//     
+	//       %ul
+	//         %li
+	//           %a{:href => "#"} 
+	//             %span.icon.icon-fb
+	//             Share on Facebook
+	//         %li
+	//           %a{:href => "#"} 
+	//             %span.icon.icon-twitter
+	//             Post on Twitter
+	//         %li
+	//           %a{:href => "#"} 
+	//             %span.icon.icon-box-1
+	//             Copy link to clipboard
+}
+
+.collapsible {
+	background-color: $white;
+	border: 1px solid $lightneutralcolor;
+	margin-bottom: 20px;
+	padding: 10px 15px;
+	overflow: hidden;
+	@include transition(margin, .25s);
+	
+	&.open {
+		a.collapsible-header {
+			margin-bottom: 10px;
+		}
+		ul {
+			height: auto;
+			max-height: 250px;
+			// @include transition(max-height, $transitionduration, ease-out);
+		}
+		span.icon-expand:before {
+			// .icon-expand:before {
+			// 	content: "\23";
+			// }
+			// .icon-contract:before {
+				content: "\2d";
+			// }
 			
+		}
+	}
+	
+	
+	a.collapsible-header {
+		
+		display: block;
+		width: 100%;
+		@include text-small;
+		@include text-color-light;
+		margin-bottom: 0px;
+		
+		&:hover {
+			@include text-color-normal;	
+		}
+		
+		.icon {
+			float: right;
+		}
+	}
+	
+	ul {
+		margin-bottom: 0;
+		height: 0px;
+		max-height: 0px;
+		overflow: hidden;
+		// @include transition(max-height, .25s);
+		@include transition(max-height, $transitionduration, ease-in);
+		
+		li {
+			list-style-type: none;
+			
+			a {
+				display: inline-block;
+				padding-bottom: 5px;
+				width: 100%;
+				
+				&:hover {
+					text-decoration: none;
+					span.label {
+						text-decoration: underline;							
+					}
+				}
+				
+				span {
+					display: inline-block;
+					vertical-align: text-top;
+					&.icon {
+						font-size: 1.25em; // 20/16 = 1.25
+						margin: 0 5px 0 0;
+					}
+					&.label {
+						@include text-small;
+						margin: 2px 0 0 0;
+					}
+				}
+			}
 		}
 	}
 }
 
 
-
+.workshops-and-activity {
+	p {
+		&:last-child {
+			margin-bottom: 20px;
+		}
+	}
+	a {
+		margin-bottom: 20px;
+	}
+}
 
 
 
