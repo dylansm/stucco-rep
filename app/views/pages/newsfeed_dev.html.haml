@@ -6,10 +6,10 @@
     .secondary-inputs
       .photo-video-upload
         / %input.new-post-photo#file{:name => "file", :type => "file"}
-        .photo-upload{:style => "overflow: hidden"}
-          %div{:style => "float: left;"}
+        .photo-upload
+          .choose-photo-btn-wrapper
             %button.btn.btn-primary.choose-photo Choose Photo
-          %div{:style => "overflow: hidden"}
+          .choose-photo-input-wrapper
             %input{:disabled => "", :type => "text", :placeholder => "Browse to an image…"}
         %input.new-post-video-url{:type => "text", :placeholder => "Enter YouTube or Vimeo URL…"}
     .new-post-buttons

@@ -132,6 +132,14 @@
 		}
 	}
 	
+	// .photo-upload{:style => "overflow: hidden"}
+    //   %div{:style => "float: left;"}
+    //     %button.btn.btn-primary.choose-photo Choose Photo
+    //   %div{:style => "overflow: hidden"}
+    //     %input{:disabled => "", :type => "text", :placeholder => "Browse to an image…"}
+    
+	
+	
 	// all inside the form tag
 	.secondary-inputs {
 		@include transition(all);
@@ -151,6 +159,16 @@
 			width: 100%;
 			max-height: 100px;
 			height: 100px;
+			
+			.photo-upload {
+				overflow: hidden;
+				.choose-photo-btn-wrapper {
+					float: left;
+				}
+				.choose-photo-input-wrapper {
+					overflow: hidden;
+				}
+			}
 		}
 		
 		&.choose-photo {
@@ -590,7 +608,8 @@
 		// $buttonpadding 					: 5px 15px 5px 15px;
 		padding: 8px 5px 8px 5px;;
 		background-color: $tertiarycolor;
-		@include text-h2-size;
+		// @include text-h2-size;
+		@include text-normal;
 		// include margin bottom below ht text size import to override
 		margin-bottom: 0px;
 		text-align: center;
