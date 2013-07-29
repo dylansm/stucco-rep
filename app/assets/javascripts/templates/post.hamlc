@@ -1,4 +1,4 @@
-.rightwrapper
+.rightwrapper.post-wrapper
   .post{ data: { id: "#{@id}", :"video-url" => "#{@video_url}" } }
     .post-author
       .author-image.img-circle
