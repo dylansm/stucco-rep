@@ -6,7 +6,7 @@ class Newsfeed::CommentsController < ApplicationController
     @comment = Comment.new(permitted_params)
     @comment.user = current_user
     post.comments << @comment
-    render json: @comment
+    render json: post
   end
 
   private

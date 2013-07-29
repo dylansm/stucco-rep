@@ -21,7 +21,7 @@ CFB.Utils.html = (text) ->
     else
       full_url = "http://#{url}"
 
-    anchor_re = new RegExp("[^/>']?#{CFB.Utils.escape_regexp(url)}", 'g')
+    anchor_re = new RegExp("[^/>']#{CFB.Utils.escape_regexp(url)}", 'g')
     text = text.replace(anchor_re, " <a href='#{full_url}' target='_blank'>#{url}</a>")
   )
 
@@ -41,6 +41,25 @@ CFB.Utils.non_modal_ui = ->
   hide_non_modals = (e) ->
     unless $(e.target).closest(".non-modal").length > 0
       $(".non-modal").removeClass("non-modal")
+
+CFB.Utils.append_count = (data, type_str) ->
+  # type_str = Like or Comment
+  type_plural = type_str.toLowerCase() + "s"
+  type_singular = type_str.toLowerCase()
+  num = data[type_plural].length
+  $post = $(".post[data-id='#{data.id}']")
+  $link = $(".#{type_singular}-link", $post)
+  $link_text = $("span.link-text", $link)
+  if num > 0
+    user_ids = _.pluck(data[type_plural], 'user_id')
+    if _.contains(user_ids, @user_id)
+      $link.addClass("authored")
+    else
+      $link.removeClass("authored")
+    $link_text.html("#{type_str} (#{num_comments})")
+  else
+    $link.removeClass("authored")
+    $link_text.html("#{type_str}")
 
 $ ->
   ua = window.navigator.userAgent.toLowerCase()

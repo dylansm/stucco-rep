@@ -84,13 +84,12 @@ CFB.Posts = class Posts
     posts_data = data.posts
     #console.log posts_data
     tmpl = JST["post"]
-    posts = ''
     _.each(posts_data, (post) =>
       post_html = @build_post post
       @$container.append(post_html)
     )
     @init_edit_events()
-    @comments = CFB.Comments.init()
+    @comments = CFB.Comments.init(posts_data)
     @likes = CFB.Likes.init(posts_data)
 
   clear_post_form: ->
@@ -144,7 +143,6 @@ CFB.Posts = class Posts
       if @edit_id == id
         return
       @cancel_edit_post()
-    @comments.remove_all_forms()
     @edit_id = id
     e.preventDefault()
     $post = $(e.target).closest("div.post")
@@ -209,6 +207,7 @@ CFB.Posts = class Posts
           console.log response
 
   remove_post: ($post) ->
+    $post = $post.parent()
     $post.fadeOut 'slow', ->
       $post.detach()
 
@@ -232,5 +231,5 @@ CFB.Posts = class Posts
   render_updated_post: ($post, id, data) ->
     @cancel_edit_post()
     template = @build_post data.post
-    $post.replaceWith(template)
+    $post.parent().replaceWith(template)
     @init_edit_events(id)

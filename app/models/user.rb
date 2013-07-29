@@ -62,6 +62,11 @@ class User < ActiveRecord::Base
     avatar.url(:lg)
   end
 
+  def avatar_url_sm
+    #avatar.url(:lg) if avatar.file?
+    avatar.url(:sm)
+  end
+
   def program
     begin
       Program.find(current_program_id)
