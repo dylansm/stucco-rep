@@ -2,14 +2,17 @@
   
   .leaderboard
     
-    %h2 Leaderboard
-    %p Who's in the lead? Who is making moves? Check both individual and school rankings.
+    .contentheader
+      %h2 Leaderboard
+      %p Who's in the lead? Who is making moves? Check both individual and school rankings.
     
-    %ul.btn-segmented.leaderboard-toggle
-      %li.active
-        %a.btn.btn-small.student{"data-toggle" => "tab", :href => ".leaderboard-student"} Ambassador
-      %li
-        %a.btn.btn-small.school{"data-toggle" => "tab", :href => ".leaderboard-school"} School
+    .leaderboard-toggle
+    
+      %ul.btn-segmented
+        %li.active
+          %a.btn.btn-small.student{"data-toggle" => "tab", :href => ".leaderboard-student"} Ambassador
+        %li
+          %a.btn.btn-small.school{"data-toggle" => "tab", :href => ".leaderboard-school"} School
     
     .tab-content
     

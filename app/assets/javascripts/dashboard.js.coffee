@@ -142,5 +142,8 @@ $ ->
   $(".post-video").fitVids();
   
   $('textarea').autosize({append: "\n"})  
+  
+  $('.collapsible-header').bind 'click', (event) =>
+    event.preventDefault()
+    $(event.currentTarget).parent().toggleClass('open')
     
-
