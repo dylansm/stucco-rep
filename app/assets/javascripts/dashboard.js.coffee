@@ -115,7 +115,7 @@ $ ->
   #   $(event.currentTarget).toggleClass('liked')
   
   $('a.like-link').bind 'click', (event) =>
-    $(event.currentTarget).toggleClass('liked')
+    $(event.currentTarget).toggleClass('by-author')
   
   # new post js
   $('a.photo-upload-link').bind 'click', (event) =>
