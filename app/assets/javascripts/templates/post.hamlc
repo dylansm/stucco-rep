@@ -35,8 +35,8 @@
       .post-meta
         %span.timestamp
           %span.icon.icon-clock
-          %span.short-time
-          %span.long-time
+          %span.short-time= @created_at_short
+          %span.long-time= @created_at
 
         - if @post_author
           %span.rating

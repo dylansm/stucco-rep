@@ -42,24 +42,13 @@ CFB.Utils.non_modal_ui = ->
     unless $(e.target).closest(".non-modal").length > 0
       $(".non-modal").removeClass("non-modal")
 
-CFB.Utils.append_count = (data, type_str) ->
-  # type_str = Like or Comment
-  type_plural = type_str.toLowerCase() + "s"
-  type_singular = type_str.toLowerCase()
-  num = data[type_plural].length
-  $post = $(".post[data-id='#{data.id}']")
-  $link = $(".#{type_singular}-link", $post)
-  $link_text = $("span.link-text", $link)
-  if num > 0
-    user_ids = _.pluck(data[type_plural], 'user_id')
-    if _.contains(user_ids, @user_id)
-      $link.addClass("authored")
-    else
-      $link.removeClass("authored")
-    $link_text.html("#{type_str} (#{num_comments})")
-  else
-    $link.removeClass("authored")
-    $link_text.html("#{type_str}")
+CFB.Utils.format_publish_date = (created_at) ->
+  date = new Date(created_at)
+  now = new Date()
+  full = humanized_time_span(date, now)
+  short = full.replace(/(\d+ .).+/, "$1").split(" ").join("")
+  { full: full, short: short }
+
 
 $ ->
   ua = window.navigator.userAgent.toLowerCase()

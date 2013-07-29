@@ -1,10 +1,5 @@
 CFB.Comments = class Comments
 
-  #constructor: ->
-    #@post_id = null
-    #@init_events()
-    #@init_comment_link_text()
-
   constructor: (posts_data)->
     @post_id = null
     @init_events()
@@ -25,7 +20,6 @@ CFB.Comments = class Comments
     )
 
   update_comment_link_text: (post_data) ->
-    #console.log post_data
     num_comments = post_data.comments.length
     $post = $(".post[data-id='#{post_data.id}']")
     $link = $(".comment-link", $post)

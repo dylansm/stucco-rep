@@ -1,21 +1,21 @@
 - title t("page_titles.newsfeed")
 - attributes({ :"data-user-id" => "#{current_user.id}" })
 
-.rightwrapper
+.rightwrapper.dark.new-post
 
-  %h2 Newsfeed
+  = simple_form_for([:newsfeed, @post], html: { data: { remote: true, type: :json } }) do |f|
+    = f.input :text, as: :text, label: false, placeholder: "Write a new post…"
+    = f.input :post_image, as: :file
+    .secondary-inputs
+      .photo-video-upload
+        .photo-upload
+          = f.input :video_url
+    = simple_fields_for :user do |user_fields|
+      = f.association :user, as: :hidden
+    = f.submit
 
-  #create-post
-    = simple_form_for([:newsfeed, @post], html: { data: { remote: true, type: :json } }) do |f|
-      = f.input :text, as: :text
-      = f.input :post_image, as: :file
-      = f.input :video_url
-      = simple_fields_for :user do |user_fields|
-        = f.association :user, as: :hidden
-      = f.submit
+#posts-container{ :"data-pages" => @num_pages }
 
-  #posts-container{ :"data-pages" => @num_pages }
+%a#more-posts= t('links.load_more_posts')
 
-  %a#more-posts= t('links.load_more_posts')
-
-  = render "dashboard/admin/admin_tools"
+= render "dashboard/admin/admin_tools"

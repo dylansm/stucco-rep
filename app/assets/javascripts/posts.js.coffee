@@ -82,7 +82,6 @@ CFB.Posts = class Posts
 
   add_posts: (data) ->
     posts_data = data.posts
-    #console.log posts_data
     tmpl = JST["post"]
     _.each(posts_data, (post) =>
       post_html = @build_post post
@@ -91,6 +90,7 @@ CFB.Posts = class Posts
     @init_edit_events()
     @comments = CFB.Comments.init(posts_data)
     @likes = CFB.Likes.init(posts_data)
+    #@ratings = CFB.Ratings.init()
 
   clear_post_form: ->
     $("#post_text").val("")
@@ -111,8 +111,11 @@ CFB.Posts = class Posts
 
   gather_post_data: (post) ->
     user_id = parseInt $("body").attr("data-user-id"), 10
+    created_at = CFB.Utils.format_publish_date(post.created_at)
     post_data =
       id: post.id
+      created_at: created_at.full
+      created_at_short: created_at.short
       user_id: post.user.id
       name: post.user.name
       school_name: post.user.school.name if post.user.school
