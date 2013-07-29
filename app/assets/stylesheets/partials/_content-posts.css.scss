@@ -160,6 +160,10 @@
 			max-height: 100px;
 			height: 100px;
 			
+			input.post_image {
+				display: hidden;
+			}
+			
 			.photo-upload {
 				overflow: hidden;
 				.choose-photo-btn-wrapper {
