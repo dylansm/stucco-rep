@@ -21,7 +21,7 @@ CFB.Utils.html = (text) ->
     else
       full_url = "http://#{url}"
 
-    anchor_re = new RegExp("[^/>']?#{CFB.Utils.escape_regexp(url)}", 'g')
+    anchor_re = new RegExp("[^/>']#{CFB.Utils.escape_regexp(url)}", 'g')
     text = text.replace(anchor_re, " <a href='#{full_url}' target='_blank'>#{url}</a>")
   )
 
@@ -41,6 +41,14 @@ CFB.Utils.non_modal_ui = ->
   hide_non_modals = (e) ->
     unless $(e.target).closest(".non-modal").length > 0
       $(".non-modal").removeClass("non-modal")
+
+CFB.Utils.format_publish_date = (created_at) ->
+  date = new Date(created_at)
+  now = new Date()
+  full = humanized_time_span(date, now)
+  short = full.replace(/(\d+ .).+/, "$1").split(" ").join("")
+  { full: full, short: short }
+
 
 $ ->
   ua = window.navigator.userAgent.toLowerCase()

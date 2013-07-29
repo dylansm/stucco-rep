@@ -2,13 +2,12 @@ CFB.Likes = class Likes
 
   constructor: (likes_data) ->
     @user_id = parseInt $("body").attr("data-user-id"), 10
-    @initial_data = likes_data
-    @init_like_links()
+    @init_like_link_text(likes_data)
     @init_events()
 
-  init_like_links: ->
-    _.each(@initial_data, (like_data) =>
-      @update_like_link(like_data.id, like_data.likes)
+  init_like_link_text: (likes_data) ->
+    _.each(likes_data, (like_data) =>
+      @update_like_link_text(like_data)
     )
 
   init_events: ->
@@ -32,17 +31,17 @@ CFB.Likes = class Likes
       datatype: 'json',
       data: like_json,
       success: (data, textstatus, xhr) =>
-        @update_like_link(data.liked_post.id, data.liked_post.likes)
+        @update_like_link_text(data.liked_post)
       error: (response) ->
         console.log response
 
-  update_like_link: (post_id, likes)->
-    num_likes = likes.length
-    $post = $(".post[data-id='#{post_id}']")
+  update_like_link_text: (liked_post)->
+    num_likes = liked_post.likes.length
+    $post = $(".post[data-id='#{liked_post.id}']")
     $link = $(".like-link", $post)
     $link_text = $("span.link-text", $link)
     if num_likes > 0
-      user_ids = _.pluck(likes, 'user_id')
+      user_ids = _.pluck(liked_post.likes, 'user_id')
       if _.contains(user_ids, @user_id)
         $link.addClass("liked")
       else

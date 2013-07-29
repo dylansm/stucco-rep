@@ -1,4 +1,8 @@
 .comment
+  .author-image.img-circle
+    %a{ href: "/users/#{@id}"}
+      %img{ src: "#{@avatar_url_sm}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
+
   %p
     %span.author-name
       %a{ href: "/users/#{@id}"}= @name
