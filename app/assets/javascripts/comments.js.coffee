@@ -15,31 +15,16 @@ CFB.Comments = class Comments
         $(this).on("click", (e) -> _this.swap_comment_link(e, this, post_id))
 
   init_comment_link_text: (posts_data) ->
-    _.each(posts_data, (post_data) =>
-      @update_comment_link_text(post_data)
+    _.each(posts_data, (post_data, index) =>
+      $post = $($(".post")[index])
+      $link = $(".comment-link", $post)
+      CFB.Utils.format_link(post_data, $link, @user_id)
     )
-
-  update_comment_link_text: (post_data) ->
-    num_comments = post_data.comments.length
-    $post = $(".post[data-id='#{post_data.id}']")
-    $link = $(".comment-link", $post)
-    $link_text = $("span.link-text", $link)
-    if num_comments > 0
-      user_ids = _.pluck(post_data.comments, 'user_id')
-      if _.contains(user_ids, @user_id)
-        $link.addClass("commented")
-      else
-        $link.removeClass("commented")
-      $link_text.html("Comment (#{num_comments})")
-    else
-      $link.removeClass("commented")
-      $link_text.html("Comment")
-
   
   init_latest_post: ->
     link = $(".comment-link")[0]
     @init_comment_link(link)
-        
+
   swap_comment_link: (e, link, post_id) ->
     e.preventDefault()
     if $(link).hasClass("open")
@@ -77,6 +62,7 @@ CFB.Comments = class Comments
     $(".comment-link.open", $post).removeClass("open")
 
   submit_comment: (e, $post) ->
+    $link = $(".comment-link", $post)
     $comment_form = $(".comment-form", $post)
     $comment_textarea = $("textarea:first", $comment_form)
     if $comment_textarea.val() == ""
@@ -89,7 +75,7 @@ CFB.Comments = class Comments
       data: comment_json,
       success: (data, textstatus, xhr) =>
         @remove_form(e, $post)
-        @update_comment_link_text(data.post)
+        CFB.Utils.format_link(data.post, $link, @user_id)
         @add_comment(data.post, $post)
       error: (response) ->
         console.log response

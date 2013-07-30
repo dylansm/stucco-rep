@@ -6,8 +6,10 @@ CFB.Likes = class Likes
     @init_events()
 
   init_like_link_text: (likes_data) ->
-    _.each(likes_data, (like_data) =>
-      @update_like_link_text(like_data)
+    _.each(likes_data, (like_data, index) =>
+      $post = $($(".post")[index])
+      $link = $(".like-link", $post)
+      CFB.Utils.format_link(like_data, $link, @user_id)
     )
 
   init_events: ->
@@ -24,6 +26,7 @@ CFB.Likes = class Likes
       $(link).on("click", (e) -> _this.toggle_like(e, post_id))
 
   toggle_like: (e, post_id) ->
+    $link = $(e.target).parent() #TODO evaluate if this works on all browsers
     like_json = { post_id: post_id }
     $.ajax
       url: "/newsfeed/posts/#{post_id}/likes",
@@ -31,26 +34,9 @@ CFB.Likes = class Likes
       datatype: 'json',
       data: like_json,
       success: (data, textstatus, xhr) =>
-        @update_like_link_text(data.liked_post)
+        CFB.Utils.format_link(data.liked_post, $link, @user_id)
       error: (response) ->
         console.log response
-
-  update_like_link_text: (liked_post)->
-    num_likes = liked_post.likes.length
-    $post = $(".post[data-id='#{liked_post.id}']")
-    $link = $(".like-link", $post)
-    $link_text = $("span.link-text", $link)
-    if num_likes > 0
-      user_ids = _.pluck(liked_post.likes, 'user_id')
-      if _.contains(user_ids, @user_id)
-        $link.addClass("liked")
-      else
-        $link.removeClass("liked")
-      $link_text.html("Like (#{num_likes})")
-    else
-      $link.removeClass("liked")
-      $link_text.html("Like")
-
 
 CFB.Likes.init = (likes_data) ->
   new CFB.Likes(likes_data)

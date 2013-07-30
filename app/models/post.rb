@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
   end
 
   def remove_image=(value)
-    @remove_image = value
+    @remove_image = !!value
   end
 
   private
@@ -54,7 +54,7 @@ class Post < ActiveRecord::Base
   end
 
   def remove_attachments?
-    self.post_image = nil if self.remove_image == 1 && !self.post_image.dirty?
+    self.post_image = nil if self.remove_image && !self.post_image.dirty?
   end
 
 end

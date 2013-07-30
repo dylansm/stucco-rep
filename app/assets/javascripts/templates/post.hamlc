@@ -49,12 +49,12 @@
             %span.icon.icon-star
 
     .post-action
-      %a.comment-link{ href: "#", :"data-remote" => "true" }
+      %a.comment-link{ href: "#", data: { remote: "true", type: "comments" } }
         %span.icon.icon-comment
         %span.link-text
           Comment
 
-      %a.like-link{ href: "#", :"data-remote" => "true" }
+      %a.like-link{ href: "#", data: { remote: "true", type: "likes" } }
         %span.icon.icon-like
         %span.link-text
           Like
