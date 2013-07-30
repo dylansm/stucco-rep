@@ -10,6 +10,9 @@ CFB.Posts = class Posts
     @num_pages = @$container.attr("data-pages")
     @next_page = 1
     @edit_id = null
+    @$hidden_file_input = $("#post_post_image")
+    @$upload_link = $("#upload-link")
+    @$video_url_link = $("#video-url")
     @$more_link = $("a#more-posts")
     @$create_submit = $("input[type=submit]")
     @init_events()
@@ -17,14 +20,25 @@ CFB.Posts = class Posts
     
   init_events: ->
     if CFB.touch
-      @$more_link.bind("touchstart", => @fetch_posts())
+      @$more_link.bind("touchstart", () => @fetch_posts())
+      @$upload_link.bind("touchstart", (e) => @open_file_sheet(e))
+      $("#new_post button.choose-photo").bind("touchstart", (e) => @open_file_sheet(e))
+      @$video_url_link.bind("touchstart", (e) => @enter_video_url(e))
     else
       @$more_link.click => @fetch_posts()
+      @$upload_link.click (e) => @open_file_sheet(e)
+      $("#new_post button.choose-photo").click (e) => @open_file_sheet(e)
+      @$video_url_link.click (e) => @enter_video_url(e)
+
+    @$hidden_file_input.on("change", =>
+      @on_file_selected()
+    )
 
     $("#new_post").on("ajax:success", (e, data, status, xhr) =>
       @clear_post_form()
       @prepend_new_post(data)
     )
+
 
   init_edit_events: (id=null) ->
     _this = @
@@ -157,6 +171,7 @@ CFB.Posts = class Posts
       text += $(this).text() + "\n\n"
     video_url = $post.attr("data-video-url")
     @init_cancel_update($post, $post_content)
+    @init_delete_image($post)
 
     edit_tmpl = JST["edit_post"](text: text, video_url: video_url)
     $text_wrap.after(edit_tmpl)
@@ -193,6 +208,7 @@ CFB.Posts = class Posts
     $post_content.removeClass("editing")
     $(".edit-mode", $post).each ->
       $(this).detach()
+    $(".post-image", $post).show()
 
   delete_post: (e, id) ->
     e.preventDefault()
@@ -219,8 +235,13 @@ CFB.Posts = class Posts
     $post = $(e.target).closest("div.post")
     id = parseInt $post.attr("data-id"), 10
     text = $("textarea:first", ".post[data-id='#{id}']").val()
-    video_url = document.getElementById("edit-video-url").value;
-    post_json = { utf8: "✓", _method: 'patch', post: { text: text, video_url: video_url } }
+    remove_image = null
+    if $(".post-image", $post).css("display") == "none"
+      remove_image = 1
+    video_url = null
+    if document.getElementById("edit-video-url")
+      video_url = document.getElementById("edit-video-url").value;
+    post_json = { utf8: "✓", _method: 'patch', post: { text: text, remove_image: remove_image, video_url: video_url } }
     $.ajax
       url: "newsfeed/posts/#{id}",
       type: 'post',
@@ -236,3 +257,43 @@ CFB.Posts = class Posts
     template = @build_post data.post
     $post.parent().replaceWith(template)
     @init_edit_events(id)
+
+  # custom file upload
+  open_file_sheet: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    if $("#post_video_url").val().length > 0
+      unless confirm("You have already entered a video URL.\nAre you sure you want to upload an image instead?")
+        return
+    $("#post_post_image").click().focus()
+
+  on_file_selected: ->
+    filename = @$hidden_file_input.val().split('\\').pop()
+    $("#post_video_url").val("")
+    $("#file-name").val(filename)
+    $("#new_post .secondary-inputs").removeClass("choose-video")
+    $("#new_post .secondary-inputs").addClass("choose-photo")
+    $("#new_post a.video-upload-link").removeClass("selected")
+    $("#new_post a.photo-upload-link").addClass("selected")
+
+  enter_video_url: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    if $("#post_post_image").val().length > 0
+      unless confirm("You have already selected an image to upload.\nAre you sure you want to enter a video URL instead?")
+        return
+      $("#post_post_image").val("")
+    $("#new_post .secondary-inputs").removeClass("choose-photo")
+    $("#new_post .secondary-inputs").addClass("choose-video")
+    $("#new_post a.photo-upload-link").removeClass("selected")
+    $("#new_post a.video-upload-link").addClass("selected")
+        
+  init_delete_image: ($post) ->
+    if CFB.touch
+      $(".remove-image", $post).bind("touchstart", (e) => @prep_image_for_delete(e, $post))
+    else
+      $(".remove-image", $post).click (e) => @prep_image_for_delete(e, $post)
+
+  prep_image_for_delete: (e, $post) ->
+    e.preventDefault()
+    $(".post-image", $post).fadeOut("slow")

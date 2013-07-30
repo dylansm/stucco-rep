@@ -71,6 +71,7 @@ class Newsfeed::PostsController < ApplicationController
       :text,
       :photo,
       :post_image,
+      :remove_image,
       :video_url,
       :user_id,
       :likes

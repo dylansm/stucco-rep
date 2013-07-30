@@ -4,23 +4,23 @@
 .rightwrapper.new-post
 
   = simple_form_for([:newsfeed, @post], html: { data: { remote: true, type: :json } }) do |f|
-    = f.input :text, as: :text, label: false, placeholder: "Write a new post…"
-    -#= f.input :post_image, as: :file
+    = f.input :text, as: :text, label: false, placeholder: "Write a new post…", input_html: { autofocus: "true", tabindex: "1"}
     .secondary-inputs
       .photo-video-upload
+        = f.input :post_image, as: :file, input_html: { tabindex: "-1" }
         .photo-upload
           .choose-photo-btn-wrapper
             %button.btn.btn-primary.choose-photo Choose Photo
           .choose-photo-input-wrapper
-            %input{ disabled: true, placeholder: "Browse to an image…" }
-        %input.new-post-video-url{ placeholder: "Enter YouTube or Vimeo URL…" }
+            %input{ type: "text", disabled: true, id: "file-name", placeholder: "Browse to an image…", tabindex: "-1" }
+        = f.input :video_url, label: false, input_html: { class: "new-post-video-url", type: "text", placeholder: "Enter YouTube or Vimeo URL…", tabindex: "-1" }
     .new-post-buttons
       .photo-video-toggle
-        %a.photo-upload-link{ href: "#", :"data-remote" => "true" }
+        %a.photo-upload-link{ href: "#", :"data-remote" => "true", id: "upload-link" }
           %span.icon.icon-photo
           %span.link-text
             Upload Photo
-        %a.video-upload-link{ href: "#", :"data-remote" => "true" }
+        %a.video-upload-link{ href: "#", :"data-remote" => "true", id: "video-url" }
           %span.icon.icon-video
           %span.link-text
             Video URL
@@ -29,8 +29,6 @@
           = f.association :user, as: :hidden
           %input.btn.new-post-cancel{ type: :reset, value: "Cancel" }
           = f.submit "Post", class: "btn btn-primary new-post-submit"
-
-          -#= f.input :video_url
 
 #posts-container{ :"data-pages" => @num_pages }
 

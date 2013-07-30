@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
 
   has_attached_file :post_image, styles: { sm: "320x", med: "530x", :"sm@2x" => "640x", :"med@2x" => "1060x" }
 
+  before_save :remove_attachments?
+
   def post_image_urls
     { med: post_image.url(:med), :"med_2x" => post_image.url(:"med@2x"), sm: post_image.url(:sm), sm_2x: post_image.url(:"sm@2x") } if post_image.file?
   end
@@ -17,6 +19,14 @@ class Post < ActiveRecord::Base
 
   def video_id
     @video_id ||= derive_id_from_url
+  end
+
+  def remove_image
+    @remove_image ||= false
+  end
+
+  def remove_image=(value)
+    @remove_image = value
   end
 
   private
@@ -41,6 +51,10 @@ class Post < ActiveRecord::Base
     elsif /vimeo\.com/ =~ video_url
       "vimeo"
     end
+  end
+
+  def remove_attachments?
+    self.post_image = nil if self.remove_image == 1 && !self.post_image.dirty?
   end
 
 end

@@ -1,7 +1,6 @@
 #edit-post-form
   %textarea
     = @text
-  %label{ for: "edit-video-url" }Video URL
-  %input{ type: "text", id: "edit-video-url", value: "#{@video_url}" }
-  %label{ for: "edit-photo" }Upload Photo
-  %input{ type: "file", id: "edit-photo" }
+  - if @video_url
+    %label{ for: "edit-video-url" }Video URL
+    %input{ type: "text", id: "edit-video-url", value: "#{@video_url}" }
