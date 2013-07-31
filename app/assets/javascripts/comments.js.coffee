@@ -27,11 +27,6 @@ CFB.Comments = class Comments
       $post = $(this).closest(".post")
       _this.add_comment_form(null, $post)
 
-  #TODO
-  init_latest_post: ->
-    link = $(".comment-link")[0]
-    @init_comment_link(link)
-
   add_comment_form: (e, $post) ->
     if e
       e.preventDefault()
@@ -74,6 +69,10 @@ CFB.Comments = class Comments
 
   hide_comment_buttons: (e) ->
     if $(e.target).get(0).tagName == ("TEXTAREA" || "BUTTON")
+      return
+    if $(e.target).hasClass("link-text")
+      e.target = e.target.parentNode
+    if $(e.target).hasClass("comment-link")
       return
     $(".comment-form .ui-wrap").removeClass("vis")
 
