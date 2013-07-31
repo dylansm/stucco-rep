@@ -517,6 +517,10 @@ nav {
 	.leftwrapper & {
 		text-align: left;	
 	}
+	
+	@include media-query-bp($bp3) {
+		text-align: left;
+	}
 }
 
 

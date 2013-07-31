@@ -32,14 +32,15 @@
 // modifies rightwrapper 
 .student-info-wrapper {
 	
-	// but until then, remove its padding
-	@include media-query-bp($bp3, "max") {
-		padding: 0;
-	}
 	// hide the rightwrapper that contains the duplicate profile content 
 	// when larger than the 3rd breakpoint
 	@include media-query-bp($bp3) {
 		display: none;
+	}
+	
+	// but until then, remove its padding
+	@include media-query-bp($bp3, "max") {
+		padding: 0;
 	}
 }
 
@@ -464,8 +465,10 @@ ul.leaderbaord-list {
 			
 			a {
 				display: inline-block;
-				padding-bottom: 5px;
+				// padding-bottom: 5px;
 				width: 100%;
+				
+				@include outer-container;
 				
 				&:hover {
 					text-decoration: none;
@@ -477,13 +480,22 @@ ul.leaderbaord-list {
 				span {
 					display: inline-block;
 					vertical-align: text-top;
+					
 					&.icon {
+						@include span-columns(3);
+						min-width: 20px;
+						max-width: 20px;
+						
 						font-size: 1.25em; // 20/16 = 1.25
-						margin: 0 5px 0 0;
+						// margin: 0 5px 0 0;
 					}
 					&.label {
+						@include span-columns(9);
 						@include text-small;
 						margin: 2px 0 0 0;
+						// margin-top: 2px;
+						padding-left: 5px;
+						
 					}
 				}
 			}

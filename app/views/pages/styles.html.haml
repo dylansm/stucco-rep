@@ -477,6 +477,54 @@
         %span
         %span
         %span
+  .l-summary
+    %h3 Error colour
+    %p.secondary $successcolor : #d2e8fc; // light blue
+  .l-content
+    .swatch.swatch-error
+      .swatch-row.swatch-row-one.clearfix
+        %span
+        %span
+        %span
+        %span
+      .swatch-row.swatch-row-two.clearfix
+        %span
+        %span
+        %span
+        %span
+  /
+  .l-summary
+    %h3 Info colour
+    %p.secondary $successcolor : #d2e8fc; // light blue
+  .l-content
+    .swatch.swatch-info
+      .swatch-row.swatch-row-one.clearfix
+        %span
+        %span
+        %span
+        %span
+      .swatch-row.swatch-row-two.clearfix
+        %span
+        %span
+        %span
+        %span
+  /
+  .l-summary
+    %h3 Success colour
+    %p.secondary $successcolor : #d2e8fc; // light blue
+  .l-content
+    .swatch.swatch-success
+      .swatch-row.swatch-row-one.clearfix
+        %span
+        %span
+        %span
+        %span
+      .swatch-row.swatch-row-two.clearfix
+        %span
+        %span
+        %span
+        %span
+  /
 
 
 .rightwrapper
@@ -1206,6 +1254,33 @@
       .alert.alert--success
         %strong Rock Hammer
         A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+        %a.alert-close{:href => "#"} 
+      / Next
+      
+      / dismissable
+      .alert
+        %a.alert-close{:href => "#"} 
+          %span.icon.icon-close
+        %strong Rock Hammer
+        A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+      .alert.alert--error
+        %a.alert-close{:href => "#"} 
+          %span.icon.icon-close
+        %strong Rock Hammer
+        A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+      / Next
+      .alert.alert--info
+        %a.alert-close{:href => "#"} 
+          %span.icon.icon-close
+        %strong Rock Hammer
+        A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+      / Next
+      .alert.alert--success
+        %a.alert-close{:href => "#"} 
+          %span.icon.icon-close
+        %strong Rock Hammer
+        A geologist’s hammer, rock hammer, rock pick or geological pick is a hammer used for splitting and breaking rocks.
+        %a.alert-close{:href => "#"} 
     / l-content
   / l-wrap
   / Next

@@ -5,56 +5,121 @@
 // Adapted from: https://github.com/twitter/bootstrap/blob/master/less/alerts.less
 
 .alert {
-padding : $alertpadding;
-margin-bottom : $baselineheight;
-background-color : $alertbackgroundcolor;
-// @include alertgrad;
-border : $alertborderwidth $alertborderstyle $alertbordercolor;
-border-radius : $alertborderradius;
-@include font-size($alertfontsize);
-color : $alertcolor;
+	padding : $alertpadding;
+	margin-bottom : $baselineheight;
+	background-color : $alertbackgroundcolor;
+	// @include alertgrad;
+	border : $alertborderwidth $alertborderstyle $alertbordercolor;
+	border-radius : $alertborderradius;
+	// @include font-size($alertfontsize);
+	@include text-small;
+	color : $alertcolor;
 
-> h4 {
-margin : 0;
-color : $alertcolor; }
-}/*alert*/
+	> h4 {
+		margin : 0;
+		color : $alertcolor;
+	}
+
+}
+/*alert*/
 
 .alert--success {
-background-color : $successcolor;
-border-color : $alertbordercolorsuccess;
-color : $alertcolorsuccess; 
+	background-color : $successcolor;
+	border-color : $alertbordercolorsuccess;
+	color : $alertcolorsuccess;
 
-> h4 {
-color : $alertcolorsuccess; }
-}/*alert--success*/
+	> h4 {
+		color : $alertcolorsuccess;
+	}
+
+}
+/*alert--success*/
 
 .alert--danger,
 .alert--error {
-background-color : $errorcolor;
-border-color : $alertbordercolorerror;
-color : $alertcolorerror; 
+	background-color : $errorcolor;
+	border-color : $alertbordercolorerror;
+	color : $alertcolorerror;
 
-> h4 {
-color : $alertcolorerror; }
-}/*alert--error*/
+	> h4 {
+		color : $alertcolorerror;
+	}
+
+	.alert-close {
+		color: $white;
+		
+		&:visited {
+			color: $white;
+		}
+
+		&:hover,
+		&:active {
+			color: darken($white, 10%);
+		}
+		&:focus {
+			color: darken($white, 10%);
+		}
+	}
+}
+/*alert--error*/
 
 .alert--info {
-background-color : $infocolor;
-border-color : $alertbordercolorinfo;
-color : $alertcolorinfo; 
+	background-color : $infocolor;
+	border-color : $alertbordercolorinfo;
+	// color : $alertcolorinfo;
+	@include text-color-normal;
+	
+	> h4 {
+		color : $alertcolorinfo;
+	}
 
->  h4 {
-color : $alertcolorinfo; }
-}/*alert--info*/
+}
+/*alert--info*/
 
 .alert--block {
-padding-top : 14px;
-padding-bottom : 14px;
+	padding-top : 14px;
+	padding-bottom : 14px;
 
-> p,
-> ul {
-margin-bottom : 0; }
+	> p,
+	> ul {
+		margin-bottom : 0;
+	}
 
-> p + p {
-margin-top : 5px; }
-}/*alert--block*/
+	> p + p {
+		margin-top : 5px;
+	}
+
+}
+/*alert--block*/
+
+
+.alert-close {
+	float: right;
+	margin: 0 0 10px 10px;
+	font-size: 1.125em; // 18/16 = 1.125
+	@include text-color-light;
+	
+	text-decoration : none;
+	@include transition(all, .05s);
+
+	&:visited {
+		// color: darken($infocolor, 30%);
+		// color: rgba($textcolor, .1);
+		@include text-color-light;
+	}
+
+	&:hover,
+	&:active {
+		text-decoration : none;
+		outline : 0;
+		@include text-color-normal;
+		// color: lighten($infocolor, 10%);
+	}
+	&:focus {
+		color: lighten($infocolor, 10%);
+		@include text-color-normal;
+	}
+
+	
+}
+
