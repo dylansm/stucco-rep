@@ -762,7 +762,7 @@
 	.ui-wrap {
 		max-height: 0px;
 		overflow: hidden;
-		@include transition(max-height);
+		// @include transition(max-height);
 		@include clearfix;
 		
 		margin: 10px 0 0 0;
