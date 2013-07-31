@@ -29,9 +29,15 @@
           = f.association :user, as: :hidden
           %input.btn.new-post-cancel{ type: :reset, value: "Cancel" }
           = f.submit "Post", class: "btn btn-primary new-post-submit"
+  %a.mobile-new-post-toggle{ href: "#", :"data-remote" => "true" }
+    %span.icon.icon-box-1
+    %span.link-text New Post
 
 #posts-container{ :"data-pages" => @num_pages }
 
-%a#more-posts= t('links.load_more_posts')
+.rightwrapper
+  %a.btn.btn-more-content#more-posts{ href: "#", :"data-remote" => "true" }
+    %span.more-content-text= t('links.load_more_posts')
+    %span.icon.icon-more
 
 = render "dashboard/admin/admin_tools"

@@ -1,6 +1,7 @@
 .comment-form
-  %textarea
-  %button.submit.btn.btn-primary.btn-small
-    Comment
-  %button.cancel.btn.btn-small
-    Cancel
+  %textarea{ placeholder: "Add a comment…"}
+  .ui-wrap
+    %button.submit.btn.btn-primary.btn-small
+      Comment
+    %button.cancel.btn.btn-small
+      Cancel

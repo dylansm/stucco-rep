@@ -49,6 +49,21 @@ CFB.Utils.format_publish_date = (created_at) ->
   short = full.replace(/(\d+ .).+/, "$1").split(" ").join("")
   { full: full, short: short }
 
+CFB.Utils.format_link = (data, $link, user_id) ->
+  type = $link.attr("data-type")
+  text_base = type.charAt(0).toUpperCase() + type.substr(1, type.length - 2)
+  $link_text = $("span.link-text", $link)
+  num_for_link = data[type].length
+  if num_for_link > 0
+    user_ids = _.pluck(data[type], 'user_id')
+    if _.contains(user_ids, user_id)
+      $link.addClass("by-author")
+    else
+      $link.removeClass("by-author")
+    $link_text.text("#{text_base} (#{num_for_link})")
+  else
+    $link.removeClass("by-author")
+    $link_text.text("#{text_base}")
 
 $ ->
   ua = window.navigator.userAgent.toLowerCase()

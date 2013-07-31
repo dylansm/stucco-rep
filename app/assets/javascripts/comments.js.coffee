@@ -1,53 +1,45 @@
 CFB.Comments = class Comments
 
   constructor: (posts_data)->
-    @post_id = null
     @init_events()
     @init_comment_link_text(posts_data)
+    @add_comment_forms_below_existing()
   
   init_events: ->
     _this = @
     $("a.comment-link").each ->
-      post_id = $(this).closest(".post").attr("data-id")
+      $post = $(this).closest(".post")
       if CFB.touch
-        $(this).on("touchstart", (e) -> _this.swap_comment_link(e, this, post_id))
+        $(this).on("touchstart", (e) -> _this.add_comment_form(e, $post))
       else
-        $(this).on("click", (e) -> _this.swap_comment_link(e, this, post_id))
+        $(this).on("click", (e) -> _this.add_comment_form(e, $post))
 
   init_comment_link_text: (posts_data) ->
-    _.each(posts_data, (post_data) =>
-      @update_comment_link_text(post_data)
+    _.each(posts_data, (post_data, index) =>
+      $post = $($(".post")[index])
+      $link = $(".comment-link", $post)
+      CFB.Utils.format_link(post_data, $link, @user_id)
     )
-
-  update_comment_link_text: (post_data) ->
-    num_comments = post_data.comments.length
-    $post = $(".post[data-id='#{post_data.id}']")
-    $link = $(".comment-link", $post)
-    $link_text = $("span.link-text", $link)
-    if num_comments > 0
-      user_ids = _.pluck(post_data.comments, 'user_id')
-      if _.contains(user_ids, @user_id)
-        $link.addClass("commented")
-      else
-        $link.removeClass("commented")
-      $link_text.html("Comment (#{num_comments})")
-    else
-      $link.removeClass("commented")
-      $link_text.html("Comment")
-
   
+  add_comment_forms_below_existing: ->
+    _this = @
+    $(".post-comments").each ->
+      $post = $(this).closest(".post")
+      _this.add_comment_form(null, $post)
+
+  #TODO
   init_latest_post: ->
     link = $(".comment-link")[0]
     @init_comment_link(link)
-        
-  swap_comment_link: (e, link, post_id) ->
-    e.preventDefault()
-    if $(link).hasClass("open")
+
+  add_comment_form: (e, $post) ->
+    if e
+      e.preventDefault()
+    if $(".comment-form", $post).length > 0
+      $(".comment-form textarea", $post).focus()
       return
-    @post_id = post_id
+
     tmpl = JST["comment_form"]()
-    $(link).addClass("open")
-    $post = $(link).closest(".post")
     if $(".post-comments", $post).length > 0
       $comments = $(".post-comments", $post)
       $comments.after(tmpl)
@@ -56,13 +48,17 @@ CFB.Comments = class Comments
       $comments-wrap.append(tmpl)
     
     $comment_textarea = $(".comment-form textarea", $post)
-    $comment_textarea.focus()
+    if e
+      window.setTimeout ->
+        $comment_textarea.focus()
+      , 10
     $comment_textarea.autosize({append: "\n"})  
 
     @init_delayed_events($post)
 
   init_delayed_events: ($post) ->
     _this = @
+    $(".comment-form textarea", $post).on("focus", -> $(".ui-wrap", $post).addClass("vis"))
     if CFB.touch
       $("button.submit", @$comment_form).on("touchstart", (e) -> _this.submit_comment(e, $post))
       $("button.cancel", @$comment_form).on("touchstart", (e) -> _this.remove_form(e, $post))
@@ -73,23 +69,28 @@ CFB.Comments = class Comments
   remove_form: (e, $post) ->
     e.preventDefault()
     $form = $(".comment-form", $post)
-    $form.detach()
-    $(".comment-link.open", $post).removeClass("open")
+    if $(".post-comments", $post).length > 0
+      $(".comment-form textarea", $post).val("")
+      $(".ui-wrap", $post).removeClass("vis")
+    else
+      $form.detach()
 
   submit_comment: (e, $post) ->
+    $link = $(".comment-link", $post)
     $comment_form = $(".comment-form", $post)
     $comment_textarea = $("textarea:first", $comment_form)
     if $comment_textarea.val() == ""
       return
+    post_id = $link.closest(".post").attr("data-id")
     comment_json = { utf8: "✓", comment: { text: $comment_textarea.val() }}
     $.ajax
-      url: "/newsfeed/posts/#{@post_id}/comments",
+      url: "/newsfeed/posts/#{post_id}/comments",
       type: 'post',
       datatype: 'json',
       data: comment_json,
       success: (data, textstatus, xhr) =>
         @remove_form(e, $post)
-        @update_comment_link_text(data.post)
+        CFB.Utils.format_link(data.post, $link, @user_id)
         @add_comment(data.post, $post)
       error: (response) ->
         console.log response
