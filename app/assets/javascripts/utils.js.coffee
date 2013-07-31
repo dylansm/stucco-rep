@@ -30,7 +30,7 @@ CFB.Utils.html = (text) ->
 CFB.Utils.escape_regexp = (text) ->
   text.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
 
-CFB.Utils.non_modal_ui = ->
+CFB.Utils.non_modal_ui = () ->
   if CFB.touch
     $(document.documentElement).unbind("touchstart").bind "touchstart", (e) ->
       hide_non_modals(e)
