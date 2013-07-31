@@ -546,50 +546,52 @@ nav {
 	width: 40px;
 	height: 40px;
 }
-
-#update-buttons {
-  float: right;
-}
-
-#posts-container {
-	.post {
-		clear: left;
-		margin-top: 1px;
-		margin-bottom: 2em;
-		/*border-bottom: solid;*/
-		padding-bottom: 2em;
-
-		h4 {
-			margin-bottom: .2em;
-		}
-
-	}
-
-	.comment-link, .like-link {
-          float: left;
-	}
-
-	.comment-link {
-          position: relative;
-
-        }
-
-        .comment-form {
-          width: 100%;
-
-          textarea {
-            margin-bottom: .5em;
-          }
-
-          button {
-            float: right;
-
-            &.cancel {
-              margin-right: .4em;
-            }
-          }
-        }
-}
+// 
+// #update-buttons {
+// 	float: right;
+// }
+// 
+// #posts-container {
+// 	// .post {
+// 	// 	clear: left;
+// 	// 	margin-top: 1px;
+// 	// 	margin-bottom: 2em;
+// 	// 	/*border-bottom: solid;*/
+// 	// 	padding-bottom: 2em;
+// 	// 
+// 	// 	h4 {
+// 	// 		margin-bottom: .2em;
+// 	// 	}
+// 	// 
+// 	// }
+// 
+// 	.comment-link, .like-link {
+// 		float: left;
+// 	}
+// 
+// 	.comment-link {
+// 		position: relative;
+// 	}
+// 
+// 	.comment-form {
+// 		width: 100%;
+// 
+// 		textarea {
+// 			margin-bottom: .5em;
+// 		}
+// 
+// 		button {
+// 			float: right;
+// 
+// 			&.cancel {
+// 				margin-right: .4em;
+// 			}
+// 
+// 		}
+// 
+// 	}
+// 
+// }
 
 
 footer {
