@@ -8,7 +8,6 @@ CFB.Comments = class Comments
   init_events: ->
     _this = @
     $("a.comment-link").each ->
-      #post_id = $(this).closest(".post").attr("data-id")
       $post = $(this).closest(".post")
       if CFB.touch
         $(this).on("touchstart", (e) -> _this.add_comment_form(e, $post))
@@ -50,13 +49,16 @@ CFB.Comments = class Comments
     
     $comment_textarea = $(".comment-form textarea", $post)
     if e
-      $comment_textarea.focus()
+      window.setTimeout ->
+        $comment_textarea.focus()
+      , 10
     $comment_textarea.autosize({append: "\n"})  
 
     @init_delayed_events($post)
 
   init_delayed_events: ($post) ->
     _this = @
+    $(".comment-form textarea", $post).on("focus", -> $(".ui-wrap", $post).addClass("vis"))
     if CFB.touch
       $("button.submit", @$comment_form).on("touchstart", (e) -> _this.submit_comment(e, $post))
       $("button.cancel", @$comment_form).on("touchstart", (e) -> _this.remove_form(e, $post))
@@ -67,8 +69,11 @@ CFB.Comments = class Comments
   remove_form: (e, $post) ->
     e.preventDefault()
     $form = $(".comment-form", $post)
-    $form.detach()
-    $(".comment-link.open", $post).removeClass("open")
+    if $(".post-comments", $post).length > 0
+      $(".comment-form textarea", $post).val("")
+      $(".ui-wrap", $post).removeClass("vis")
+    else
+      $form.detach()
 
   submit_comment: (e, $post) ->
     $link = $(".comment-link", $post)
