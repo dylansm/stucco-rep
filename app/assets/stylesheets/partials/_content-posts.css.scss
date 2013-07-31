@@ -697,10 +697,11 @@
 .post-comments {
 	background-color: $sidebarbg;
 	padding: 10px;
-	margin: 10px 10px 16px 10px;
+	margin: 10px 10px 0px 10px;
 	
 	@include media-query-bp($bp3) {
-		margin: 10px 0px 16px 0px;
+		padding: 20px 20px 20px 20px;
+		margin: 10px 0px 0px 0px;
 	}
 	
 	.more-comments {
@@ -744,31 +745,36 @@
 			float: left;
 		}
 	}
-	
-	@include media-query-bp($bp3) {
-		padding: 20px 20px 20px 20px;
-	}
 }
 
 .comment-form {
 	margin: 0 0 0 0;
 	padding: 0px 10px 10px 10px;
-	
+
 	@include media-query-bp($bp3) {
 		padding: 0 0 0 0;
 	}
-	
+
 	textarea {
-		margin: 0 0 0 0;
+		margin: 10px 0 0px 0;
 	}
 
-        .ui-wrap {
-          display: none;
+	.ui-wrap {
+		display: none;
+		@include clearfix;
+		
+		margin: 10px 0 0 0;
+		
+		&.vis {
+			display: block;
+		}
+		
+		button {
+			float: right;
+		}
 
-          &.vis {
-            display: block;
-          }
-        }
+	}
+
 }
 
 
