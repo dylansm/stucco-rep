@@ -68,13 +68,22 @@ CFB.Comments = class Comments
       $("button.cancel", @$comment_form).on("click", (e) -> _this.remove_form(e, $post))
 
   hide_comment_buttons: (e) ->
-    if $(e.target).get(0).tagName == ("TEXTAREA" || "BUTTON")
-      return
+    # comment link
     if $(e.target).hasClass("link-text")
       e.target = e.target.parentNode
     if $(e.target).hasClass("comment-link")
-      return
-    $(".comment-form .ui-wrap").removeClass("vis")
+      $comment_link = true
+
+    $closest_post = []
+    if $(e.target).get(0).tagName == ("TEXTAREA" || "BUTTON") ||
+      $comment_link
+        $closest_post = $(e.target).closest(".post")
+    if $closest_post.length > 0
+      $(".post").each ->
+        unless this == $closest_post[0]
+          $(".comment-form .ui-wrap", this).removeClass("vis")
+    else
+      $(".comment-form .ui-wrap").removeClass("vis")
 
 
   remove_form: (e, $post) ->
