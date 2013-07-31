@@ -58,13 +58,25 @@ CFB.Comments = class Comments
 
   init_delayed_events: ($post) ->
     _this = @
-    $(".comment-form textarea", $post).on("focus", -> $(".ui-wrap", $post).addClass("vis"))
+    $textarea = $(".comment-form textarea", $post)
+    $textarea.on("focus", -> $(".ui-wrap", $post).addClass("vis"))
     if CFB.touch
+      $(document.documentElement).unbind("touchstart").bind "touchstart", (e) =>
+        @hide_comment_buttons(e)
       $("button.submit", @$comment_form).on("touchstart", (e) -> _this.submit_comment(e, $post))
       $("button.cancel", @$comment_form).on("touchstart", (e) -> _this.remove_form(e, $post))
     else
+      $(document.documentElement).unbind("click").bind("click", (e) =>
+        @hide_comment_buttons(e)
+      )
       $("button.submit", @$comment_form).on("click", (e) -> _this.submit_comment(e, $post))
       $("button.cancel", @$comment_form).on("click", (e) -> _this.remove_form(e, $post))
+
+  hide_comment_buttons: (e) ->
+    if $(e.target).get(0).tagName == ("TEXTAREA" || "BUTTON")
+      return
+    $(".comment-form .ui-wrap").removeClass("vis")
+
 
   remove_form: (e, $post) ->
     e.preventDefault()
