@@ -760,13 +760,15 @@
 	}
 
 	.ui-wrap {
-		display: none;
+		max-height: 0px;
+		overflow: hidden;
+		@include transition(max-height);
 		@include clearfix;
 		
 		margin: 10px 0 0 0;
 		
 		&.vis {
-			display: block;
+			max-height: 30px;
 		}
 		
 		button {
@@ -776,9 +778,7 @@
 				margin-right: 5px;
 			}
 		}
-
 	}
-
 }
 
 
