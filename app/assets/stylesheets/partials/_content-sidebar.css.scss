@@ -112,7 +112,12 @@
 		.bio-links {
 			margin: 0 0 10px 0;
 			display: inline-block;
-
+			
+			a,
+			a:hover {
+				text-decoration: none;
+			}
+			
 			.icon {
 				font-size: 1.875em; // 30/16 = 1.875
 				display: inline-block;
