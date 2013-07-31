@@ -762,6 +762,22 @@
 	textarea {
 		margin: 0 0 0 0;
 	}
+
+        textarea:focus + .ui-wrap {
+          display: block;
+
+          button {
+            cursor: pointer;
+          }
+        }
+
+        .ui-wrap {
+          display: none;
+          
+          button {
+            cursor: default;
+          }
+        }
 }
 
 
