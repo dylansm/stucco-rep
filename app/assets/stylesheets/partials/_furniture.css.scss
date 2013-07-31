@@ -490,7 +490,8 @@ nav {
 	}
 	
 	@include media-query-bp($bp4) {
-		padding: 20px 20px 20px 60px;
+		// padding: 20px 20px 20px 60px;
+		padding: 40px 30px 40px 60px;
 	}
 	
 	// &.dark {
