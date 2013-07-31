@@ -58,14 +58,14 @@ CFB.Comments = class Comments
     if CFB.touch
       $(document.documentElement).unbind("touchstart").bind "touchstart", (e) =>
         @hide_comment_buttons(e)
-      $("button.submit", @$comment_form).on("touchstart", (e) -> _this.submit_comment(e, $post))
-      $("button.cancel", @$comment_form).on("touchstart", (e) -> _this.remove_form(e, $post))
+      $("button.submit", @$comment_form).off("touchstart").on("touchstart", (e) -> _this.submit_comment(e, $post))
+      $("button.cancel", @$comment_form).off("touchstart").on("touchstart", (e) -> _this.remove_form(e, $post))
     else
       $(document.documentElement).unbind("click").bind("click", (e) =>
         @hide_comment_buttons(e)
       )
-      $("button.submit", @$comment_form).on("click", (e) -> _this.submit_comment(e, $post))
-      $("button.cancel", @$comment_form).on("click", (e) -> _this.remove_form(e, $post))
+      $("button.submit", @$comment_form).off("click").on("click", (e) -> _this.submit_comment(e, $post))
+      $("button.cancel", @$comment_form).off("click").on("click", (e) -> _this.remove_form(e, $post))
 
   hide_comment_buttons: (e) ->
     # comment link

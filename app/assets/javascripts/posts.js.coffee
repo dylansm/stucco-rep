@@ -58,26 +58,29 @@ CFB.Posts = class Posts
       $delete = $("li:last a", this)
 
       if CFB.touch
-        $editor_wrap.bind("touchstart", (e) ->
+        $editor_wrap.unbind("touchstart").bind("touchstart", (e) ->
           e.preventDefault()
           $(this).parent().toggleClass('non-modal')
           CFB.Utils.non_modal_ui()
         )
-        $edit.bind("touchstart", (e) ->
+        $edit.unbind("touchstart").bind("touchstart", (e) ->
           _this.edit_post(e, post_id))
-        $delete.bind("touchstart", (e) ->
+        $delete.unbind("touchstart").bind("touchstart", (e) ->
           _this.delete_post(e, post_id))
       else
-        $editor_wrap.click ->
+        $editor_wrap.off("click").on("click", ->
           $(this).parent().toggleClass('non-modal')
           CFB.Utils.non_modal_ui()
+        )
 
-        $edit.click (e) ->
+        $edit.off("click").on("click", (e) ->
           $editor_wrap.parent().removeClass("non-modal")
           _this.edit_post(e, post_id)
-        $delete.click (e) ->
+        )
+        $delete.off("click").on("click", (e) ->
           $editor_wrap.parent().removeClass("non-modal")
           _this.delete_post(e, post_id)
+        )
 
   fetch_posts: ->
     $.ajax
@@ -102,8 +105,9 @@ CFB.Posts = class Posts
       @$container.append(post_html)
     )
     @init_edit_events()
-    @comments = CFB.Comments.init(posts_data)
-    @likes = CFB.Likes.init(posts_data)
+    @comments ||= new CFB.Comments
+    @comments.init(posts_data)
+    #@likes ||= CFB.Likes.init(posts_data)
     #@ratings = CFB.Ratings.init()
 
   clear_post_form: ->
