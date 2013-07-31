@@ -1,0 +1,133 @@
+// 
+// .rightwrapper.alert-wrapper
+//   
+//   .notification
+//     .notification-content.alert.alert--info
+//       %a.alert-close{:href => "#"} 
+//         %span.icon.icon-close
+//     
+//       %p.notification-date 
+//         Monday October 18, 2013
+//       %h3 
+//         Happy Monday!
+//       %p
+//         Drake Equation the carbon in our apple pies, light years hearts of the stars with pretty stories for which there's little good evidence, consciousness bits of moving fluff brain is the seed of intelligence culture a still more glorious dawn awaits. Not a sunrise but a galaxyrise! Are creatures of the cosmos Apollonius of Perga extraplanetary, star stuff harvesting star light brain is the seed of intelligence. Muse about of brilliant syntheses galaxies! 
+//       %p 
+//         Network of wormholes with pretty stories for which there's little good evidence something incredible is waiting to be known Apollonius of Perga galaxies, network of wormholes? Flatland permanence of the stars Vangelis, stirred by starlight worldlets galaxies, billions upon billions! Consciousness.
+//       %p.notification-author 
+//         Nina Brentlinger
+//     %a.notification-view-all-link{:href => "#"}
+//       View all Notifications
+// 
+// .rightwrapper
+//   
+//   .notification
+//     .notification-content
+//       %p.notification-date 
+//         Monday October 18, 2013
+//       %h3 
+//         Happy Monday!
+//       %p
+//         Drake Equation the carbon in our apple pies, light years hearts of the stars with pretty stories for which there's little good evidence, consciousness bits of moving fluff brain is the seed of intelligence culture a still more glorious dawn awaits. Not a sunrise but a galaxyrise! Are creatures of the cosmos Apollonius of Perga extraplanetary, star stuff harvesting star light brain is the seed of intelligence. Muse about of brilliant syntheses galaxies! 
+//       %p 
+//         Network of wormholes with pretty stories for which there's little good evidence something incredible is waiting to be known Apollonius of Perga galaxies, network of wormholes? Flatland permanence of the stars Vangelis, stirred by starlight worldlets galaxies, billions upon billions! Consciousness.
+//       %p.notification-author 
+//         Nina Brentlinger
+
+.alert-wrapper {
+	
+	// but until then, remove its padding
+	@include media-query-bp($bp3 - 1, "max") {
+		padding: 10px;
+	}
+	
+}
+
+.notification {
+	
+	@include clearfix;
+	@include text-small;
+	@include text-color-normal;
+	
+	margin: 0 0 0 0;
+	
+	@include media-query-bp($bp3) {
+		.alert {
+			padding: 20px;
+		}
+	}
+	
+	.notification-content {
+		// @include clearfix;
+		
+		&.alert {
+			.notification-author {
+				margin-bottom: 0px;
+			}
+			
+			.notification-date {
+				@include media-query-bp($bp3) {
+					text-align: left;
+				}
+			}
+			
+		}
+		
+	}
+	
+	// .alert-close {
+	// 	float: right;
+	// 	font-size: 1.125em; // 18/16 = 1.125
+	// 	@include text-color-light;
+	// 	
+	// 	text-decoration : none;
+	// 	@include transition(all, .05s);
+	// 
+	// 	&:visited {
+	// 		// color: darken($infocolor, 30%);
+	// 		// color: rgba($textcolor, .1);
+	// 		@include text-color-light;
+	// 	}
+	// 
+	// 	&:hover,
+	// 	&:active {
+	// 		text-decoration : none;
+	// 		outline : 0;
+	// 		@include text-color-normal;
+	// 		// color: lighten($infocolor, 10%);
+	// 	}
+	// 	&:focus {
+	// 		color: lighten($infocolor, 10%);
+	// 		@include text-color-normal;
+	// 	}
+	// 
+	// 	
+	// }
+	// 
+	.notification-date {
+		@include text-color-light;
+		font-weight: lighter;
+		// text-align: right;
+		// margin: 0 0 10px 0;
+		margin-bottom: 5px;
+		
+		@include media-query-bp($bp3) {
+			text-align: right;
+		}
+	}
+	
+	.notification-author {
+		// float: right;
+		text-align: right;
+		font-weight: bold;
+		// margin-bottom: 0px;
+	}
+	
+	.notification-view-all-link {
+		float: right;
+		margin-bottom: 0px;
+		// display: inline;
+		// text-align: right;
+	}
+	
+}

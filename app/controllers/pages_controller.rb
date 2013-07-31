@@ -35,6 +35,9 @@ class PagesController < ApplicationController
   def dashboard_dev
   end
   
+  def notification_center
+  end
+  
   private
 
   def user

@@ -113,9 +113,11 @@ $linkcolorfocus 				: darken($linkcolor, 10);
 /*$alertcolor 					: rgb(218,79,73);*/
 $alertcolor 					: rgb(255,255,255);
 $errorcolor 					: rgb(176,20,0);
-$infocolor 						: rgb(216,220,162);
+// $infocolor 						: rgb(216,220,162);
+$infocolor 						: #d2e8fc;
 $inversecolor 					: rgb(65,65,65);
-$successcolor 					: rgb(188,212,222);
+// $successcolor 					: rgb(188,212,222);
+$successcolor 					: rgb(216,220,162);
 $warningcolor 					: $errorcolor;
 
 // Start the ‘atmosphere’ of your design by defining the colours of your pages and text
@@ -438,8 +440,9 @@ $heroshadowblur					: 10px;
 
 // =alerts ============
 
-/*$alertpadding					: 8px 35px 8px 14px;*/
-$alertpadding					: 0;
+// $alertpadding					: 8px 35px 8px 14px;
+$alertpadding					: 10px;
+// $alertpadding					: 0;
 
 // Alerts have a default flat background colour
 // Add an optional gradient in _bootstrap-alerts.scss
@@ -457,7 +460,8 @@ $alertborderstyle 				: $borderstyle;
 $alertbordercolor				: darken($alertbackgroundcolor, 20%);
 
 // Set the alert’s border radius. Default is $borderradius defined above
-$alertborderradius 				: $borderradius;
+// $alertborderradius 				: $borderradius;
+$alertborderradius 				: 5px;
 
 // Set the alert’s font-size. 
 // Use only a number. Units (em/px/%) are not required
@@ -484,7 +488,8 @@ $alertcolorerror 				: lighten($errorcolor, 60%);
 
 // Set the info alerts’ border and text colours
 $alertbordercolorinfo   		: darken($infocolor, 10%);
-$alertcolorinfo					: darken($infocolor, 50%);
+// $alertcolorinfo					: darken($infocolor, 50%);
+$alertcolorinfo					: $black;
 
 // Set the inverse alerts’ border and text colours
 $alertbordercolorinverse   		: $inversecolor;

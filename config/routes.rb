@@ -54,6 +54,7 @@ Adoberep::Application.routes.draw do
   get 'pages/member-directory' => 'pages#member_directory'
   get 'pages/student-profile' => 'pages#student_profile'
   get 'pages/dashboard-dev' => 'pages#dashboard_dev'
+  get 'pages/notification-center' => 'pages#notification_center'
   
   root 'pages#home'
 
