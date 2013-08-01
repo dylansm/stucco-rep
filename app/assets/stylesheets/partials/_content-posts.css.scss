@@ -523,6 +523,10 @@
 	
 	&.editing {
 		
+		background-color: lighten($warningcolor, 63%);
+		padding: 20px;
+		margin-bottom: 20px;
+		
 		.text-wrapper, 
                 .post-meta,
 		.post-video {
@@ -532,6 +536,15 @@
 			display: block;
 		}
 	}
+	
+	#update-buttons {
+		@include clearfix;
+		
+		button {
+			float: right;
+		}
+	}
+	
 	
 	.post-meta {
 		@include clearfix;
