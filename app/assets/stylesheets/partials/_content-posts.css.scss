@@ -524,9 +524,13 @@
 	&.editing {
 		
 		background-color: lighten($warningcolor, 63%);
-		padding: 20px;
-		margin-bottom: 20px;
+		padding: 10px;
+		margin: 10px 10px 20px 10px;
+		// margin-bottom: 20px;
 		
+		@include media-query-bp($bp3) {
+			margin: 0px 0px 20px 0px;
+		}		
 		.text-wrapper, 
                 .post-meta,
 		.post-video {
