@@ -53,7 +53,7 @@
 	}
 	
 	@include media-query-bp($bp4) {
-		padding: 40px 20px 40px 60px;
+		padding: 40px 30px 40px 60px;
 	}
 	
 	.mobile-new-post-toggle {
@@ -524,6 +524,9 @@
 	&.editing {
 		
 		background-color: lighten($warningcolor, 63%);
+		background-image: image_url("post-edit-bg.gif");
+		// background: image_url("adobe_logo.png") 0 0 no-repeat;
+		border: 1px solid lighten($primarycolor, 30%);
 		padding: 10px;
 		margin: 10px 10px 20px 10px;
 		
