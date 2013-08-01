@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
 
+  def index
+    @users = User.all
+  end
+
   def show
     @user = params[:id] ? User.find(params[:id]) : current_user
 

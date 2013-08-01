@@ -13,49 +13,10 @@
     = csrf_meta_tags
   %body{ @attributes ||= {} }
     
-    / = render "shared/header"
-    
     .pagewrapper
     
-      %header
-        .headerwrapper
-          .leftheader
-            = link_to t('nav.home'), "http://www.adobe.com", { class: "logo" }
-            %p.program-title Adobe Campus Ambassador Portal
-        
-          .rightheader
-            %a.dashboard.active
-              %span.icon.icon-dashboard
-              %span.label
-                \ Dashboard
-            %a.newsfeed 
-              %span.icon.icon-newsfeed
-              %span.label
-                \ Newsfeed
-            %a.menu
-              %span.icon.icon-menu
+      = render "shared/header"
     
-      %nav
-        .width-limiter
-          .navwrapper
-            %ul
-              %li
-                %a
-                  %span.icon.icon-attendees
-                  \ Members
-              %li
-                %a.active
-                  %span.icon.icon-share
-                  \ Share a Link
-              %li
-                %a
-                  %span.icon.icon-profile
-                  \ My Profile
-              %li
-                %a
-                  %span.icon.icon-logout
-                  \ Logout
-      
       / need to be able to toggle on/off the student-profile class on the .content div
       .content
         / .content.student-profile
@@ -67,17 +28,15 @@
           = render partial: "shared/left_column"
 
         .rightcol
+
+          %p.notice= notice
+          %p.alert= alert
       
           = yield
             
-          .rightwrapper
-            %p This is the right column content.
-            / We are temporarily dumping nav into the body while we work out structure and styling in the header.
-            This is the temporary login and nav stuff:
+          -#.rightwrapper
+            -#home
           
-            %p= render "shared/header"
-            %p.notice= notice
-            %p.alert= alert
           
           %footer
             %ul

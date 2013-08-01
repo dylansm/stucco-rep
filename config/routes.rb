@@ -40,13 +40,13 @@ Adoberep::Application.routes.draw do
     end
   end
 
-  # users
   devise_for :users, :controllers => { 
     :omniauth_callbacks => 'users/omniauth_callbacks'
   }
 
   get 'users/:id' => 'users#show', as: "user"
   get 'profile' => 'users#show'
+  get 'members' => 'users#index', as: "members"
   patch 'users/:id' => 'users#create_post', as: "create_post"
 
   get 'pages/styles' => 'pages#styles'

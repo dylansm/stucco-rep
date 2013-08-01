@@ -1,1 +1,1 @@
-Program.create(name: "Campus Ambassador Portal")
+Program.create(name: "Student Rep Portal")
