@@ -83,11 +83,13 @@ CFB.Posts = class Posts
         )
 
   fetch_posts: ->
+    @$more_link.addClass("waiting")
     $.ajax
       url: "/newsfeed/posts/page/#{@next_page}.json",
       type: 'get',
       datatype: 'json',
       success: (data, textstatus, xhr) =>
+        @$more_link.removeClass("waiting")
         @add_posts(data)
         if @next_page < @num_pages
           @next_page += 1
@@ -107,7 +109,8 @@ CFB.Posts = class Posts
     @init_edit_events()
     @comments ||= new CFB.Comments
     @comments.init(posts_data)
-    #@likes ||= CFB.Likes.init(posts_data)
+    @likes ||= new CFB.Likes
+    @likes.init(posts_data)
     #@ratings = CFB.Ratings.init()
 
   clear_post_form: ->

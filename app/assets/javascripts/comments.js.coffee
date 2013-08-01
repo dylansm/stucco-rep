@@ -1,14 +1,10 @@
 CFB.Comments = class Comments
 
-  constructor: (posts_data) ->
-    @posts_data = posts_data
-    @cur_index = 0
-
   init: (posts_data) ->
     @posts_data = posts_data
     @init_events()
     @init_comment_link_text()
-    #@add_forms_below_comments()
+    @add_forms_below_comments()
   
   init_events: ->
     _this = @
@@ -20,20 +16,10 @@ CFB.Comments = class Comments
         $(this).on("click", (e) -> _this.add_comment_form(e, $post))
 
   init_comment_link_text: ->
-    #count = 0
-    #_.each(@posts_data, (post_data, index) =>
-      #$post = $($(".post")[@cur_index + index])
-      #$link = $(".comment-link", $post)
-      #CFB.Utils.format_link(post_data, $link, @user_id)
-      #count++
-    #)
-    #@cur_index += count
-
-    _.each(@posts_data, (post_data, index) =>
-      $post = $($(".post")[@cur_index + index])
+    _.each(@posts_data, (post_data) =>
+      $post = $($(".post[data-id='#{post_data.id}']"))
       $link = $(".comment-link", $post)
       CFB.Utils.format_link(post_data, $link, @user_id)
-      count++
     )
   
   add_forms_below_comments: ->
@@ -45,19 +31,24 @@ CFB.Comments = class Comments
   add_comment_form: (e, $post) ->
     if e
       e.preventDefault()
-    if $(".comment-form", $post).length > 0
-      $(".comment-form textarea", $post).focus()
-      return
+
+      if $(".comment-form", $post).length > 0
+        $(".comment-form textarea", $post).focus()
+        return
 
     tmpl = JST["comment_form"]()
     if $(".post-comments", $post).length > 0
+      # under existing comments
       $comments = $(".post-comments", $post)
-      $comments.after(tmpl)
+
+      unless $(".comment-form", $post).length > 0
+        $comments.after(tmpl)
     else
       $comments-wrap = $(".post-comments-wrap", $post)
       $comments-wrap.append(tmpl)
     
     $comment_textarea = $(".comment-form textarea", $post)
+
     if e
       window.setTimeout ->
         $comment_textarea.focus()

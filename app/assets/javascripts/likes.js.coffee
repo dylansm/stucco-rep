@@ -1,15 +1,16 @@
 CFB.Likes = class Likes
 
-  constructor: (likes_data) ->
+  init: (posts_data) ->
+    @posts_data = posts_data
     @user_id = parseInt $("body").attr("data-user-id"), 10
-    @init_like_link_text(likes_data)
+    @init_like_link_text()
     @init_events()
 
-  init_like_link_text: (likes_data) ->
-    _.each(likes_data, (like_data, index) =>
-      $post = $($(".post")[index])
+  init_like_link_text: ->
+    _.each(@posts_data, (post_data) =>
+      $post = $($(".post[data-id='#{post_data.id}']"))
       $link = $(".like-link", $post)
-      CFB.Utils.format_link(like_data, $link, @user_id)
+      CFB.Utils.format_link(post_data, $link, @user_id)
     )
 
   init_events: ->
@@ -37,6 +38,3 @@ CFB.Likes = class Likes
         CFB.Utils.format_link(data.liked_post, $link, @user_id)
       error: (response) ->
         console.log response
-
-CFB.Likes.init = (likes_data) ->
-  new CFB.Likes(likes_data)
