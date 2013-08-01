@@ -1,5 +1,5 @@
 #update-buttons
-  %button{ class: "btn btn-small", type: "button", id: "cancel-edit" }
-    Cancel
   %button{ class: "btn btn-primary btn-small", type: "button", id: "edit-submit" }
     Update
+  %button{ class: "btn btn-small", type: "button", id: "cancel-edit" }
+    Cancel
