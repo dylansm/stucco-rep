@@ -78,6 +78,9 @@ en:
     edit_school: "Edit %{name}"
     newsfeed: "Newsfeed"
     dashboard: "Dashboard"
+    share_link: "Share a Link"
+    my_profile: "My Profile"
+    members: "Members"
 
   headers:
     manage_program_managers: "Manage Program Managers"

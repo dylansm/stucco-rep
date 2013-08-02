@@ -1,68 +1,53 @@
--#
-  - if user_signed_in?
-    - if current_user.programs.length > 1
-      = simple_form_for [:dashboard, :admin, current_user], 
-        url: "/dashboard/admin/users/#{current_user.id}/current-program/#{@program.id}", method: :put do |f|
-        = f.input :current_program_id, collection: current_user.programs, label: false, input_html: { class: 'chzn-select', 
-          :"data-placeholder" => t("select.choose") }
-    - else
-      = link_to current_user.program.name, root_path, { class: "program-title"}
-  - else
-    =link_to t('nav.login'), new_user_session_path
-
-  - if user_signed_in?
-    / .rightheader
-    = link_to "Dashboard", dashboard_path
-    = link_to "Newsfeed", newsfeed_path
-    = link_to "Menu", "#"
-    .hidden-menu
-      = link_to t('nav.logout'), destroy_user_session_path, :method => :delete
-      = link_to 'My Profile', profile_path
-
 %header
   .headerwrapper
     .leftheader
       = link_to t('nav.home'), "http://www.adobe.com", { class: "logo" }
       %p.program-title
         = link_to "#{APP_CONFIG['name']}", root_path
-
-        -#- if user_signed_in?
-          -#- if current_user.programs.length > 1
-            -#= simple_form_for [:dashboard, :admin, current_user], 
-              -#url: "/dashboard/admin/users/#{current_user.id}/current-program/#{@program.id}", method: :put do |f|
-              -#= f.input :current_program_id, collection: current_user.programs, label: false, input_html: { class: 'chzn-select', 
-                -#:"data-placeholder" => t("select.choose") }
-          -#- else
-            -#= link_to current_user.program.name, root_path
   
     .rightheader
-      = link_to dashboard_path, class: "dashboard active" do
+      = link_to dashboard_path, class: "dashboard" do
         %span.icon.icon-dashboard
         %span.label
-          \ Dashboard
+          = t('page_titles.dashboard')
 
       = link_to newsfeed_path, class: "newsfeed" do
         %span.icon.icon-newsfeed
         %span.label
-          \ Newsfeed
+          = t('page_titles.newsfeed')
 
       %a.menu
         %span.icon.icon-menu
+
+-#%li  
+  -#= link_to members_path, class: "members" do
+    -#%span.icon.icon-attendees
+      -#= t('page_titles.members')
+
+-#%li.mobile-share
+  -#%a
+    -#%span.icon.icon-share
+      -#= t('page_titles.share_link')
+-#%li
+  -#= link_to profile_path, class: "my-profile" do
+    -#%span.icon.icon-profile
+      -#= t('page_titles.my_profile')
+
 
 %nav
   .width-limiter
     .navwrapper
       %ul
         %li
-          = link_to members_path do
+          = link_to members_path, class: "members" do
             %span.icon.icon-attendees
             \ Members
-        %li
-          %a.active
+        %li.mobile-share
+          %a
             %span.icon.icon-share
             \ Share a Link
         %li
-          = link_to profile_path do
+          = link_to profile_path, class: "my-profile" do
             %span.icon.icon-profile
             \ My Profile
 

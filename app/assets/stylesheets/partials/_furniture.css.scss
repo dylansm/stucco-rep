@@ -220,6 +220,18 @@ body.dashboard .rightheader a.dashboard, body.newsfeed .rightheader a.newsfeed {
   color: $tertiarycolor;
 }
 
+body.newsfeed {
+  p.alert, p.notice {
+    display: none;
+  }
+}
+
+body.members nav a.members, body.my-profile nav a.my-profile {
+  outline : 0;
+  color: $textcolor;
+  border-bottom: 4px solid $textcolor;
+}
+
 nav {
 	
 	@include transition(all, .25s);
@@ -294,8 +306,7 @@ nav {
 		}
 
 		&:hover,
-		&:active,
-		&.active {
+		&:active {
 			outline : 0;
 			color: $textcolor;
 			border-bottom: 4px solid $textcolor;
