@@ -5,7 +5,8 @@ $ ->
       if token
         xhr.setRequestHeader('X-CSRF-Token', token);
 
-  $(".chzn-select").chosen()
+  # $(".chzn-select").chosen()
+  $(".chzn-select").chosen({width: "100%"}); 
 
   # choose program
   $("#user_current_program_id").chosen().change ->

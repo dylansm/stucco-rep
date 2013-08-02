@@ -1,46 +1,112 @@
-= simple_form_for([:dashboard, :admin, @user]) do |f|
-  = devise_error_messages!
+/ mocking this up with the student rep info above in the main content area similar to student profile page
+.rightwrapper.student-info-wrapper
   
-  = f.input :first_name, :autofocus => true
-  = f.input :last_name
-  = f.input :email, required: true
-  = f.input :mobile_phone
-  = f.input :avatar, as: :file, label: "Photo"
-  = f.input :admin 
-  = f.association :programs, include_blank: false, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
-  - if current_user == @user
+  .student-info
+  
+    .student-info-primary
+      .student-image.img-circle
+        %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+      %p
+        %span.student-name
+          Michael Hfuhruhurr
+        %span.student-school-name 
+          / %span.icon.icon-marker / need this icon
+          %span.icon.icon-pin
+          %span.university-name
+            University of Idaho
+        %a.edit-profile{:href => "/"} Edit Profile
+      
+    .student-info-secondary
+      %p.student-bio
+        Plus sized hand model. Actually, that's a lie. I do know how to hypnotize a chicken though. Honest.
+      %p.student-portfolio-link
+        %a{:href => "/"} www.whoisowenjones.com
+      %p.bio-links
+        %a{:href => "/"} 
+          %span.icon.icon-fb
+        %a{:href => "/"} 
+          %span.icon.icon-twitter
+        %a{:href => "/"} 
+          %span.icon.icon-instagram
+        %a{:href => "/"} 
+          %span.icon.icon-behance
+        %a{:href => "/"} 
+          %span.icon.icon-mail
+      %h2.student-points
+        %span.total 2346
+        %span.pts pts
+
+
+.rightwrapper 
+
+  .contentheader
+    %h2 Edit Profile Information
+    %p Get a new place? Beef up on your skills? Use this page to update your personal information.
+
+
+
+
+= simple_form_for([:dashboard, :admin, @user]) do |f|
+  
+  .rightwrapper
     %fieldset
-      %legend= t("legend.password")
-      = f.input :password
-      = f.input :password_confirmation
+      %legend You
+      = devise_error_messages!
+      = f.input :first_name, :autofocus => true
+      = f.input :last_name
+      = f.input :email, required: true
+      = f.input :mobile_phone
+      = f.input :avatar, as: :file, label: "Photo"
+      = f.input :admin 
+      = f.association :programs, include_blank: false, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+  
+  - if current_user == @user
+    .rightwrapper
+      %fieldset
+        %legend= t("legend.password")
+        = f.input :password
+        = f.input :password_confirmation
 
   = f.simple_fields_for :user_application do |ua|
-    %fieldset
-      %legend= t("legend.personal_info")
-      = f.association :school, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
-      = ua.input :gender, collection: [ ['female', 'f'], ['male', 'm'] ], prompt: t("select.choose"), input_html: { class: 'chzn-select' }
-      = ua.input :street_address
-      = ua.input :street_address2
-      = ua.input :city
-      = ua.input :state, collection: states_list, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
-      = ua.input :postal_code
-      = ua.input :country, collection: countries_list, selected: "US", prompt: t("select.choose"), input_html: { class: 'chzn-select' }
-      = ua.input :planned_grad_year, collection: 2013..2028, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
-      = ua.input :planned_grad_term, collection: school_terms_list, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
-      = ua.input :major, label: t("terms.major")
-      = ua.input :minor, label: t("terms.minor")
-      = ua.input :gpa, label: t("terms.gpa")
-      = ua.input :extracurriculars, label: t("terms.extracurricular")
-      = ua.input :extracurricular_leadership, :boolean_style => :nested, label: t("terms.extracurricular_leadership")
-      = ua.input :num_facebook_friends, label: t("terms.num_facebook_friends")
-      = ua.input :num_instagram_followers, label: t("terms.num_instagram_followers")
-      = ua.input :num_twitter_followers, label: t("terms.num_twitter_followers")
-      = ua.input :other_social_sites, label: t("terms.other_social_sites")
-      = ua.input :resume, :as => :file, label: t("terms.resume"), hint: ".pdf or .doc format"
+    .rightwrapper
+      %fieldset
+        %legend= t("legend.personal_info")
+        = f.association :school, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+        = ua.input :gender, collection: [ ['female', 'f'], ['male', 'm'] ], prompt: t("select.choose"), input_html: { class: 'chzn-select' }
+        = ua.input :street_address
+        = ua.input :street_address2
+        = ua.input :city
+        = ua.input :state, collection: states_list, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
+        = ua.input :postal_code
+        = ua.input :country, collection: countries_list, selected: "US", prompt: t("select.choose"), input_html: { class: 'chzn-select' }
+    .rightwrapper
+      %fieldset
+        %legend Acedemic
+        = ua.input :planned_grad_year, collection: 2013..2028, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
+        = ua.input :planned_grad_term, collection: school_terms_list, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
+        = ua.input :major, label: t("terms.major")
+        = ua.input :minor, label: t("terms.minor")
+        = ua.input :gpa, label: t("terms.gpa")
+        = ua.input :extracurriculars, label: t("terms.extracurricular")
+        = ua.input :extracurricular_leadership, :boolean_style => :nested, label: t("terms.extracurricular_leadership")
+    .rightwrapper
+      %fieldset
+        %legend Social
+        = ua.input :num_facebook_friends, label: t("terms.num_facebook_friends")
+        = ua.input :num_instagram_followers, label: t("terms.num_instagram_followers")
+        = ua.input :num_twitter_followers, label: t("terms.num_twitter_followers")
+        = ua.input :other_social_sites, label: t("terms.other_social_sites")
+        = ua.input :resume, :as => :file, label: t("terms.resume"), hint: ".pdf or .doc format"
 
-    %fieldset
-      %legend= t("legend.skills_info")
-      = f.simple_fields_for :tools, f.object.tools.sort! { |a,b| a.name <=> b.name } do |tool_fields|
-        = tool_fields.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tool_fields.object.adobe_product.name unless tool_fields.object.adobe_product.nil?}"
+    .rightwrapper
+      %fieldset
+        %legend= t("legend.skills_info")
+        = f.simple_fields_for :tools, f.object.tools.sort! { |a,b| a.name <=> b.name } do |tool_fields|
+          = tool_fields.input :skill_level, collection: skills_list, as: :radio_buttons, label: "#{tool_fields.object.adobe_product.name unless tool_fields.object.adobe_product.nil?}"
+    
+    .rightwrapper
+      = f.button :submit, class: "btn btn-primary"
 
-  = f.button :submit
+/ DO THIS FOR NOW UNTIL WE HAVE LOGIC IN THE APPLICATION TEMPLATE TO ADD THE CLASS
+%script{:type=>"text/javascript"}
+  $('.content').addClass('student-profile')

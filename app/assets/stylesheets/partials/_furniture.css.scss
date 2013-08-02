@@ -132,7 +132,7 @@ header {
 			overflow: hidden;
 		}
 		
-		@include media-query-bp($bp5) {
+		@include media-query-bp($bp4) {
 			.label {
 				max-width: 350px;
 			}
@@ -654,6 +654,8 @@ footer {
 
 .chzn-container {
 	min-width: 110px;
+	margin-bottom : $baselineheight / 2;
+	
 }
 
 table {
@@ -666,14 +668,35 @@ table {
 }
 
 fieldset {
-	margin: 2em 0;
-	padding: 1em;
-
+	// margin: 2em 0;
+	// padding: 1em;
+	
+	margin: 0 0;
+	padding: 0 0;
+	
 	.radio_buttons {
+		@include clearfix;
+		
 		label {
-			display: inline-block;
+			
+			margin-bottom: 10px;
+			
+			&.radio {
+				display: inline-block;
+				@include span-columns(2 of 10);
+				text-align: center;
+				@include text-color-light;
+				margin-bottom: 20px;
+				@include text-small;
+			}
+			
 			input {
-				margin-left: 1em;
+				// margin-left: 1em;
+				display: block;
+				margin: 0 auto 10px auto !important;
+				// width: 100%;
+				float: none !important;
+				margin-bottom: 10px;
 			}
 		}
 	}
