@@ -5,10 +5,10 @@
 
 = paginate @users
 
-= link_to "Add new user", dashboard_admin_new_user_for_program_path(@program), { :class => "small button"}
+= link_to "Add new user", admin_new_user_for_program_path(@program), { :class => "small button"}
 
-= simple_form_for([:dashboard, :admin, @program],
-  url: dashboard_admin_add_user_to_program_path(@program)) do |f|
+= simple_form_for([:admin, @program],
+  url: admin_add_user_to_program_path(@program)) do |f|
   = f.association :users, collection: User.not_in_program(@program),
     label_method: lambda { |u| u.name }, include_blank: false, label: t('select.labels.add_existing_user'),
     input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
@@ -30,16 +30,16 @@
     - @users.each do |u|
     - u.active_for_authentication ? link = @suspend : link = @reactivate
       %tr{:class => u.active_for_authentication ? '' : 'suspended' }
-        %td= link_to u.first_name, dashboard_admin_user_path(u)
-        %td= link_to u.last_name, dashboard_admin_user_path(u)
-        %td= link_to u.email, dashboard_admin_user_path(u)
+        %td= link_to u.first_name, admin_user_path(u)
+        %td= link_to u.last_name, admin_user_path(u)
+        %td= link_to u.email, admin_user_path(u)
         %td= u.last_sign_in_at
-        %td= link_to t("links.edit"), edit_dashboard_admin_user_path(u)
+        %td= link_to t("links.edit"), edit_admin_user_path(u)
         %td= link_to link, "#", { class: "toggle-user", :"data-id" => "#{u.id}", remote: true }
         %td= link_to t("links.dashboard.manage_programs.remove_user"), "#", { class: "remove-row", 
-          :"data-path" => "/dashboard/admin/programs/#{@program.id}/remove/#{u.id}", 
+          :"data-path" => "/admin/programs/#{@program.id}/remove/#{u.id}", 
           remote: true }
         %td= link_to t("links.delete"), "#", { class: "delete-row", 
-          :"data-path" => "/dashboard/admin/users/#{u.id}", 
+          :"data-path" => "/admin/users/#{u.id}", 
           :"data-id" => "#{u.id}", 
           remote: true }

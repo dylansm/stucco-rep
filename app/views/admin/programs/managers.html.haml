@@ -5,9 +5,9 @@
 
 = paginate @program_managers
 
-= link_to "Add new user", dashboard_admin_new_user_for_program_path(@program), { :class => "small button"}
+= link_to "Add new user", admin_new_user_for_program_path(@program), { :class => "small button"}
 
-= simple_form_for [:dashboard, :admin, @program], url: dashboard_admin_add_manager_to_program_path(@program) do |f|
+= simple_form_for [:admin, @program], url: admin_add_manager_to_program_path(@program) do |f|
   = f.association :users, collection: User.not_in_program(@program, true),
     label: t('select.labels.add_existing_user'),
     input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
@@ -30,11 +30,11 @@
     - @program_managers.each do |pm|
     - pm.active_for_authentication ? link = @suspend : link = @reactivate
       %tr{:class => pm.active_for_authentication ? '' : 'suspended' }
-        %td= link_to pm.first_name, dashboard_admin_user_path(pm)
-        %td= link_to pm.last_name, dashboard_admin_user_path(pm)
-        %td= link_to pm.email, dashboard_admin_user_path(pm)
+        %td= link_to pm.first_name, admin_user_path(pm)
+        %td= link_to pm.last_name, admin_user_path(pm)
+        %td= link_to pm.email, admin_user_path(pm)
         %td= pm.last_sign_in_at
-        %td= link_to t("links.edit"), edit_dashboard_admin_user_path(pm)
+        %td= link_to t("links.edit"), edit_admin_user_path(pm)
         %td= link_to link, "#", { class: "toggle-user", 
           :"data-id" => "#{pm.id}", 
           :"data-reactivate" => "#{@reactivate}", 
@@ -42,9 +42,9 @@
           :"data-suspend-confirm" => "#{@managers_suspend_confirm}", 
           remote: true }
         %td= link_to t("links.dashboard.manage_programs.remove_user"), "#", { class: "remove-row", 
-          :"data-path" => "/dashboard/admin/programs/#{@program.id}/remove/#{pm.id}", 
+          :"data-path" => "/admin/programs/#{@program.id}/remove/#{pm.id}", 
           remote: true }
         %td= link_to t("links.delete"), "#", { class: "delete-row", 
-          :"data-path" => "/dashboard/admin/users/#{pm.id}", 
+          :"data-path" => "/admin/users/#{pm.id}", 
           :"data-id" => "#{pm.id}", 
           remote: true }

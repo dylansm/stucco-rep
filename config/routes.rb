@@ -4,12 +4,15 @@ Adoberep::Application.routes.draw do
 
   namespace :dashboard do
 
+  end
     namespace :admin do
       resources :adobe_products
       resources :programs
       resources :schools
       resources :regions
       resources :users
+      resources :notifications
+      resources :links
 
       get 'program-users/:id' => 'programs#users', :as => "program_users"
       get 'program-managers/:id' => 'programs#managers', :as => "program_managers"
@@ -26,7 +29,6 @@ Adoberep::Application.routes.draw do
       get 'users/not-in-program/:program_id' => 'users#not_in_program'
       get 'users/not-admin-in-program/:program_id' => 'users#not_admin_in_program'
     end
-  end
 
   namespace :newsfeed do
     get '/' => 'posts#index'
@@ -44,10 +46,10 @@ Adoberep::Application.routes.draw do
     :omniauth_callbacks => 'users/omniauth_callbacks'
   }
 
+  get 'notifications' => 'admin/notifications#index', as: "notifications"
   get 'users/:id' => 'users#show', as: "user"
   get 'profile' => 'users#show'
   get 'members' => 'users#index', as: "members"
-  get 'notifications' => 'notifications#index', as: 'notifications'
   patch 'users/:id' => 'users#create_post', as: "create_post"
 
   get 'pages/styles' => 'pages#styles'

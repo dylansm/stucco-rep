@@ -1,4 +1,4 @@
-class Dashboard::Admin::SchoolsController < ApplicationController
+class Admin::SchoolsController < ApplicationController
   before_filter :authenticate_user!
 
   def index

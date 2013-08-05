@@ -215,7 +215,8 @@ header {
 	
 }
 
-body.dashboard .rightheader a.dashboard, body.newsfeed .rightheader a.newsfeed {
+body.dashboard .rightheader a.dashboard,
+body.newsfeed .rightheader a.newsfeed {
   outline : 0;
   color: $tertiarycolor;
 }
@@ -226,7 +227,9 @@ body.newsfeed {
   }
 }
 
-body.members nav a.members, body.my-profile nav a.my-profile {
+body.members nav a.members,
+body.notifications nav a.notifications,
+body.my-profile nav a.my-profile {
   outline : 0;
   color: $textcolor;
   border-bottom: 4px solid $textcolor;

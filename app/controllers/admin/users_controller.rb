@@ -1,4 +1,4 @@
-class Dashboard::Admin::UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
 
@@ -18,7 +18,7 @@ class Dashboard::Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_application = @user.user_application
     build_adobe_products
-    render "dashboard/admin/users/edit"
+    render "admin/users/edit"
   end
 
   # PUT
@@ -33,10 +33,10 @@ class Dashboard::Admin::UsersController < ApplicationController
 
     if @user.update_attributes(permitted_user_params)
       flash[:notice] = t("devise.users.user.updated")
-      redirect_to dashboard_admin_users_path
+      redirect_to admin_users_path
     else
       flash[:alert] = t("devise.registrations.failure")
-      render "dashboard/admin/users/edit"
+      render "admin/users/edit"
     end
   end
 
@@ -46,7 +46,7 @@ class Dashboard::Admin::UsersController < ApplicationController
     build_adobe_products
     @user.school = School.new
     @user.programs.build id: params[:program_id] if params[:program_id]
-    render "dashboard/admin/users/new"
+    render "admin/users/new"
   end
 
   # POST
@@ -55,10 +55,10 @@ class Dashboard::Admin::UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = t("devise.users.user.created")
-      redirect_to dashboard_admin_users_path
+      redirect_to admin_users_path
     else
       flash[:alert] = t("devise.registrations.failure")
-      render '/dashboard/admin/users/new'
+      render 'admin/users/new'
     end
   end
 
@@ -70,7 +70,8 @@ class Dashboard::Admin::UsersController < ApplicationController
     # flash won't magically appear on page
     #flash[:notice] = t("devise.registrations.destroyed")
     
-    respond_with :dashboard, :admin, @user
+    #respond_with :admin, @user
+    render json: { deleted: true }
   end
 
   def suspend

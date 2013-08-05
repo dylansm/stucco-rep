@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :responses, through: :posts, source: :comments
   has_many :likes, dependent: :destroy
+  has_many :notifications
+  has_many :notifiers, class_name: "User"
+  #has_and_belongs_to_many :notifiers, class_name: "User", foreign_key: "notifier_id"
   accepts_nested_attributes_for :user_application, :tools
 
   # Include default devise modules. Others available are: :token_authenticatable, :confirmable, :registerable, :lockable, :timeoutable and :omniauthable

@@ -1,26 +1,29 @@
-class Dashboard::Admin::ProgramsController < ApplicationController
+class Admin::ProgramsController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
 
   def index
+    user
     @programs = Program.order("name ASC").page(params[:page])
     @delete_confirm = t("links.dashboard.manage_programs.delete-confirm")
   end
 
-  def show
-    program
-  end
+  #def show
+    #user
+    #program
+  #end
 
   def edit
+    user
     program
   end
 
   # put
   def update
     if program.update(permitted_params)
-      redirect_to dashboard_admin_programs_path
+      redirect_to admin_programs_path
     else
-      respond_with :dashboard, :admin, program
+      respond_with :admin, program
     end
   end
 
@@ -29,9 +32,9 @@ class Dashboard::Admin::ProgramsController < ApplicationController
     @program = Program.find(params[:id])
     params[:program][:user_ids].concat @program.users.map(&:id)
     if @program.update(permitted_params)
-      redirect_to dashboard_admin_program_users_path(program)
+      redirect_to admin_program_users_path(program)
     else
-      respond_with :dashboard, :admin, program
+      respond_with :admin, program
     end
   end
 
@@ -39,9 +42,9 @@ class Dashboard::Admin::ProgramsController < ApplicationController
     @program = Program.find(params[:id])
     params[:program][:user_ids].concat @program.users.where(admin: true).map(&:id)
     if @program.update(permitted_params)
-      redirect_to dashboard_admin_program_managers_path(program)
+      redirect_to admin_program_managers_path(program)
     else
-      respond_with :dashboard, :admin, program
+      respond_with :admin, program
     end
   end
 
@@ -62,13 +65,14 @@ class Dashboard::Admin::ProgramsController < ApplicationController
   end
 
   def new
+    user
     @program = Program.new
   end
 
   def create
     @program = Program.new(permitted_params)
     if @program.save
-      redirect_to dashboard_admin_programs_path
+      redirect_to admin_programs_path
     else
       respond_with @program
     end
@@ -87,12 +91,14 @@ class Dashboard::Admin::ProgramsController < ApplicationController
   end
 
   def users
+    user
     localized_links
     @program = Program.includes(:users).find(params[:id])
     @users = @program.users.where(admin: false).page(params[:page])
   end
 
   def managers
+    user
     localized_links
     @program = Program.includes(:users).find(params[:id])
     @program_managers = @program.users.where(admin: true).page(params[:page])
@@ -110,6 +116,10 @@ class Dashboard::Admin::ProgramsController < ApplicationController
 
   def program
     @program ||= Program.find(params[:id])
+  end
+
+  def user
+    @user ||= current_user
   end
 
   def localized_links

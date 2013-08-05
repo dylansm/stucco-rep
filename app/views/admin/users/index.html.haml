@@ -4,7 +4,7 @@
 
 = paginate @students
 
-= link_to "Add new user", new_dashboard_admin_user_path, { :class => "small button"}
+= link_to "Add new user", new_admin_user_path, { :class => "small button"}
 %h3= t("headers.program_managers")
 %table{ :"data-reactivate" => "#{@reactivate}", :"data-suspend" => "#{@suspend}", :"data-suspend-confirm" => "#{@managers_suspend_confirm}", :"data-reactivate-confirm" => "#{@managers_reactivate_confirm}", :"data-delete-confirm" => "#{@managers_delete_confirm}" }
   %thead
@@ -19,18 +19,18 @@
     - @program_managers.each do |pm|
     - pm.active_for_authentication ? link = @suspend : link = @reactivate
       %tr{:class => pm.active_for_authentication ? '' : 'suspended' }
-        %td= link_to pm.first_name, dashboard_admin_user_path(pm)
-        %td= link_to pm.last_name, dashboard_admin_user_path(pm)
-        %td= link_to pm.email, dashboard_admin_user_path(pm)
+        %td= link_to pm.first_name, admin_user_path(pm)
+        %td= link_to pm.last_name, admin_user_path(pm)
+        %td= link_to pm.email, admin_user_path(pm)
         %td
           %ul
           - pm.programs.each do |p|
-            %li= link_to p.name, dashboard_admin_program_path(p)
+            %li= p.name
 
         %td= pm.last_sign_in_at
-        %td= link_to t("links.edit"), edit_dashboard_admin_user_path(pm)
+        %td= link_to t("links.edit"), edit_admin_user_path(pm)
         %td= link_to link, "#", { class: "toggle-user", :"data-id" => "#{pm.id}", :"data-reactivate" => "#{@reactivate}", :"data-suspend" => "#{@suspend}", :"data-suspend-confirm" => "#{@managers_suspend_confirm}", remote: true }
-        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/dashboard/admin/users/#{pm.id}", :"data-id" => "#{pm.id}", remote: true }
+        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/admin/users/#{pm.id}", :"data-id" => "#{pm.id}", remote: true }
 
 %h3= t("headers.students")
 %table{ :"data-reactivate" => "#{@reactivate}", :"data-suspend" => "#{@suspend}", :"data-suspend-confirm" => "#{@users_suspend_confirm}", :"data-reactivate-confirm" => "#{@users_reactivate_confirm}", :"data-delete-confirm" => "#{@users_delete_confirm}" }
@@ -48,16 +48,16 @@
     - @students.each do |u|
     - u.active_for_authentication ? link = @suspend : link = @reactivate
       %tr{:class => u.active_for_authentication ? '' : 'suspended' }
-        %td= link_to u.first_name, dashboard_admin_user_path(u)
-        %td= link_to u.last_name, dashboard_admin_user_path(u)
-        %td= link_to u.email, dashboard_admin_user_path(u)
+        %td= link_to u.first_name, admin_user_path(u)
+        %td= link_to u.last_name, admin_user_path(u)
+        %td= link_to u.email, admin_user_path(u)
         %td
           %ul
             - u.programs.each do |p|
-              %li= link_to p.name, dashboard_admin_program_path(p)
-        %td= link_to (u.mobile_phone.nil? ? '' : u.mobile_phone), dashboard_admin_user_path(u)
+              %li= p.name
+        %td= link_to (u.mobile_phone.nil? ? '' : u.mobile_phone), admin_user_path(u)
         %td= u.school.name unless u.school.nil?
         %td= u.last_sign_in_at
-        %td= link_to t("links.edit"), edit_dashboard_admin_user_path(u)
+        %td= link_to t("links.edit"), edit_admin_user_path(u)
         %td= link_to link, "#", { class: "toggle-user", :"data-id" => "#{u.id}", remote: true }
-        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/dashboard/admin/users/#{u.id}", :"data-id" => "#{u.id}", remote: true }
+        %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/admin/users/#{u.id}", :"data-id" => "#{u.id}", remote: true }

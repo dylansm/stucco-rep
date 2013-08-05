@@ -1,25 +1,28 @@
-class Dashboard::Admin::AdobeProductsController < ApplicationController
+class Admin::AdobeProductsController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
 
   def index
+    user
     @delete_confirm = t("links.dashboard.manage_adobe_products.delete-confirm")
     @adobe_products = AdobeProduct.order("name ASC").page(params[:page])
   end
 
-  def show
-    adobe_product
-  end
+  #def show
+    #user
+    #adobe_product
+  #end
 
   # get
   def edit
+    user
     adobe_product
   end
 
   #put
   def update
     if adobe_product.update_attributes(permitted_params)
-      redirect_to dashboard_manage_adobe_products_path
+      redirect_to admin_adobe_products_path
     else
       respond_with adobe_product
     end
@@ -28,6 +31,7 @@ class Dashboard::Admin::AdobeProductsController < ApplicationController
 
   # get
   def new
+    user
     @adobe_product = AdobeProduct.new
   end
 
@@ -36,7 +40,7 @@ class Dashboard::Admin::AdobeProductsController < ApplicationController
     @adobe_product = AdobeProduct.new(permitted_params)
 
     if @adobe_product.save
-      redirect_to dashboard_admin_adobe_products_path
+      redirect_to admin_adobe_products_path
     else
       respond_with @adobe_product
     end
@@ -45,11 +49,8 @@ class Dashboard::Admin::AdobeProductsController < ApplicationController
   # delete
   def destroy
     adobe_product.destroy
-    
-    #TODO enable this
-    #set_flash_message :notice, :updated
-
-    respond_with adobe_product
+    #respond_with(:admin, adobe_product)
+    render json: { deleted: true }
   end
 
   private
@@ -63,6 +64,10 @@ class Dashboard::Admin::AdobeProductsController < ApplicationController
 
   def adobe_product
     @adobe_product ||= AdobeProduct.find(params[:id])
+  end
+
+  def user
+    @user = current_user
   end
 
 end

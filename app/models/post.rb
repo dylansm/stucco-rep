@@ -1,7 +1,8 @@
 class Post < ActiveRecord::Base
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_one  :rating, dependent: :destroy
   validates(:text, presence: true)
   default_scope { order("created_at DESC") }
 

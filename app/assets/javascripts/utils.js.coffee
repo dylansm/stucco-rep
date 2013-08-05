@@ -67,6 +67,12 @@ CFB.Utils.format_link = (data, $link, user_id) ->
     $link_text.text("#{text_base}")
 
 $ ->
+  $.ajaxSetup
+    beforeSend: (xhr) ->
+      token = $('meta[name="csrf-token"]').attr('content');
+      if token
+        xhr.setRequestHeader('X-CSRF-Token', token);
+
   ua = window.navigator.userAgent.toLowerCase()
   if ua.indexOf("msie") > -1
     ieVersionRE = /msie (\d+)/

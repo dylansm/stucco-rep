@@ -1,9 +1,4 @@
 $ ->
-  $.ajaxSetup
-    beforeSend: (xhr) ->
-      token = $('meta[name="csrf-token"]').attr('content');
-      if token
-        xhr.setRequestHeader('X-CSRF-Token', token);
 
   # $(".chzn-select").chosen()
   $(".chzn-select").chosen({width: "100%"}); 
@@ -42,9 +37,9 @@ $ ->
   add_existing_users = ->
     program_id = $("body").attr("data-program-id")
     if !!$("body").attr("data-admins")
-      url = "/dashboard/admin/users/not-admin-in-program/#{program_id}"
+      url = "/admin/users/not-admin-in-program/#{program_id}"
     else
-      url = "/dashboard/admin/users/not-in-program/#{program_id}"
+      url = "/admin/users/not-in-program/#{program_id}"
 
     $.ajax
       url: url,
@@ -80,7 +75,7 @@ $ ->
       if @text == reactivate
         if confirm reactivate_confirm
           $.ajax
-            url: "/dashboard/admin/users/#{id}/reactivate",
+            url: "/admin/users/#{id}/reactivate",
             type: 'post',
             dataType: 'json',
             data: {"_method": "put"},
@@ -92,7 +87,7 @@ $ ->
       else
         if confirm suspend_confirm
           $.ajax
-            url: "/dashboard/admin/users/#{id}/suspend",
+            url: "/admin/users/#{id}/suspend",
             type: 'post',
             dataType: 'json',
             data: {"_method": "put"},
