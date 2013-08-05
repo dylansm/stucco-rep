@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates(:last_name, presence: true)
 
   has_attached_file(:avatar,
-                    styles: { sm: "40x40#", :"sm@2x" => "80x80#", smmed: "50x50#", :"smmed@2x" => "100x100#", med: "60x60#", medlg: "70x70#", lg: "120x120#", :"lg@2x" => "240x240#", super: "140x140#", :"super@2x" => "280x280#" },
+                    styles: { sm: "40x40#", sm2x: "80x80#", med: "60x60#", med2x: "120x120#", lg: "140x140#", lg2x: "280x280#" },
                     default_url: "/assets/:attachment/missing/:style/avatar_missing.gif"
                    )
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
       send_activate_instructions
     end
   end
+
+  before_save :remove_avatar?
 
   class << self
 
@@ -45,26 +47,20 @@ class User < ActiveRecord::Base
 
   end
 
-  #def as_json(options={})
-    #debugger
-    #if options[:newsfeed] == true
-      #super(options.merge(
-        #only: [ :id ], methods: [ :name, :avatar_url ] ))
-    #end
-  #end
-
   def name
     "#{first_name} #{last_name}"
   end
 
-  def avatar_url
-    #avatar.url(:lg) if avatar.file?
-    avatar.url(:lg)
+  def avatar_url_lg(retina=false)
+    retina ? avatar.url(:lg2x) : avatar.url(:lg)
   end
 
-  def avatar_url_sm
-    #avatar.url(:lg) if avatar.file?
-    avatar.url(:sm)
+  def avatar_url_med(retina=false)
+    retina ? avatar.url(:med2x) : avatar.url(:med)
+  end
+
+  def avatar_url_sm(retina=false)
+    retina ? avatar.url(:sm2x) : avatar.url(:sm)
   end
 
   def program
@@ -111,6 +107,14 @@ class User < ActiveRecord::Base
     posts.fetch
   end
 
+  def remove_avatar
+    @remove_avatar ||= false
+  end
+
+  def remove_avatar=(value)
+    @remove_avatar = !!value
+  end
+
   private
 
   def self.update_oauth_by_email(auth)
@@ -135,5 +139,10 @@ class User < ActiveRecord::Base
   def add_name_to_tool(tool)
     tool.add_names
   end
+
+  def remove_avatar?
+    self.avatar = nil if self.remove_avatar && !self.avatar.dirty?
+  end
+
 
 end

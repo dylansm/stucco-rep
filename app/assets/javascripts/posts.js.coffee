@@ -24,11 +24,21 @@ CFB.Posts = class Posts
       @$upload_link.bind("touchstart", (e) => @open_file_sheet(e))
       $("#new_post button.choose-photo").bind("touchstart", (e) => @open_file_sheet(e))
       @$video_url_link.bind("touchstart", (e) => @enter_video_url(e))
+      $('a.mobile-new-post-toggle').on("touchstart", (e) =>
+        @open_new_post_mobile(e)
+      )
+      $('.new-post-cancel').on("touchstart", (e) =>
+        @close_new_post_mobile(e)
+      )
     else
       @$more_link.click => @fetch_posts()
       @$upload_link.click (e) => @open_file_sheet(e)
       $("#new_post button.choose-photo").click (e) => @open_file_sheet(e)
       @$video_url_link.click (e) => @enter_video_url(e)
+      $('a.mobile-new-post-toggle').click (e) =>
+        @open_new_post_mobile(e)
+      $('.new-post-cancel').click (e) =>
+        @close_new_post_mobile(e)
 
     @$hidden_file_input.on("change", =>
       @on_file_selected()
@@ -39,6 +49,17 @@ CFB.Posts = class Posts
       @prepend_new_post(data)
     )
 
+  open_new_post_mobile: (e) ->
+    e.preventDefault()
+    $('.new-post').addClass('mobile-new-post-active')
+
+  close_new_post_mobile: (e) ->
+    e.preventDefault()
+    $(".secondary-inputs.choose-photo").removeClass("choose-photo")
+    $(".secondary-inputs.choose-video").removeClass("choose-video")
+    $("a.video-upload-link.selected").removeClass("selected")
+    $("a.photo-upload-link.selected").removeClass("selected")
+    $('.new-post').removeClass('mobile-new-post-active')
 
   init_edit_events: (id=null) ->
     _this = @
@@ -101,6 +122,7 @@ CFB.Posts = class Posts
 
   add_posts: (data) ->
     posts_data = data.posts
+    #console.log posts_data
     tmpl = JST["post"]
     _.each(posts_data, (post) =>
       post_html = @build_post post
@@ -140,7 +162,8 @@ CFB.Posts = class Posts
       user_id: post.user.id
       name: post.user.name
       school_name: post.user.school.name if post.user.school
-      avatar_url: post.user.avatar_url
+      avatar_url_med: post.user.avatar_url_med
+      avatar_url_med2x: post.user.avatar_url_med2x
       text: CFB.Utils.html(post.text)
       comments: post.comments
       video_type: post.video_type

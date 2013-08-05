@@ -17,15 +17,14 @@
     
       = render "shared/header"
     
-      / need to be able to toggle on/off the student-profile class on the .content div
-      .content
-        / .content.student-profile
+      .content{ class: @attributes[:class] =~ /my-profile|user/ ? "student-profile" : nil }
         
         .profile-banner
         
         .leftcol
           
-          = render partial: "shared/left_column"
+          - if user_signed_in?
+            = render partial: "shared/left"
 
         .rightcol
 
@@ -33,15 +32,5 @@
           %p.alert= alert
       
           = yield
-            
-          -#.rightwrapper
-            -#home
           
-          
-          %footer
-            %ul
-              %li= link_to "Help", "#"
-              %li= link_to "Terms of Use", "#"
-              %li= link_to "Privacy Policy and Cookies", "#"
-              %li= link_to "Language: English", "#"
-            %p.copywright ©2013 Adobe Systems Incorporated. All Rights Reserved
+          = render partial: "shared/footer"

@@ -123,7 +123,7 @@ CFB.Comments = class Comments
 
   add_comment: (post_data, $post) =>
     comment = _.last(post_data.comments)
-    comment_tmpl = JST["comment"](id: comment.user.id, avatar_url: comment.user.avatar_url, avatar_url_sm: comment.user.avatar_url_sm, name: comment.user.name, text: CFB.Utils.html(comment.text))
+    comment_tmpl = JST["comment"](id: comment.user.id, avatar_url_lg: comment.user.avatar_url_lg, avatar_url_sm: comment.user.avatar_url_sm, name: comment.user.name, text: CFB.Utils.html(comment.text))
     $comments_container = $(".post-comments", $post)
     if $comments_container.length > 0
       $comments_container.append(comment_tmpl)

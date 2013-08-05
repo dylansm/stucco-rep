@@ -24,18 +24,23 @@ class PagesController < ApplicationController
   end
   
   def newsfeed_dev
+    @user = current_user
   end
 
   def member_directory
+    @user = current_user
   end
 
   def student_profile
+    @user = current_user
   end
   
   def dashboard_dev
+    @user = current_user
   end
   
   def notification_center
+    @user = current_user
   end
   
   private

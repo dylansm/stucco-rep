@@ -50,15 +50,23 @@
   
   .rightwrapper
     %fieldset
-      %legend You
+      %legend
       = devise_error_messages!
       = f.input :first_name, :autofocus => true
       = f.input :last_name
       = f.input :email, required: true
       = f.input :mobile_phone
-      = f.input :avatar, as: :file, label: "Photo"
+      = f.input :bio
+      .avatar-info
+        %label Photo
+        - if current_user == @user
+          = f.input :avatar, as: :file, label: false
+        - if @user.avatar.file?
+          .img-circle
+            %img{ src: "#{@user.avatar_url_sm}", alt: "#{@user.name}", srcset: "#{@user.avatar_url_med} 2x" }
+          = f.input :remove_avatar, as: :boolean, label: "Remove photo"
       = f.input :admin 
-      = f.association :programs, include_blank: false, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+      -#= f.association :programs, include_blank: false, input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
   
   - if current_user == @user
     .rightwrapper
@@ -81,7 +89,7 @@
         = ua.input :country, collection: countries_list, selected: "US", prompt: t("select.choose"), input_html: { class: 'chzn-select' }
     .rightwrapper
       %fieldset
-        %legend Acedemic
+        %legend= t("legend.academic_info")
         = ua.input :planned_grad_year, collection: 2013..2028, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
         = ua.input :planned_grad_term, collection: school_terms_list, prompt: t("select.choose"), input_html: { class: 'chzn-select' }
         = ua.input :major, label: t("terms.major")
@@ -91,10 +99,13 @@
         = ua.input :extracurricular_leadership, :boolean_style => :nested, label: t("terms.extracurricular_leadership")
     .rightwrapper
       %fieldset
-        %legend Social
+        %legend= t("legend.social_info")
         = ua.input :num_facebook_friends, label: t("terms.num_facebook_friends")
+        = ua.input :instagram_username
         = ua.input :num_instagram_followers, label: t("terms.num_instagram_followers")
+        = ua.input :twitter_username
         = ua.input :num_twitter_followers, label: t("terms.num_twitter_followers")
+        = ua.input :behance_profile_url, label: "Behance Username"
         = ua.input :other_social_sites, label: t("terms.other_social_sites")
         = ua.input :resume, :as => :file, label: t("terms.resume"), hint: ".pdf or .doc format"
 
@@ -107,6 +118,3 @@
     .rightwrapper
       = f.button :submit, class: "btn btn-primary"
 
-/ DO THIS FOR NOW UNTIL WE HAVE LOGIC IN THE APPLICATION TEMPLATE TO ADD THE CLASS
-%script{:type=>"text/javascript"}
-  $('.content').addClass('student-profile')

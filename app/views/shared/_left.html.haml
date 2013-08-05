@@ -4,35 +4,44 @@
   
     .student-info-primary
       .student-image.img-circle
-        %img{:alt => "Michael Hfuhruhurr", :src => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492", :srcset => "http://adoberep-dev.s3.amazonaws.com/avatars/5/lg/IMG_0183.JPG?1372695492 2x"}/
+        %img{:alt => "#{@user.name}", :src => "#{@user.avatar.url(:lg)}", :srcset => "#{@user.avatar.url(:lg2x)} 2x"}/
       %p
         %span.student-name
-          Michael Hfuhruhurr
-        %span.student-school-name 
+          = @user.name
+        %span.student-school-name{ class: @user.school.nil? ? "adobe" : "student-school-name"  }
           / %span.icon.icon-marker / need this icon
           %span.icon.icon-pin
           %span.university-name
-            University of Idaho
-        %a.edit-profile{:href => "/"} Edit Profile
+            = @user.school.nil? ? "Adobe" : @user.school.name
+        - if current_user == @user
+          %a.edit-profile{ href: "/dashboard/admin/users/#{@user.id}/edit" }
+            Edit Profile
+          
       
     .student-info-secondary
-      %p.student-bio
-        Plus sized hand model. Actually, that's a lie. I do know how to hypnotize a chicken though. Honest.
+      .student-bio.html
+        %p
+          != @user.bio
       %p.student-portfolio-link
-        %a{:href => "/"} www.whoisowenjones.com
+        - if @user.user_application.portfolio_url
+          = link_to @user.user_application.portfolio_url, @user.user_application.portfolio_url
       %p.bio-links
-        %a{:href => "/"} 
-          %span.icon.icon-fb
-        %a{:href => "/"} 
-          %span.icon.icon-twitter
-        %a{:href => "/"} 
-          %span.icon.icon-instagram
-        %a{:href => "/"} 
-          %span.icon.icon-behance
-        %a{:href => "/"} 
+        - if @user.uid
+          = link_to "http://www.facebook.com/#{@user.uid}" do
+            %span.icon.icon-fb
+        - if @user.user_application.twitter_username
+          = link_to "http://www.twitter.com/#{@user.user_application.twitter_username}" do
+            %span.icon.icon-twitter
+        - if @user.user_application.instagram_username
+          = link_to "http://www.instagram.com/#{@user.user_application.instagram_username}" do
+            %span.icon.icon-instagram
+        - if @user.user_application.behance_profile_url
+          = link_to "http://www.behance.net/#{@user.user_application.behance_profile_url}" do
+            %span.icon.icon-behance
+        = mail_to @user.email do
           %span.icon.icon-mail
       %h2.student-points
-        %span.total 2346
+        %span.total= @user.points || "0"
         %span.pts pts
 
 .leftwrapper
@@ -47,7 +56,7 @@
   
       %ul.btn-segmented
         %li.active
-          %a.btn.btn-small.student{"data-toggle" => "tab", :href => ".leaderboard-student"} Ambassador
+          %a.btn.btn-small.student{"data-toggle" => "tab", :href => ".leaderboard-student"} Student Rep
         %li
           %a.btn.btn-small.school{"data-toggle" => "tab", :href => ".leaderboard-school"} School
   

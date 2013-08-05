@@ -10,7 +10,8 @@ CFB.Utils = class Utils
 
 CFB.Utils.html = (text) ->
   # line breaks
-  text = text.replace(/\n(\n|\r)/g, "</p><p>")
+  text = text.replace(/\n\s?\n+/g, "</p><p>")
+  text = text.replace(/\n\r?\s+\n+/g, "</p><p>")
   # links
   url_re = /(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)(\/(.)*)?(\?(.)*)?/g
   url_match = text.match(url_re)
@@ -24,7 +25,7 @@ CFB.Utils.html = (text) ->
     anchor_re = new RegExp("[^/>']#{CFB.Utils.escape_regexp(url)}", 'g')
     text = text.replace(anchor_re, " <a href='#{full_url}' target='_blank'>#{url}</a>")
   )
-
+  
   text
 
 CFB.Utils.escape_regexp = (text) ->

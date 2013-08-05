@@ -3,7 +3,12 @@ en:
     home: "Adobe"
     login: "Log in"
     logout: "Log out"
-    profile: "My profile"
+    newsfeed: "Newsfeed"
+    dashboard: "Dashboard"
+    share_link: "Share a Link"
+    my_profile: "My Profile"
+    members: "Members"
+    notifications: "Notifications"
 
   links:
     delete: "Delete"
@@ -76,11 +81,10 @@ en:
     manage_schools: "Manage Schools"
     manage_adobe_products: "Manage Adobe Products"
     edit_school: "Edit %{name}"
+    notifications: "Notification Center"
+    members: "Members"
     newsfeed: "Newsfeed"
     dashboard: "Dashboard"
-    share_link: "Share a Link"
-    my_profile: "My Profile"
-    members: "Members"
 
   headers:
     manage_program_managers: "Manage Program Managers"

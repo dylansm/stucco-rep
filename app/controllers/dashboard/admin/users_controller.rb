@@ -3,6 +3,7 @@ class Dashboard::Admin::UsersController < ApplicationController
   respond_to :html, :json
 
   def index
+    @user = current_user
     localized_links
     @programs = Program.all
     @program_managers = User.where(admin: true).order("last_name ASC")
@@ -140,6 +141,8 @@ class Dashboard::Admin::UsersController < ApplicationController
       :admin,
       :school_id,
       :avatar,
+      :bio,
+      :remove_avatar,
       tools_attributes: [
         :id,
         :skill_level,
@@ -160,6 +163,9 @@ class Dashboard::Admin::UsersController < ApplicationController
         :major,
         :minor,
         :gpa,
+        :instagram_username,
+        :twitter_username,
+        :behance_profile_url,
         :num_facebook_friends,
         :num_instagram_followers,
         :num_twitter_followers,

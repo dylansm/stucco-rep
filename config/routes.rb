@@ -47,6 +47,7 @@ Adoberep::Application.routes.draw do
   get 'users/:id' => 'users#show', as: "user"
   get 'profile' => 'users#show'
   get 'members' => 'users#index', as: "members"
+  get 'notifications' => 'notifications#index', as: 'notifications'
   patch 'users/:id' => 'users#create_post', as: "create_post"
 
   get 'pages/styles' => 'pages#styles'

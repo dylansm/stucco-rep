@@ -9,12 +9,12 @@
       = link_to dashboard_path, class: "dashboard" do
         %span.icon.icon-dashboard
         %span.label
-          = t('page_titles.dashboard')
+          = t('nav.dashboard')
 
       = link_to newsfeed_path, class: "newsfeed" do
         %span.icon.icon-newsfeed
         %span.label
-          = t('page_titles.newsfeed')
+          = t('nav.newsfeed')
 
       %a.menu
         %span.icon.icon-menu
@@ -26,15 +26,19 @@
         %li
           = link_to members_path, class: "members" do
             %span.icon.icon-attendees
-            = t('page_titles.members')
+            = t('nav.members')
         %li.mobile-share
           = link_to '#' do
             %span.icon.icon-share
-            = t('page_titles.share_link')
+            = t('nav.share_link')
         %li
           = link_to profile_path, class: "my-profile" do
             %span.icon.icon-profile
-            = t('page_titles.my_profile')
+            = t('nav.my_profile')
+        %li
+          = link_to notifications_path, class: "notifications" do
+            %span.icon.icon-notifications
+            = t('nav.notifications')
 
         - if user_signed_in?
           %li

@@ -86,6 +86,10 @@
 			display: block;
 			font-weight: bold;
 			margin: 0 0 0 0;
+
+                        &.adobe span.icon-pin {
+                          color: #fc0d1b;
+                        }
 		}
 
 		.edit-profile {
@@ -98,7 +102,7 @@
 	.student-info-secondary {
 		margin: 0 0 0 0;
 
-		.student-bio {
+		.student-bio p {
 			@include text-small;
 			@include text-color-light;
 			margin: 0 0 0px 0;

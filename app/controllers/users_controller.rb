@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   def index
+    @user = current_user
     @users = User.all
   end
 

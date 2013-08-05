@@ -2,7 +2,7 @@
   .post{ data: { id: "#{@id}", :"video-url" => "#{@video_url}" } }
     .post-author
       .author-image.img-circle
-        %img{ src: "#{@avatar_url}", alt: "#{@name}", srcset: "#{@avatar_url} 2x" }
+        %img{ src: "#{@avatar_url_med}", alt: "#{@name}", srcset: "#{@avatar_url_med2x} 2x" }
       %p
         %span.author-name
           %a{ href:"/users/#{@user_id}" }= @name
@@ -63,4 +63,4 @@
       - if @comments.length > 0
         .post-comments
           - for comment in @comments
-            != JST["comment"](id: comment.user.id, avatar_url: comment.user.avatar_url, avatar_url_sm: comment.user.avatar_url_sm, name: comment.user.name, text: CFB.Utils.html(comment.text))
+            != JST["comment"](id: comment.user.id, avatar_url_sm: comment.user.avatar_url_sm, avatar_url_sm2x: comment.user.avatar_url_sm2x, name: comment.user.name, text: CFB.Utils.html(comment.text))

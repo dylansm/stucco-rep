@@ -35,4 +35,5 @@ class ApplicationController < ActionController::Base
     current_user.update_column(:current_program_id, program.id) if program
     program
   end
+
 end

@@ -3,6 +3,8 @@ en:
     password: "Password (leave blank if not changing)"
     contact_info: "Contact Information"
     personal_info: "Personal Information"
+    academic_info: "Academic"
+    social_info: "Social"
     skills_info: "Skill Level"
 
   select:
