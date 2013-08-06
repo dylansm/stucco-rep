@@ -1,0 +1,85 @@
+// .rightwrapper
+//   
+//   / workshop stats
+//   .contentheader
+//     %h2 Workshop Stats
+//     %p Kindling the energy hidden in matter the only home we've ever known, finite but unbounded.
+//   
+//   .workshop-stats
+//     .workshop-stat
+//       %span.stat-amount 3
+//       %span.icon.icon-workshops
+//       %span.stat-label Workshops Hosted 
+//     .workshop-stat
+//       %span.stat-amount 19
+//       %span.icon.icon-rating
+//       %span.stat-label Total Atendees 
+//     .workshop-stat
+//       %span.stat-amount 
+//         87
+//         %span.stat-amount-percent-sign 
+//           \%
+//       %span.icon.icon-attendees
+//       %span.stat-label Averate Rating
+
+
+.workshop-stats {
+	// @include outer-container;
+	@include clearfix;
+	
+	.workshop-stat {
+		@include span-columns(4);
+		// background-color: #DDD;
+		
+	}
+	
+	.stat-amount {
+		display: block;
+		text-align: center;
+		@include font-size(50);
+		line-height: 100%;
+		font-weight: bold;
+		@include clearfix;
+		color: $dashboardpurple;
+		
+		.stat-amount-percent-sign {
+			font-size: 50%;
+			line-height: 50%;
+			margin-left: -5%;
+		}
+		
+		@include media-query-bp($bp3) {
+			@include font-size(75);
+		}
+		
+		@include media-query-bp($bp5) {
+			@include font-size(100);
+		}
+		
+	}
+	
+	.icon {
+		display: block;
+		text-align: center;
+		@include font-size(40);
+		line-height: 50px;
+		@include text-color-light;
+		
+		&.icon-workshops {
+			@include font-size(35);
+		}
+		
+		@include media-query-bp($bp3) {
+			@include font-size(50);
+			&.icon-workshops {
+				@include font-size(40);
+			}
+		}
+	}
+	
+	.stat-label {
+		display: block;
+		text-align: center;
+	}
+	
+}

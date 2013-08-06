@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+  class PagesController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :styles]
 
   def home
@@ -21,6 +21,7 @@ class PagesController < ApplicationController
   end
 
   def styles
+    @user = current_user
   end
   
   def newsfeed_dev
