@@ -20,5 +20,6 @@
 //= require dashboard.js.coffee
 //= require comments.js.coffee
 //= require likes.js.coffee
+//= require ratings.js.coffee
 //= require posts.js.coffee
 

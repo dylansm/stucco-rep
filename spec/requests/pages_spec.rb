@@ -12,9 +12,9 @@ describe "Page requests" do
     end
   end
 
-  describe "GET /dashboard/admin/users" do
+  describe "GET /admin/users" do
     it "should redirect if not logged in" do
-      get '/dashboard/admin/users'
+      get '/admin/users'
       expect(response.status).to eq(302)
     end
   end

@@ -13,8 +13,8 @@ end
 
 describe "routing to delete user" do
   it "routes to users#destroy" do
-    expect(delete: dashboard_admin_user_path('23')).to route_to(
-      controller: 'dashboard/admin/users',
+    expect(delete: admin_user_path('23')).to route_to(
+      controller: 'admin/users',
       action: 'destroy',
       id: '23'
     )
@@ -22,9 +22,9 @@ describe "routing to delete user" do
 end
 
 describe "routing to user management screen" do
-  it "routes to dashboard/admin/users#index" do
-    expect(get: "/dashboard/admin/users").to route_to(
-      controller: "dashboard/admin/users",
+  it "routes to admin/users#index" do
+    expect(get: "/admin/users").to route_to(
+      controller: "admin/users",
       action: "index"
     )
   end

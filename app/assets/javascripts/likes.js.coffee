@@ -27,6 +27,7 @@ CFB.Likes = class Likes
       $(link).on("click", (e) -> _this.toggle_like(e, post_id))
 
   toggle_like: (e, post_id) ->
+    e.preventDefault()
     $link = $(e.target).parent() #TODO evaluate if this works on all browsers
     like_json = { post_id: post_id }
     $.ajax

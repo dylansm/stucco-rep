@@ -20,11 +20,11 @@ describe "Pages Features" do
     end
 
     it "has home content" do
-      expect(page).to have_content('Welcome to the Adobe Rep Portal')
+      expect(page).to have_content('Welcome to the Student Rep Portal')
     end
 
     it "has the correct page title" do
-      expect(page).to have_title("Adobe Rep Portal")
+      expect(page).to have_title("Student Rep Portal")
     end
 
     it "does not have page divider part of tite" do
@@ -37,9 +37,7 @@ describe "Pages Features" do
 
     before { visit root_path }
 
-    it "has login link" do
-      expect(page).to have_link("Log in")
-    end
+    it "should have a log in form"
     
   end
 
@@ -61,9 +59,9 @@ describe "Pages Features" do
         expect(page).to_not have_content('Admin Tools')
       end
 
-      it "has username in title" do
-        expect(page.title).to have_content("#{@user.first_name} #{@user.last_name} |")
-      end
+      #it "has username in title" do
+        #expect(page.title).to have_content("#{@user.first_name} #{@user.last_name} |")
+      #end
 
       it "has log out link" do
         expect(page).to have_link("Log out")
@@ -101,7 +99,7 @@ describe "Pages Features" do
       end
 
       it "has admin page title" do
-        expect(page.title).to have_content("Admin Dashboard |")
+        expect(page.title).to have_content("Dashboard |")
       end
 
     end
@@ -113,7 +111,7 @@ describe "Pages Features" do
       #@user = create(:user)
       @admin = create(:admin)
       login_as @admin, :scope => :user
-      visit edit_dashboard_admin_user_path(@user)
+      visit edit_admin_user_path(@user)
     end
 
     describe "other user's profile" do
@@ -123,7 +121,7 @@ describe "Pages Features" do
     end
 
     describe "user's own profile" do
-      before { visit edit_dashboard_admin_user_path(@admin) }
+      before { visit edit_admin_user_path(@admin) }
       
       it "has page title" do
         expect(page.title).to have_content("Edit Your Account |")

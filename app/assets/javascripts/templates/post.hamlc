@@ -40,8 +40,8 @@
           %span.short-time= @created_at_short
           %span.long-time= @created_at
 
-        - if @post_author
-          %span.rating
+        - if @admin_viewer
+          %span.rating{ :"data-rating" => @rating }
             %span.icon.icon-star
             %span.icon.icon-star
             %span.icon.icon-star

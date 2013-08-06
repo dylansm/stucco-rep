@@ -1,2 +1,4 @@
 %h1 Welcome to the #{APP_CONFIG['name']}
-pages/home
+- unless user_signed_in?
+  %p
+    = link_to "Log in", new_user_session_path

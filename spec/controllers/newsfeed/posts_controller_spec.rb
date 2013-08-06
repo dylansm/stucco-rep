@@ -9,7 +9,7 @@ describe Newsfeed::PostsController do
     ApplicationController.any_instance.stub(:current_user)
   end
 
-  describe "GET 'posts'" do
+  describe "GET 'index'" do
     it "redirects if not logged in" do
       get 'index'
       expect(response).to be_redirect
@@ -17,7 +17,10 @@ describe Newsfeed::PostsController do
 
     describe "when logged in" do
 
-      before { sign_in user }
+      before do
+        sign_in user
+        controller.stub(:user).and_return(user)
+      end
       
       it "works" do
         get 'index'

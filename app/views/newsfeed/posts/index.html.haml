@@ -1,5 +1,5 @@
 - title t("page_titles.newsfeed")
-- attributes({ class: "newsfeed", :"data-user-id" => "#{current_user.id}" })
+- attributes({ class: "newsfeed", :"data-user-id" => "#{current_user.id}", :"data-admin" => current_user.admin? ? "true" : nil })
 
 .rightwrapper.new-post
 

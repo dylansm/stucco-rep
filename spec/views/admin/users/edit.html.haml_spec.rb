@@ -3,7 +3,7 @@ require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-describe "dashboard/admin/users/edit.html.haml" do
+describe "admin/users/edit.html.haml" do
 
   let(:user) { FactoryGirl.create :user }
 
@@ -16,7 +16,7 @@ describe "dashboard/admin/users/edit.html.haml" do
     it "renders view" do
       assign(:user, user)
       render
-      expect(view).to render_template("dashboard/admin/users/edit")
+      expect(view).to render_template("admin/users/edit")
     end
     
   end

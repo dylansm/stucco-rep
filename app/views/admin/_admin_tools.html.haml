@@ -1,5 +1,8 @@
 %h3 Admin Tools
 %ul
+  - unless user_signed_in?
+    %li
+      = link_to t('links.login'), new_user_session_path
   %li
     = link_to t('titles.manage_programs'), admin_programs_path
   %li

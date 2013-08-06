@@ -8,7 +8,7 @@
     = javascript_include_tag "//use.typekit.net/nzh4pgb.js"
     :javascript
       try{Typekit.load();}catch(e){}
-    %meta{ name:"viewport", content: "width=device-width, initial-scale=1.0" }
+    %meta{ name:"viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
     = favicon_link_tag "/assets/favicon.ico"
     = csrf_meta_tags
   %body{ @attributes ||= {} }
@@ -33,7 +33,7 @@
       
           = yield
 
-          / temp
-          = render "admin/admin_tools"
+          - if user_signed_in? && current_user.admin?
+            = render "admin/admin_tools"
           
           = render partial: "shared/footer"

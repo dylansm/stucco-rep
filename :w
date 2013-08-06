@@ -3,7 +3,7 @@ class PostSerializer < ActiveModel::Serializer
   has_many :comments
   has_many :likes, each_serializer: LikeSerializer
   has_one :user, serializer: PostUserSerializer
-  has_one :rating, serializer: PostRatingSerializer
+  has_one :rating
   
   def post_image_urls
     object.post_image_urls

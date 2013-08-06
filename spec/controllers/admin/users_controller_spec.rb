@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Dashboard::Admin::UsersController do
+describe Admin::UsersController do
 
   let(:user) { create :user }
   let(:admin) { create(:admin) }

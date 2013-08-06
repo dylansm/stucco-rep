@@ -14,7 +14,7 @@
           %span.university-name
             = @user.school.nil? ? "Adobe" : @user.school.name
         - if current_user == @user
-          %a.edit-profile{ href: "/dashboard/admin/users/#{@user.id}/edit" }
+          %a.edit-profile{ href: "/admin/users/#{@user.id}/edit" }
             Edit Profile
           
       

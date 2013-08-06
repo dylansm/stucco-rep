@@ -133,7 +133,8 @@ CFB.Posts = class Posts
     @comments.init(posts_data)
     @likes ||= new CFB.Likes
     @likes.init(posts_data)
-    #@ratings = CFB.Ratings.init()
+    @ratings ||= new CFB.Ratings
+    @ratings.init(posts_data)
 
   clear_post_form: ->
     $("#post_text").val("")
@@ -154,6 +155,11 @@ CFB.Posts = class Posts
 
   gather_post_data: (post) ->
     user_id = parseInt $("body").attr("data-user-id"), 10
+    admin_viewer = !!$("body").attr("data-admin")
+    if post.rating
+      rating = post.rating.rating
+    else
+      rating = "0"
     created_at = CFB.Utils.format_publish_date(post.created_at)
     post_data =
       id: post.id
@@ -165,6 +171,7 @@ CFB.Posts = class Posts
       avatar_url_med: post.user.avatar_url_med
       avatar_url_med2x: post.user.avatar_url_med2x
       text: CFB.Utils.html(post.text)
+      rating: rating
       comments: post.comments
       video_type: post.video_type
       video_url: post.video_url if post.video_url
@@ -180,8 +187,9 @@ CFB.Posts = class Posts
       _.extend(post_data, img_data)
 
     if post.user.id == user_id
-      author = true
       _.extend(post_data, { post_author: true })
+    else if admin_viewer
+      _.extend(post_data, { admin_viewer: true })
 
     post_data
 
