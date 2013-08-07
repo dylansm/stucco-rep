@@ -1,0 +1,14 @@
+@mixin main-nav($link-name) {
+  body.#{$link-name} .rightheader a.#{$link-name} {
+    outline: 0;
+    color: $tertiarycolor;
+  }
+}
+
+@mixin sub-nav($link-name) {
+  body.#{$link-name} nav a.#{$link-name} {
+    outline : 0;
+    color: $textcolor;
+    border-bottom: 4px solid $textcolor;
+  }
+}

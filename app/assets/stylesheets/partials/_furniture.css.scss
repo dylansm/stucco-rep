@@ -215,24 +215,17 @@ header {
 	
 }
 
-body.dashboard .rightheader a.dashboard,
-body.newsfeed .rightheader a.newsfeed {
-  outline : 0;
-  color: $tertiarycolor;
-}
+@include main-nav('dashboard');
+@include main-nav('newsfeed');
+
+@include sub-nav('members');
+@include sub-nav('notifications');
+@include sub-nav('my-profile');
 
 body.newsfeed {
   p.alert, p.notice {
     display: none;
   }
-}
-
-body.members nav a.members,
-body.notifications nav a.notifications,
-body.my-profile nav a.my-profile {
-  outline : 0;
-  color: $textcolor;
-  border-bottom: 4px solid $textcolor;
 }
 
 nav {
