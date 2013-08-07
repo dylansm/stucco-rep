@@ -1,2 +1,13 @@
 - title t("page_titles.notifications")
 - attributes({ class: "notifications", :"data-user-id" => "#{current_user.id}" })
+
+.rightwrapper
+  .contentheader
+    %h2 Notification Center
+    %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+- @notifications.each do |n|
+  .rightwrapper
+    .notification
+      .notification-content
+        %p.notification-date= n.created_at

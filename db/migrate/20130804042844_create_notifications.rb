@@ -5,7 +5,7 @@ class CreateNotifications < ActiveRecord::Migration
       t.text :text
       t.integer :user_id
       t.integer :notifier_id
-      t.integer :program_manager_id
+      t.boolean :dismissed
 
       t.timestamps
     end

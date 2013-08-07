@@ -768,39 +768,6 @@
 	}
 }
 
-.comment-form {
-	margin: 0 0 0 0;
-	padding: 0px 10px 10px 10px;
-
-	@include media-query-bp($bp3) {
-		padding: 0 0 0 0;
-	}
-
-	textarea {
-		margin: 10px 0 0px 0;
-	}
-
-	.ui-wrap {
-		max-height: 0px;
-		overflow: hidden;
-		// @include transition(max-height);
-		@include clearfix;
-		
-		margin: 10px 0 0 0;
-		
-		&.vis {
-			max-height: 30px;
-		}
-		
-		button {
-			float: right;
-			
-			&.cancel {
-				margin-right: 5px;
-			}
-		}
-	}
-}
 
 
 // END NEWSFEED CONTENT //////////////////////////////////////////////

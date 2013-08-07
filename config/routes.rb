@@ -28,6 +28,8 @@ Adoberep::Application.routes.draw do
       put 'programs/:id/remove/:user_id' => 'programs#remove_user'
       get 'users/not-in-program/:program_id' => 'users#not_in_program'
       get 'users/not-admin-in-program/:program_id' => 'users#not_admin_in_program'
+      post 'ratings/post/:id/:rating' => 'ratings#rate_post'
+      patch 'ratings/post/:id/:rating' => 'ratings#update_rated_post'
     end
 
   namespace :newsfeed do

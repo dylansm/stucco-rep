@@ -4,7 +4,7 @@ class Newsfeed::PostsController < ApplicationController
 
   def index
     @post = user.posts.build
-    @posts = Post.includes(:user, :comments).page(params[:page])
+    @posts = Post.includes(:user, :comments, :likes, :rating).page(params[:page])
     @num_pages = @posts.num_pages
 
     respond_to do |format|

@@ -3,15 +3,23 @@ class Admin::NotificationsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @user = current_user
+    user
+    @notifications = Notification.all
+    @users = User.where(admin: false)
     render "notifications/index"
   end
 
   def new
-    @user = current_user
+    user
+    #@notification = current_user.notifications.build(notifier_id: current_user.id)
+    #@notification = current_user.notifications.build(notifier: current_user)
+    @users = User.where(admin: false)
+    @notification = current_user.notifications.build
   end
 
   def create
+    debugger
+  
   end
 
   private
@@ -21,5 +29,8 @@ class Admin::NotificationsController < ApplicationController
     )
   end
 
+  def user
+    @user ||= current_user
+  end
 
 end

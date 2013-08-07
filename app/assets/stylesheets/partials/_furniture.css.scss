@@ -629,6 +629,40 @@ fieldset {
 
 
 
+.comment-form, #new_notification {
+	margin: 0 0 0 0;
+	padding: 0px 10px 10px 10px;
+
+	@include media-query-bp($bp3) {
+		padding: 0 0 0 0;
+	}
+
+	textarea {
+		margin: 10px 0 0px 0;
+	}
+
+	.ui-wrap {
+		max-height: 0px;
+                display: none;
+		@include clearfix;
+		
+		margin: 10px 0 0 0;
+		
+		&.vis {
+                  display: block;
+		}
+		
+		button {
+                  float: right;
+
+                  &.cancel {
+                    margin-right: 5px;
+                  }
+		}
+	}
+}
+
+
 
 // 7. VENDOR-SPECIFIC ==============================
 // 8. MODERNIZR ==============================

@@ -1,0 +1,13 @@
+- title t('page_titles.new_notification')
+
+.rightwrapper
+  %h2= t('page_titles.new_notification')
+
+  = simple_form_for([:admin, @notification]) do |f|
+    = f.input :title
+    = f.input :text
+    = f.association :notifier, as: :hidden
+    = f.association :user, collection: @users
+    .ui-wrap.vis
+      = f.button :button, class: "btn btn-primary submit"
+      = f.button :button, 'Cancel', :type => 'reset', :class => 'btn cancel'
