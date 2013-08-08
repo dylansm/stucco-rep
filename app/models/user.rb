@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :responses, through: :posts, source: :comments
   has_many :likes, dependent: :destroy
-  #belongs_to :notification
-  #has_many :notifiers, class_name: "User"
   has_many :notifiers
   has_many :notifications, through: :notifiers
   accepts_nested_attributes_for :user_application, :tools
