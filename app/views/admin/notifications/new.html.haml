@@ -6,8 +6,15 @@
   = simple_form_for([:admin, @notification]) do |f|
     = f.input :title
     = f.input :text
-    = f.association :notifier, as: :hidden
-    = f.association :user, collection: @users
+    = simple_fields_for :notifier do |nf|
+      = nf.input :id, as: :hidden
+
+    %label{ for: "all_students" }= t('select.labels.notify_all')
+    = check_box_tag "all_students"
+
+    = f.association :users, collection: @users,
+      include_blank: false, label: t('select.labels.notify_users'),
+      input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
     .ui-wrap.vis
       = f.button :button, class: "btn btn-primary submit"
       = f.button :button, 'Cancel', :type => 'reset', :class => 'btn cancel'

@@ -16,6 +16,9 @@ en:
       us: "United States"
     labels:
       add_existing_user: "Add existing user"
+      notify_all: "Notify all reps"
+      notify_users: "Notify specific reps"
+      notify_school_users: "Notify reps by school"
 
   helpers:
     submit:

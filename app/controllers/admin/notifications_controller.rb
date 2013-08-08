@@ -11,10 +11,11 @@ class Admin::NotificationsController < ApplicationController
 
   def new
     user
-    #@notification = current_user.notifications.build(notifier_id: current_user.id)
-    #@notification = current_user.notifications.build(notifier: current_user)
+    @notification = Notification.new()
+    @notifier = current_user
+    @notification.build_notifier(user: current_user)
     @users = User.where(admin: false)
-    @notification = current_user.notifications.build
+    @schools = School
   end
 
   def create
