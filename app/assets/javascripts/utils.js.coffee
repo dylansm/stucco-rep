@@ -66,6 +66,11 @@ CFB.Utils.format_link = (data, $link, user_id) ->
     $link.removeClass("by-author")
     $link_text.text("#{text_base}")
 
+CFB.Utils.reset_chosen = ($form) ->
+  $(".chzn-select", $form).each ->
+    $(this).val('').trigger("chosen:updated")
+
+
 $ ->
   $.ajaxSetup
     beforeSend: (xhr) ->
@@ -83,3 +88,11 @@ $ ->
         $(document.documentElement).addClass("ie"+v)
       else
         $(document.documentElement).addClass("lt-ie9")
+
+  # reveal that pesky alert / notice p
+  show_alert = $.trim($("h3.alert:not('.notify-only')").text()).length > 0
+  show_notice = $.trim($("h3.alert.notify-only").text()).length > 0
+  $(".rightwrapper.flash.hidden").removeClass("hidden") if show_alert || show_notice
+  $(".rightwrapper.flash .alert:not('.notify-only')").removeClass("hidden") if show_alert
+  $(".rightwrapper.flash .notify-only").removeClass("hidden") if show_notice
+

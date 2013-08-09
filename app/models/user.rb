@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :responses, through: :posts, source: :comments
   has_many :likes, dependent: :destroy
-  has_many :notifiers
-  has_many :notifications, through: :notifiers
+  has_and_belongs_to_many :notifications
+  has_many :authored_notifications, class_name: "Notification", foreign_key: "notifier_id"
   accepts_nested_attributes_for :user_application, :tools
 
   # Include default devise modules. Others available are: :token_authenticatable, :confirmable, :registerable, :lockable, :timeoutable and :omniauthable
@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
                     default_url: "/assets/:attachment/missing/:style/avatar_missing.gif"
                    )
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+
+  default_scope { order("last_name ASC") }
 
   attr_writer :skip_email_notification
 

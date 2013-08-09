@@ -28,8 +28,9 @@
 
         .rightcol
 
-          %p.notice= notice
-          %p.alert= alert
+          .rightwrapper.flash.hidden
+            %h3.alert.notify-only.hidden= notice
+            %h3.alert.hidden= alert
       
           = yield
 

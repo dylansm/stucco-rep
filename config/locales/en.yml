@@ -82,6 +82,7 @@ en:
     manage_adobe_products: "Manage Adobe Products"
     edit_school: "Edit %{name}"
     notifications: "Notification Center"
+    admin_notifications: "Notifications Sent By You"
     new_notification: "Compose New Notification"
     links: "Share a Link"
     new_link: "Compose New Link"

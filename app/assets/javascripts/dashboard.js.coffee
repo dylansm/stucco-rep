@@ -55,7 +55,7 @@ $ ->
         )
         $list = $("#program_user_ids")
         $list.html(list_html)
-        $list.trigger("liszt:updated");
+        $list.trigger("chosen:updated");
 
       error: (response) ->
         console.log response
@@ -100,6 +100,7 @@ $ ->
 
   #$(".post-video").fitVids();
   $('textarea').autosize({append: "\n"})  
+  # automatically format html
   $('.html p').each ->
     $(this).parent().find("p").html( CFB.Utils.html( $(this).text() ) )
 

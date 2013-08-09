@@ -4,22 +4,31 @@ class Admin::NotificationsController < ApplicationController
 
   def index
     user
-    @notifications = Notification.all
-    @users = User.where(admin: false)
+    if user.admin?
+      @notifications = user.authored_notifications
+    else
+      @notifications = user.notifications
+    end
     render "notifications/index"
   end
 
   def new
     user
-    @notification = Notification.new()
-    @notifier = current_user
-    @notification.build_notifier(user: current_user)
-    @users = User.where(admin: false)
-    @schools = School
+    @notification = current_user.authored_notifications.build()
+    students
   end
 
   def create
-    debugger
+    @notification = Notification.new(permitted_params) 
+    if @notification.save
+      flash[:notice] = "Notification sent"
+      redirect_to root_path
+    else
+      flash[:alert] = "Please correct the errors below."
+      @user = current_user
+      students
+      render 'admin/notifications/new'
+    end
   
   end
 
@@ -27,11 +36,19 @@ class Admin::NotificationsController < ApplicationController
 
   def permitted_params
     params.require(:notification).permit(
+      :title,
+      :text, 
+      :notifier_id,
+      user_ids: []
     )
   end
 
   def user
     @user ||= current_user
+  end
+
+  def students
+    @students ||= User.where(admin: false)
   end
 
 end

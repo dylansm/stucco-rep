@@ -3,11 +3,23 @@
 
 .rightwrapper
   .contentheader
-    %h2 Notification Center
-    %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    - if current_user.admin?
+      %h2= t('page_titles.admin_notifications')
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    - else
+      %h2= t('page_titles.notifications')
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 - @notifications.each do |n|
   .rightwrapper
     .notification
       .notification-content
         %p.notification-date= n.created_at
+        %h3= n.title
+        .html
+          %p
+            != n.text
+        - if current_user.admin?
+          %p.notification-author= "View count: "
+        - else
+          %p.notification-author= n.notifier.name

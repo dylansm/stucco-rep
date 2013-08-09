@@ -4,6 +4,7 @@ class CreateNotifications < ActiveRecord::Migration
       t.string :title
       t.text :text
       t.boolean :archived
+      t.integer :notifier_id
 
       t.timestamps
     end
