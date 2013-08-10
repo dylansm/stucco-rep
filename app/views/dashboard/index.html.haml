@@ -1,6 +1,24 @@
+- title t("page_titles.dashboard")
+- attributes({ class: "dashboard", :"data-user-id" => "#{current_user.id}" })
+
+- unless @notifications.empty?
+  .rightwrapper.alert-wrapper
+    - @notifications.each do |n|
+      .notification
+        .notification-content.alert.alert--info
+          %a{ href: "#", class: "alert-close", :"data-remote" => "true" }
+            %span.icon.icon-close
+          %p.notification-date= n.created_at
+          %h3= n.title
+          .html
+            %p
+              != n.text
+          %p.notification-author= n.notifier.name
+
+    %a
+      View all notifications
+
 .rightwrapper
-  - title t("page_titles.dashboard")
-  - attributes({ class: "dashboard", :"data-user-id" => "#{current_user.id}" })
+  %h2 Stats
 
 
-  %h2 Ye Olde Dashboarde here!

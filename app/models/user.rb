@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :program_marquees, through: :programs
   has_many :posts
   has_many :comments
-  has_many :responses, through: :posts, source: :comments
+  #has_many :responses, through: :posts, source: :comments
   has_many :likes, dependent: :destroy
   has_and_belongs_to_many :notifications
   has_many :authored_notifications, class_name: "Notification", foreign_key: "notifier_id"

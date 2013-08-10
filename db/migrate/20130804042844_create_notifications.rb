@@ -3,7 +3,6 @@ class CreateNotifications < ActiveRecord::Migration
     create_table :notifications do |t|
       t.string :title
       t.text :text
-      t.boolean :archived
       t.integer :notifier_id
 
       t.timestamps

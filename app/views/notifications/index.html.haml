@@ -20,6 +20,9 @@
           %p
             != n.text
         - if current_user.admin?
-          %p.notification-author= "View count: "
+          %p.notification-author
+            = "View count: "
+            %br
+            %a{ href: '', class: 'delete-notification' }Delete notification
         - else
           %p.notification-author= n.notifier.name
