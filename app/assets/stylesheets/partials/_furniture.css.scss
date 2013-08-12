@@ -31,6 +31,14 @@ div.error { padding: 1em auto 2em auto; }
   padding-top: 1px;
 }
 
+.pagination {
+  text-align: center;
+  margin: 2em auto 0 auto;
+  color: #999;
+}
+
+
+
 .pagewrapper {
 	position: relative;
 	margin: 0 auto;
@@ -668,7 +676,7 @@ fieldset {
                 display: none;
 		@include clearfix;
 		
-		margin: 10px 0 0 0;
+		margin: 10px 0 1.65em 0;
 		
 		&.vis {
                   display: block;

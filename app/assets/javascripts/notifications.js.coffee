@@ -11,11 +11,13 @@ $ ->
     )
 
   if CFB.touch
-    $(".delete-notification").on("touchstart", (e) => delete_notification(e))
+    $("a.delete-notification").on("touchstart", (e) => admin_delete_notification(e))
+    $("a.alert-close").on("touchstart", (e) => user_dismiss_notification(e))
   else
-    $(".delete-notification").on("click", (e) => delete_notification(e))
+    $("a.delete-notification").on("click", (e) => admin_delete_notification(e))
+    $("a.alert-close").on("click", (e) => user_dismiss_notification(e))
 
-  delete_notification = (e) ->
+  admin_delete_notification = (e) ->
     e.preventDefault()
     $notification = $(e.target).closest(".notification")
     id = $notification.attr("data-id")
@@ -25,7 +27,6 @@ $ ->
       dataType: 'json',
       data: {"_method": "delete"},
       success: (data, textStatus, xhr) =>
-        console.log data
         remove_notification($notification)
       error: (response) ->
         console.log response
@@ -34,3 +35,17 @@ $ ->
     $notification.fadeOut 'slow', ->
       $notification.detach()
     
+  user_dismiss_notification = (e) ->
+    e.preventDefault()
+    $notification = $(e.target).closest(".notification")
+    id = $notification.attr("data-id")
+    $.ajax
+      url: "/dismiss-notification/#{id}",
+      type: 'post',
+      dataType: 'json',
+      data: { "_method", "patch" },
+      success: (data, textStatus, xhr) =>
+        remove_notification($notification)
+      error: (response) ->
+        console.log response
+

@@ -49,6 +49,7 @@ Adoberep::Application.routes.draw do
   }
 
   get 'notifications' => 'admin/notifications#index', as: "notifications"
+  post 'dismiss-notification/:id' => 'admin/notifications#dismiss'
   get 'users/:id' => 'users#show', as: "user"
   get 'profile' => 'users#show'
   get 'members' => 'users#index', as: "members"

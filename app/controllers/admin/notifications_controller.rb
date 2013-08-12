@@ -5,9 +5,9 @@ class Admin::NotificationsController < ApplicationController
   def index
     user
     if user.admin?
-      @notifications = user.authored_notifications
+      @notifications = user.authored_notifications.page(params[:page])
     else
-      @notifications = user.notifications
+      @notifications = user.notifications.page(params[:page])
     end
     render "notifications/index"
   end
@@ -45,6 +45,14 @@ class Admin::NotificationsController < ApplicationController
     render json: { deleted: true }
   end
     
+  def dismiss
+    notifications_users = NotificationsUsers.where("notification_id = ? AND user_id = ?", params[:id], current_user.id).first
+    if notifications_users.update_column(:dismissed, true)
+      render json: { dismissed: true }
+    else
+      render json: { error: "Unable to update notification users."}
+    end
+  end
 
   private
 

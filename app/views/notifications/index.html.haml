@@ -1,6 +1,7 @@
 - title t("page_titles.notifications")
 - attributes({ class: "notifications", :"data-user-id" => "#{current_user.id}" })
 
+
 .rightwrapper
   .contentheader
     - if current_user.admin?
@@ -11,6 +12,5 @@
       %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 
-.rightwrapper
-  = render partial: "notifications/shared/notification", locals: { admin: current_user.admin? ? true : false }
+= render partial: "notifications/shared/notification", locals: { admin: current_user.admin? ? true : false, alert: false, paginate: true }
 

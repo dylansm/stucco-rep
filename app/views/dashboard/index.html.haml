@@ -4,7 +4,7 @@
 - unless @notifications.empty?
   .rightwrapper.alert-wrapper
 
-    = render partial: "notifications/shared/notification", locals: { alert: true }
+    = render partial: "notifications/shared/notification", locals: { alert: true, admin: current_user.admin? ? true : false, paginate: false }
 
     = link_to t('links.dashboard.notifications.view-all'), notifications_path, { class: 'view-all'}
 
