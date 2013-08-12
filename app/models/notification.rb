@@ -12,5 +12,14 @@ class Notification < ActiveRecord::Base
       errors.add(:users, "must add at least one recipient")
     end
   end
+
+  def viewed_by
+    Notification.joins(:users).where("notifications_users.dismissed = true AND notifications_users.notification_id = ?", self.id)
+  end
+
+  def unseen_by
+    User.joins(:notifications).where("notifications_users.dismissed = false AND notifications_users.notification_id = ?", self.id)
+  end
+
   
 end

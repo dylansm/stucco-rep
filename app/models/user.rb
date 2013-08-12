@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
 
   default_scope { order("last_name ASC") }
+  scope :not_admin, -> { where("admin = false") }
 
   attr_writer :skip_email_notification
 
@@ -117,6 +118,14 @@ class User < ActiveRecord::Base
 
   def remove_avatar=(value)
     @remove_avatar = !!value
+  end
+
+  def active_notifications
+    User.joins(:notifications).where("notifications_users.dismissed = false AND notifications_users.user_id = ?", self.id)
+  end
+
+  def inactive_notifications
+    User.joins(:notifications).where("notifications_users.dismissed = true AND notifications_users.user_id = ?", self.id)
   end
 
   private

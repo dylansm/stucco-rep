@@ -4,7 +4,7 @@
 // Version: <!-- $license -->
 // Adapted from: https://github.com/twitter/bootstrap/blob/master/less/alerts.less
 
-.alert {
+.alert, body.dashboard .notification-content {
 	padding : $alertpadding;
 	margin-bottom : $baselineheight;
 	background-color : $alertbackgroundcolor;
@@ -63,7 +63,7 @@
 }
 /*alert--error*/
 
-.alert--info {
+.alert--info, body.dashboard .alert-wrapper .notification-content {
 	background-color : $infocolor;
 	border-color : $alertbordercolorinfo;
 	// color : $alertcolorinfo;

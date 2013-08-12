@@ -35,6 +35,8 @@ en:
       manage_adobe_products:
         add: "Add new product"
         delete-confirm: "Are you sure you want to delete this product?"
+      notifications:
+        view-all: "View all notifications"
 
   terms:
     extracurricular: "Extracurricular activities"
@@ -107,3 +109,7 @@ en:
     there_must_be_one_program: "This is the last program. Please create a new program before removing this one."
     your_last_program: "You must be a manager on at least one other program before removing yourself from this program."
     user_last_program: "This user must be on at least one other program before being removed from this program."
+
+  time:
+    formats:
+      notifications: "%A %B %d, %Y"

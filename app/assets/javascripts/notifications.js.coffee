@@ -9,3 +9,28 @@ $ ->
       else
         $(".notification_users").removeClass("hidden")
     )
+
+  if CFB.touch
+    $(".delete-notification").on("touchstart", (e) => delete_notification(e))
+  else
+    $(".delete-notification").on("click", (e) => delete_notification(e))
+
+  delete_notification = (e) ->
+    e.preventDefault()
+    $notification = $(e.target).closest(".notification")
+    id = $notification.attr("data-id")
+    $.ajax
+      url: "/admin/notifications/#{id}",
+      type: 'post',
+      dataType: 'json',
+      data: {"_method": "delete"},
+      success: (data, textStatus, xhr) =>
+        console.log data
+        remove_notification($notification)
+      error: (response) ->
+        console.log response
+
+  remove_notification = ($notification) ->
+    $notification.fadeOut 'slow', ->
+      $notification.detach()
+    

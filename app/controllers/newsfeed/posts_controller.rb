@@ -39,8 +39,8 @@ class Newsfeed::PostsController < ApplicationController
 
   # DELETE AJAX
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+    post = Post.find(params[:id])
+    post.destroy
     render json: { deleted: true }
   end
 

@@ -1,10 +1,16 @@
 
 .alert-wrapper {
-	
-	// bring padding for the rightwrapper down to 10px until in desktop mode
-	@include media-query-bp($bp3 - 1, "max") {
-		padding: 10px;
-	}
+  max-width: $bp3;
+  
+  // bring padding for the rightwrapper down to 10px until in desktop mode
+  @include media-query-bp($bp3 - 1, "max") {
+    padding: 10px;
+  }
+  a.view-all {
+    font-size: .9em;
+    float: right;
+    margin-bottom: 0px;
+  }
 }
 
 .notification {
@@ -15,26 +21,6 @@
 	
 	margin: 0 0 0 0;
 	
-	@include media-query-bp($bp3) {
-		.alert {
-			padding: 20px;
-		}
-	}
-	
-	.notification-content {
-		
-		&.alert {
-			.notification-author {
-				margin-bottom: 0px;
-			}
-			
-			.notification-date {
-				@include media-query-bp($bp3) {
-					text-align: left;
-				}
-			}
-		}
-	}
 	
 	.notification-date {
 		@include text-color-light;
@@ -49,10 +35,28 @@
 	.notification-author {
 		text-align: right;
 		font-weight: bold;
+
+                span {
+                  display: block;
+                }
 	}
 	
-	.notification-view-all-link {
-		float: right;
-		margin-bottom: 0px;
-	}
+}
+
+body.dashboard .notification {
+  .notification-content {
+    @include media-query-bp($bp3) {
+        padding: 20px;
+    }
+
+    .notification-author {
+      margin-bottom: 0px;
+    }
+
+    .notification-date {
+      @include media-query-bp($bp3) {
+        text-align: left;
+      }
+    }
+  }
 }

@@ -1,0 +1,25 @@
+- if admin && @notifications.empty?
+  You have no notifications at this time.
+  %br
+  = link_to "Compose a notification?", new_admin_notification_path
+- else
+  - @notifications.each do |n|
+    .notification{ :"data-id" => n.id}
+      .notification-content
+        - if alert
+          %a{ href: "#", class: "alert-close", :"data-remote" => "true" }
+            %span.icon.icon-close
+        %p.notification-date= l n.created_at, format: :notifications
+        %h3= n.title
+        .html
+          %p
+            != n.text
+        %p.notification-author
+          - if admin
+            %span= "Viewed by #{n.viewed_by.count} of #{n.users.count}"
+            -#- n.users.each do |u|
+              -#%span= u.name
+            %a{ href: "#", :"data-remote" => "true", class: "delete-notification" }Delete notification
+
+          - else
+            = link_to "#{n.notifier.name}", "/users/#{n.notifier.id}"

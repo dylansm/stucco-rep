@@ -10,19 +10,7 @@
       %h2= t('page_titles.notifications')
       %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-- @notifications.each do |n|
-  .rightwrapper
-    .notification
-      .notification-content
-        %p.notification-date= n.created_at
-        %h3= n.title
-        .html
-          %p
-            != n.text
-        - if current_user.admin?
-          %p.notification-author
-            = "View count: "
-            %br
-            %a{ href: '', class: 'delete-notification' }Delete notification
-        - else
-          %p.notification-author= n.notifier.name
+
+.rightwrapper
+  = render partial: "notifications/shared/notification", locals: { admin: current_user.admin? ? true : false }
+

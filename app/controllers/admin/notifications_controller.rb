@@ -19,10 +19,16 @@ class Admin::NotificationsController < ApplicationController
   end
 
   def create
+
+    if params[:all_students] == "1"
+      params[:notification][:user_ids].concat User.not_admin.map(&:id)
+    end
+
     @notification = Notification.new(permitted_params) 
+    
     if @notification.save
       flash[:notice] = "Notification sent"
-      redirect_to root_path
+      redirect_to notifications_path
     else
       flash[:alert] = "Please correct the errors below."
       @user = current_user
@@ -31,6 +37,14 @@ class Admin::NotificationsController < ApplicationController
     end
   
   end
+
+  def destroy
+    debugger
+    notification = Notification.find(params[:id])
+    notification.destroy
+    render json: { deleted: true }
+  end
+    
 
   private
 
