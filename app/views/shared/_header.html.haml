@@ -27,7 +27,7 @@
           = link_to members_path, class: "members" do
             %span.icon.icon-attendees
             = t('nav.members')
-        - unless @user.program.links.empty?
+        - unless @user.nil? || @user.program.nil? || @user.program.links.empty?
           %li.mobile-share
             = link_to '#' do
               %span.icon.icon-share
