@@ -27,10 +27,14 @@
           = link_to members_path, class: "members" do
             %span.icon.icon-attendees
             = t('nav.members')
-        %li.mobile-share
-          = link_to '#' do
-            %span.icon.icon-share
-            = t('nav.share_link')
+        - unless @user.program.links.empty?
+          %li.mobile-share
+            = link_to '#' do
+              %span.icon.icon-share
+              = t('nav.share_link')
+
+            = render partial: "shared/links"
+
         %li
           = link_to profile_path, class: "my-profile" do
             %span.icon.icon-profile

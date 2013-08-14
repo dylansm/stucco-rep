@@ -39,7 +39,6 @@ class Admin::NotificationsController < ApplicationController
   end
 
   def destroy
-    debugger
     notification = Notification.find(params[:id])
     notification.destroy
     render json: { deleted: true }

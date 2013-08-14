@@ -49,6 +49,9 @@ en:
     error_notification:
       default_message: "Some errors were found, please take a look:"
     labels:
+      link:
+        name: "Link Name"
+        url: "Endpoint URL"
       user:
         first_name: "First name"
         last_name: "Last name"

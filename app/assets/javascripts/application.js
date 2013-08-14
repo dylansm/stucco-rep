@@ -23,4 +23,5 @@
 //= require ratings.js.coffee
 //= require posts.js.coffee
 //= require notifications.js.coffee
+//= require links.js.coffee
 

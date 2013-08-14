@@ -259,7 +259,6 @@ CREATE TABLE notifications (
     id integer NOT NULL,
     title character varying(255),
     text text,
-    archived boolean,
     notifier_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
@@ -297,8 +296,7 @@ CREATE TABLE notifications_users (
     id integer NOT NULL,
     notification_id integer,
     user_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    dismissed boolean DEFAULT false
 );
 
 
@@ -942,13 +940,13 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 COPY adobe_products (id, created_at, updated_at, name, mnemonic_file_name, mnemonic_content_type, mnemonic_file_size, mnemonic_updated_at) FROM stdin;
-1	2013-08-08 19:28:49.136831	2013-08-08 19:28:49.136831	Adobe AfterEffects	aftereffects.png	image/png	1693	\N
-2	2013-08-08 19:28:49.143741	2013-08-08 19:28:49.143741	Adobe Dreamweaver	dreamweaver.png	image/png	3406	\N
-3	2013-08-08 19:28:49.1463	2013-08-08 19:28:49.1463	Adobe Illustrator	illustrator.png	image/png	1677	\N
-4	2013-08-08 19:28:49.148434	2013-08-08 19:28:49.148434	Adobe InDesign	indesign.png	image/png	1583	\N
-5	2013-08-08 19:28:49.150611	2013-08-08 19:28:49.150611	Adobe Muse	muse.png	image/png	1593	\N
-6	2013-08-08 19:28:49.152683	2013-08-08 19:28:49.152683	Adobe Photoshop	photoshop.png	image/png	1626	\N
-7	2013-08-08 19:28:49.154668	2013-08-08 19:28:49.154668	Adobe Premiere	premiere.png	image/png	1631	\N
+1	2013-08-13 00:15:15.346144	2013-08-13 00:15:15.346144	Adobe AfterEffects	aftereffects.png	image/png	1693	\N
+2	2013-08-13 00:15:15.352659	2013-08-13 00:15:15.352659	Adobe Dreamweaver	dreamweaver.png	image/png	3406	\N
+3	2013-08-13 00:15:15.35496	2013-08-13 00:15:15.35496	Adobe Illustrator	illustrator.png	image/png	1677	\N
+4	2013-08-13 00:15:15.356987	2013-08-13 00:15:15.356987	Adobe InDesign	indesign.png	image/png	1583	\N
+5	2013-08-13 00:15:15.359099	2013-08-13 00:15:15.359099	Adobe Muse	muse.png	image/png	1593	\N
+6	2013-08-13 00:15:15.3613	2013-08-13 00:15:15.3613	Adobe Photoshop	photoshop.png	image/png	1626	\N
+7	2013-08-13 00:15:15.363597	2013-08-13 00:15:15.363597	Adobe Premiere	premiere.png	image/png	1631	\N
 \.
 
 
@@ -1038,10 +1036,9 @@ SELECT pg_catalog.setval('links_id_seq', 1, false);
 -- Data for Name: notifications; Type: TABLE DATA; Schema: public; Owner: dylan
 --
 
-COPY notifications (id, title, text, archived, notifier_id, created_at, updated_at) FROM stdin;
-1	First Notification	First test	\N	1	2013-08-09 04:44:46.846981	2013-08-09 04:44:46.846981
-2	Second Post	This is another notification	\N	1	2013-08-09 05:13:08.043325	2013-08-09 05:13:08.043325
-3	A third test of notifications	This is my third test.\r\n\r\nIt has a line break and a link to www.adobe.com	\N	1	2013-08-09 17:41:00.320137	2013-08-09 17:41:00.320137
+COPY notifications (id, title, text, notifier_id, created_at, updated_at) FROM stdin;
+1	New Notification!	Hey dude, clean up your act.\r\n\r\nI mean it — and go here: www.adobe.com	1	2013-08-13 00:28:44.908002	2013-08-13 00:28:44.908002
+2	Here's another	Blah blahbityt	1	2013-08-13 00:29:55.250361	2013-08-13 00:29:55.250361
 \.
 
 
@@ -1049,19 +1046,19 @@ COPY notifications (id, title, text, archived, notifier_id, created_at, updated_
 -- Name: notifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dylan
 --
 
-SELECT pg_catalog.setval('notifications_id_seq', 3, true);
+SELECT pg_catalog.setval('notifications_id_seq', 2, true);
 
 
 --
 -- Data for Name: notifications_users; Type: TABLE DATA; Schema: public; Owner: dylan
 --
 
-COPY notifications_users (id, notification_id, user_id, created_at, updated_at) FROM stdin;
-1	1	5	\N	\N
-2	2	6	\N	\N
-3	2	5	\N	\N
-4	3	4	\N	\N
-5	3	6	\N	\N
+COPY notifications_users (id, notification_id, user_id, dismissed) FROM stdin;
+1	1	5	t
+3	2	7	f
+4	2	4	f
+5	2	6	f
+2	2	5	t
 \.
 
 
@@ -1077,36 +1074,36 @@ SELECT pg_catalog.setval('notifications_users_id_seq', 5, true);
 --
 
 COPY posts (id, user_id, text, video_url, created_at, updated_at, post_image_file_name, post_image_content_type, post_image_file_size, post_image_updated_at) FROM stdin;
-1	4	This is a first post.	\N	2013-08-08 19:28:49.678574	2013-08-08 19:28:49.750084	\N	\N	\N	\N
-2	5	This is a second post.	\N	2013-08-08 19:28:49.682008	2013-08-08 19:28:49.755169	\N	\N	\N	\N
-3	6	This is a third post.	\N	2013-08-08 19:28:49.684106	2013-08-08 19:28:49.759048	\N	\N	\N	\N
-4	7	This is a fourth post.	\N	2013-08-08 19:28:49.686285	2013-08-08 19:28:49.76278	\N	\N	\N	\N
-5	4	This is a fifth post.	\N	2013-08-08 19:28:49.688853	2013-08-08 19:28:49.766408	\N	\N	\N	\N
-6	5	This is a sixth post.	\N	2013-08-08 19:28:49.691529	2013-08-08 19:28:49.770066	\N	\N	\N	\N
-7	6	This is a seventh post.	\N	2013-08-08 19:28:49.694458	2013-08-08 19:28:49.773689	\N	\N	\N	\N
-8	7	This is a eighth post.	\N	2013-08-08 19:28:49.697101	2013-08-08 19:28:49.830159	\N	\N	\N	\N
-9	4	This is a ninth post.	\N	2013-08-08 19:28:49.699134	2013-08-08 19:28:49.834108	\N	\N	\N	\N
-10	5	This is a tenth post.	\N	2013-08-08 19:28:49.701445	2013-08-08 19:28:49.837595	\N	\N	\N	\N
-11	6	This is a eleventh post.	\N	2013-08-08 19:28:49.703724	2013-08-08 19:28:49.841104	\N	\N	\N	\N
-12	7	This is a twelfth post.	\N	2013-08-08 19:28:49.706092	2013-08-08 19:28:49.844761	\N	\N	\N	\N
-13	4	This is a thirteenth post.	\N	2013-08-08 19:28:49.708168	2013-08-08 19:28:49.848313	\N	\N	\N	\N
-14	5	This is a fourteenth post.	\N	2013-08-08 19:28:49.7102	2013-08-08 19:28:49.85187	\N	\N	\N	\N
-15	6	This is a fifteenth post.	\N	2013-08-08 19:28:49.712104	2013-08-08 19:28:49.855334	\N	\N	\N	\N
-16	7	This is a sixteenth post.	\N	2013-08-08 19:28:49.714162	2013-08-08 19:28:49.858829	\N	\N	\N	\N
-17	4	This is a seventeenth post.	\N	2013-08-08 19:28:49.716412	2013-08-08 19:28:49.862403	\N	\N	\N	\N
-18	5	This is a eighteenth post.	\N	2013-08-08 19:28:49.718477	2013-08-08 19:28:49.865947	\N	\N	\N	\N
-19	6	This is a nineteenth post.	\N	2013-08-08 19:28:49.720443	2013-08-08 19:28:49.869475	\N	\N	\N	\N
-20	7	This is a twentieth post.	\N	2013-08-08 19:28:49.722359	2013-08-08 19:28:49.872847	\N	\N	\N	\N
-21	4	This is twenty-first post.	\N	2013-08-08 19:28:49.724378	2013-08-08 19:28:49.876826	\N	\N	\N	\N
-22	5	This is twenty-second post.	\N	2013-08-08 19:28:49.726431	2013-08-08 19:28:49.882312	\N	\N	\N	\N
-23	6	This is twenty-third post.	\N	2013-08-08 19:28:49.728407	2013-08-08 19:28:49.886446	\N	\N	\N	\N
-24	7	This is twenty-fourth post.	\N	2013-08-08 19:28:49.730437	2013-08-08 19:28:49.890151	\N	\N	\N	\N
-25	4	This is twenty-fifth post.	\N	2013-08-08 19:28:49.732389	2013-08-08 19:28:49.893695	\N	\N	\N	\N
-26	5	This is twenty-sixth post.	\N	2013-08-08 19:28:49.734386	2013-08-08 19:28:49.897297	\N	\N	\N	\N
-27	6	This is twenty-seventh post.	\N	2013-08-08 19:28:49.736299	2013-08-08 19:28:49.90105	\N	\N	\N	\N
-28	7	This is twenty-eighth post.	\N	2013-08-08 19:28:49.738139	2013-08-08 19:28:49.904762	\N	\N	\N	\N
-29	4	This is twenty-ninth post.	\N	2013-08-08 19:28:49.74013	2013-08-08 19:28:49.908399	\N	\N	\N	\N
-30	5	This is thirtieth post.	\N	2013-08-08 19:28:49.742129	2013-08-08 19:28:49.912198	\N	\N	\N	\N
+1	4	This is a first post.	\N	2013-08-13 00:15:15.909607	2013-08-13 00:15:15.98618	\N	\N	\N	\N
+2	5	This is a second post.	\N	2013-08-13 00:15:15.913117	2013-08-13 00:15:15.991535	\N	\N	\N	\N
+3	6	This is a third post.	\N	2013-08-13 00:15:15.915274	2013-08-13 00:15:15.996143	\N	\N	\N	\N
+4	7	This is a fourth post.	\N	2013-08-13 00:15:15.917412	2013-08-13 00:15:16.000389	\N	\N	\N	\N
+5	4	This is a fifth post.	\N	2013-08-13 00:15:15.9196	2013-08-13 00:15:16.004854	\N	\N	\N	\N
+6	5	This is a sixth post.	\N	2013-08-13 00:15:15.922401	2013-08-13 00:15:16.009157	\N	\N	\N	\N
+7	6	This is a seventh post.	\N	2013-08-13 00:15:15.925547	2013-08-13 00:15:16.013067	\N	\N	\N	\N
+8	7	This is a eighth post.	\N	2013-08-13 00:15:15.928082	2013-08-13 00:15:16.066588	\N	\N	\N	\N
+9	4	This is a ninth post.	\N	2013-08-13 00:15:15.930359	2013-08-13 00:15:16.070859	\N	\N	\N	\N
+10	5	This is a tenth post.	\N	2013-08-13 00:15:15.93227	2013-08-13 00:15:16.07489	\N	\N	\N	\N
+11	6	This is a eleventh post.	\N	2013-08-13 00:15:15.934146	2013-08-13 00:15:16.078664	\N	\N	\N	\N
+12	7	This is a twelfth post.	\N	2013-08-13 00:15:15.936066	2013-08-13 00:15:16.082378	\N	\N	\N	\N
+13	4	This is a thirteenth post.	\N	2013-08-13 00:15:15.937956	2013-08-13 00:15:16.086108	\N	\N	\N	\N
+14	5	This is a fourteenth post.	\N	2013-08-13 00:15:15.940655	2013-08-13 00:15:16.090032	\N	\N	\N	\N
+15	6	This is a fifteenth post.	\N	2013-08-13 00:15:15.943366	2013-08-13 00:15:16.093784	\N	\N	\N	\N
+16	7	This is a sixteenth post.	\N	2013-08-13 00:15:15.946109	2013-08-13 00:15:16.097465	\N	\N	\N	\N
+17	4	This is a seventeenth post.	\N	2013-08-13 00:15:15.948731	2013-08-13 00:15:16.101058	\N	\N	\N	\N
+18	5	This is a eighteenth post.	\N	2013-08-13 00:15:15.950971	2013-08-13 00:15:16.104548	\N	\N	\N	\N
+19	6	This is a nineteenth post.	\N	2013-08-13 00:15:15.953204	2013-08-13 00:15:16.108119	\N	\N	\N	\N
+20	7	This is a twentieth post.	\N	2013-08-13 00:15:15.955376	2013-08-13 00:15:16.111724	\N	\N	\N	\N
+21	4	This is twenty-first post.	\N	2013-08-13 00:15:15.957856	2013-08-13 00:15:16.115232	\N	\N	\N	\N
+22	5	This is twenty-second post.	\N	2013-08-13 00:15:15.960232	2013-08-13 00:15:16.118677	\N	\N	\N	\N
+23	6	This is twenty-third post.	\N	2013-08-13 00:15:15.962616	2013-08-13 00:15:16.12227	\N	\N	\N	\N
+24	7	This is twenty-fourth post.	\N	2013-08-13 00:15:15.964893	2013-08-13 00:15:16.125846	\N	\N	\N	\N
+25	4	This is twenty-fifth post.	\N	2013-08-13 00:15:15.967033	2013-08-13 00:15:16.129391	\N	\N	\N	\N
+26	5	This is twenty-sixth post.	\N	2013-08-13 00:15:15.969427	2013-08-13 00:15:16.133028	\N	\N	\N	\N
+27	6	This is twenty-seventh post.	\N	2013-08-13 00:15:15.97157	2013-08-13 00:15:16.136697	\N	\N	\N	\N
+28	7	This is twenty-eighth post.	\N	2013-08-13 00:15:15.973689	2013-08-13 00:15:16.140665	\N	\N	\N	\N
+29	4	This is twenty-ninth post.	\N	2013-08-13 00:15:15.975872	2013-08-13 00:15:16.144417	\N	\N	\N	\N
+30	5	This is thirtieth post.	\N	2013-08-13 00:15:15.977779	2013-08-13 00:15:16.148202	\N	\N	\N	\N
 \.
 
 
@@ -1137,7 +1134,7 @@ SELECT pg_catalog.setval('program_marquees_id_seq', 1, false);
 --
 
 COPY programs (id, name, created_at, updated_at) FROM stdin;
-1	Student Rep Portal	2013-08-08 19:28:49.454576	2013-08-08 19:28:49.454576
+1	Student Rep Portal	2013-08-13 00:15:15.679777	2013-08-13 00:15:15.679777
 \.
 
 
@@ -1191,13 +1188,13 @@ SELECT pg_catalog.setval('programs_schools_id_seq', 23, true);
 --
 
 COPY programs_users (id, program_id, user_id) FROM stdin;
-1	1	1
-2	1	2
-3	1	3
-4	1	4
-5	1	5
-6	1	6
-7	1	7
+1	1	5
+2	1	7
+3	1	2
+4	1	1
+5	1	4
+6	1	3
+7	1	6
 \.
 
 
@@ -1213,6 +1210,9 @@ SELECT pg_catalog.setval('programs_users_id_seq', 7, true);
 --
 
 COPY ratings (id, rating, post_id, event_id, created_at, updated_at) FROM stdin;
+1	4	30	\N	2013-08-13 00:33:18.72467	2013-08-13 00:33:18.72467
+2	3	29	\N	2013-08-13 00:33:20.483543	2013-08-13 00:33:20.483543
+3	5	28	\N	2013-08-13 00:33:23.241727	2013-08-13 00:33:23.241727
 \.
 
 
@@ -1220,7 +1220,7 @@ COPY ratings (id, rating, post_id, event_id, created_at, updated_at) FROM stdin;
 -- Name: ratings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dylan
 --
 
-SELECT pg_catalog.setval('ratings_id_seq', 1, false);
+SELECT pg_catalog.setval('ratings_id_seq', 3, true);
 
 
 --
@@ -1228,10 +1228,10 @@ SELECT pg_catalog.setval('ratings_id_seq', 1, false);
 --
 
 COPY regions (id, name, created_at, updated_at) FROM stdin;
-1	North	2013-08-08 19:28:49.543383	2013-08-08 19:28:49.543383
-2	East	2013-08-08 19:28:49.546115	2013-08-08 19:28:49.546115
-3	South	2013-08-08 19:28:49.547442	2013-08-08 19:28:49.547442
-4	West	2013-08-08 19:28:49.548591	2013-08-08 19:28:49.548591
+1	North	2013-08-13 00:15:15.771123	2013-08-13 00:15:15.771123
+2	East	2013-08-13 00:15:15.774015	2013-08-13 00:15:15.774015
+3	South	2013-08-13 00:15:15.775695	2013-08-13 00:15:15.775695
+4	West	2013-08-13 00:15:15.776881	2013-08-13 00:15:15.776881
 \.
 
 
@@ -1280,6 +1280,9 @@ COPY schema_migrations (version) FROM stdin;
 20130804042844
 20130804043428
 20130808183828
+20130810053938
+20130812163946
+20130812164052
 \.
 
 
@@ -1341,13 +1344,13 @@ SELECT pg_catalog.setval('tools_id_seq', 1, false);
 --
 
 COPY user_applications (id, created_at, updated_at, user_id, gender, street_address, street_address2, city, state, postal_code, country, planned_grad_year, planned_grad_term, major, minor, gpa, num_facebook_friends, instagram_username, num_instagram_followers, twitter_username, num_twitter_followers, other_social_sites, member_design_community, portfolio_url, behance_profile_url, extracurriculars, extracurricular_leadership, leadership_description, reference_name, reference_relationship, reference_email, reference_phone, how_adobe_helps, student_orgs_and_leverage, teaching_experience, what_sets_you_apart, do_you_have_time, available_to_work, video_submission_url, resume_file_name, resume_content_type, resume_file_size, resume_updated_at) FROM stdin;
-1	2013-08-08 19:28:49.401738	2013-08-08 19:28:49.401738	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-2	2013-08-08 19:28:49.409589	2013-08-08 19:28:49.409589	2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-3	2013-08-08 19:28:49.415899	2013-08-08 19:28:49.415899	3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-4	2013-08-08 19:28:49.422103	2013-08-08 19:28:49.422103	4	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-5	2013-08-08 19:28:49.428113	2013-08-08 19:28:49.428113	5	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-6	2013-08-08 19:28:49.433871	2013-08-08 19:28:49.433871	6	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-7	2013-08-08 19:28:49.439551	2013-08-08 19:28:49.439551	7	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+3	2013-08-13 00:15:15.638024	2013-08-13 00:15:15.638024	3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+4	2013-08-13 00:15:15.645357	2013-08-13 00:15:15.645357	4	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+2	2013-08-13 00:15:15.631479	2013-08-13 01:50:24.755927	2							US					\N	\N		\N		\N		\N	\N			f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+1	2013-08-13 00:15:15.623492	2013-08-13 01:55:20.046468	1							US					\N	\N		\N		\N		\N	\N			f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+5	2013-08-13 00:15:15.652674	2013-08-13 01:56:08.360594	5							US					\N	\N		\N		\N		\N	\N			f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+6	2013-08-13 00:15:15.658699	2013-08-13 01:57:22.194238	6							US					\N	\N		\N		\N		\N	\N			f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+7	2013-08-13 00:15:15.664637	2013-08-13 02:07:25.496372	7							US					\N	\N		\N		\N		\N	\N			f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -1363,13 +1366,13 @@ SELECT pg_catalog.setval('user_applications_id_seq', 7, true);
 --
 
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, first_name, last_name, admin, authentication_token, provider, uid, active_for_authentication, school_id, mobile_phone, points, current_program_id, avatar_file_name, avatar_content_type, avatar_file_size, avatar_updated_at, bio) FROM stdin;
-2	vince@whoisowenjones.com	$2a$10$btEN1wy3rfw7IjslcyiBzuLaKqCXCJ4uIM/5eswe48U33KKuiJciG	\N	\N	\N	0	\N	\N	\N	\N	2013-08-08 19:28:49.408222	2013-08-08 19:28:49.408222	Vince	Ready	t	\N	\N	\N	t	\N	\N	\N	1	Passport-photo.jpg	image/jpeg	24460	2013-07-01 16:19:41	\N
-3	paul@kingbirdcreative.com	$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa	\N	\N	\N	0	\N	\N	\N	\N	2013-08-08 19:28:49.414264	2013-08-08 19:28:49.414264	Paul	Terhaar	t	\N	\N	\N	t	\N	\N	\N	1	\N	\N	\N	\N	\N
-4	idahotallpaul@gmail.com	$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa	\N	\N	\N	0	\N	\N	\N	\N	2013-08-08 19:28:49.420642	2013-08-08 19:28:49.420642	Paul	Terhaar	f	\N	\N	\N	t	\N	\N	\N	1	\N	\N	\N	\N	\N
-7	vready@gmail.com	$2a$10$3NJlsyoiGbjoqLe2HE8MzOz/q6gknBsNbClndSTPyufBH2h5smFIO	\N	\N	\N	0	\N	\N	\N	\N	2013-08-08 19:28:49.438265	2013-08-08 19:28:49.438265	Vince	Ready	f	\N	\N	\N	t	\N	\N	\N	1	Passport-photo.jpg	image/jpeg	24460	2013-07-01 16:18:35	\N
-6	hello@nightlang.org	$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa	\N	\N	\N	1	2013-08-09 05:07:21.476195	2013-08-09 05:07:21.476195	127.0.0.1	127.0.0.1	2013-08-08 19:28:49.432549	2013-08-09 05:07:21.478115	John	Tongue	f	\N	\N	\N	t	\N	\N	\N	1	IMG_0244.JPG	image/jpeg	2270075	2013-07-01 16:19:09	\N
-5	foliomedia2@yahoo.com	$2a$10$TwVWBd5ilT7kmwhXI3gMmuB1CfLOku/hGgQIne1avyKpA0Byzj496	\N	\N	\N	2	2013-08-09 05:13:52.95814	2013-08-09 05:10:59.104851	127.0.0.1	127.0.0.1	2013-08-08 19:28:49.426625	2013-08-09 05:13:52.959281	Michael	Hfuhruhurr	f	\N	\N	\N	t	\N	\N	\N	1	IMG_0183.JPG	image/jpeg	526949	2013-07-01 16:18:12	\N
-1	dylan@whoisowenjones.com	$2a$10$P7RHrSrfkKo/LXXSLFOa3e55McrcHH9Ket1/P3bCzv4sJtP9G2g7y	\N	\N	\N	2	2013-08-09 05:17:33.962914	2013-08-09 05:11:24.905907	127.0.0.1	127.0.0.1	2013-08-08 19:28:49.398924	2013-08-09 05:17:33.964264	Dylan	Smith	t	\N	\N	\N	t	\N	\N	\N	1	IMG_0293.JPG	image/jpeg	2131577	2013-07-01 16:20:09	\N
+4	idahotallpaul@gmail.com	$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa	\N	\N	\N	0	\N	\N	\N	\N	2013-08-13 00:15:15.643374	2013-08-13 00:15:15.643374	Paul	Terhaar	f	\N	\N	\N	t	\N	\N	\N	1	\N	\N	\N	\N	\N
+3	paul@kingbirdcreative.com	$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa	\N	\N	\N	0	\N	\N	\N	\N	2013-08-13 00:15:15.63622	2013-08-13 00:15:15.63622	Paul	Terhaar	t	\N	\N	\N	t	\N	\N	\N	1	\N	\N	\N	\N	\N
+2	vince@whoisowenjones.com	$2a$10$btEN1wy3rfw7IjslcyiBzuLaKqCXCJ4uIM/5eswe48U33KKuiJciG	\N	\N	\N	0	\N	\N	\N	\N	2013-08-13 00:15:15.630178	2013-08-13 01:50:24.753176	Vince	Ready	t	\N	\N	\N	t	\N		\N	1	Passport-photo.jpg	image/jpeg	24460	2013-08-13 01:50:24.160232	
+1	dylan@whoisowenjones.com	$2a$10$P7RHrSrfkKo/LXXSLFOa3e55McrcHH9Ket1/P3bCzv4sJtP9G2g7y	\N	\N	\N	1	2013-08-13 00:17:31.925867	2013-08-13 00:17:31.925867	127.0.0.1	127.0.0.1	2013-08-13 00:15:15.620365	2013-08-13 01:55:20.043437	Dylan	Smith	t	\N	\N	\N	t	\N		\N	1	IMG_0183.JPG	image/jpeg	526949	2013-08-13 01:55:18.777076	
+5	foliomedia2@yahoo.com	$2a$10$TwVWBd5ilT7kmwhXI3gMmuB1CfLOku/hGgQIne1avyKpA0Byzj496	\N	\N	\N	1	2013-08-13 00:18:01.02996	2013-08-13 00:18:01.02996	127.0.0.1	127.0.0.1	2013-08-13 00:15:15.651045	2013-08-13 01:56:08.357107	Michael	Hfuhruhurr	f	\N	\N	\N	t	\N		\N	1	IMG_0293.JPG	image/jpeg	2131577	2013-08-13 01:56:03.756911	
+6	hello@nightlang.org	$2a$10$v8c8mHrmx/YvkPIDzeFesOBGBSLTi96mSX43hULiaYZiodoMZhVMa	\N	\N	\N	0	\N	\N	\N	\N	2013-08-13 00:15:15.65734	2013-08-13 01:57:22.19104	John	Tongue	f	\N	\N	\N	t	\N		\N	1	alex.gif	image/gif	559110	2013-08-13 01:57:18.929478	
+7	vready@gmail.com	$2a$10$3NJlsyoiGbjoqLe2HE8MzOz/q6gknBsNbClndSTPyufBH2h5smFIO	\N	\N	\N	0	\N	\N	\N	\N	2013-08-13 00:15:15.66334	2013-08-13 02:07:25.492712	Vince	Ready	f	\N	\N	\N	t	\N		\N	1	\N	\N	\N	\N	
 \.
 
 
@@ -1547,6 +1550,13 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 
 
 --
+-- Name: index_notifications_users_on_notification_id_and_user_id; Type: INDEX; Schema: public; Owner: dylan; Tablespace: 
+--
+
+CREATE INDEX index_notifications_users_on_notification_id_and_user_id ON notifications_users USING btree (notification_id, user_id);
+
+
+--
 -- Name: index_posts_on_user_id; Type: INDEX; Schema: public; Owner: dylan; Tablespace: 
 --
 
@@ -1558,6 +1568,13 @@ CREATE INDEX index_posts_on_user_id ON posts USING btree (user_id);
 --
 
 CREATE INDEX index_program_marquees_on_user_id ON program_marquees USING btree (user_id);
+
+
+--
+-- Name: index_programs_schools_on_program_id_and_school_id; Type: INDEX; Schema: public; Owner: dylan; Tablespace: 
+--
+
+CREATE INDEX index_programs_schools_on_program_id_and_school_id ON programs_schools USING btree (program_id, school_id);
 
 
 --

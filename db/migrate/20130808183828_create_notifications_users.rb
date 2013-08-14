@@ -3,8 +3,7 @@ class CreateNotificationsUsers < ActiveRecord::Migration
     create_table :notifications_users do |t|
       t.integer :notification_id
       t.integer :user_id
-
-      t.timestamps
+      t.boolean :dismissed, default: false
     end
   end
 end

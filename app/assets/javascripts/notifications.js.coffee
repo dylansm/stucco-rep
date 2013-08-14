@@ -32,6 +32,7 @@ $ ->
         console.log response
 
   remove_notification = ($notification) ->
+    $notification = $notification.parent()
     $notification.fadeOut 'slow', ->
       $notification.detach()
     

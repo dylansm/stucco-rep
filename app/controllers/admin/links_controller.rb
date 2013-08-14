@@ -3,12 +3,14 @@ class Admin::LinksController < ApplicationController
   respond_to :html, :json
 
   def index
-    @user = current_user
+    user
     render "notifications/index"
   end
 
   def new
-    @user = current_user
+    user
+    @program = user.program
+    @link = @program.links.build
   end
 
   def create
@@ -21,5 +23,8 @@ class Admin::LinksController < ApplicationController
     )
   end
 
+  def user
+    @user = current_user
+  end
 
 end
