@@ -4,7 +4,11 @@
   %h2= t('page_titles.new_link')
 
   = simple_form_for([:admin, @link]) do |f|
-    = f.input :name
-    = f.input :url
-    = f.button :button, class: "btn btn-primary submit"
-    = f.button :button, 'Cancel', :type => 'reset', :class => 'btn cancel'
+    = f.input :activity_name
+    = f.input :tag_id
+    = f.input :tag_url
+    = f.input :user_id, collection: @students,
+      input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+    .ui-wrap.vis
+      = f.button :button, class: "btn btn-primary submit"
+      = f.button :button, 'Cancel', :type => 'reset', :class => 'btn cancel'

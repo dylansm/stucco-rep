@@ -19,7 +19,6 @@ class Admin::NotificationsController < ApplicationController
   end
 
   def create
-
     if params[:all_students] == "1"
       params[:notification][:user_ids].concat User.not_admin.map(&:id)
     end
@@ -33,9 +32,8 @@ class Admin::NotificationsController < ApplicationController
       flash[:alert] = "Please correct the errors below."
       @user = current_user
       students
-      render 'admin/notifications/new'
+      render new_admin_notification_path
     end
-  
   end
 
   def destroy

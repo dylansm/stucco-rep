@@ -17,24 +17,18 @@
     
       = render "shared/header"
     
-      .content{ class: @attributes[:class] =~ /my-profile|user/ ? "student-profile" : nil }
-        
-        .profile-banner
-        
-        .leftcol
+      - if user_signed_in?
+        .content{ class: @attributes[:class] =~ /my-profile|user/ ? "student-profile" : nil }
           
-          - if user_signed_in?
+          .profile-banner
+          
+          .leftcol
+            
             = render partial: "shared/left"
 
-        .rightcol
+          = render partial: "shared/right"
 
-          .rightwrapper.flash.hidden
-            %h3.alert.notify-only.hidden= notice
-            %h3.alert.hidden= alert
-      
-          = yield
-
-          - if user_signed_in? && current_user.admin?
-            = render "admin/admin_tools"
-          
-          = render partial: "shared/footer"
+      - else
+        
+        .unauth-content
+          = render partial: "shared/right"

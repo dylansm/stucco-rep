@@ -16,8 +16,9 @@
         %span.label
           = t('nav.newsfeed')
 
-      %a.menu
-        %span.icon.icon-menu
+      - if @user
+        %a.menu
+          %span.icon.icon-menu
 
 %nav
   .width-limiter
@@ -27,12 +28,13 @@
           = link_to members_path, class: "members" do
             %span.icon.icon-attendees
             = t('nav.members')
-        - unless @user.nil? || @user.program.nil? || @user.program.links.empty?
-          %li.mobile-share
-            = link_to '#' do
-              %span.icon.icon-share
-              = t('nav.share_link')
+        -#- unless @user.nil? || @user.program.nil? || @user.program.links.empty?
+        %li.mobile-share
+          = link_to '#' do
+            %span.icon.icon-share
+            = t('nav.share_link')
 
+          - if @user
             = render partial: "shared/links"
 
         %li

@@ -1,13 +1,13 @@
 class CreateLinks < ActiveRecord::Migration
   def change
     create_table :links do |t|
-      t.string :name
-      t.string :url
-      t.integer :program_id
+      t.string :activity_name
+      t.string :tag_url
+      t.string :tag_id
+      t.integer :user_id
 
       t.timestamps
     end
-
-    add_index :links, :program_id
+    add_index :links, :user_id
   end
 end

@@ -1,8 +1,6 @@
 - if admin && @notifications.empty?
   .rightwrapper
     You have no notifications at this time.
-    %br
-    = link_to "Compose a notification?", new_admin_notification_path
 - else
   - @notifications.each do |n|
     %div{ class: alert ? nil : "rightwrapper" }
