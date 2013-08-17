@@ -1,9 +1,8 @@
 class CreateLinks < ActiveRecord::Migration
   def change
     create_table :links do |t|
-      t.string :activity_name
       t.string :tag_url
-      t.string :tag_id
+      t.string :tag_identifier
       t.integer :user_id
 
       t.timestamps

@@ -265,9 +265,10 @@
 
 
 .post-wrapper {
-	@include media-query-bp($bp3, "max") {
-		padding: 10px;
-	}
+  @include media-query-bp($bp3, "max") {
+    padding: 10px;
+    /*padding: 10px 10px 0 10px;*/
+  }
 }
 
 

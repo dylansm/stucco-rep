@@ -4,25 +4,24 @@ class Admin::LinksController < ApplicationController
 
   def index
     user
-    #render "admin/index"
+    #@links = Link.all.includes(:link_type).order("link_type.name ASC")
+    @link_types = LinkType.all.includes(:links)
   end
 
   def new
-    user
-    @program = user.program
-    @link = @program.links.build
-    students
+    prep_new_link_page
   end
 
   def create
     @link = Link.new(permitted_params)
+    link_type = LinkType.find(params[:link][:link_type_ids])
+    @link.link_types << link_type
     if @link.save
-      flash[:notice] = "Link successfully created"
+      flash[:notice] = "Link successfully created."
       redirect_to admin_links_path
     else
       flash[:alert] = "Please correct the errors below."
-      user
-      students
+      prep_new_link_page
       render new_admin_link_path
     end
   end
@@ -31,19 +30,11 @@ class Admin::LinksController < ApplicationController
 
   def permitted_params
     params.require(:link).permit(
-      :activity_name,
-      :tag_id,
+      :link_type_id,
+      :tag_identifier,
       :tag_url,
       :user_id
     )
-  end
-
-  def user
-    @user ||= current_user
-  end
-
-  def students
-    @students ||= User.not_admin
   end
 
 end

@@ -25,6 +25,8 @@ en:
       user:
         create: "Add user"
         update: "Update user"
+      link_type:
+        create: "Create Link Activity Type"
 
   simple_form:
     "yes": 'Yes'
@@ -50,9 +52,9 @@ en:
       default_message: "Some errors were found, please take a look:"
     labels:
       link:
-        activity_name: "Activity Name"
+        link_types: "Activity Name"
         tag_url: "Tag URL"
-        tag_id: "Tag ID"
+        tag_identifier: "Tag ID"
         user: "Student Name"
       user:
         first_name: "First name"

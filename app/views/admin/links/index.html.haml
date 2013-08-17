@@ -1,2 +1,14 @@
 - title t('page_titles.admin_links_index')
 
+.rightwrapper
+  %h2= t('page_titles.admin_links_index')
+
+  - if @link_types.empty?
+    %p
+      There are currently no active links being used in this program.
+
+  - @link_types.each do |lt|
+    %p= lt.name
+    %ul
+      - lt.links.each do |l|
+        %li= l.user.name

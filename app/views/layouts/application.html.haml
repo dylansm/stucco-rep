@@ -19,6 +19,7 @@
     
       - if user_signed_in?
         .content{ class: @attributes[:class] =~ /my-profile|user/ ? "student-profile" : nil }
+          .leftcol-faux
           
           .profile-banner
           
@@ -32,3 +33,6 @@
         
         .unauth-content
           = render partial: "shared/right"
+      
+
+      = render partial: "shared/footer"

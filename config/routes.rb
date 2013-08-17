@@ -13,6 +13,7 @@ Adoberep::Application.routes.draw do
       resources :users
       resources :notifications
       resources :links
+      resources :link_types
 
       get 'program-users/:id' => 'programs#users', :as => "program_users"
       get 'program-managers/:id' => 'programs#managers', :as => "program_managers"

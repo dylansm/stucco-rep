@@ -17,10 +17,13 @@
 // 5. ELEMENTS 				==============================
 // 6. LAYOUT 				==============================
 
-
-// tmp
-
 .hidden { display: none; }
+
+.leftcol {
+  .leftwrapper:last-child {
+    border: none;
+  }
+}
 
 .rightwrapper.flash {
   padding-top: .5em;
@@ -50,7 +53,6 @@ div.error small {
   color: #fc0d1b; 
   font-weight: normal;
   font-size: .9em;
-  text-transform: capitalize;
   margin-bottom: 0;
 }
 
@@ -61,6 +63,15 @@ div.error small {
   }
 }
 
+.rightwrapper.admin-tools {
+  h3 {
+    font-weight: normal;
+  }
+
+  ul {
+    list-style: none;
+  }
+}
 
 
 
@@ -492,25 +503,28 @@ nav {
 }
 
 .content {
-	
-	// @include transition($property: all, $duration: $transitionduration, $ms: false)
 	-webkit-backface-visibility: hidden;
 	@include translate3d ();
 	
 	@include transition(all);
-	
-	// transition: .2s all ease;			
-	// -webkit-transition: .2s all ease;
-	// position: absolute;
 	float: left;
 	width: 100%;
-	background-color: $sidebarbg;
+	/*background-color: $sidebarbg;*/
+        background: #fff;
 	
 	@include media-query-bp($bp5) {
 		border-right-style: none;
 	}
 	
 	@include outer-container;
+
+        .leftcol-faux {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 32.10332%;
+          background-color: $sidebarbg;
+        }
 	
 	.leftcol {
 		-webkit-backface-visibility: hidden;
@@ -533,33 +547,32 @@ nav {
 	}
 	
 	.rightcol {
-		-webkit-backface-visibility: hidden;
-		@include translate3d ();
-		
-		background-color: darken($tertiarycolor, 5%);
-		
-		@include media-query-bp($bp3) {
-			
-			background-color: $maincontentbg;
-			
-			@include span-columns(8, table);
-			// padding: 40px 60px;
-			
-		}
-		
+          float: right;
+
+          @include media-query-bp($bp3, "max") {
+            float: none;
+            -webkit-backface-visibility: hidden;
+            @include translate3d ();
+            background-color: darken($tertiarycolor, 5%);
+          }
+
+          @include media-query-bp($bp3) {
+            background-color: $maincontentbg;
+            @include span-columns(8.217, table);
+          }
 	}
 	
 	// hide the rightwrapper that contains the duplicate profile content 
 	// when larger than the 3rd breakpoint
-	&.student-profile {
-		@include media-query-bp($bp3) {
-			.rightcol {
-				.rightwrapper:first-child {
-					display: none;
-				}
-			}
-		}
-	}
+        &.student-profile {
+          @include media-query-bp($bp3) {
+            .rightcol {
+              .rightwrapper:first-child {
+                display: none;
+              }
+            }
+          }
+        }
 }
 
 .profile-banner {
@@ -653,34 +666,42 @@ nav {
 }
 
 
-
-
 footer {
-	
-	@include clearfix;
-	padding: 10px 10px 10px 10px;
-	
-	ul {
-		
-		float: left;
-		margin: 0 0 0 0;
-		padding: 0 0 0 0;
-		
-		li {
-			list-style: none;
-			float: left;
-			margin: 0 10px 0 0;
-			font-size: 10px;
-			line-height: 10px;
-		}
-	}
-	
-	p {
-		float: right;
-		margin: 0 0 0 0;
-		font-size: 10px;
-		line-height: 10px;
-	}
+  max-width: $bp6;
+  /*padding: 10px;*/
+  .leftcol {
+    height: 4em;
+    background-color: $sidebarbg;
+  }
+
+  ul {
+    float: left;
+    margin: 1em 0 1em .7em;
+    padding: 0 0 0 0;
+
+    li {
+      list-style: none;
+      float: left;
+      margin: 0 10px 0 0;
+      font-size: 10px;
+      line-height: 10px;
+    }
+  }
+
+  p {
+    float: right;
+    margin: 1.6em 3.1em 0 0;
+    font-size: 10px;
+    line-height: 10px;
+    color: $lightneutralcolor;
+
+    @include media-query-bp($bp4, "max") {
+      clear: left;
+      float: left;
+      margin: 0 0 1em 10px !important;
+    }
+
+  }
 }
 
 
@@ -748,7 +769,7 @@ fieldset {
 
 
 
-.comment-form, #new_notification, #new_link {
+.comment-form, #new_notification, #new_link, #new_link_type {
 	margin: 0 0 0 0;
 	padding: 0px 10px 10px 10px;
 
@@ -758,6 +779,10 @@ fieldset {
 
         input[type="text"] {
           margin-bottom: .25em;
+        }
+
+        .chosen-container {
+          margin-bottom: .5em;
         }
 
 	textarea {

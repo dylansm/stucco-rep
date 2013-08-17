@@ -87,6 +87,8 @@ en:
     admin_notifications: "Notifications Sent By You"
     new_notification: "Compose New Notification"
     links: "Share a Link"
+    new_link_type: "New Link Activity Type"
+    delete_link_type: "Delete Link Activity Type"
     admin_links_index: "Manage Links"
     new_link: "Compose New Link"
     members: "Members"

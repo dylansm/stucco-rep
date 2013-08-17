@@ -1,0 +1,18 @@
+.rightwrapper.admin-tools
+  %h3 Admin Tools:
+  %ul
+    - unless user_signed_in?
+      %li
+        = link_to t('links.login'), new_user_session_path
+    %li
+      = link_to t('titles.manage_programs'), admin_programs_path
+    %li
+      = link_to t('titles.manage_users'), admin_users_path
+    %li
+      = link_to t('titles.manage_schools'), admin_schools_path
+    %li
+      = link_to t('titles.manage_adobe_products'), admin_adobe_products_path
+    -#%li
+      -#= link_to "Notification Composer", new_admin_notification_path
+    -#%li
+      -#= link_to "Link Composer", new_admin_link_path
