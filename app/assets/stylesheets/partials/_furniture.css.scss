@@ -47,9 +47,37 @@
 
     @include media-query-bp($bp3, "max") {
       padding-left: .75em;
+      background: #fff !important;
+      padding-bottom: 10px !important;
+
+      &.notify-only {
+        color: #666 !important;
+      }
     }
   }
-  h3.alert.notify-only { color: #666; }
+
+  body.newsfeed & {
+    background: #333;
+    margin-bottom: 0;
+    padding-bottom: 0;
+
+    @include media-query-bp($bp3, "max") {
+      padding-top: 2em;
+      background: #f0f0f0;
+    }
+
+    h3.alert {
+      background: transparent;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    h3.alert.notify-only {
+      color: #fff;
+    }
+  }
+  /*h3.alert.notify-only { color: #666; }*/
   div.error { padding: 1em auto 2em auto; }
 }
 

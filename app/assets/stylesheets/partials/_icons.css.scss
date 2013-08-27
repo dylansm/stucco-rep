@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'Adobe-CAP-Icon-Set';
-	src: asset-url('Adobe-CAP-Icon-Set.eot', font);
-	src: asset-url('Adobe-CAP-Icon-Set.eot?#iefix', font) format('embedded-opentype'),
-          asset-url('Adobe-CAP-Icon-Set.woff', font) format('woff'),
-          asset-url('Adobe-CAP-Icon-Set.ttf', font) format('truetype'),
-          asset-url('Adobe-CAP-Icon-Set.svg#Adobe-CAP-Icon-Set', font) format('svg');
+	src: asset-url('Adobe-CAP-Icon-Set.eot');
+	src: asset-url('Adobe-CAP-Icon-Set.eot?#iefix') format('embedded-opentype'),
+          asset-url('Adobe-CAP-Icon-Set.woff') format('woff'),
+          asset-url('Adobe-CAP-Icon-Set.ttf') format('truetype'),
+          asset-url('Adobe-CAP-Icon-Set.svg#Adobe-CAP-Icon-Set') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

@@ -16,7 +16,7 @@
         %span.label
           = t('nav.newsfeed')
 
-      - if @user
+      - if user_signed_in?
         %a.menu
           %span.icon.icon-menu
 
