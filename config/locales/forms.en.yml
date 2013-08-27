@@ -27,6 +27,7 @@ en:
         update: "Update user"
       link_type:
         create: "Create Link Activity Type"
+        delete: "Delete Link Activity Type"
 
   simple_form:
     "yes": 'Yes'

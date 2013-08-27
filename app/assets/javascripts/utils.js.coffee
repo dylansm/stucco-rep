@@ -3,7 +3,7 @@ module = (name) ->
 
 module "CFB"
 
-if window.Touch || "ontouchstart" in document.documentElement
+if "ontouchstart" in window
   CFB.touch = true
 
 CFB.Utils = class Utils
@@ -95,4 +95,3 @@ $ ->
   $(".rightwrapper.flash.hidden").removeClass("hidden") if show_alert || show_notice
   $(".rightwrapper.flash .alert:not('.notify-only')").removeClass("hidden") if show_alert
   $(".rightwrapper.flash .notify-only").removeClass("hidden") if show_notice
-

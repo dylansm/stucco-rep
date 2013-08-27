@@ -212,14 +212,16 @@ header {
 	z-index: 30;
 	
 	.logo {
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		text-indent: -9999px;
-		width: 38px;
-		height: 62px;
-		background: image_url("adobe_logo.png") 0 0 no-repeat;
-		z-index: 500;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          text-indent: -9999px;
+          width: 38px;
+          height: 62px;
+          background: image_url("adobe_logo.png") 0 0 no-repeat;
+          z-index: 500;
+
+          @include image-2x("adobe_logo@2x.png", 38px, 62px);
 	}
 	
 	.headerwrapper {

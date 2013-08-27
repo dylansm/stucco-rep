@@ -4,7 +4,7 @@
   
   // bring padding for the rightwrapper down to 10px until in desktop mode
   @include media-query-bp($bp3 - 1, "max") {
-    padding: 10px;
+    padding: 10px 10px 2em 10px;
   }
   a.view-all {
     font-size: .9em;

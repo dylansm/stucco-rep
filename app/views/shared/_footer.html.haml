@@ -1,6 +1,7 @@
 %footer
-  .content
-    .leftcol 
+  %div{ class: user_signed_in? ? "content" : "unauth-content" }
+    %div{ class: user_signed_in? ? "leftcol" : nil }
+
     .rightcol
       %ul
         %li= link_to "Help", "#"
@@ -8,4 +9,5 @@
         %li= link_to "Privacy Policy and Cookies", "#"
         -#%li= link_to "Language: English", "#"
       %p.copyright= "©#{Time.now.year} Adobe Systems Incorporated. All Rights Reserved."
+    
   
