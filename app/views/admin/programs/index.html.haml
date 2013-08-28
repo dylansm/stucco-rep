@@ -8,18 +8,29 @@
   %table{ :"data-delete-confirm" => "#{@delete_confirm}" }
     %thead
       %tr
-        %th Name
-        %th # of Users
-        %th Program Managers
-        %th{:colspan => "2"} Manage
+        %th
+          %p Name
+        %th
+          %p # Users
+        %th
+          %p
+            Program Managers
+          
+        %th{:colspan => "2"}
+          %p Manage
     %tbody
       - @programs.each do |p|
         %tr
-          %td= link_to p.name, edit_admin_program_path(p)
-          %td= link_to p.users.where(admin: false).length, admin_program_users_path(p)
-          %td= link_to p.users.where(admin: true).length, admin_program_managers_path(p)
-          %td= link_to t("links.edit"), edit_admin_program_path(p)
-          %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/admin/programs/#{p.id}", :"data-id" => "#{p.id}", remote: true }
+          %td
+            %p= link_to p.name, edit_admin_program_path(p)
+          %td
+            %p= link_to p.users.where(admin: false).length, admin_program_users_path(p)
+          %td
+            %p= link_to p.users.where(admin: true).length, admin_program_managers_path(p)
+          %td
+            %p= link_to t("links.edit"), edit_admin_program_path(p)
+          %td
+            %p= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/admin/programs/#{p.id}", :"data-id" => "#{p.id}", remote: true }
 
 
   = paginate @programs

@@ -88,7 +88,6 @@ div.error small {
   margin-bottom: 0;
 }
 
-
 .unauth-content {
   h3.alert {
     padding-left: 0 !important;
@@ -105,6 +104,29 @@ div.error small {
   }
 }
 
+table {
+  margin-top: 1em;
+  border-spacing: 0;
+  border-collapse: collapse !important;
+
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding-bottom: .5em;
+    
+    p {
+      font-size: .9em;
+      margin: 0 1em 0 0;
+      line-height: 1.1em;
+    }
+  }
+
+  th {
+    p {
+      color: #666;
+    }
+  }
+}
 
 
 .chosen-container-multi .chosen-choices li.search-field input[type="text"] {

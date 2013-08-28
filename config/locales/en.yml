@@ -116,3 +116,4 @@ en:
   time:
     formats:
       notifications: "%A %B %d, %Y"
+      sign_ins: "%m/%d/%y"

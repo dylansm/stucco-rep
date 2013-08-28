@@ -51,7 +51,12 @@ class Admin::UsersController < ApplicationController
 
   # POST
   def create
+    #TODO
+    # uncomment program chooser in form and enable mutliple programs
+    params[:user][:program_ids] = ["1"]
+    
     @user = User.new(permitted_user_params)
+    @user[:program_id]
 
     if @user.save
       flash[:notice] = t("devise.users.user.created")

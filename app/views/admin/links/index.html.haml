@@ -8,7 +8,22 @@
       There are currently no active links being used in this program.
 
   - @link_types.each do |lt|
-    %p= lt.name
-    %ul
-      - lt.links.each do |l|
-        %li= l.user.name
+    %table
+      %thead
+        %tr
+          %th{ colspan: "3"}
+            %p= lt.name
+      %tbody
+        - lt.links.each do |l|
+          %tr
+            %td
+              %p
+                = link_to "#{l.user.name}", user_path(l.user.id)
+            %td{ overflow: "hidden"}
+              %p
+                = l.tag_url
+            %td
+              %p
+                %a{ href: "#", :"data-remote" => "true" }
+                  Delete
+
