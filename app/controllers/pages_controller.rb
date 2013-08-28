@@ -20,6 +20,9 @@
     end
   end
 
+
+  #delete all below
+
   def styles
     @user = current_user
   end

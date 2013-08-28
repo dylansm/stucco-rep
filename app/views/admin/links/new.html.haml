@@ -26,9 +26,9 @@
 .rightwrapper
   %h2= t('page_titles.delete_link_type')
   = simple_form_for([:admin, @link_type], html: { id: "delete_link_type", method: :delete } ) do |f|
-    = f.input :name, as: :check_boxes, collection: @link_types, label: false
+    = f.input :id, as: :check_boxes, collection: @link_types, label: false
     .ui-wrap.vis
-      = f.button :button, class: "btn btn-primary submit"
+      = f.button :button, t("helpers.submit.link_type.delete"), class: "btn btn-primary submit"
       = f.button :button, 'Cancel', :type => 'reset', :class => 'btn cancel'
 
 

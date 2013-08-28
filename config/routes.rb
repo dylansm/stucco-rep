@@ -14,6 +14,7 @@ Adoberep::Application.routes.draw do
       resources :notifications
       resources :links
       resources :link_types
+      delete 'link_types' => 'link_types#destroy', as: "destroy_link_type"
 
       get 'program-users/:id' => 'programs#users', :as => "program_users"
       get 'program-managers/:id' => 'programs#managers', :as => "program_managers"

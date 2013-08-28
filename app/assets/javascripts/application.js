@@ -21,7 +21,7 @@
 //= require comments.js.coffee
 //= require likes.js.coffee
 //= require ratings.js.coffee
-//= require posts.js.coffee
+//= require newsfeed.js.coffee
 //= require notifications.js.coffee
 //= require links.js.coffee
 

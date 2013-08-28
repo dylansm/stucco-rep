@@ -16,6 +16,14 @@ class Admin::LinkTypesController < ApplicationController
     end
   end
 
+  def destroy
+    params[:link_type][:id].delete_if { |item| item == "" }
+    link_type = LinkType.find(params[:link_type][:id].first)
+    link_type.destroy
+    flash[:notice] = "Link Activity type removed"
+    redirect_to new_admin_link_path
+  end
+
   private
 
   def permitted_params

@@ -154,12 +154,17 @@
   .share-a-link
 
     .contentheader
-      %h2 Share a link
-      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      
       - if current_user.admin?
+        %h2 Manage links
+        %p
+          View
+          = link_to "active links", admin_links_path
+          here.
         = link_to "Compose New Link", new_admin_link_path, { class: "btn btn-full-width btn-primary" }
+
       - else
+        %h2 Share a link
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         = render partial: "shared/links"
 
 
