@@ -16,6 +16,12 @@ module ApplicationHelper
     @attributes = attr
   end
 
+  def phone_number_link(text)
+    sets_of_numbers = text.scan(/[0-9]+/)
+    number = "+1-#{sets_of_numbers.join('-')}"
+    link_to text, "tel:#{number}"
+  end
+
   #def set_flash_message(key, kind, options = {})
     #flash[key] = I18n.t(:"#{resource_name}.#{kind}", { :resource_name => resource_name, :scope => [:devise, controller_name.to_sym], :default => kind }.merge(options))
   #end

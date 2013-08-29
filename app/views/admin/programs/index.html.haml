@@ -4,7 +4,7 @@
 
   %h2= t('headers.manage_programs')
 
-  = link_to t("links.dashboard.manage_programs.add"), new_admin_program_path, { :class => "small button"}
+  -#= link_to t("links.dashboard.manage_programs.add"), new_admin_program_path, { :class => "small button"}
   %table{ :"data-delete-confirm" => "#{@delete_confirm}" }
     %thead
       %tr
@@ -16,7 +16,7 @@
           %p
             Program Managers
           
-        %th{:colspan => "2"}
+        %th
           %p Manage
     %tbody
       - @programs.each do |p|
@@ -29,7 +29,7 @@
             %p= link_to p.users.where(admin: true).length, admin_program_managers_path(p)
           %td
             %p= link_to t("links.edit"), edit_admin_program_path(p)
-          %td
+          -#%td
             %p= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/admin/programs/#{p.id}", :"data-id" => "#{p.id}", remote: true }
 
 

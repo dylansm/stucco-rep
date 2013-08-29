@@ -14,6 +14,9 @@ en:
     delete: "Delete"
     edit: "Edit"
     load_more_posts: "More Posts"
+    admin:
+      manage_links:
+        link_delete_confirm: "Are you sure you want to delete this link?"
     dashboard:
       manage_users:
         reactivate: "Reactivate"

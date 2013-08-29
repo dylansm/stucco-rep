@@ -4,7 +4,7 @@ class Admin::LinksController < ApplicationController
 
   def index
     user
-    #@links = Link.all.includes(:link_type).order("link_type.name ASC")
+    @link_delete_confirm = t("links.admin.manage_links.link_delete_confirm")
     @link_types = LinkType.all.includes(:links)
   end
 
@@ -25,6 +25,14 @@ class Admin::LinksController < ApplicationController
       render new_admin_link_path
     end
   end
+
+  # DELETE :json
+  def destroy
+    @link = Link.find(params[:id])
+    @link.destroy
+    render json: { deleted: true }
+  end
+
 
   private
 
