@@ -1,4 +1,4 @@
-#ruby=ruby-2.0.0-p195
+#ruby=ruby-2.0.0-p247
 #ruby-gemset=adoberep
 
 source 'https://rubygems.org'
