@@ -6,6 +6,10 @@
   - if @link_types.empty?
     %p
       There are currently no active links being used in this program.
+  
+  %p
+    = link_to "Create new link", new_admin_link_path, class: "btn btn-primary btn-small"
+    = link_to "Manage Link Types", new_admin_link_path(anchor: "link-types"), class: "btn btn-primary btn-small"
 
   - @link_types.each do |lt|
     %table{ :"data-delete-confirm" => "#{@link_delete_confirm}" }

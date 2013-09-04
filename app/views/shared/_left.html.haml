@@ -159,7 +159,8 @@
         %p
           View
           = link_to "active links", admin_links_path
-          here.
+          or
+          = link_to "manage link types", new_admin_link_path(anchor: "link-types")
         = link_to "Compose New Link", new_admin_link_path, { class: "btn btn-full-width btn-primary" }
 
       - else

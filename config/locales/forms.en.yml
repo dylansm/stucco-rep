@@ -26,8 +26,10 @@ en:
         create: "Add user"
         update: "Update user"
       link_type:
-        create: "Create Link Activity Type"
-        delete: "Delete Link Activity Type"
+        create: "New Link Activity Type"
+        edit: "Edit"
+        update: "Update Link Type"
+        delete: "Delete"
 
   simple_form:
     "yes": 'Yes'
@@ -57,6 +59,8 @@ en:
         tag_url: "Tag URL"
         tag_identifier: "Tag ID"
         user: "Student Name"
+      link_type:
+        call_to_action: "Call to Action (necessary for social sharing)"
       user:
         first_name: "First name"
         last_name: "Last name"

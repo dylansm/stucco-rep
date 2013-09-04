@@ -66,6 +66,7 @@ Adoberep::Application.routes.draw do
   get 'pages/notification-center' => 'pages#notification_center'
 
   get 'link/:id' => 'visited_links#link', as: "link"
+  get 'link/:id/:social_id' => 'visited_links#social_link', as: "link_on_social"
   
   root 'pages#home'
   

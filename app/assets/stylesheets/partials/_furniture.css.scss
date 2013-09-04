@@ -46,14 +46,15 @@
     margin-bottom: 1em;
     padding-left: 0;
 
+    &.notify-only {
+      color: #666 !important;
+    }
+
     @include media-query-bp($bp3, "max") {
       padding-left: .75em;
       background: #fff !important;
       padding-bottom: 10px !important;
 
-      &.notify-only {
-        color: #666 !important;
-      }
     }
   }
 
@@ -691,6 +692,21 @@ nav {
 	}
 }
 
+#user-links-wrap {
+  ul {
+    list-style: none;
+
+    a {
+      display: block;
+      padding: .2em 0 0 .2em;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
 .rightwrapper {
 	
 	// padding: 10px 10px 10px 10px;
@@ -882,6 +898,21 @@ fieldset {
                   }
 		}
 	}
+}
+
+#delete_link_type {
+  button.edit {
+    margin-right: .35em;
+  }
+}
+
+#update-link-type {
+  display: none;
+  padding-top: 1em;
+
+  &.vis {
+    display: block;
+  }
 }
 
 

@@ -24,4 +24,5 @@
 //= require newsfeed.js.coffee
 //= require notifications.js.coffee
 //= require links.js.coffee
+//= require link_types.js.coffee
 

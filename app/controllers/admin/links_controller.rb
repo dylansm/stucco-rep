@@ -14,8 +14,11 @@ class Admin::LinksController < ApplicationController
 
   def create
     @link = Link.new(permitted_params)
-    link_type = LinkType.find(params[:link][:link_type_ids])
-    @link.link_types << link_type
+    unless params[:link][:link_type_ids].empty?
+      link_type = LinkType.find(params[:link][:link_type_ids])
+      @link.link_types << link_type
+    end
+
     if @link.save
       flash[:notice] = "Link successfully created."
       redirect_to admin_links_path
