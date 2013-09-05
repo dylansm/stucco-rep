@@ -19,6 +19,7 @@
 
 .hidden { display: none; }
 .ctr { text-align: center !important; }
+.grey { color: #888; }
 
 .leftcol {
   .leftwrapper:last-child {
@@ -707,6 +708,18 @@ nav {
   }
 }
 
+.navwrapper {
+  #user-links-wrap {
+    ul {
+      a {
+        padding-top: .5em;
+        padding-left: 2.7em;
+        padding-bottom: .2em;
+      }
+    }
+  }
+}
+
 .rightwrapper {
 	
 	// padding: 10px 10px 10px 10px;
@@ -859,7 +872,7 @@ fieldset {
 
 
 
-.comment-form, #new_notification, #new_link, #new_link_type, #delete_link_type {
+.comment-form, #new_notification, #new_link, #new_link_type, #delete_link_type, #update_link_type {
 	margin: 0 0 0 0;
 	padding: 0px 10px 10px 10px;
 

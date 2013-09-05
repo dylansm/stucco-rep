@@ -35,8 +35,8 @@
 
 
   #update-link-type
-    = simple_form_for([:admin, @link_type ], url: "/admin/link_types/:id", method: :patch) do |f|
-      = f.input :name
-      = f.input :call_to_action
+    = simple_form_for([:admin, @link_type ], url: "/admin/link_types/", method: :patch, html: { id: "update_link_type" }) do |f|
+      = f.input :name, input_html: { id: "update_name" }
+      = f.input :call_to_action, input_html: {id: "update_call_to_action"}
       .ui-wrap.vis
         = f.button :button, t("helpers.submit.link_type.update"), class: "btn btn-primary edit"

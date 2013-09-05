@@ -2,9 +2,9 @@ CFB.LinkTypes = class LinkTypes
 
   constructor: ($form) ->
     @$form = $form
-    @$edit_btn = $("button.edit", $form)
     @init_form()
     @init_buttons()
+    @init_radio()
 
   init_form: ->
     @$form.on("submit", ->
@@ -16,38 +16,57 @@ CFB.LinkTypes = class LinkTypes
     )
 
   init_buttons: ->
+    @$edit_btn = $("button.edit", @$form)
+    @$cancel_btn = $("button.cancel", @$form)
+    @$delete_btn = $("button.submit", @$form)
     if CFB.touch
       @$edit_btn.on("touchstart", (e) => @update_link_type(e) )
+      @$cancel_btn.on("touchstart", (e) => @cancel_update(e) )
     else
       @$edit_btn.on("click", (e) => @update_link_type(e) )
+      @$cancel_btn.on("click", (e) => @cancel_update(e) )
 
 
-  $("#delete_link_type button.cancel").click ->
+  cancel_update: (e) ->
     $("#update-link-type").removeClass("vis")
-    $("#delete_link_type button.edit").removeClass("btn-primary")
-    $("#delete_link_type button.submit").removeClass("btn-primary")
+    @$edit_btn.removeClass("btn-primary")
+    @$delete_btn.removeClass("btn-primary")
     # clear values on update fields too
 
-  $("#delete_link_type input[type=radio]").change ->
-    $("#delete_link_type button.edit").addClass("btn-primary")
-    $("#delete_link_type button.submit").addClass("btn-primary")
+  init_radio: ->
+    $("#delete_link_type input[type=radio]").change =>
+      @$edit_btn.addClass("btn-primary")
+      @$delete_btn.addClass("btn-primary")
+      id = $("input[type=radio]:checked", @$form).val()
+      @load_link_type(id)
 
+  load_link_type: (id) ->
+    $.ajax
+      url: "/admin/link_types/#{id}"
+      type: "get"
+      datatype: "json"
+      success: (data, textstatus, xhr) =>
+        @fill_update_form(data)
+      error: (response) =>
+        console.log response
+
+  fill_update_form: (data) ->
+    $form = $("#update_link_type")
+    action = $form.attr("action")
+    action = action.replace /\/\d+$/, ''
+    $form.attr("action", "#{action}/#{data.id}")
+    $("#update_name").val(data.name)
+    $("#update_call_to_action").val(data.call_to_action)
 
   update_link_type: (e) ->
     e.preventDefault()
     unless $(e.target).hasClass("btn-primary")
       return
     $("#update-link-type").addClass("vis")
-    id = $("#delete_link_type input[type=radio]:checked").val()
-    @load_link_type(id)
 
 
 $ ->
 
   $("#delete_link_type").each ->
     new CFB.LinkTypes($(this))
-  
-
-
-    
 

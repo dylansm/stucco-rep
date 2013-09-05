@@ -28,11 +28,14 @@
           = link_to members_path, class: "members" do
             %span.icon.icon-attendees
             = t('nav.members')
-        -#- unless @user.nil? || @user.program.nil? || @user.program.links.empty?
         %li.mobile-share
           = link_to '#' do
-            %span.icon.icon-share
-            = t('nav.share_link')
+            - if user_signed_in? && current_user.admin?
+              %span.icon.icon-share.admin
+              = t('nav.manage_links')
+            - else
+              %span.icon.icon-share
+              = t('nav.share_link')
 
           - if @user
             = render partial: "shared/links"

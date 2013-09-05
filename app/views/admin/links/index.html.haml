@@ -8,8 +8,8 @@
       There are currently no active links being used in this program.
   
   %p
-    = link_to "Create new link", new_admin_link_path, class: "btn btn-primary btn-small"
-    = link_to "Manage Link Types", new_admin_link_path(anchor: "link-types"), class: "btn btn-primary btn-small"
+    = link_to "Create new link", new_admin_link_path, class: "btn btn-primary"
+    = link_to "Manage Link Types", new_admin_link_path(anchor: "link-types"), class: "btn btn-primary"
 
   - @link_types.each do |lt|
     %table{ :"data-delete-confirm" => "#{@link_delete_confirm}" }
@@ -18,16 +18,24 @@
           %th{ colspan: "3"}
             %p= lt.name
       %tbody
-        - lt.links.each do |l|
+        - if lt.links.length > 0
+
+          - lt.links.each do |l|
+            %tr
+              %td
+                %p
+                  = link_to "#{l.user.name}", user_path(l.user.id)
+              %td{ overflow: "hidden"}
+                %p
+                  = l.tag_url
+              %td
+                %p
+                  %a.delete-row{ href: "#", :"data-remote" => "true",
+                    :"data-path" => "/admin/links/#{l.id}",
+                    :"data-id" => "#{l.id}" }= t("links.delete")
+        - else
           %tr
-            %td
-              %p
-                = link_to "#{l.user.name}", user_path(l.user.id)
-            %td{ overflow: "hidden"}
-              %p
-                = l.tag_url
-            %td
-              %p
-                %a.delete-row{ href: "#", :"data-remote" => "true",
-                  :"data-path" => "/admin/links/#{l.id}",
-                  :"data-id" => "#{l.id}" }= t("links.delete")
+            %td{ colspan: "3" }
+              %p.grey
+                There are no active links for this link type.
+

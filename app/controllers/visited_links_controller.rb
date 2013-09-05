@@ -3,7 +3,6 @@ class VisitedLinksController < ApplicationController
 
   def link
     @link = Link.find(params[:id])
-    debugger
     redirect_to @link.tag_url
   end
 

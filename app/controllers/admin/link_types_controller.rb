@@ -2,6 +2,14 @@ class Admin::LinkTypesController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
 
+  # JSON get
+  def show
+    @link_type = LinkType.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @link_type }
+    end
+  end
+
   def create
     @link_type = LinkType.new(permitted_params)
 
@@ -21,12 +29,26 @@ class Admin::LinkTypesController < ApplicationController
     if params[:link_type]
       link_type = LinkType.find(params[:link_type][:id].first)
       link_type.destroy
-      flash[:notice] = "Link Activity type removed"
+      flash[:notice] = "Link activity type removed"
     else
       flash[:alert] = "Please specifiy a link activity type"
     end
 
     redirect_to new_admin_link_path
+  end
+
+  def update
+    @link_type = LinkType.find(params[:id])
+    if @link_type.update_attributes(permitted_params)
+      flash[:notice] = "Link activity type created"
+      redirect_to new_admin_link_path
+    else
+      flash[:alert] = "There was a problem creating the new link type"
+      @link = Link.new
+      @user = current_user
+      @link_types = LinkType.all
+      render 'admin/links/new'
+    end
   end
 
   private
