@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   has_many :authored_notifications, class_name: "Notification", foreign_key: "notifier_id"
   #has_and_belongs_to_many :links
   has_many :links
-  has_many :visited_links, through: :links
+  #has_many :visited_links, through: :links
+  has_many :visited_links
   accepts_nested_attributes_for :user_application, :tools
 
   # Include default devise modules. Others available are: :token_authenticatable, :confirmable, :registerable, :lockable, :timeoutable and :omniauthable

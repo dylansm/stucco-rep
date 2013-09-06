@@ -14,6 +14,9 @@ class Admin::LinksController < ApplicationController
 
   def create
     @link = Link.new(permitted_params)
+
+    params[:link][:tag_url] = "http://" + params[:link][:tag_url] unless /https?:\/\// =~ params[:link][:tag_url]
+
     unless params[:link][:link_type_ids].empty?
       link_type = LinkType.find(params[:link][:link_type_ids])
       @link.link_types << link_type

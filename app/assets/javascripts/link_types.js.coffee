@@ -31,7 +31,6 @@ CFB.LinkTypes = class LinkTypes
     $("#update-link-type").removeClass("vis")
     @$edit_btn.removeClass("btn-primary")
     @$delete_btn.removeClass("btn-primary")
-    # clear values on update fields too
 
   init_radio: ->
     $("#delete_link_type input[type=radio]").change =>

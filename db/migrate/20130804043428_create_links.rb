@@ -4,6 +4,7 @@ class CreateLinks < ActiveRecord::Migration
       t.string :tag_url
       t.string :tag_identifier
       t.integer :user_id
+      t.integer :visited_links_count, default: 0
 
       t.timestamps
     end

@@ -3,21 +3,30 @@
 .rightwrapper
   %h2= t('headers.manage_schools')
 
-  = link_to t("links.dashboard.manage_schools.add"), new_dashboard_admin_school_path, { :class => "small button"}
+  = link_to t("links.dashboard.manage_schools.add"), new_admin_school_path, { :class => "small btn btn-primary"}
   %table{ :"data-delete-confirm" => "#{@delete_confirm}" }
     %thead
       %tr
-        %th Name
-        %th Logo
-        %th # of Users
-        %th{:colspan => "2"} Manage
+        %th
+          %p Name
+        %th
+          %p Logo
+        %th
+          %p # of Users
+        %th.ctr{:colspan => "2"}
+          %p Manage
     %tbody
       - @schools.each do |s|
         %tr
-          %td= link_to s.name, dashboard_admin_school_path(s)
-          %td= link_to(image_tag(s.school_logo.url(:sm), { width: "40px", height: "40px", srcset: "#{s.school_logo.url(:"sm@2x")} 2x" }), dashboard_admin_school_path(s))
-          %td= link_to s.users.length, dashboard_admin_school_users_path(s)
-          %td= link_to t("links.edit"), edit_dashboard_admin_school_path(s)
-          %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/dashboard/admin/schools/#{s.id}", :"data-id" => "#{s.id}", remote: true }
+          %td
+            %p= link_to s.name, admin_school_path(s)
+          %td
+            %p= link_to(image_tag(s.school_logo.url(:sm), { class: "school-logo", width: "40px", height: "40px", srcset: "#{s.school_logo.url(:"sm@2x")} 2x" }), admin_school_path(s))
+          %td.ctr
+            %p= link_to s.users.length, admin_school_users_path(s)
+          %td
+            %p= link_to t("links.edit"), edit_admin_school_path(s)
+          %td
+            %p= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/admin/schools/#{s.id}", :"data-id" => "#{s.id}", remote: true }
 
   = paginate @schools

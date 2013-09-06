@@ -1,4 +1,4 @@
-= simple_form_for([:dashboard, :admin, @school]) do |f|
+= simple_form_for([:admin, @school]) do |f|
   = f.input :name
   = f.input :school_logo, :as => :file
-  = f.button :submit
+  = f.button :submit, class: "btn btn-primary"

@@ -7,15 +7,22 @@
   %table{ :"data-delete-confirm" => "#{@delete_confirm}" }
     %thead
       %tr
-        %th Name
-        %th Mnemonic
-        %th{:colspan => "2"} Manage
+        %th
+          %p Name
+        %th 
+          %p Mnemonic
+        %th.ctr{:colspan => "2"}
+          %p Manage
     %tbody
       - @adobe_products.each do |ap|
         %tr
-          %td= link_to ap.name, edit_admin_adobe_product_path(ap)
-          %td= link_to(image_tag(ap.mnemonic.url(:sm)), edit_admin_adobe_product_path(ap))
-          %td= link_to t("links.edit"), edit_admin_adobe_product_path(ap)
-          %td= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/admin/adobe_products/#{ap.id}", :"data-id" => "#{ap.id}", remote: true }
+          %td
+            %p= link_to ap.name, edit_admin_adobe_product_path(ap)
+          %td.ctr
+            %p= link_to(image_tag(ap.mnemonic.url(:sm), class: "mnemonic-sm"), edit_admin_adobe_product_path(ap))
+          %td
+            %p= link_to t("links.edit"), edit_admin_adobe_product_path(ap)
+          %td
+            %p= link_to t("links.delete"), "#", { class: "delete-row", :"data-path" => "/admin/adobe_products/#{ap.id}", :"data-id" => "#{ap.id}", remote: true }
 
   = paginate @adobe_products

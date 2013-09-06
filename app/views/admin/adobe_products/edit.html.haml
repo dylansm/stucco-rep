@@ -1,5 +1,7 @@
 - title t("page_titles.edit_adobe_product", name: @adobe_product.name)
 
-%h2= "Edit #{@adobe_product.name}"
+.rightwrapper
 
-=render "form"
+  %h2= "Edit #{@adobe_product.name}"
+
+  =render "form"

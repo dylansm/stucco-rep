@@ -5,5 +5,7 @@ class School < ActiveRecord::Base
 
   validates(:name, presence: true)
 
-  has_attached_file :school_logo, styles: { sm: "40x40#", :"sm@2x" => "80x80#", med: "60x60#", lg: "120x120#", :"lg@2x" => "240x240#" }
+  has_attached_file :school_logo,
+    styles: { sm: "40x40#", :"sm@2x" => "80x80#", med: "60x60#", lg: "120x120#", :"lg@2x" => "240x240#" },
+    default_url: "/assets/:attachment/missing/:style/school_missing.png"
 end

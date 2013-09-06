@@ -816,7 +816,10 @@ footer {
   }
 }
 
-
+img.school-logo {
+  width: 40px;
+  height: 40px;
+}
 
 
 
@@ -926,6 +929,11 @@ fieldset {
   &.vis {
     display: block;
   }
+}
+
+.mnemonic-sm {
+  width: 16px;
+  height: 16px;
 }
 
 

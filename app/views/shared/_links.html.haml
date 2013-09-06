@@ -2,12 +2,12 @@
   - @user.links.each do |l|
     %ul
       %li
-        %span Adobe Student Microsite 
-        = link_to link_on_social_path(l, "facebook") do
+        %span= l.link_types.first.name
+        = link_to link_path(l, "facebook") do
           %span.icon.icon-fb
           %span.label Share on Facebook
 
-        = link_to link_on_social_path(l, "twitter") do
+        = link_to link_path(l, "twitter") do
           %span.icon.icon-twitter
           %span.label Post on Twitter
 

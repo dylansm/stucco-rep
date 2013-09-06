@@ -1,4 +1,5 @@
 ---
 name: Student Rep Portal
 url: adoberep.com
+dev_url: localhost
 staging_url: staging-students.adoberep.com
