@@ -1,45 +1,57 @@
 - title t('page_titles.program_users', name: @program.name)
 - attributes({ :"data-program-id" => "#{@program.id}" })
 
-%h2= t('headers.program_users', name: @program.name)
+.rightwrapper
+  %h2= t('headers.program_users', name: @program.name)
 
-= paginate @users
+  = paginate @users
 
-= link_to "Add new user", admin_new_user_for_program_path(@program), { :class => "small button"}
+  = link_to "Add new user", admin_new_user_for_program_path(@program), { :class => "btn btn-primary"}
 
-= simple_form_for([:admin, @program],
-  url: admin_add_user_to_program_path(@program)) do |f|
-  = f.association :users, collection: User.not_in_program(@program),
-    label_method: lambda { |u| u.name }, include_blank: false, label: t('select.labels.add_existing_user'),
-    input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
-  = f.submit
+  / TODO when there are other programs
+  -#= simple_form_for([:admin, @program],
+    -#url: admin_add_user_to_program_path(@program)) do |f|
+    -#= f.association :users, collection: @users_not_in_program,
+      -#label_method: lambda { |u| u.name }, include_blank: false, label: t('select.labels.add_existing_user'),
+      -#input_html: { class: 'chzn-select', :"data-placeholder" => t("select.choose") }
+    -#= f.button :submit, class: "btn btn-primary"
 
-%table{ :"data-reactivate" => "#{@reactivate}", :"data-suspend" => "#{@suspend}",
-  :"data-suspend-confirm" => "#{@users_suspend_confirm}",
-  :"data-reactivate-confirm" => "#{@users_reactivate_confirm}", 
-  :"data-delete-confirm" => "#{@users_delete_confirm}", 
-  :"data-remove-confirm" => "#{@users_remove_confirm}" }
-  %thead
-    %tr
-      %th First Name
-      %th Last Name
-      %th Email
-      %th Last Sign In
-      %th{:colspan => "4"} Manage
-  %tbody
-    - @users.each do |u|
-    - u.active_for_authentication ? link = @suspend : link = @reactivate
-      %tr{:class => u.active_for_authentication ? '' : 'suspended' }
-        %td= link_to u.first_name, admin_user_path(u)
-        %td= link_to u.last_name, admin_user_path(u)
-        %td= link_to u.email, admin_user_path(u)
-        %td= u.last_sign_in_at
-        %td= link_to t("links.edit"), edit_admin_user_path(u)
-        %td= link_to link, "#", { class: "toggle-user", :"data-id" => "#{u.id}", remote: true }
-        %td= link_to t("links.dashboard.manage_programs.remove_user"), "#", { class: "remove-row", 
-          :"data-path" => "/admin/programs/#{@program.id}/remove/#{u.id}", 
-          remote: true }
-        %td= link_to t("links.delete"), "#", { class: "delete-row", 
-          :"data-path" => "/admin/users/#{u.id}", 
-          :"data-id" => "#{u.id}", 
-          remote: true }
+  %table{ :"data-reactivate" => "#{@reactivate}", :"data-suspend" => "#{@suspend}",
+    :"data-suspend-confirm" => "#{@users_suspend_confirm}",
+    :"data-reactivate-confirm" => "#{@users_reactivate_confirm}", 
+    :"data-delete-confirm" => "#{@users_delete_confirm}", 
+    :"data-remove-confirm" => "#{@users_remove_confirm}" }
+    %thead
+      %tr
+        %th 
+          %p Name
+        %th.ctr
+          %p Email
+        %th.med-hide 
+          %p Last Sign In
+        %th.ctr{:colspan => "4"}
+          %p Manage
+    %tbody
+      - @users.each do |u|
+      - u.active_for_authentication ? link = @suspend : link = @reactivate
+        %tr{:class => u.active_for_authentication ? '' : 'suspended' }
+          %td
+            %p= link_to u.name, admin_user_path(u)
+          %td
+            %p= link_to u.email, admin_user_path(u)
+          %td.med-hide
+            - unless u.last_sign_in_at.nil?
+              %p= l u.last_sign_in_at, format: :sign_ins
+          %td
+            %p= link_to t("links.edit"), edit_admin_user_path(u)
+          %td
+            %p= link_to link, "#", { class: "toggle-user", :"data-id" => "#{u.id}", remote: true }
+          %td
+            %p= link_to t("links.dashboard.manage_programs.remove_user"), "#", { class: "remove-row", 
+            :"data-path" => "/admin/programs/#{@program.id}/remove/#{u.id}", 
+            remote: true }
+          %td
+            %p= link_to t("links.delete"), "#", { class: "delete-row", 
+            :"data-path" => "/admin/users/#{u.id}", 
+            :"data-id" => "#{u.id}", 
+            remote: true }

@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :admin_only!, only: [:new, :index]
   respond_to :html, :json
 
   def index
@@ -16,9 +17,13 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @user_application = @user.user_application
-    build_adobe_products
-    render "admin/users/edit"
+    if current_user.admin? == false && current_user == @user
+      @user_application = @user.user_application
+      build_adobe_products
+      render "admin/users/edit"
+    else
+      redirect_to user_path
+    end
   end
 
   # PUT

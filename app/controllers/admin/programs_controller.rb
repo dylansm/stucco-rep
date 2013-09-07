@@ -1,5 +1,6 @@
 class Admin::ProgramsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :admin_only!
   respond_to :html, :json
 
   def index
@@ -95,6 +96,7 @@ class Admin::ProgramsController < ApplicationController
     localized_links
     @program = Program.includes(:users).find(params[:id])
     @users = @program.users.where(admin: false).page(params[:page])
+    #@users_not_in_program = User.not_in_program(@program)
   end
 
   def managers

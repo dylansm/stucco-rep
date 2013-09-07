@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def admin_only!
+    unless current_user.admin?
+      flash[:alert] = "You don’t have permission to view that page."
+      redirect_to root_path
+    end
+  end
+
   def prep_new_link_page
     user
     program
