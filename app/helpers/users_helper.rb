@@ -7,6 +7,10 @@ module UsersHelper
     @resource ||= User.new
   end
 
+  def resource_class
+    devise_mapping.to
+  end
+
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
