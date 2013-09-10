@@ -1,16 +1,17 @@
 - @user == current_user ? title("My Profile") : title("#{@user.first_name} #{@user.last_name}")
 - @user == current_user ? attributes({ class: "my-profile", :"data-user-id" => "#{current_user.id}"}) : attributes({ class: "user", :"data-user-id" => "#{current_user.id}"})
 
-%h2= "#{@user.first_name} #{@user.last_name}"
-- if @user == current_user || current_user.admin?
-  %p= link_to "Edit", edit_admin_user_path(@user)
+.rightwrapper
+  %h2= "#{@user.first_name} #{@user.last_name}"
+  - if @user == current_user || current_user.admin?
+    %p= link_to "Edit", edit_admin_user_path(@user)
 
-%h3 Facebook activity:
-- if @facebook_posts
-  - @facebook_posts.each do |post|
-    %h3= post[:message]
-    %p= "Shared #{pluralize(post[:share_count], 'time', 'times')}"
-    %p= "Liked #{pluralize(post[:likes][:count], 'time', 'times')}"
-    %p= "#{pluralize(post[:comment_info][:comment_count], 'comment', 'comments')}"
-- else
-  %p No activity
+  %h3 Facebook activity:
+  - if @facebook_posts
+    - @facebook_posts.each do |post|
+      %h3= post[:message]
+      %p= "Shared #{pluralize(post[:share_count], 'time', 'times')}"
+      %p= "Liked #{pluralize(post[:likes][:count], 'time', 'times')}"
+      %p= "#{pluralize(post[:comment_info][:comment_count], 'comment', 'comments')}"
+  - else
+    %p No activity

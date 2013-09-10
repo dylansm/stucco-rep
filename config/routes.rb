@@ -51,7 +51,8 @@ Adoberep::Application.routes.draw do
     :omniauth_callbacks => 'users/omniauth_callbacks'
   }
 
-  get 'notifications' => 'admin/notifications#index', as: "notifications"
+  #get 'notifications' => 'admin/notifications#index', as: "notifications"
+  get 'notifications' => 'notifications#index', as: "notifications"
   post 'dismiss-notification/:id' => 'admin/notifications#dismiss'
   get 'users/:id' => 'users#show', as: "user"
   get 'profile' => 'users#show'

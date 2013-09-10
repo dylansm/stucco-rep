@@ -5,11 +5,7 @@ class Admin::NotificationsController < ApplicationController
 
   def index
     user
-    if user.admin?
-      @notifications = user.authored_notifications.page(params[:page])
-    else
-      @notifications = user.notifications.page(params[:page])
-    end
+    @notifications = user.authored_notifications.page(params[:page])
     render "notifications/index"
   end
 
