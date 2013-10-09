@@ -3,8 +3,12 @@ module = (name) ->
 
 module "CFB"
 
-if "ontouchstart" in window
-  CFB.touch = true
+#if "ontouchstart" in window
+  #CFB.touch = true
+if window.addEventListener
+   window.addEventListener "touchstart",
+       -> CFB.touch = true
+   , false
 
 CFB.Utils = class Utils
 
