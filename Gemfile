@@ -1,7 +1,7 @@
-#ruby=ruby-2.0.0-p247
+#ruby=ruby-2.0.0-p353
 #ruby-gemset=adoberep
 
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '4.0.0.rc2'
 gem 'jquery-rails'
